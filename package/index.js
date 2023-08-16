@@ -4,12 +4,26 @@ const setupLogging = require("./logging/setup.logging");
 const setupRoutes = require("./route/setup.route");
 const setupModels = require("./database/setup.database");
 const cacheActions = require("./cache/cache.actions");
-// const { clearValidatePhoneEmail, getDeviceId } = require("../wrappid/communication/helper");
 const communicationUtils = require("./utils/communication.utils");
 const MiddlewaresRegistry = require("./registry/MiddlewaresRegistry");
 const initializeCronJobs = require("./tasks/initTasks");
+const {wrappidApp, setupWrappidApp} = require("./wrappidApp");
+// const {ApplicationContext, setApplicationContext} = require("./ApplicationContext");
+const applicationContext = () => require("./ApplicationContext");
+const constant = require("./constants/server.constant");
 
-module.exports = {
+export = {
+  /**
+   * App
+   */
+  wrappidApp,
+  setupWrappidApp,
+  ApplicationContext: applicationContext.ApplicationContext,
+  setApplicationContext: applicationContext.setApplicationContext,
+  /**
+   * Constants
+   */
+  constant,
   /**
    * logging
    */

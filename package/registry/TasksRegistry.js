@@ -1,7 +1,5 @@
-const modulesTaskRegistry = require("../../modules/modules.tasks.registry");
 
-const tasksRegistry = {
-    ...modulesTaskRegistry
+const TasksRegistry = {
 };
 
-module.exports = tasksRegistry;
+module.exports = TasksRegistry;

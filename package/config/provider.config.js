@@ -2,6 +2,8 @@
  * @todo must get it from application context
  */
 
-const configProvider = require("../../../wrappid.conf.json")["dev"];
+const { ApplicationContext } = require("../ApplicationContext");
+
+const configProvider = ApplicationContext["config"]["dev"];
 
 module.exports = configProvider;

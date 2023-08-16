@@ -1,12 +1,15 @@
-const modulesModelsRegistry = require("../../modules/modules.models.registry");
-const CronSchemas = require("../tasks/cronSchemas.model");
+const CronSchemas = require("../models/CronSchemas.model");
+const ApiRequestLogs = require("../models/ApiRequestLogs.model");
 
 const modelsRegistry = {
+    "ApirequestLogs": {
+        database : "application",
+        model    : ApiRequestLogs
+    },
     "CronSchemas": {
         database: "application",
         model   : CronSchemas
     },
-    ...modulesModelsRegistry
 };
 
 module.exports = modelsRegistry;
