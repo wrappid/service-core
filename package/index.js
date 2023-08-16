@@ -6,6 +6,8 @@ const setupModels = require("./database/setup.database");
 const cacheActions = require("./cache/cache.actions");
 // const { clearValidatePhoneEmail, getDeviceId } = require("../wrappid/communication/helper");
 const communicationUtils = require("./utils/communication.utils");
+const MiddlewaresRegistry = require("./registry/MiddlewaresRegistry");
+const initializeCronJobs = require("./tasks/initTasks");
 
 module.exports = {
   /**
@@ -27,4 +29,14 @@ module.exports = {
    * communication
    */
   communicationUtils,
+
+  /**
+   * Cron Functions
+   */
+  initializeCronJobs,
+
+  /**
+   * Registry
+   */
+  MiddlewaresRegistry
 };
