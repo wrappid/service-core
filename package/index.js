@@ -5,7 +5,7 @@ const setupRoutes = require("./route/setup.route");
 const setupModels = require("./database/setup.database");
 const cacheActions = require("./cache/cache.actions");
 const communicationUtils = require("./utils/communication.utils");
-const initializeCronJobs = require("./tasks/initTasks");
+const setupTasks = require("./tasks/setup.tasks");
 const { constant,DEFAULT_PORT } = require("./constants/server.constant");
 const {
     FunctionsRegistry,
@@ -59,5 +59,5 @@ module.exports = {
   /**
    * Cron Functions
    */
-  initializeCronJobs
+  setupTasks
 };

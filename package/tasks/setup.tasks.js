@@ -1,7 +1,7 @@
 const cron = require("node-cron");
-const { TasksRegistry } = require("./../registry");
+const { TasksRegistry } = require("../registry");
 
-const initializeCronJobs = async (AppTasksRegistry) => {
+const setupTasks = async (AppTasksRegistry) => {
   let tasksRegistry = { ...TasksRegistry, ...AppTasksRegistry };
   console.log(`::----- Its initializeCronJobs -----::`);
   try {
@@ -47,4 +47,4 @@ const initializeCronJobs = async (AppTasksRegistry) => {
   }
 };
 
-module.exports =  initializeCronJobs ;
+module.exports =  setupTasks ;
