@@ -35,9 +35,9 @@ const databaseActions = {
   findOne: async (database, model, data) => {
     try {
       const databaseProvider = require("./provider.database");
-      return await databaseProvider[database].models[model].findAll({
+      return await databaseProvider[database].models[model].findOne({
         where: {
-          id: data["req"]["body"]["id"],
+          id: data,
         },
       });
     } catch (error) {

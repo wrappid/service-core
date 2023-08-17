@@ -2,7 +2,7 @@ const CronSchemas = require("../models/CronSchemas.model");
 const ApiRequestLogs = require("../models/ApiRequestLogs.model");
 
 const ModelsRegistry = {
-    "ApirequestLogs": {
+    "ApiRequestLogs": {
         database : "application",
         model    : ApiRequestLogs
     },

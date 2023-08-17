@@ -4,7 +4,7 @@ let Sequelize = require("sequelize");
 const apiLogger = async (req, res, next) => {
   try {
     result = await databaseProvider["application"].models[
-      "ApirequestLogs"
+      "ApiRequestLogs"
     ].create({
       ip: req.socket.remoteAddress,
       access_key: " ",
@@ -23,7 +23,7 @@ const apiLogger = async (req, res, next) => {
       await send.call(this, body);
     };
     res.on("finish", async () => {
-      await databaseProvider["application"].models["ApirequestLogs"].update(
+      await databaseProvider["application"].models["ApiRequestLogs"].update(
         {
           response: res_body,
           response_header: res._headers,

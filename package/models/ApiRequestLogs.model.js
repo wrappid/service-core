@@ -1,6 +1,6 @@
 let Sequelize = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  const api_request_logs = sequelize.define(
+  const ApiRequestLogs = sequelize.define(
     "ApiRequestLogs",
     {
       id: {
@@ -44,5 +44,5 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
-  return api_request_logs;
+  return ApiRequestLogs;
 };
