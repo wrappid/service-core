@@ -6,7 +6,7 @@ const setupModels = require("./database/setup.database");
 const cacheActions = require("./cache/cache.actions");
 const communicationUtils = require("./utils/communication.utils");
 const initializeCronJobs = require("./tasks/initTasks");
-const { constant } = require("./constants/server.constant");
+const { constant,DEFAULT_PORT } = require("./constants/server.constant");
 const {
     FunctionsRegistry,
     MiddlewaresRegistry,
@@ -31,6 +31,7 @@ module.exports = {
    * Constants
    */
   constant,
+  DEFAULT_PORT,
 
   /**
    * logging
