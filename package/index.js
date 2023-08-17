@@ -5,29 +5,43 @@ const setupRoutes = require("./route/setup.route");
 const setupModels = require("./database/setup.database");
 const cacheActions = require("./cache/cache.actions");
 const communicationUtils = require("./utils/communication.utils");
-const MiddlewaresRegistry = require("./registry/MiddlewaresRegistry");
 const initializeCronJobs = require("./tasks/initTasks");
-const {ApplicationContext, setApplicationContext} = require("./ApplicationContext");
-const constant = require("./constants/server.constant");
+const { constant } = require("./constants/server.constant");
+const {
+    FunctionsRegistry,
+    MiddlewaresRegistry,
+    ModelsRegistry,
+    RoutesRegistry,
+    TasksRegistry,
+    ValidationsRegistry
+} = require("./registry");
 
 module.exports = {
   /**
-   * App
+   * Registry
    */
-  ApplicationContext,
-  setApplicationContext,
+  CoreFunctionsRegistry: FunctionsRegistry,
+  CoreMiddlewaresRegistry: MiddlewaresRegistry,
+  CoreModelsRegistry: ModelsRegistry,
+  CoreRoutesRegistry: RoutesRegistry,
+  CoreTasksRegistry: TasksRegistry,
+  CoreValidationsRegistry: ValidationsRegistry,
+
   /**
    * Constants
    */
   constant,
+
   /**
    * logging
    */
   setupLogging,
+
   /**
    * routes
    */
   setupRoutes,
+
   /**
    * database
    */
@@ -35,6 +49,7 @@ module.exports = {
   databaseProvider,
   databaseActions,
   cacheActions,
+
   /**
    * communication
    */
@@ -43,10 +58,5 @@ module.exports = {
   /**
    * Cron Functions
    */
-  initializeCronJobs,
-
-  /**
-   * Registry
-   */
-  MiddlewaresRegistry
+  initializeCronJobs
 };

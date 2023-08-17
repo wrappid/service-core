@@ -1,5 +1,3 @@
-
-const RoutesRegistry = {
-};
+const RoutesRegistry = {};
 
 module.exports = RoutesRegistry;

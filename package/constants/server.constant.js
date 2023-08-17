@@ -94,5 +94,6 @@ const constant = {
     }
   };
   
-  module.exports = {constant,  DEFAULT_PORT: 8081};
+
+module.exports = { constant: constant, DEFAULT_PORT: 8081 };
   

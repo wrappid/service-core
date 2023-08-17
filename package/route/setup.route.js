@@ -5,14 +5,15 @@
  * 3)
  */
 
-const moduleRoutesRegistry = require("../../modules/modules.routes.registry");
+const {RoutesRegistry} = require("../registry");
 
-const setupRoutes = (app) => {
+const setupRoutes = (app, AppRoutesRegistry) => {
+  let routesRegistry = { ...RoutesRegistry, ...AppRoutesRegistry}; 
   console.log(`----------------------------------`);
   console.log(`Setting up routes...`);
-  Object.keys(moduleRoutesRegistry).forEach((route) => {
+  Object.keys(routesRegistry).forEach((route) => {
     console.log(`Adding ${route} route...`);
-    app.use(`/${route}`, moduleRoutesRegistry[route]);
+    app.use(`/${route}`, routesRegistry[route]);
   });
   console.log(`Routes setup successfully.`);
   console.log(`----------------------------------`);

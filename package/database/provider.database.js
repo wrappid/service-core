@@ -34,11 +34,8 @@
 
 "use strict";
 
-const fs = require("fs");
-const path = require("path");
 const Sequelize = require("sequelize");
 const config = require("../config/provider.config");
-const setupModels = require("./setup.database");
 
 const databaseProvider = {};
 

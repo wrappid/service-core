@@ -1,7 +1,8 @@
 const cron = require("node-cron");
-const tasksRegistry = require("./../registry/TasksRegistry");
+const { TasksRegistry } = require("./../registry");
 
-const initializeCronJobs = async () => {
+const initializeCronJobs = async (AppTasksRegistry) => {
+  let tasksRegistry = { ...TasksRegistry, ...AppTasksRegistry };
   console.log(`::----- Its initializeCronJobs -----::`);
   try {
     const { databaseActions } = require("../index");

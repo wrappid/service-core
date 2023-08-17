@@ -1,7 +1,7 @@
 const CronSchemas = require("../models/CronSchemas.model");
 const ApiRequestLogs = require("../models/ApiRequestLogs.model");
 
-const modelsRegistry = {
+const ModelsRegistry = {
     "ApirequestLogs": {
         database : "application",
         model    : ApiRequestLogs
@@ -9,7 +9,7 @@ const modelsRegistry = {
     "CronSchemas": {
         database: "application",
         model   : CronSchemas
-    },
+    }
 };
 
-module.exports = modelsRegistry;
+module.exports = ModelsRegistry;
