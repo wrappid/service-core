@@ -7,19 +7,15 @@ const cacheActions = require("./cache/cache.actions");
 const communicationUtils = require("./utils/communication.utils");
 const MiddlewaresRegistry = require("./registry/MiddlewaresRegistry");
 const initializeCronJobs = require("./tasks/initTasks");
-const {wrappidApp, setupWrappidApp} = require("./wrappidApp");
-// const {ApplicationContext, setApplicationContext} = require("./ApplicationContext");
-const applicationContext = () => require("./ApplicationContext");
+const {ApplicationContext, setApplicationContext} = require("./ApplicationContext");
 const constant = require("./constants/server.constant");
 
-export = {
+module.exports = {
   /**
    * App
    */
-  wrappidApp,
-  setupWrappidApp,
-  ApplicationContext: applicationContext.ApplicationContext,
-  setApplicationContext: applicationContext.setApplicationContext,
+  ApplicationContext,
+  setApplicationContext,
   /**
    * Constants
    */
