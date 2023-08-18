@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "exit 0",
-    "build": "exit 0"
+    "build": "exit 0",
+    "publish": "npm publish ./package --registry=https://npm.pkg.github.com --scope=@wrappid"
+
   },
   "repository": {
     "type": "git",
