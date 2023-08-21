@@ -2,10 +2,10 @@ const databaseActions = {
   /**
    *
    */
-  findAll: async (database, model) => {
+  findAll: async (database, model, data) => {
     try {
       const databaseProvider = require("./provider.database");
-      return await databaseProvider[database].models[model].findAll();
+      return await databaseProvider[database].models[model].findAll(data);
     } catch (error) {
       throw new Error(error);
     }
@@ -20,37 +20,30 @@ const databaseActions = {
     }
   },
 
-  update: async (database, model, data) => {
+  update: async (database, model, {data, where, transaction}) => {
     try {
       const databaseProvider = require("./provider.database");
-      return await databaseProvider[database].models[model].update(
-        { name: data["req"]["body"]["name"] },
-        { where: { id: data["req"]["body"]["id"] } }
+      return await databaseProvider[database].models[model].update(data,where,transaction
       );
     } catch (error) {
       throw new Error(error);
     }
   },
 
-  findOne: async (database, model, data) => {
+  findOne: async (database, model, data ) => {
     try {
+      console.log('::---',data,'---::');
       const databaseProvider = require("./provider.database");
-      return await databaseProvider[database].models[model].findOne({
-        where: {
-          id: data,
-        },
-      });
+      return await databaseProvider[database].models[model].findOne(data);
     } catch (error) {
       throw new Error(error);
     }
   },
-
-  create: async (database, model, data) => {
+  
+  create: async (database, model, data, transaction) => {
     try {
       const databaseProvider = require("./provider.database");
-      return await databaseProvider[database].models[model].create({
-        name: data["req"]["body"]["name"],
-      });
+      return await databaseProvider[database].models[model].create(data,transaction);
     } catch (error) {
       throw new Error(error);
     }
