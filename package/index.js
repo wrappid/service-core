@@ -1,3 +1,4 @@
+const configProvider = require("./config/provider.config");
 const databaseProvider = require("./database/provider.database");
 const databaseActions = require("./database/actions.database");
 const setupLogging = require("./logging/setup.logging");
@@ -17,6 +18,7 @@ const {
 } = require("./registry");
 
 module.exports = {
+  configProvider,
   /**
    * Registry
    */
