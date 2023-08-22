@@ -8,10 +8,9 @@
  */
 const path = require("path");
 
-const env = process.env.NODE_ENV || "dev";
-const wrappidConfig = require(path.resolve("./wrappid.conf.json"));
+const wrappidConfig = require(path.resolve("./config.json"));
 
-const configProvider = wrappidConfig[env];
+const configProvider = wrappidConfig;
 console.log("###########################################");
 console.log("configProvider found");
 console.log("###########################################");
