@@ -5,14 +5,14 @@
 var multer = require("multer");
 const multerS3 = require("multer-s3");
 const aws = require("aws-sdk");
-const config = require("../config/config.json");
 const { constant } = require("../constants/server.constant");
+const configProvider = require("../config/provider.config");
 
 const env = process.env.NODE_ENV || "development";
-const region = config[env].region;
-const accessKeyId = config[env].accessKeyId;
-const secretAccessKey = config[env].secretAccessKey;
-const s3Bucket = config[env].bucket;
+const s3Bucket = configProvider.storage.s3.bucket;
+const region = configProvider.storage.s3.region;
+const accessKeyId = configProvider.storage.s3.accessKeyId;
+const secretAccessKey = configProvider.storage.s3.secretAccessKey;
 const acceptedType = ["pdf", "doc", "docx", "jpg", "jpeg", "png"];
 
 aws.config.update({
