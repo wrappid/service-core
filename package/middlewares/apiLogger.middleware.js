@@ -3,7 +3,7 @@ let Sequelize = require("sequelize");
 
 const apiLogger = async (req, res, next) => {
   try {
-    result = await databaseProvider["application"].models[
+    let apiRequestLog = await databaseProvider["application"].models[
       "ApiRequestLogs"
     ].create({
       ip: req.socket.remoteAddress,
@@ -15,7 +15,7 @@ const apiLogger = async (req, res, next) => {
       start_ts: Sequelize.literal("CURRENT_TIMESTAMP"),
     });
 
-    let id = result.id;
+    let id = apiRequestLog.id;
     let send = res.send;
     let res_body;
     res.send = async function (body) {
@@ -23,7 +23,7 @@ const apiLogger = async (req, res, next) => {
       await send.call(this, body);
     };
     res.on("finish", async () => {
-      await databaseProvider["application"].models["ApiRequestLogs"].update(
+      databaseProvider["application"].models["ApiRequestLogs"].update(
         {
           response: res_body,
           response_header: res._headers,
@@ -33,10 +33,11 @@ const apiLogger = async (req, res, next) => {
         { where: { id: id } }
       );
     });
-
-    next();
   } catch (error) {
-    throw new Error(error);
+    console.error(error);
+    // throw new Error(error);
+  } finally {
+    next();
   }
 };
 
