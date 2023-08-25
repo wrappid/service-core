@@ -53,10 +53,10 @@ const constant = {
       EMAIL: "email",
       SMS: "phone",
       WHATSAPP: "whatsapp",
+      NOTIFICATION: "notification",
     },
   
     communication: {
-      NOTIFICATION: "notification",
       SENT_OTP_MAIL_EN: "sent_otp_mail_en",
       SENT_OTP_SMS_EN: "sent_otp_sms_en",
       SENT_PRESCRIPTION_MAIL: "sent_prescription_mail",
