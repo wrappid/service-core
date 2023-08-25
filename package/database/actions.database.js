@@ -20,7 +20,7 @@ const databaseActions = {
     }
   },
 
-  update: async (database, model, {data, where, transaction}) => {
+  update: async (database, model, data, where, transaction) => {
     try {
       const databaseProvider = require("./provider.database");
       return await databaseProvider[database].models[model].update(data,where,transaction
@@ -52,7 +52,7 @@ const databaseActions = {
   findByPk: async (database, model, primaryKey) => {
     try {
       const databaseProvider = require("./provider.database");
-      return await databaseProvider[database].models[model].findOne(primaryKey);
+      return await databaseProvider[database].models[model].findByPk(primaryKey);
     } catch (error) {
       throw new Error(error);
     }

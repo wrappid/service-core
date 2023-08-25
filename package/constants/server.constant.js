@@ -51,7 +51,7 @@ const constant = {
     
     commType: {
       EMAIL: "email",
-      SMS: "sms",
+      SMS: "phone",
       WHATSAPP: "whatsapp",
     },
   

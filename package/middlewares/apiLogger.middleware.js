@@ -18,9 +18,14 @@ const apiLogger = async (req, res, next) => {
     let id = apiRequestLog.id;
     let send = res.send;
     let res_body;
-    res.send = async function (body) {
-      res_body = body;
-      await send.call(this, body);
+    let bodySetFlag = false;
+    res.send = function (body) {
+      if(!bodySetFlag){
+        res_body = body;
+        return send.call(this, body);
+      } else {
+        return;
+      }
     };
     res.on("finish", async () => {
       databaseProvider["application"].models["ApiRequestLogs"].update(
@@ -32,6 +37,7 @@ const apiLogger = async (req, res, next) => {
         },
         { where: { id: id } }
       );
+      bodySetFlag = true;
     });
   } catch (error) {
     console.error(error);
