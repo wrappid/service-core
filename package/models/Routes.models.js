@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
     controllerRef: {
       type: DataTypes.STRING,
     },
+    reqMethod: {
+      type: DataTypes.STRING,
+    },
     authRequired: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

@@ -5,8 +5,9 @@
  * 3)
  */
 
-const {ControllersRegistry} = require("../registry");
+const { ControllersRegistry } = require("../registry");
 const databaseActions = require("../database/actions.database");
+const { constant } = require("../constants/server.constant");
 
 const setupRoutes = async (app, AppControllersRegistry) => {
   let controllersRegistry = { ...ControllersRegistry, ...AppControllersRegistry };
@@ -26,7 +27,23 @@ const setupRoutes = async (app, AppControllersRegistry) => {
   console.log(`Setting up routes...`);
   apiRoutes.forEach((apiRoute) => {
     console.log(`Adding ${apiRoute?.name} route...`);
-    app.use(`/${apiRoute?.url}`, controllersRegistry[apiRoute?.controllerRef]);
+    switch (apiRoute?.reqMethod) {
+      case constant.httpMethod.HTTP_GET:
+        app.get(`/${apiRoute?.url}`, controllersRegistry[apiRoute?.controllerRef]);
+        break;
+      case constant.httpMethod.HTTP_POST:
+        app.post(`/${apiRoute?.url}`, controllersRegistry[apiRoute?.controllerRef]);
+        break;
+      case constant.httpMethod.HTTP_PUT:
+        app.put(`/${apiRoute?.url}`, controllersRegistry[apiRoute?.controllerRef]);
+        break;
+      case constant.httpMethod.HTTP_PATCH:
+        app.patch(`/${apiRoute?.url}`, controllersRegistry[apiRoute?.controllerRef]);
+        break;
+      default:
+        console.log(`${apiRoute.name} is not set because request method is missing.`)
+        break;
+    }
   });
   console.log(`Routes setup successfully.`);
   console.log(`----------------------------------`);
