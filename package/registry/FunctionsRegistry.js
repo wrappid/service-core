@@ -1,5 +1,3 @@
-
-const FunctionsRegistry = {
-};
+const FunctionsRegistry = { };
 
 module.exports = FunctionsRegistry;

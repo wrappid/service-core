@@ -5,15 +5,29 @@
  * 3)
  */
 
+const {ControllersRegistry} = require("../registry");
 const {RoutesRegistry} = require("../registry");
+const databaseActions = require("../database/actions.database");
 
-const setupRoutes = (app, AppRoutesRegistry) => {
-  let routesRegistry = { ...RoutesRegistry, ...AppRoutesRegistry}; 
+const setupRoutes = async (app, AppRoutesRegistry) => {
+  let routesRegistry = { ...RoutesRegistry, ...AppRoutesRegistry };
+  console.log(routesRegistry);
+
+  console.log(`----------------------------------`);
+  let apiRoutes = await databaseActions.findAll("application", "Routes", {
+    where: {
+      source: "server"
+    }
+  });
+  console.log(`----------------------------------`);
+  console.log(apiRoutes);
+  console.log(`----------------------------------`);
+
   console.log(`----------------------------------`);
   console.log(`Setting up routes...`);
-  Object.keys(routesRegistry).forEach((route) => {
-    console.log(`Adding ${route} route...`);
-    app.use(`/${route}`, routesRegistry[route]);
+  apiRoutes.forEach((apiRoute) => {
+    console.log(`Adding ${apiRoute?.name} route...`);
+    app.use(`/${apiRoute?.url}`, ControllersRegistry[apiRoute?.controllerRef]);
   });
   console.log(`Routes setup successfully.`);
   console.log(`----------------------------------`);

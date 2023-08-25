@@ -48,11 +48,14 @@ const constant = {
       EMAIL: "email",
       PHONE: "phone",
     },
-  
-    communication: {
+    
+    commType: {
       EMAIL: "email",
       SMS: "sms",
       WHATSAPP: "whatsapp",
+    },
+  
+    communication: {
       NOTIFICATION: "notification",
       SENT_OTP_MAIL_EN: "sent_otp_mail_en",
       SENT_OTP_SMS_EN: "sent_otp_sms_en",

@@ -18,7 +18,7 @@ const setupLogging = (app) => {
  
     // log all requests to access.log
     app.use(morgan('common', {
-        stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+        stream: fs.createWriteStream(path.resolve('access.log'), { flags: 'a' })
     }));
 }
 

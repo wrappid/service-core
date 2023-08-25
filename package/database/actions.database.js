@@ -2,10 +2,10 @@ const databaseActions = {
   /**
    *
    */
-  findAll: async (database, model, data) => {
+  findAll: async (database, model, options) => {
     try {
       const databaseProvider = require("./provider.database");
-      return await databaseProvider[database].models[model].findAll(data);
+      return await databaseProvider[database].models[model].findAll(options);
     } catch (error) {
       throw new Error(error);
     }

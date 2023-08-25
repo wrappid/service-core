@@ -3,21 +3,30 @@ const {
   validateEmail,
 } = require("../../module/communication/communication.validator");
 
+const configProvider = require("../config/provider.config");
+
+let {
+  emailProvider,
+  fromName,
+  fromEmail,
+  replyTo,
+} = configProvider;
+
 var transporter = nodemailer.createTransport({
   service: "gmail",
-
   auth: {
-    user: config[env].mailId,
-    pass: config[env].mailPassword,
+    user: emailProvider.gmail.email,
+    pass: emailProvider.gmail.password,
   },
 });
 
-const sentMail = async (mailOptions) => {
-  mailOptions = {
-    ...mailOptions,
-    from: `${config[env].mailFrom} <${config[env].mailId}>`,
-  };
+const sentEmail = async (mailOptions) => {
   try {
+    mailOptions = {
+    ...mailOptions,
+    from: `${fromName} <${fromEmail}>`,
+    };
+      
     if (validateEmail(mailOptions.to)) {
       console.log("mailOptions", mailOptions);
       var response = await transporter.sendMail(mailOptions);
@@ -25,17 +34,12 @@ const sentMail = async (mailOptions) => {
       console.log(response);
       return { status: 200, message: "Mail sent" };
     } else {
-      console.error("Invalid email");
-      return { status: 500, message: "Invalid email" };
+      throw new Error("Invalid email");
     }
   } catch (error) {
-    if (error) {
-      console.error(error);
-      return { status: 500, message: "Error!!!" };
-    }
+    console.error(error);
+    throw error;
   }
 };
 
-module.exports = {
-  sentMail,
-};
+module.exports = sentEmail;

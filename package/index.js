@@ -32,7 +32,7 @@ module.exports = {
   /**
    * Constants
    */
-  constant,
+  coreConstant: constant,
   DEFAULT_PORT,
 
   /**
