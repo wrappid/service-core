@@ -12,7 +12,6 @@ const {
     FunctionsRegistry,
     MiddlewaresRegistry,
     ModelsRegistry,
-    RoutesRegistry,
     TasksRegistry,
     ValidationsRegistry
 } = require("./registry");
@@ -25,7 +24,6 @@ module.exports = {
   CoreFunctionsRegistry: FunctionsRegistry,
   CoreMiddlewaresRegistry: MiddlewaresRegistry,
   CoreModelsRegistry: ModelsRegistry,
-  CoreRoutesRegistry: RoutesRegistry,
   CoreTasksRegistry: TasksRegistry,
   CoreValidationsRegistry: ValidationsRegistry,
 

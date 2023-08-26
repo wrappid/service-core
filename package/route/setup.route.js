@@ -1,10 +1,3 @@
-/**
- * @todo
- * 1)get routesregistry from modules.routes.registry.js
- * 2)run a loop on  modules.routes.registry to use every single router present in the module
- * 3)
- */
-
 const { ControllersRegistry } = require("../registry");
 const databaseActions = require("../database/actions.database");
 const { constant } = require("../constants/server.constant");
@@ -30,7 +23,7 @@ const setupRoutes = async (app, AppControllersRegistry) => {
   console.log(`Setting up routes...`);
   apiRoutes.forEach((apiRoute) => {
     console.log(`Adding ${apiRoute?.name} route...`);
-    if (typeof controllersRegistry[apiRoute?.controllerRef] === "function" || typeof controllersRegistry[apiRoute?.controllerRef] === "array") {
+    if (typeof controllersRegistry[apiRoute?.controllerRef] === "function" || typeof controllersRegistry[apiRoute?.controllerRef] === "object") {
       switch (apiRoute?.reqMethod) {
         case constant.httpMethod.HTTP_GET:
           app.get(
