@@ -6,7 +6,6 @@ const setupModels = (AppModelsRegistry) => {
     let modelsRegistry = { ...ModelsRegistry, ...AppModelsRegistry };
 
     Object.keys(databaseProvider).forEach(databaseName => {
-        let database = databaseProvider[databaseName];
 
         let models = Object.keys(modelsRegistry).filter(model => {
             return modelsRegistry[model].database === databaseName;
@@ -16,10 +15,22 @@ const setupModels = (AppModelsRegistry) => {
         databaseProvider[databaseName].models = {}
         models.forEach(model => {
             console.log(`Adding ~${model}~ model...`);
-            databaseProvider[databaseName].models[model] = modelsRegistry[model].model(databaseProvider[databaseName].sequelize, Sequelize);
+            let modelInstance = modelsRegistry[model].model(databaseProvider[databaseName].sequelize, Sequelize)
+            databaseProvider[databaseName].models[model] = modelInstance;
         });
         console.log(`Models added to ${databaseName} database successfully.`);
+        
+        /**
+         * Run sequelize association
+         */
+        models.forEach((modelName) => {
+            if (databaseProvider[databaseName].models[modelName].associate) {
+                databaseProvider[databaseName].models[modelName].associate(databaseProvider[databaseName].models);
+            }
+        });
     });
+
+
 }
 
 module.exports = setupModels;

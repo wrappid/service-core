@@ -2,6 +2,18 @@ const databaseActions = {
   /**
    *
    */
+  findAndCountAll: async (database, model, options) => {
+    try {
+      const databaseProvider = require("./provider.database");
+      return await databaseProvider[database].models[model].findAndCountAll(options);
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  /**
+   *
+   */
   findAll: async (database, model, options) => {
     try {
       const databaseProvider = require("./provider.database");

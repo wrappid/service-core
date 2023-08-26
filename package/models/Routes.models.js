@@ -13,6 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: null,
     },
+    controllerRef: {
+      type: DataTypes.STRING,
+      defaultValue: null,
+    },
+    reqMethod: {
+      type: DataTypes.STRING,
+      defaultValue: null,
+    },
     name: {
       // This field has to be deleted ASAP
       type: DataTypes.STRING,
@@ -21,15 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     url: {
       type: DataTypes.STRING,
       defaultValue: null,
-    },
-    pageRef: {
-      type: DataTypes.STRING,
-    },
-    controllerRef: {
-      type: DataTypes.STRING,
-    },
-    reqMethod: {
-      type: DataTypes.STRING,
     },
     authRequired: {
       type: DataTypes.BOOLEAN,
@@ -70,9 +69,9 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   routes.associate = (models) => {
-    routes.hasOne(models.Pages, {
-      foreignKey: { name: "ref", type: DataTypes.STRING },
-      sourceKey: "pageRef",
+    routes.belongsTo(models.Pages, {
+      foreignKey: { name: "pageRef", type: DataTypes.STRING },
+      targetKey: "entityRef",
     });
     routes.belongsTo(models.Users, {
       foreignKey: "createdBy",
