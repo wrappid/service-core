@@ -30,7 +30,7 @@ const setupRoutes = async (app, AppControllersRegistry) => {
   console.log(`Setting up routes...`);
   apiRoutes.forEach((apiRoute) => {
     console.log(`Adding ${apiRoute?.name} route...`);
-    if (typeof controllersRegistry[apiRoute?.controllerRef] === "function") {
+    if (typeof controllersRegistry[apiRoute?.controllerRef] === "function" || typeof controllersRegistry[apiRoute?.controllerRef] === "array") {
       switch (apiRoute?.reqMethod) {
         case constant.httpMethod.HTTP_GET:
           app.get(
