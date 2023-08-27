@@ -29,8 +29,6 @@ const setupModels = (AppModelsRegistry) => {
             }
         });
     });
-
-
 }
 
 module.exports = setupModels;

@@ -50,6 +50,7 @@ config.databases.forEach(async (database) => {
   
     databaseProvider[database.name] = {},
     databaseProvider[database.name]["sequelize"] = sequelize;
+    databaseProvider[database.name]["Sequelize"] = Sequelize;
     
     await databaseProvider[database.name].sequelize.authenticate();
     console.log(`Connection to ${database.name} database has been established successfully.`);
