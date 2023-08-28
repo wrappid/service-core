@@ -1,4 +1,4 @@
-const { ControllersRegistry } = require("../registry");
+const { ControllersRegistry, MiddlewaresRegistry } = require("../registry");
 const databaseActions = require("../database/actions.database");
 const { constant } = require("../constants/server.constant");
 
@@ -24,29 +24,38 @@ const setupRoutes = async (app, AppControllersRegistry) => {
   apiRoutes.forEach((apiRoute) => {
     console.log(`Adding ${apiRoute?.name} route...`);
     if (typeof controllersRegistry[apiRoute?.controllerRef] === "function" || typeof controllersRegistry[apiRoute?.controllerRef] === "object") {
+      let funcArray = [...controllersRegistry[apiRoute?.controllerRef]];
+      /**
+       * Attach jwtVerify middleware
+       *
+       */
+      if (apiRoute?.authRequired) {
+        funcArray = [MiddlewaresRegistry.jwtVerify, ...funcArray];
+      }
+
       switch (apiRoute?.reqMethod) {
         case constant.httpMethod.HTTP_GET:
           app.get(
             `/${apiRoute?.url}`,
-            controllersRegistry[apiRoute?.controllerRef]
+            funcArray
           );
           break;
         case constant.httpMethod.HTTP_POST:
           app.post(
             `/${apiRoute?.url}`,
-            controllersRegistry[apiRoute?.controllerRef]
+            funcArray
           );
           break;
         case constant.httpMethod.HTTP_PUT:
           app.put(
             `/${apiRoute?.url}`,
-            controllersRegistry[apiRoute?.controllerRef]
+            funcArray
           );
           break;
         case constant.httpMethod.HTTP_PATCH:
           app.patch(
             `/${apiRoute?.url}`,
-            controllersRegistry[apiRoute?.controllerRef]
+            funcArray
           );
           break;
         default:
