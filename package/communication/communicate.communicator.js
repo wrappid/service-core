@@ -30,7 +30,11 @@ const communicate = async ({ commType, commRecipients, commData, commTemplateID,
           communicateEmail({ ...commRecipients, ...messageObject });
           break;
         case constant.commType.SMS:
-          communicateSMS({});
+          communicateSMS({
+            phone: commRecipients.to,
+            ...messageObject,
+            dlttemplateid: communicationTemplate.externalTemplateId
+          });
           break;
         case constant.commType.WHATSAPP:
           communicateWhatsApp();

@@ -30,15 +30,20 @@ const communicationUtils = {
         try {
             let { communicationTemplate, commData } = commOptions;
             let messageObj = {
-                subject: "",
                 message: ""
             };
 
-            messageObj.subject = "";
+            if (communicationTemplate.type === constant.commType.EMAIL) {
+                messageObj.subject = "";
+                messageObj.contentType = communicationTemplate.contentType;
+            }
+
             messageObj.message = communicationTemplate.type === constant.commType.WHATSAPP ? JSON.stringify(communicationTemplate.config) : communicationTemplate.message;
             Object.keys(commData).forEach(commDataKey => {
-                var regExpr = new RegExp("#" + commDataKey, "g");
-                messageObj.subject = messageObj.subject.replace(regExpr, commData[commDataKey]);
+                let regExpr = new RegExp("#" + commDataKey, "g");
+                if (communicationTemplate.type === constant.commType.EMAIL) {
+                    messageObj.subject = messageObj.subject.replace(regExpr, commData[commDataKey]);
+                }
                 messageObj.message = messageObj.message.replace(regExpr, commData[commDataKey]);
             });
 
