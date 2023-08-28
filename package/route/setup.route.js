@@ -24,11 +24,14 @@ const setupRoutes = async (app, AppControllersRegistry) => {
   apiRoutes.forEach((apiRoute) => {
     console.log(`Adding ${apiRoute?.name} route...`);
     if (typeof controllersRegistry[apiRoute?.controllerRef] === "function" || typeof controllersRegistry[apiRoute?.controllerRef] === "object") {
-      let funcArray = [...controllersRegistry[apiRoute?.controllerRef]];
-      /**
-       * Attach jwtVerify middleware
-       *
-       */
+      let funcArray = [];
+      if (typeof controllersRegistry[apiRoute?.controllerRef] === "function") {
+        funcArray = [controllersRegistry[apiRoute?.controllerRef]];
+      } else {
+        funcArray = [...controllersRegistry[apiRoute?.controllerRef]];
+      }
+
+      /* Attach jwtVerify middleware */
       if (apiRoute?.authRequired) {
         funcArray = [MiddlewaresRegistry.jwtVerify, ...funcArray];
       }
