@@ -27,21 +27,20 @@ const communicate = async ({ commType, commRecipients, commData, commTemplateID,
     if (directFlag) {
       switch (commType) {
         case constant.commType.EMAIL:
-          communicateEmail({ ...commRecipients, ...messageObject });
-          break;
+          return communicateEmail({ ...commRecipients, ...messageObject });
         case constant.commType.SMS:
-          communicateSMS({
+          return communicateSMS({
             phone: commRecipients.to,
             ...messageObject,
             dlttemplateid: communicationTemplate.externalTemplateId
           });
-          break;
         case constant.commType.WHATSAPP:
-          communicateWhatsApp();
-          break;
+          return communicateWhatsApp();
         default:
           throw new Error("Communication type is invalid.");
       }
+    } else {
+      // db entry
     }
   } catch (error) {
     console.error(error);

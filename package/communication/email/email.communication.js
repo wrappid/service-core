@@ -8,9 +8,9 @@ const {
   service,
   email,
   password
-} = configProvider;
+} = configProvider.emailProvider;
 
-var transporter = nodemailer.createTransport({
+let transporter = nodemailer.createTransport({
   service: service,
 
   auth: {
@@ -28,19 +28,30 @@ const communicate = async (mailOptions) => {
   try {
     if (validateEmails(mailOptions)) {
       console.log("mailOptions", mailOptions);
-      var response = await transporter.sendMail(mailOptions);
-      console.log("Email sent: ");
-      console.log(response);
-      return { status: 200, message: "Mail sent" };
+      return new Promise(function (resolve, reject) {
+        transporter.sendMail(mailOptions, (err, info) => {
+          if (err) {
+            console.log("error: ", err);
+            reject(err);
+          } else {
+            console.log(`Mail sent successfully!`);
+            resolve(info);
+          }
+        });
+      }).then(res => {
+        console.log("Email sent.................");
+        console.log(res);
+        return true;
+      }).catch(error => {
+        console.log("Email sent failed.................");
+        console.error(error);
+        throw error;
+      });
     } else {
-      console.error("Invalid email");
-      return { status: 500, message: "Invalid email" };
+      throw new Error("Invalid email recipients.");
     }
   } catch (error) {
-    if (error) {
-      console.error(error);
-      return { status: 500, message: "Error!!!" };
-    }
+    throw new error;
   }
 };
 

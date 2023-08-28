@@ -12,7 +12,7 @@ const communicationUtils = {
         let { to = [], cc = [], bcc = [] } = mailRecipients;
 
         [...to, ...cc, ...bcc].forEach(eachRecipient => {
-            if (!validateEmail(eachRecipient)) {
+            if (!validateEmail.validate(eachRecipient)) {
                 valid = false;
             }
         })
@@ -29,22 +29,51 @@ const communicationUtils = {
     }) => {
         try {
             let { communicationTemplate, commData } = commOptions;
-            let messageObj = {
-                message: ""
-            };
+            let messageObj = {};
 
-            if (communicationTemplate.type === constant.commType.EMAIL) {
-                messageObj.subject = "";
-                messageObj.contentType = communicationTemplate.contentType;
+            switch (communicationTemplate.type) {
+                case constant.commType.EMAIL:
+                    messageObj = {
+                        // contentType: communicationTemplate.contentType || "text/plain",
+                        subject: communicationTemplate.subject
+                    };
+                    if (communicationTemplate.contentType && communicationTemplate.contentType.includes("html")) {
+                        messageObj.html = communicationTemplate.message;
+                    } else {
+                        messageObj.text = communicationTemplate.message;
+                    }
+                    break;
+                case constant.commType.SMS:
+                    messageObj = {
+                        message: communicationTemplate.message
+                    };
+                    break;
+                case constant.commType.WHATSAPP:
+                    messageObj = {
+                        message: JSON.stringify(communicationTemplate.config)
+                    };
+                    break;
+                default:
+                    break;
             }
 
-            messageObj.message = communicationTemplate.type === constant.commType.WHATSAPP ? JSON.stringify(communicationTemplate.config) : communicationTemplate.message;
             Object.keys(commData).forEach(commDataKey => {
                 let regExpr = new RegExp("#" + commDataKey, "g");
-                if (communicationTemplate.type === constant.commType.EMAIL) {
-                    messageObj.subject = messageObj.subject.replace(regExpr, commData[commDataKey]);
+                switch (communicationTemplate.type) {
+                    case constant.commType.EMAIL:
+                        messageObj.subject = messageObj.subject.replace(regExpr, commData[commDataKey]);
+                        if (communicationTemplate.contentType && communicationTemplate.contentType.includes("html")) {
+                            messageObj.html = messageObj.html.replace(regExpr, commData[commDataKey]);
+                        } else {
+                            messageObj.text = messageObj.text.replace(regExpr, commData[commDataKey]);
+                        }
+                        break;
+                    case constant.commType.SMS:
+                        messageObj.subject = messageObj.subject.replace(regExpr, commData[commDataKey]);
+                        break;
+                    default:
+                        break;
                 }
-                messageObj.message = messageObj.message.replace(regExpr, commData[commDataKey]);
             });
 
             return messageObj;
