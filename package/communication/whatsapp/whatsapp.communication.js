@@ -1,10 +1,11 @@
-const env = process.env.NODE_ENV || "development";
-const config = require("../../config/config.json")[env];
 const fetch = require("node-fetch");
-const api_url = config.whatsapp.api_url.replace(":id", config.whatsapp.id);
-const whatsapp_accessToken = config.whatsapp.accessToken;
+const configProvider = require("../../config/provider.config");
+let { api_url, id, token } = configProvider.whatsappProvider;
+api_url = api_url.replace(":id", id);
+const whatsapp_accessToken = token;
 
-async function sendToWhatsapp(phone, data) {
+async function communicate(whatsappOptions) {
+    let { phone, data } = whatsappOptions;
   let res = {};
   try {
     let body = {
@@ -76,6 +77,4 @@ async function sendToWhatsapp(phone, data) {
   return res;
 }
 
-module.exports = {
-  sendToWhatsapp,
-};
+module.exports = communicate;

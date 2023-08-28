@@ -5,15 +5,15 @@ const setupLogging = require("./logging/setup.logging");
 const setupRoutes = require("./route/setup.route");
 const setupModels = require("./database/setup.database");
 const cacheActions = require("./cache/cache.actions");
-const communicationUtils = require("./utils/communication.utils");
+const communicate = require("./communication/communicate.communicator");
 const setupTasks = require("./tasks/setup.tasks");
-const { constant,DEFAULT_PORT } = require("./constants/server.constant");
+const { constant, DEFAULT_PORT } = require("./constants/server.constant");
 const {
-    FunctionsRegistry,
-    MiddlewaresRegistry,
-    ModelsRegistry,
-    TasksRegistry,
-    ValidationsRegistry
+  FunctionsRegistry,
+  MiddlewaresRegistry,
+  ModelsRegistry,
+  TasksRegistry,
+  ValidationsRegistry
 } = require("./registry");
 
 module.exports = {
@@ -54,7 +54,7 @@ module.exports = {
   /**
    * communication
    */
-  communicationUtils,
+  communicate,
 
   /**
    * Cron Functions

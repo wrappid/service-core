@@ -1,24 +1,32 @@
 const nodemailer = require("nodemailer");
+const configProvider = require("../../config/provider.config");
+const { validateEmails } = require("../../utils/communication.utils");
 const {
-  validateEmail,
-} = require("../../module/communication/communication.validator");
+  fromName,
+  fromEmail,
+  replyTo,
+  service,
+  email,
+  password
+} = configProvider;
 
 var transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: service,
 
   auth: {
-    user: config[env].mailId,
-    pass: config[env].mailPassword,
+    user: email,
+    pass: password,
   },
 });
 
-const sentMail = async (mailOptions) => {
+const communicate = async (mailOptions) => {
   mailOptions = {
     ...mailOptions,
-    from: `${config[env].mailFrom} <${config[env].mailId}>`,
+    from: `${fromName} <${fromEmail}>`,
+    replyTo: replyTo
   };
   try {
-    if (validateEmail(mailOptions.to)) {
+    if (validateEmails(mailOptions)) {
       console.log("mailOptions", mailOptions);
       var response = await transporter.sendMail(mailOptions);
       console.log("Email sent: ");
@@ -36,6 +44,4 @@ const sentMail = async (mailOptions) => {
   }
 };
 
-module.exports = {
-  sentMail,
-};
+module.exports = communicate;
