@@ -69,7 +69,7 @@ const communicationUtils = {
                         }
                         break;
                     case constant.commType.SMS:
-                        messageObj.subject = messageObj.subject.replace(regExpr, commData[commDataKey]);
+                        messageObj.message = messageObj.message.replace(regExpr, commData[commDataKey]);
                         break;
                     default:
                         break;

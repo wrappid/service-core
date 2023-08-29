@@ -47,11 +47,12 @@ const constant = {
   contact: {
     EMAIL: "email",
     PHONE: "phone",
+    WHATSAPP: "whatsapp",
   },
 
   commType: {
     EMAIL: "email",
-    SMS: "phone",
+    SMS: "sms",
     WHATSAPP: "whatsapp",
     NOTIFICATION: "notification",
   },

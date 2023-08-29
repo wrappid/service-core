@@ -30,7 +30,7 @@ const communicate = async ({ commType, commRecipients, commData, commTemplateID,
           return communicateEmail({ ...commRecipients, ...messageObject });
         case constant.commType.SMS:
           return communicateSMS({
-            phone: commRecipients.to,
+            phone: commRecipients.to[0],
             ...messageObject,
             dlttemplateid: communicationTemplate.externalTemplateId
           });
