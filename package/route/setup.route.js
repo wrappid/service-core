@@ -22,8 +22,8 @@ const setupRoutes = async (app, AppControllersRegistry) => {
   console.log(`----------------------------------`);
   console.log(`Setting up routes...`);
   apiRoutes.forEach((apiRoute) => {
-    console.log(`Adding ${apiRoute?.name} route...`);
     if (typeof controllersRegistry[apiRoute?.controllerRef] === "function" || typeof controllersRegistry[apiRoute?.controllerRef] === "object") {
+      console.log(`Adding ${apiRoute?.name} route...`);
       let funcArray = [];
       if (typeof controllersRegistry[apiRoute?.controllerRef] === "function") {
         funcArray = [controllersRegistry[apiRoute?.controllerRef]];
@@ -32,7 +32,7 @@ const setupRoutes = async (app, AppControllersRegistry) => {
       }
 
       /* Attach jwtVerify middleware */
-      if (apiRoute?.authRequired) {
+      if (apiRoute?.authRequired && apiRoute?.authRequired === true) {
         funcArray = [MiddlewaresRegistry.jwtVerify, ...funcArray];
       }
 
@@ -67,6 +67,8 @@ const setupRoutes = async (app, AppControllersRegistry) => {
           );
           break;
       }
+    } else {
+      console.log(`CANNOT ADD ${apiRoute?.name} ROUTE...`);
     }
   });
   console.log(`Routes setup successfully.`);
