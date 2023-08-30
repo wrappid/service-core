@@ -5,7 +5,7 @@ api_url = api_url.replace(":id", id);
 const whatsapp_accessToken = token;
 
 async function communicate(whatsappOptions) {
-    let { phone, data } = whatsappOptions;
+  let { phone, data } = whatsappOptions;
   let res = {};
   try {
     let body = {
