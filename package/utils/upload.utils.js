@@ -16,31 +16,31 @@ const secretAccessKey = configProvider.storage.s3.secretAccessKey;
 const acceptedType = ["pdf", "doc", "docx", "jpg", "jpeg", "png"];
 
 aws.config.update({
-  region: region, // Put your aws region here
-  accessKeyId: accessKeyId,
-  secretAccessKey: secretAccessKey,
+	region: region, // Put your aws region here
+	accessKeyId: accessKeyId,
+	secretAccessKey: secretAccessKey,
 });
 
 var s3 = new aws.S3({
-  /* ... */
+	/* ... */
 });
 
 const validation = {
-  file_count: "single",
-  mimeType: [
-    "image/jpeg",
-    "image/png",
-    "image/jpg",
-    "image/svg",
-    "image/gif",
-    "image/bmp",
-    "video/mp4",
-    "application/pdf",
-  ],
-  maxSize: 5000000,
+	file_count: "single",
+	mimeType: [
+		"image/jpeg",
+		"image/png",
+		"image/jpg",
+		"image/svg",
+		"image/gif",
+		"image/bmp",
+		"video/mp4",
+		"application/pdf",
+	],
+	maxSize: 5000000,
 };
 
-function uploadS3({filename, req, res, next}) {
+function uploadS3({ filename, req, res, next }) {
 	try {
 		const uploadFile = multer({
 			limits: {
@@ -73,25 +73,25 @@ function uploadS3({filename, req, res, next}) {
 				},
 			}),
 		});
-	
+
 		// if(count === 1) {
-			let uploadSingleFile = uploadFile.single(filename);
-	
-			// Here call the upload middleware of multer
-			uploadSingleFile(req, res, function (err) {
-				if (err instanceof multer.MulterError) {
-					// A Multer error occurred when uploading.
-					const err = new Error("Multer error");
-					next(err);
-				} else if (err) {
-					// An unknown error occurred when uploading.
-					const err = new Error("Server Error");
-					next(err);
-				}
-		
-				// Everything went fine.
-				next();
-			});
+		let uploadSingleFile = uploadFile.single(filename);
+
+		// Here call the upload middleware of multer
+		uploadSingleFile(req, res, function (err) {
+			if (err instanceof multer.MulterError) {
+				// A Multer error occurred when uploading.
+				const err = new Error("Multer error");
+				next(err);
+			} else if (err) {
+				// An unknown error occurred when uploading.
+				const err = new Error("Server Error");
+				next(err);
+			}
+
+			// Everything went fine.
+			next();
+		});
 		// } else {
 		// 	let uploadFiles = uploadFile.array(filename, count);
 
@@ -106,20 +106,20 @@ function uploadS3({filename, req, res, next}) {
 		// 			const err = new Error("Server Error");
 		// 			next(err);
 		// 		}
-		
+
 		// 		// Everything went fine.
 		// 		next();
 		// 	});
 		// }
 
-		
+
 	} catch (error) {
 		console.error(error);
 	}
 }
 
 
-function uploadLocal({filename, req, res, next}) {
+function uploadLocal({ filename, req, res, next }) {
 	try {
 		var storage = multer.diskStorage({
 			destination: function (req, file, callback) {
@@ -140,32 +140,33 @@ function uploadLocal({filename, req, res, next}) {
 				}
 			},
 		});
-	
+
 		const uploadFile = multer({
 			storage: storage,
 			limits: {
 				fileSize: validation.maxSize,
 			},
 		});
-	
+
 		// if(count === 1) {
-			const uploadSingleFile = uploadFile.single(filename);
-	
-			// Here call the upload middleware of multer
-			uploadSingleFile(req, res, function (err) {
-				if (err instanceof multer.MulterError) {
-					// A Multer error occurred when uploading.
-					const err = new Error("Multer error");
-					next(err);
-				} else if (err) {
-					// An unknown error occurred when uploading.
-					const err = new Error("Server Error");
-					next(err);
-				}
-		
-				// Everything went fine.
-				next();
-			});
+		const uploadSingleFile = uploadFile.single(filename);
+
+		// Here call the upload middleware of multer
+		uploadSingleFile(req, res, function (err) {
+			if (err instanceof multer.MulterError) {
+				// A Multer error occurred when uploading.
+				const err = new Error("Multer error");
+				next(err);
+			} else if (err) {
+				// An unknown error occurred when uploading.
+				const err = new Error("Server Error");
+				next(err);
+			}
+
+
+			// Everything went fine.
+			next();
+		});
 		// } else {
 		// 	let uploadFiles = uploadFile.array(filename, count);
 
@@ -180,7 +181,7 @@ function uploadLocal({filename, req, res, next}) {
 		// 			const err = new Error("Server Error");
 		// 			next(err);
 		// 		}
-		
+
 		// 		// Everything went fine.
 		// 		next();
 		// 	});
@@ -191,12 +192,71 @@ function uploadLocal({filename, req, res, next}) {
 	}
 }
 
-function upload({storageType, filename, req, res, next}) {
-	if (storageType === constant.storageType.AWS_S3) {
-		uploadS3({filename, storageType, req, res, next});
-	} else if (storageType === constant.storageType.LOCAL) {
-		uploadLocal({filename, storageType, req, res, next});
+function _upload({ storageType, filename, req, res, next }) {
+	switch (storageType) {
+		case constant.storageType.LOCAL:
+			uploadLocal({ filename, storageType, req, res, next });
+			break;
+
+		case constant.storageType.AWS_S3:
+		default:
+			uploadS3({ filename, storageType, req, res, next });
+			break;
 	}
 }
 
-module.exports = upload;
+
+const s3Config = new aws.S3({
+	region: region,
+    accessKeyId: accessKeyId ,
+    secretAccessKey: secretAccessKey,
+    Bucket: s3Bucket
+  });
+
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+}
+
+// this is just to test locally if multer is working fine.
+const storage = multer.diskStorage({
+    destination: (req, res, cb) => {
+        cb(null, 'src/api/media/profiles')
+    },
+    filename: (req, file, cb) => {
+        cb(null, new Date().toISOString() + '-' + file.originalname)
+    }
+})
+
+const multerS3Config = multerS3({
+    s3: s3Config,
+    bucket: s3Bucket,
+    metadata: function (req, file, cb) {
+        cb(null, { fieldName: file.fieldname });
+    },
+    key: function (req, file, cb) {
+        console.log(file)
+        cb(null, new Date().toISOString() + '-' + file.originalname)
+    }
+});
+
+
+const upload = multer({
+    storage: multerS3Config,
+    fileFilter: fileFilter,
+    limits: {
+        fileSize: 1024 * 1024 * 5 // we are allowing only 5 MB files
+    }
+})
+
+// module.exports.getPublicUrl = (originalName) => {
+//     console.log(">>>>>>>>>>>>>>>>>>>> 2 originalName = ", originalName);
+//     return (
+//       "https://" + s3Bucket + ".s3-" + region + ".amazonaws.com/" + originalName
+//     );
+//   };
+
+module.exports = upload
