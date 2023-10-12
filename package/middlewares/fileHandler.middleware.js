@@ -5,8 +5,19 @@ const fileHandler = ({storageType, filename}) => async (req, res, next) => {
     console.log("File Handler middleware called");
 
     // req.storageType = storageType;
-    upload.single(filename);
-    next();
+    
+    upload.fields([{ name: filename , maxCount: 1 }])(req, res, async function (err) {
+      try {
+        if (err) {
+          console.log("FIle Upload error", err);
+          throw err;
+        }else{
+          next();
+        }
+      }catch(err){
+        throw err;
+      };
+    });
     // res.status(200).json({message: "FileHandler middleware res.status"});
   } catch (error) {
     console.error(error);

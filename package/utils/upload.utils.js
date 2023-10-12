@@ -234,6 +234,7 @@ const storage = multer.diskStorage({
 const multerS3Config = multerS3({
     s3: s3Config,
     bucket: s3Bucket,
+	acl: "public-read",
     metadata: function (req, file, cb) {
         cb(null, { fieldName: file.fieldname });
     },
@@ -250,7 +251,7 @@ const upload = multer({
     limits: {
         fileSize: 1024 * 1024 * 5 // we are allowing only 5 MB files
     }
-})
+});
 
 // module.exports.getPublicUrl = (originalName) => {
 //     console.log(">>>>>>>>>>>>>>>>>>>> 2 originalName = ", originalName);
@@ -259,4 +260,4 @@ const upload = multer({
 //     );
 //   };
 
-module.exports = upload
+module.exports = upload;
