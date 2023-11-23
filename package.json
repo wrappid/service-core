@@ -2,12 +2,13 @@
   "name": "@wrappid/service-core",
   "version": "0.0.4",
   "description": "wrappid service-core",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "code:lint": "eslint --ignore-path .gitignore ./package",
     "code:format": "npm run code:lint --fix ./package",
     "test": "exit 0",
-    "build":"node -e \"require('fs').cpSync('./package', './dist', {recursive: true});\"",
+    "build": "tsc",
     "build-dev": "npx babel package --out-dir dist --copy-files",
     "publish": "npm publish ./package --registry=https://npm.pkg.github.com --scope=@wrappid"
   },

@@ -2,7 +2,7 @@
   "name": "@wrappid/service-core",
   "version": "0.0.4",
   "description": "wrappid service-core",
-  "main": "index.js",
+  "main": "index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wrappid/service-core.git"

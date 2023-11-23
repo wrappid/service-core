@@ -1,8 +1,10 @@
-/**
- * @todo
- * We need to import and export all the necessary classes 
- * eg. AppModule etc.
- */
-module.exports = {
-  
-};
+import { Module } from '@nestjs/common';
+import { AppModule } from './app/app.module';
+
+@Module({
+  imports: [AppModule],
+  controllers: [],
+  providers: [],
+  exports: [AppModule], // Export AppModule to make it available for other modules
+})
+export class RootModule {}
