@@ -1,14 +1,11 @@
-import { Injectable, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
+import { ModelRegistry } from "../registry/ModelRegistry";
 
 @Injectable()
-export class AppService implements OnModuleInit, OnModuleDestroy {
-
-  async onModuleInit() {
-    console.log(`This Module has been Initialization`);
-  }
-
-  onModuleDestroy() {
-    console.log(`This Module has been destroyed`);
-  }
-  //, beforeApplicationShutdown()  onApplicationShutdown()
+export class AppService{
+    getModels(): any {
+        const models: any = ModelRegistry.getClasses();
+        console.log(models);
+        return JSON.stringify(models);
+      }
 }
