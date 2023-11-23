@@ -1,4 +1,4 @@
-import { ModelDecorator } from 'decorators/ModelDecorator';
+import { ModelDecorator } from '../decorators/ModelDecorator';
 import { Column, Model, Table } from 'sequelize-typescript';
 
 @ModelDecorator

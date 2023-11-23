@@ -13,7 +13,7 @@ export class AppModule  implements OnModuleInit, OnModuleDestroy {
 
   async onModuleInit() {
     console.log(`This Module has been Initialization`);
-    ModelRegistry.initialize();
+    // ModelRegistry.initialize();
   }
 
   onModuleDestroy() {
