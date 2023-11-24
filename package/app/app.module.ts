@@ -1,23 +1,20 @@
 import { Module, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
 import { AppService } from "./app.service";
 import { AppController } from "./app.controller";
-import { ModelRegistry } from "../registry/ModelRegistry";
+import { ConfigService } from "@nestjs/config";
+import { DatabaseService } from "../database/database.service";
+import { DatabaseModule } from "../database/ database.module";
 
 @Module({
-  imports: [ ],
+  imports: [DatabaseModule],
   controllers: [AppController],
-  providers: [ AppService],
+  providers: [ AppService,DatabaseService  ],
   exports: [],
 })
-export class AppModule  implements OnModuleInit, OnModuleDestroy {
+export class AppModule  {
 
-  async onModuleInit() {
-    console.log(`This Module has been Initialization`);
-    // ModelRegistry.initialize();
-  }
-
-  onModuleDestroy() {
-    console.log(`This Module has been destroyed`);
-  }
+  // onModuleDestroy() {
+  //   console.log(`This Module has been destroyed`);
+  // }
   //, beforeApplicationShutdown()  onApplicationShutdown()
 }
