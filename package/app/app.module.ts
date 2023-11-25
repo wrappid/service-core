@@ -8,7 +8,7 @@ import { DatabaseModule } from "../database/ database.module";
 @Module({
   imports: [DatabaseModule],
   controllers: [AppController],
-  providers: [ AppService,DatabaseService  ],
+  providers: [ AppService ],
   exports: [],
 })
 export class AppModule  {

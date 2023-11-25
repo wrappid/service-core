@@ -5,7 +5,7 @@ import { DatabaseModule } from './database/ database.module';
 import { DatabaseService } from './database/database.service';
 
 @Module({
-  imports: [AppModule],
+  imports: [AppModule, ],
   controllers: [],
   providers: [],
   exports: [AppModule], // Export AppModule to make it available for other modules
