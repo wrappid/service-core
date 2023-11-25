@@ -22,5 +22,6 @@
     "isolatedModules":true,
     "esModuleInterop": true
   },
-  "include": ["package/**/*.ts","package/**/*.json"]
+  "include": ["package/**/*.ts","package/**/*.json"],
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
 }
