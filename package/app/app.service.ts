@@ -7,7 +7,7 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
   // constructor(private readonly databaseService: DatabaseService) {}
 
   async onModuleInit() {
-    console.log(`This Module has been Initialization`);
+    console.log(`::===AppModule has been Initialization===::`);
     // const isConnected = await this.databaseService.checkConnection();
     // console.log(
     //   isConnected

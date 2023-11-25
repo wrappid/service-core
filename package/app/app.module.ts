@@ -4,14 +4,15 @@ import { AppController } from "./app.controller";
 import { ConfigService } from "@nestjs/config";
 import { DatabaseService } from "../database/database.service";
 import { DatabaseModule } from "../database/ database.module";
+import { BaseModule } from "../common/base.module";
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule ],
   controllers: [AppController],
   providers: [ AppService ],
   exports: [],
 })
-export class AppModule  {
+export class AppModule extends BaseModule {
 
   // onModuleDestroy() {
   //   console.log(`This Module has been destroyed`);

@@ -1,6 +1,8 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { Sequelize } from 'sequelize-typescript';
 import { DatabaseService } from './database.service';
+import { ConfigService } from '../config/config.service';
+import { ConfigConstant } from '../constant/config.constant';
 
 @Module({
   imports: [],
@@ -10,12 +12,12 @@ import { DatabaseService } from './database.service';
       provide: Sequelize,
       useFactory: async () => {
         const sequelize = new Sequelize({
-          dialect: 'postgres',
-          host: 'localhost',
-          port: 5432,
-          username: 'postgres',
-          password: 'admin',
-          database: 'nestTest',
+          dialect: ConfigService.getCustomConfig()["database"][ConfigConstant.database.DB_DIALECT],
+          host: ConfigService.getCustomConfig()["database"][ConfigConstant.database.DB_HOST],
+          port: ConfigService.getCustomConfig()["database"][ConfigConstant.database.DB_PORT],
+          username: ConfigService.getCustomConfig()["database"][ConfigConstant.database.DB_USERNAME],
+          password: ConfigService.getCustomConfig()["database"][ConfigConstant.database.DB_PASSWORD],
+          database: ConfigService.getCustomConfig()["database"][ConfigConstant.database.DB_DATABASE]
         });
         sequelize.addModels([]);
         await sequelize.sync();
@@ -24,7 +26,7 @@ import { DatabaseService } from './database.service';
     },
     DatabaseService
   ],
-  exports: [],
+  exports: [DatabaseService],
 })
 export class DatabaseModule implements OnModuleInit{
   constructor(
@@ -32,6 +34,6 @@ export class DatabaseModule implements OnModuleInit{
     ){}
   async onModuleInit() {
     console.log(`::===DatabaseModule has been Initialization===::`);
-    this.databaseService.checkConnection();
+    await this.databaseService.checkConnection();
   }
 }
