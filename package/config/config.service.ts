@@ -11,7 +11,7 @@ export class ConfigService extends NestJSConfigService {
 
   private static loadCustomConfig(): Record<string, any> {
     //Add your file location to your environment variable CONFIG_PATH
-    const configFilePath = process.env.CONFIG_PATH;
+    const configFilePath = process.env.WRAPPID_SERVICE_CONFIG_PATH;
     const configFileContent = fs.readFileSync(configFilePath);
     return JSON.parse(configFileContent.toString());
   }
