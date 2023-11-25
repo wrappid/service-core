@@ -7,7 +7,7 @@ import { DatabaseService } from './database.service';
   controllers: [],
   providers: [
     {
-      provide: 'SEQUELIZE',
+      provide: Sequelize,
       useFactory: async () => {
         const sequelize = new Sequelize({
           dialect: 'postgres',
@@ -21,19 +21,17 @@ import { DatabaseService } from './database.service';
         await sequelize.sync();
         return sequelize;
       },
-    }
-    
+    },
+    DatabaseService
   ],
   exports: [],
 })
 export class DatabaseModule implements OnModuleInit{
   constructor(
-    // private readonly databaseService:DatabaseService,
-    // private readonly sequelize:Sequelize,
+    private readonly databaseService:DatabaseService,
     ){}
   async onModuleInit() {
     console.log(`::===DatabaseModule has been Initialization===::`);
-    // await this.sequelize.authenticate();
-    // const isConnected = this.databaseService.checkConnection();
+    this.databaseService.checkConnection();
   }
 }
