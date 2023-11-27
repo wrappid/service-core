@@ -2,13 +2,19 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "../config/config.service";
 import { ConfigConstant } from "../constant/config.constant";
 import { Sequelize } from "sequelize-typescript";
+import sequelize from "sequelize";
 
 @Injectable()
 export class DatabaseService {
+  static connections: Map<string, Sequelize> = new Map();
   constructor(private readonly sequelize: Sequelize) {}
-
   static getAllDatabaseProviders() {
     let databases = ConfigService.getCustomConfig()["databases"] || [];
+    for (const config of databases) {
+      const connectionName = config["name"]; // Use a unique identifier for each database
+      const connection = new Sequelize(config);
+      this.connections.set(connectionName, connection);
+    }
     return databases.map(
       (
         database:
@@ -30,14 +36,9 @@ export class DatabaseService {
         return {
           provide: Sequelize,
           useFactory: async () => {
-            const sequelize = new Sequelize({
-              dialect: database[ConfigConstant.database.DB_DIALECT],
-              host: database[ConfigConstant.database.DB_HOST],
-              port: database[ConfigConstant.database.DB_PORT],
-              username: database[ConfigConstant.database.DB_USERNAME],
-              password: database[ConfigConstant.database.DB_PASSWORD],
-              database: database[ConfigConstant.database.DB_DATABASE],
-            });
+            const sequelize = new Sequelize(database);
+            let connectname = database["name"];
+            DatabaseService.connections.set(connectname, sequelize)
             sequelize.addModels([]);
             await sequelize.sync();
             return sequelize;
@@ -46,14 +47,16 @@ export class DatabaseService {
       }
     );
   }
-
-  async checkConnection(): Promise<boolean> {
+  static getConnection(connectionName: string): Sequelize | undefined {
+    return DatabaseService.connections.get(connectionName);
+  }
+  async checkConnection(connection:Sequelize): Promise<boolean> {
     try {
-      await this.sequelize.authenticate();
-      console.log("Database connection has been established successfully.");
+      await connection.authenticate();
+      // console.log("Database connection has been established successfully.",);
       return true;
     } catch (error) {
-      console.error("Unable to connect to the database:", error);
+      // console.error("Unable to connect to the database:", error);
       return false;
     }
   }
