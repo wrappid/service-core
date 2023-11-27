@@ -4,14 +4,14 @@ import { DatabaseService } from "../../database/database.service";
 @Injectable()
 export class UsersService {
   //Get sequelize connection instance for differnce database
-  sequelize1 = DatabaseService.getConnection("wrappid-database1")
-  sequelize2 = DatabaseService.getConnection("wrappid-database2")
   constructor(
+    private readonly databaseService:DatabaseService
   ) {}
   async findAllUsers(): Promise<any> {
-    return this.sequelize1.models["Users"].findAll();
+    return this.databaseService.findAll('wrappid-database1','Users');
   }
   async findAllStudents(): Promise<any> {
-    return this.sequelize2.models["Students"].findAll();
+    return this.databaseService.findAll('wrappid-database2','Students');
+
   }
 }

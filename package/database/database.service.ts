@@ -1,24 +1,48 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "../config/config.service";
 import { ConfigConstant } from "../constant/config.constant";
-import { Sequelize } from "sequelize-typescript";
+import { Model, Sequelize } from "sequelize-typescript";
 import sequelize from "sequelize";
 
 @Injectable()
 export class DatabaseService {
-  static connections: Map<string, Sequelize> = new Map();
-  constructor(private readonly sequelize: Sequelize) {}
+  private connections: Map<string, Sequelize> = new Map();
+  constructor(private readonly sequelize: Sequelize) {
+    let databases = ConfigService.getCustomConfig()["databases"] || [];
+    databases.forEach(
+      (
+        database:
+           {
+              name: string;
+              host: string;
+              port: number;
+              dialect: string;
+              database: string;
+              username: string;
+              password: string;
+              logging: string;
+            }
+          | any
+        /**
+         * @todo need to avoid above any type
+         */
+      ) => {
+        let seqObj:Sequelize = new Sequelize(database);
+            this.connections.set(database?.name, seqObj);
+            // sequelize.addModels([]);
+            // await sequelize.sync();
+            // return sequelize;
+      }
+    );
+  }
+
+
   static getAllDatabaseProviders() {
     let databases = ConfigService.getCustomConfig()["databases"] || [];
-    for (const config of databases) {
-      const connectionName = config["name"]; // Use a unique identifier for each database
-      const connection = new Sequelize(config);
-      this.connections.set(connectionName, connection);
-    }
     return databases.map(
       (
         database:
-          | {
+           {
               name: string;
               host: string;
               port: number;
@@ -38,7 +62,7 @@ export class DatabaseService {
           useFactory: async () => {
             const sequelize = new Sequelize(database);
             let connectname = database["name"];
-            DatabaseService.connections.set(connectname, sequelize)
+            // this.connections.set(connectname, sequelize)
             sequelize.addModels([]);
             await sequelize.sync();
             return sequelize;
@@ -47,8 +71,9 @@ export class DatabaseService {
       }
     );
   }
-  static getConnection(connectionName: string): Sequelize | undefined {
-    return DatabaseService.connections.get(connectionName);
+
+   getConnection(connectionName: string): Sequelize | undefined {
+    return this.connections.get(connectionName);
   }
   async checkConnection(connection:Sequelize): Promise<boolean> {
     try {
@@ -59,6 +84,12 @@ export class DatabaseService {
       // console.error("Unable to connect to the database:", error);
       return false;
     }
+  }
+
+  addModels(models: Model[], database: string){
+    models.forEach(element => {
+      
+    });
   }
 
   async findAndCountAll(model: any, options?: any): Promise<any[]> {
