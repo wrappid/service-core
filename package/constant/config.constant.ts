@@ -17,6 +17,7 @@ export class ConfigConstant {
     DB_LOGGING: "logging",
   };
   static readonly entityStatus: {
+    WRAPPID_SERVICE_CONFIG_PATH: any;
     DEFAULT: string;
     UNKNOWN: string;
     NEW: string;
@@ -37,6 +38,7 @@ export class ConfigConstant {
     PUBLISHED: string;
     CHANGE_REQUESTED: string;
   } = {
+    WRAPPID_SERVICE_CONFIG_PATH: "WRAPPID_SERVICE_CONFIG_PATH",
     DEFAULT: "active",
     UNKNOWN: "unknown",
     NEW: "new",
@@ -150,4 +152,5 @@ export class ConfigConstant {
     AWS_S3: "aws_s3",
     LOCAL: "local",
   };
+  static WRAPPID_SERVICE_CONFIG_PATH: any;
 }

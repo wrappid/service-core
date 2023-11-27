@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService as NestJSConfigService } from "@nestjs/config";
+import { ConfigConstant } from "../constant/config.constant";
 import * as fs from "fs";
 @Injectable()
 export class ConfigService extends NestJSConfigService {
@@ -11,7 +12,7 @@ export class ConfigService extends NestJSConfigService {
 
   private static loadCustomConfig(): Record<string, any> {
     //Add your file location to your environment variable CONFIG_PATH
-    const configFilePath = process.env.WRAPPID_SERVICE_CONFIG_PATH;
+    const configFilePath = process.env[ConfigConstant.entityStatus.WRAPPID_SERVICE_CONFIG_PATH];
     const configFileContent = fs.readFileSync(configFilePath);
     return JSON.parse(configFileContent.toString());
   }
