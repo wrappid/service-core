@@ -1,14 +1,15 @@
-import { Module, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { AppModule } from './app/app.module';
-import { ModelDecorator } from './decorators/ModelDecorator';
-import { DatabaseService } from './database/database.service';
 import { BaseModule } from './common/base.module';
 import { ConfigModule } from './config/config.module';
-import { ConfigConstant } from './constant/config.constant';
 import { UsersModule } from './modules/users/users.module';
+import { LoggingMiddleware } from './middleware/logging.middleware';
+import { YupValidationPipe } from './middleware/validation.pipes';
+import { TasksModule } from './scheduler/tasks.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
-  imports: [AppModule, BaseModule, ConfigModule, UsersModule],
+    imports: [ScheduleModule.forRoot(), AppModule, BaseModule, ConfigModule, UsersModule, TasksModule],
   controllers: [],
   providers: [],
   exports: [AppModule ], // Export AppModule to make it available for other modules
@@ -18,4 +19,4 @@ class RootModule implements OnModuleInit {
     console.log(`::===RootModule has been Initialization===::`);    
   }
 }
-export  {RootModule, } 
+export  {RootModule, LoggingMiddleware, YupValidationPipe } 
