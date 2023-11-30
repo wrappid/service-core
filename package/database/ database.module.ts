@@ -1,9 +1,11 @@
 import { Module, OnModuleInit } from "@nestjs/common";
-import { Sequelize } from "sequelize-typescript";
 import { DatabaseService } from "./database.service";
-import { ConfigService } from "../config/config.service";
-import { ConfigConstant } from "../constant/config.constant";
 
+/**
+ * @todo missing coding documentation
+ *
+ * @description
+ */
 @Module({
   imports: [],
   controllers: [],
@@ -19,15 +21,16 @@ export class DatabaseModule implements OnModuleInit {
      * Use forEach for all connection check
      */
     const sequelize1 = this.databaseService.getConnection("wrappid-database1");
-    if(this.databaseService.checkConnection(sequelize1)){
-      console.log(`Database connection has been established successfully:: wrappid-database1`);
+    if (this.databaseService.checkConnection(sequelize1)) {
+      console.log(
+        `Database connection has been established successfully:: wrappid-database1`
+      );
     }
     const sequelize2 = this.databaseService.getConnection("wrappid-database1");
-    if(this.databaseService.checkConnection(sequelize2)){
-      console.log(`Database connection has been established successfully:: wrappid-database2`);
+    if (this.databaseService.checkConnection(sequelize2)) {
+      console.log(
+        `Database connection has been established successfully:: wrappid-database2`
+      );
     }
-      
-
-
   }
 }

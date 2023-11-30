@@ -1,7 +1,7 @@
-// import { ModelDecorator } from '../decorators/ModelDecorator';
-import { Column, Model, Table } from 'sequelize-typescript';
+import { ModelDecorator } from "decorators/model.decorator";
+import { Column, Model, Table } from "sequelize-typescript";
 
-// @ModelDecorator
+@ModelDecorator
 @Table
 export class CoreModel extends Model {
   @Column

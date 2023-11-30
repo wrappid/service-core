@@ -1,5 +1,5 @@
 import { Column, Model, Table } from "sequelize-typescript";
-import { ModelDecorator } from "../../decorators/ModelDecorator";
+import { ModelDecorator } from "../../decorators/model.decorator";
 
 @ModelDecorator
 @Table

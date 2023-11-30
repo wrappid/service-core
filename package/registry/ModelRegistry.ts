@@ -1,4 +1,4 @@
-import { ModelDecorator } from "../decorators/ModelDecorator";
+import { ModelDecorator } from "../decorators/model.decorator";
 import { ClassRegistry } from "./ClassRegistry";
 import { join } from "path";
 
