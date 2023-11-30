@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "../config/config.service";
-import { Model, Sequelize } from "sequelize-typescript";
-import { Users } from "../modules/users/models/user.model";
+import { Model, ModelCtor, Sequelize } from "sequelize-typescript";
+
 
 /**
  * @todo missing coding documentation
@@ -112,13 +112,13 @@ export class DatabaseService {
    * @param models
    * @param connectionName
    */
-  async addModels(models: Model[], connectionName: string) {
+  async addModels(models: ModelCtor[], connectionName: string) {
     const dbObj = this.connections.get(connectionName);
     /**
      * @todo
      * models array passing problem
      */
-    dbObj.addModels([Users]);
+    dbObj.addModels(models);
     console.log(`===Models Added===`);
   }
 

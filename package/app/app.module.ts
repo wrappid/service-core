@@ -1,11 +1,8 @@
-import { Module, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
+import { Module, OnModuleInit } from "@nestjs/common";
 import { AppService } from "./app.service";
 import { AppController } from "./app.controller";
-import { ConfigService } from "@nestjs/config";
-import { DatabaseService } from "../database/database.service";
-import { DatabaseModule } from "../database/ database.module";
+import { DatabaseModule } from "../database/database.module";
 import { BaseModule } from "../common/base.module";
-import { UsersModule } from "../modules/users/users.module";
 
 @Module({
   imports: [DatabaseModule ],

@@ -40,8 +40,8 @@ export class ManagerTask extends BaseTask {
           this.taskRegistry.addTask(
             element.name,
             element.expression,
-            // this.moduleRef.get(taskname)
-            new tasksRegistry["CommTask"](),
+            this.moduleRef.get(taskname)
+            // new tasksRegistry[""](),
           );
         }
       });

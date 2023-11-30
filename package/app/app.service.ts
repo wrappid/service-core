@@ -8,6 +8,7 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
 
   async onModuleInit() {
     console.log(`::===AppModule has been Initialization===::`);
+    
     // const isConnected = await this.databaseService.checkConnection();
     // console.log(
     //   isConnected
