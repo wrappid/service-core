@@ -8,34 +8,59 @@ export class LoggingMiddleware implements NestMiddleware {
   constructor(private readonly databaseService: DatabaseService) {}
 
   /**
-   * @todo
-   * Database activity realated to Apilogs
-   * @param req
-   * @param res
-   * @param next
+   * @param req 
+   * @param res 
+   * @param next 
    */
   async use(req: Request, res: Response, next: Function) {
-    const dbResult = await this.databaseService.findAll(
-      "wrappid-database1",
-      "ApiLogs"
-    );
-    await this.databaseService.create("wrappid-database1", "ApiLogs", {
-      apiId: req.socket.remoteAddress,
-      route: req.originalUrl,
-      request: req.method,
-      start_ts: Sequelize.literal("CURRENT_TIMESTAMP"),
-    });
-    console.log(dbResult);
-    console.log(`Request ${req.method} ${req.url} received.`);
-    res.on("finish", async () => {
-      try {
-        // Your asynchronous logic here
-        console.log("Response finished!");
-      } catch (error) {
-        console.error("Error during response finish:", error);
-      }
-    });
-
+    try {
+      const dbResult = await this.databaseService.findAll(
+        "wrappid-database1",
+        "ApiLogs"
+      );
+      let apiRequestLog = await this.databaseService.create(
+        "wrappid-database1",
+        "ApiLogs",
+        {
+          ip: req.socket.remoteAddress,
+          access_key: " ",
+          endpoint: req.originalUrl,
+          request: req.method,
+          req_body: req.body,
+          header_stack: req.headers,
+          start_ts: Sequelize.literal("CURRENT_TIMESTAMP"),
+        }
+      );
+      let id = apiRequestLog.id;
+      let send = res.send;
+      let res_body: any;
+      let bodySetFlag = false;
+      res.send = function (body) {
+        if (!bodySetFlag) {
+          res_body = body;
+          return send.call(this, body);
+        } else {
+          return;
+        }
+      };
+      res.on("finish", async () => {
+        await this.databaseService.update(
+          "wrappid-database1",
+          "ApiLogs",
+          {
+            response: res_body,
+            response_header: res.getHeaders(),
+            response_status: res.statusCode,
+            end_ts: Sequelize.literal("CURRENT_TIMESTAMP"),
+          },
+          { where: { id: id } }
+        );
+        bodySetFlag = true;
+      });
+      console.log(`Request ${req.method} ${req.url} received.`);
+    } catch (error) {
+      console.error("Error during API Middleware:", error);
+    }
     next();
   }
 }
