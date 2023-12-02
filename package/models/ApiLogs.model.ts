@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 import { Column, Model, Table, DataType } from "sequelize-typescript";
 
 @Table
-export class ApiLogs extends Model {
+export class ApiMids extends Model {
   @Column({
     field: "id",
     type: DataType.INTEGER,

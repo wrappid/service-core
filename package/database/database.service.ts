@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "../config/config.service";
 import { Model, ModelCtor, Sequelize } from "sequelize-typescript";
+import { Transaction } from "sequelize";
 
 
 /**
@@ -87,7 +88,7 @@ export class DatabaseService {
    * @param connectionName
    * @returns
    */
-  getConnection(connectionName: string): Sequelize | undefined {
+  async getConnection(connectionName: string): Promise<Sequelize> {
     return this.connections.get(connectionName);
   }
 
@@ -113,13 +114,13 @@ export class DatabaseService {
    * @param connectionName
    */
   async addModels(models: ModelCtor[], connectionName: string) {
+    try{
     const dbObj = this.connections.get(connectionName);
-    /**
-     * @todo
-     * models array passing problem
-     */
     dbObj.addModels(models);
     console.log(`===Models Added===`);
+    }catch(error: any){
+      throw new Error(error);
+    }
   }
 
   /**
@@ -168,7 +169,7 @@ export class DatabaseService {
   async findOne(
     connectionName: string,
     model: string,
-    options?: any
+    options?: any,
   ): Promise<any> {
     try {
       const datbaseProvider = this.connections.get(connectionName);
@@ -230,13 +231,21 @@ export class DatabaseService {
   async create(
     connectionName: string,
     model: string,
-    data?: any
+    data?: any,
+    transaction?: any,
   ): Promise<any> {
     try {
       const datbaseProvider = this.connections.get(connectionName);
-      return datbaseProvider.models[model].create(data);
+      return datbaseProvider.models[model].create(data, transaction);
     } catch (error: any) {
       throw new Error(error);
     }
+  }
+
+  getTransaction():Promise<Transaction>{
+    /**
+     * retu
+     */
+    return this.sequelize.transaction();
   }
 }

@@ -15,12 +15,12 @@ export class LoggingMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: Function) {
     try {
       const dbResult = await this.databaseService.findAll(
-        "wrappid-database1",
-        "ApiLogs"
+        "application",
+        "ApiMids"
       );
       let apiRequestLog = await this.databaseService.create(
-        "wrappid-database1",
-        "ApiLogs",
+        "application",
+        "ApiMids",
         {
           ip: req.socket.remoteAddress,
           access_key: " ",
@@ -45,8 +45,8 @@ export class LoggingMiddleware implements NestMiddleware {
       };
       res.on("finish", async () => {
         await this.databaseService.update(
-          "wrappid-database1",
-          "ApiLogs",
+          "application",
+          "ApiMids",
           {
             response: res_body,
             response_header: res.getHeaders(),

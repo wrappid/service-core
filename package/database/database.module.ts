@@ -20,13 +20,13 @@ export class DatabaseModule implements OnModuleInit {
      * @todo
      * Use forEach for all connection check
      */
-    const sequelize1 = this.databaseService.getConnection("wrappid-database1");
-    if (this.databaseService.checkConnection(sequelize1)) {
+    const sequelize1 = await this.databaseService.getConnection("wrappid-database1");
+    if (await this.databaseService.checkConnection(sequelize1)) {
       console.log(
         `Database connection has been established successfully:: wrappid-database1`
       );
     }
-    const sequelize2 = this.databaseService.getConnection("wrappid-database1");
+    const sequelize2 = await this.databaseService.getConnection("wrappid-database1");
     if (this.databaseService.checkConnection(sequelize2)) {
       console.log(
         `Database connection has been established successfully:: wrappid-database2`
