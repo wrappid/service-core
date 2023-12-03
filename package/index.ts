@@ -5,7 +5,7 @@ import { LoggingMiddleware } from "./middleware/logging.middleware";
 import { ValidationPipe } from "./middleware/validation.pipes";
 import { DatabaseService } from "./database/database.service";
 import { DatabaseModule } from "./database/database.module";
-import { ApiMids } from "./models/ApiLogs.model";
+import { ApiRequestLogs } from "./models/ApiRequestLogs.model";
 import { ConfigConstant } from "./constant/config.constant";
 import BaseModule from "./common/base.module";
 import BaseController from "./common/base.controller";
@@ -24,7 +24,7 @@ class RootModule extends BaseModule {
 
   onModuleInit() {
     console.log(`::===RootModule has been Initialization===::`);
-    this.databaseService.addModels([ApiMids], "application");
+    this.databaseService.addModels([ApiRequestLogs], "wrappid");
   }
 }
 

@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 import { Column, Model, Table, DataType } from "sequelize-typescript";
 
 @Table
-export class ApiMids extends Model {
+export class ApiRequestLogs extends Model {
   @Column({
     field: "id",
     type: DataType.INTEGER,
@@ -90,7 +90,7 @@ export class ApiMids extends Model {
   end_ts: Date;
 
   @Column({
-    field: "createdAt",
+    field: "created_ts",
     type: Sequelize.DATE,
     // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     allowNull: true,
@@ -98,7 +98,7 @@ export class ApiMids extends Model {
   createdAt: Date;
 
   @Column({
-    field: "updatedAt",
+    field: "updated_ts",
     type: Sequelize.DATE,
     // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     allowNull: true,

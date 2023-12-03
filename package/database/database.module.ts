@@ -20,22 +20,14 @@ export class DatabaseModule extends BaseModule {
 
   async onModuleInit() {
     console.log(`::===DatabaseModule has been Initialization===::`);
-    /**
-     * @todo
-     * Use forEach for all connection check
-     */
-    const sequelize1 =
-      await this.databaseService.getConnection("wrappid-database1");
-    if (await this.databaseService.checkConnection(sequelize1)) {
+    let connectionRes = await this.databaseService.checkConnection();
+    if (connectionRes) {
       console.log(
-        `Database connection has been established successfully:: wrappid-database1`
+        `All database connection has been established successfully...`
       );
-    }
-    const sequelize2 =
-      await this.databaseService.getConnection("wrappid-database1");
-    if (this.databaseService.checkConnection(sequelize2)) {
+    } else {
       console.log(
-        `Database connection has been established successfully:: wrappid-database2`
+        `No database connection has been established successfully...`
       );
     }
   }

@@ -8,19 +8,15 @@ export class LoggingMiddleware implements NestMiddleware {
   constructor(private readonly databaseService: DatabaseService) {}
 
   /**
-   * @param req 
-   * @param res 
-   * @param next 
+   * @param req
+   * @param res
+   * @param next
    */
   async use(req: Request, res: Response, next: Function) {
     try {
-      const dbResult = await this.databaseService.findAll(
-        "application",
-        "ApiMids"
-      );
       let apiRequestLog = await this.databaseService.create(
-        "application",
-        "ApiMids",
+        "wrappid",
+        "ApiRequestLogs",
         {
           ip: req.socket.remoteAddress,
           access_key: " ",
@@ -45,8 +41,8 @@ export class LoggingMiddleware implements NestMiddleware {
       };
       res.on("finish", async () => {
         await this.databaseService.update(
-          "application",
-          "ApiMids",
+          "wrappid",
+          "ApiRequestLogs",
           {
             response: res_body,
             response_header: res.getHeaders(),

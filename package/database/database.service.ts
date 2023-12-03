@@ -63,13 +63,26 @@ export class DatabaseService {
    * @param connection
    * @returns
    */
-  async checkConnection(connection: Sequelize): Promise<boolean> {
+  async checkConnection(): Promise<boolean> {
     try {
-      await connection.authenticate();
-      // console.log("Database connection has been established successfully.",);
+      this.connections.forEach(
+        async (dbConn: Sequelize, dbIdentifier: string) => {
+          try {
+            await dbConn.authenticate();
+
+            console.log(
+              `Database connection to ${dbIdentifier} database has been established successfully.`
+            );
+          } catch (error) {
+            console.error(
+              "Unable to connect to the ${dbIdentifier} database:",
+              error
+            );
+          }
+        }
+      );
       return true;
     } catch (error) {
-      // console.error("Unable to connect to the database:", error);
       return false;
     }
   }
