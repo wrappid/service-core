@@ -1,8 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "../config/config.service";
-import { Model, ModelCtor, Sequelize } from "sequelize-typescript";
+import { ModelCtor, Sequelize } from "sequelize-typescript";
 import { Transaction } from "sequelize";
-
 
 /**
  * @todo missing coding documentation
@@ -17,31 +16,13 @@ export class DatabaseService {
   private connections: Map<string, Sequelize> = new Map();
   constructor(private readonly sequelize: Sequelize) {
     let databases = ConfigService.getCustomConfig()["databases"] || [];
-    databases.forEach(
-      (
-        database:
-          | {
-              name: string;
-              host: string;
-              port: number;
-              dialect: string;
-              database: string;
-              username: string;
-              password: string;
-              logging: string;
-            }
-          | any
-        /**
-         * @todo need to avoid above any type
-         */
-      ) => {
-        let seqObj: Sequelize = new Sequelize(database);
-        this.connections.set(database?.name, seqObj);
-        // sequelize.addModels([]);
-        // await sequelize.sync();
-        // return sequelize;
-      }
-    );
+    Object.keys(databases).forEach((dbIdentifier: string) => {
+      let seqObj: Sequelize = new Sequelize(databases[dbIdentifier]);
+      this.connections.set(dbIdentifier, seqObj);
+      // sequelize.addModels([]);
+      // await sequelize.sync();
+      // return sequelize;
+    });
   }
 
   /**
@@ -50,37 +31,22 @@ export class DatabaseService {
    */
   static getAllDatabaseProviders() {
     let databases = ConfigService.getCustomConfig()["databases"] || [];
-    return databases.map(
-      (
-        database:
-          | {
-              name: string;
-              host: string;
-              port: number;
-              dialect: string;
-              database: string;
-              username: string;
-              password: string;
-              logging: string;
-            }
-          | any
-        /**
-         * @todo need to avoid above any type
-         */
-      ) => {
-        return {
-          provide: Sequelize,
-          useFactory: async () => {
-            const sequelize = new Sequelize(database);
-            let connectname = database["name"];
-            // this.connections.set(connectname, sequelize)
-            sequelize.addModels([]);
-            await sequelize.sync();
-            return sequelize;
-          },
-        };
-      }
-    );
+    return Object.keys(databases).map((dbIdentifier: string) => {
+      return {
+        provide: Sequelize,
+        useFactory: async () => {
+          const sequelize = new Sequelize(databases[dbIdentifier]);
+          /**
+           * @todo
+           *
+           * add models from registry
+           */
+          sequelize?.addModels([]);
+          await sequelize?.sync();
+          return sequelize;
+        },
+      };
+    });
   }
 
   /**
@@ -114,11 +80,11 @@ export class DatabaseService {
    * @param connectionName
    */
   async addModels(models: ModelCtor[], connectionName: string) {
-    try{
-    const dbObj = this.connections.get(connectionName);
-    dbObj.addModels(models);
-    console.log(`===Models Added===`);
-    }catch(error: any){
+    try {
+      const dbObj = this.connections.get(connectionName);
+      dbObj.addModels(models);
+      console.log(`===Models Added===`);
+    } catch (error: any) {
       throw new Error(error);
     }
   }
@@ -169,7 +135,7 @@ export class DatabaseService {
   async findOne(
     connectionName: string,
     model: string,
-    options?: any,
+    options?: any
   ): Promise<any> {
     try {
       const datbaseProvider = this.connections.get(connectionName);
@@ -232,7 +198,7 @@ export class DatabaseService {
     connectionName: string,
     model: string,
     data?: any,
-    transaction?: any,
+    transaction?: any
   ): Promise<any> {
     try {
       const datbaseProvider = this.connections.get(connectionName);
@@ -242,7 +208,7 @@ export class DatabaseService {
     }
   }
 
-  getTransaction():Promise<Transaction>{
+  getTransaction(): Promise<Transaction> {
     /**
      * retu
      */

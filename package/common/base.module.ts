@@ -1,10 +1,17 @@
-import { Module } from "@nestjs/common";
-import { BaseService } from "./base.service";
+import {
+  OnModuleInit,
+  OnModuleDestroy,
+  OnApplicationBootstrap,
+} from "@nestjs/common";
+/**
+ * This is the Base Module class
+ */
+export default class BaseModule
+  implements OnModuleInit, OnModuleDestroy, OnApplicationBootstrap
+{
+  constructor() {}
 
-@Module({
-  imports: [],
-  controllers: [],
-  providers: [BaseService],
-  exports: [],
-})
-export class BaseModule {}
+  onModuleInit() {}
+  onModuleDestroy() {}
+  onApplicationBootstrap() {}
+}

@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
-
-@Injectable()
-export class BaseService {}
+/**
+ * This is the Base Service class
+ */
+export default class BaseService {}

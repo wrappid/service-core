@@ -1,26 +1,41 @@
-import { Module, OnModuleInit } from '@nestjs/common';
-import { AppModule } from './app/app.module';
-import { BaseModule } from './common/base.module';
-import { ConfigModule } from './config/config.module';
-import { LoggingMiddleware } from './middleware/logging.middleware';
-import { ValidationPipe } from './middleware/validation.pipes';
-import { DatabaseService } from './database/database.service';
-import { DatabaseModule } from './database/database.module';
-import { ApiMids } from './models/ApiLogs.model';
-import { ConfigConstant } from './constant/config.constant';
+import { Module } from "@nestjs/common";
+import { AppModule } from "./app/app.module";
+import { ConfigModule } from "./config/config.module";
+import { LoggingMiddleware } from "./middleware/logging.middleware";
+import { ValidationPipe } from "./middleware/validation.pipes";
+import { DatabaseService } from "./database/database.service";
+import { DatabaseModule } from "./database/database.module";
+import { ApiMids } from "./models/ApiLogs.model";
+import { ConfigConstant } from "./constant/config.constant";
+import BaseModule from "./common/base.module";
+import BaseController from "./common/base.controller";
+import BaseService from "./common/base.service";
 
 @Module({
-    imports: [ AppModule, BaseModule, ConfigModule, DatabaseModule],
+  imports: [AppModule, ConfigModule, DatabaseModule],
   controllers: [],
   providers: [],
-  exports: [AppModule ], // Export AppModule to make it available for other modules
-}) 
-class RootModule implements OnModuleInit {
-  constructor(private readonly databaseService: DatabaseService) {}
+  exports: [AppModule], // Export AppModule to make it available for other modules
+})
+class RootModule extends BaseModule {
+  constructor(private readonly databaseService: DatabaseService) {
+    super();
+  }
+
   onModuleInit() {
-    console.log(`::===RootModule has been Initialization===::`); 
-    this.databaseService.addModels([ApiMids],'application'); 
-      
+    console.log(`::===RootModule has been Initialization===::`);
+    this.databaseService.addModels([ApiMids], "application");
   }
 }
-export  {RootModule, DatabaseService, DatabaseModule,  LoggingMiddleware, ValidationPipe, ConfigConstant } 
+
+export {
+  BaseModule,
+  BaseService,
+  BaseController,
+  ConfigConstant,
+  RootModule,
+  DatabaseModule,
+  DatabaseService,
+  LoggingMiddleware,
+  ValidationPipe,
+};
