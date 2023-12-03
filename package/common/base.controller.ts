@@ -1,4 +1,4 @@
 /**
  * This is the Base Controller class
  */
-export default class BaseController {}
+export default abstract class BaseController {}

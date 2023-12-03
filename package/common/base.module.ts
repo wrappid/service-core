@@ -6,7 +6,7 @@ import {
 /**
  * This is the Base Module class
  */
-export default class BaseModule
+export default abstract class BaseModule
   implements OnModuleInit, OnModuleDestroy, OnApplicationBootstrap
 {
   constructor() {}
