@@ -11,7 +11,13 @@ export default abstract class BaseModule
 {
   constructor() {}
 
-  onModuleInit() {}
-  onModuleDestroy() {}
-  onApplicationBootstrap() {}
+  onModuleInit() {
+    console.log(`onModuleInit Called`);
+  }
+  onModuleDestroy() {
+    console.log(`onModuleDestroy Called`);
+  }
+  onApplicationBootstrap() {
+    console.log(`onApplicationBootstrap Called`);
+  }
 }

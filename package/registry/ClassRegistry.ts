@@ -12,8 +12,10 @@ export abstract class ClassRegistry {
   /**
    *
    */
-  static initialize() {
-    ClassRegistry.initializeClassesInFolder(ClassRegistry._registryFolderPaths);
+  static initialize(filePath: string[]) {
+    ClassRegistry.initializeClassesInFolder(
+      filePath || ClassRegistry._registryFolderPaths
+    );
   }
 
   /**
@@ -76,10 +78,13 @@ export abstract class ClassRegistry {
   static initializeClassesInFolder(folders: string[]) {
     folders.forEach((folder) => {
       const files = fs.readdirSync(folder, { withFileTypes: true });
-
+      /**
+       * @todo
+       * Need to filter with file name suffix
+       */
       files.forEach((file) => {
         const filePath = path.join(folder, file.name);
-        console.log("Processing:" + filePath);
+        // console.log("Processing:" + filePath);
 
         if (file.isDirectory()) {
           // Recursively initialize files from subdirectories

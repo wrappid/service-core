@@ -14,4 +14,9 @@ import BaseModule from "../common/base.module";
   providers: [ConfigService],
   exports: [ConfigService],
 })
-export class ConfigModule extends BaseModule {}
+export class ConfigModule extends BaseModule {
+  async onModuleInit() {
+    console.log(`::=== ConfigModule::onModuleInit START ===::`);
+    console.log(`::=== ConfigModule::onModuleInit END ===::`);
+  }
+}

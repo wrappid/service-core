@@ -19,7 +19,7 @@ export class DatabaseModule extends BaseModule {
   }
 
   async onModuleInit() {
-    console.log(`::===DatabaseModule has been Initialization===::`);
+    console.log(`::=== DatabaseModule::onModuleInit START ===::`);
     let connectionRes = await this.databaseService.checkConnection();
     if (connectionRes) {
       console.log(
@@ -30,5 +30,6 @@ export class DatabaseModule extends BaseModule {
         `No database connection has been established successfully...`
       );
     }
+    console.log(`::=== DatabaseModule::onModuleInit END ===::`);
   }
 }

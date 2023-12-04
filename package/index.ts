@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common";
-import { AppModule } from "./app/app.module";
 import { ConfigModule } from "./config/config.module";
 import { LoggingMiddleware } from "./middleware/logging.middleware";
 import { ValidationPipe } from "./middleware/validation.pipes";
@@ -13,12 +12,14 @@ import BaseService from "./common/base.service";
 import { ClassRegistry } from "./registry/ClassRegistry";
 import { ModelRegistry } from "./registry/ModelRegistry";
 import { ModelCtor } from "sequelize-typescript";
+import { join } from "path";
+import { ModelDecorator } from "./decorators/model.decorator";
 
 @Module({
-  imports: [AppModule, ConfigModule, DatabaseModule],
+  imports: [ConfigModule, DatabaseModule],
   controllers: [],
   providers: [],
-  exports: [AppModule], // Export AppModule to make it available for other modules
+  exports: [], // Export AppModule to make it available for other modules
 })
 class RootModule extends BaseModule {
   constructor(private readonly databaseService: DatabaseService) {
@@ -27,7 +28,7 @@ class RootModule extends BaseModule {
 
   onModuleInit() {
     console.log(`::===RootModule has been Initialization===::`);
-    ModelRegistry.initialize();
+    ModelRegistry.initialize([join(__dirname, "./")]);
     const modelArray = ClassRegistry.getClasses();
     console.log(modelArray);
     this.databaseService.addModels(modelArray as ModelCtor[], "wrappid");
@@ -35,6 +36,9 @@ class RootModule extends BaseModule {
 }
 
 export {
+  ModelDecorator,
+  ModelRegistry,
+  ClassRegistry,
   BaseModule,
   BaseService,
   BaseController,
