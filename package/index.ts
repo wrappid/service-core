@@ -10,6 +10,9 @@ import { ConfigConstant } from "./constant/config.constant";
 import BaseModule from "./common/base.module";
 import BaseController from "./common/base.controller";
 import BaseService from "./common/base.service";
+import { ClassRegistry } from "./registry/ClassRegistry";
+import { ModelRegistry } from "./registry/ModelRegistry";
+import { ModelCtor } from "sequelize-typescript";
 
 @Module({
   imports: [AppModule, ConfigModule, DatabaseModule],
@@ -24,7 +27,10 @@ class RootModule extends BaseModule {
 
   onModuleInit() {
     console.log(`::===RootModule has been Initialization===::`);
-    this.databaseService.addModels([ApiRequestLogs], "wrappid");
+    ModelRegistry.initialize();
+    const modelArray = ClassRegistry.getClasses();
+    console.log(modelArray);
+    this.databaseService.addModels(modelArray as ModelCtor[], "wrappid");
   }
 }
 

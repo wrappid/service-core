@@ -3,6 +3,7 @@ import { AppService } from "./app.service";
 import { AppController } from "./app.controller";
 import { DatabaseModule } from "../database/database.module";
 import BaseModule from "../common/base.module";
+import { ModelRegistry } from "../registry/ModelRegistry";
 
 @Module({
   imports: [DatabaseModule],
@@ -11,7 +12,9 @@ import BaseModule from "../common/base.module";
   exports: [],
 })
 export class AppModule extends BaseModule {
-  // onModuleInit() {}
+  onModuleInit() {
+    ModelRegistry.initialize();
+  }
   // onModuleDestroy() {}
   // onApplicationBootstrap() {}
 }

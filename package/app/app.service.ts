@@ -1,14 +1,18 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
 import { ModelRegistry } from "../registry/ModelRegistry";
+import BaseService from "../common/base.service";
 // import { DatabaseService } from "../database/database.service";
 
 @Injectable()
-export class AppService implements OnModuleInit, OnModuleDestroy {
+export class AppService
+  extends BaseService
+  implements OnModuleInit, OnModuleDestroy
+{
   // constructor(private readonly databaseService: DatabaseService) {}
 
   async onModuleInit() {
     console.log(`::===AppModule has been Initialization===::`);
-    
+
     // const isConnected = await this.databaseService.checkConnection();
     // console.log(
     //   isConnected

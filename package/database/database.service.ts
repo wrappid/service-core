@@ -1,7 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "../config/config.service";
-import { ModelCtor, Sequelize } from "sequelize-typescript";
+import { Model, ModelCtor, Sequelize } from "sequelize-typescript";
 import { Transaction } from "sequelize";
+import BaseService from "../common/base.service";
+import BaseModel from "../common/base.model";
+import { ApiRequestLogs } from "models/ApiRequestLogs.model";
 
 /**
  * @todo missing coding documentation
@@ -9,12 +12,13 @@ import { Transaction } from "sequelize";
  * @description
  */
 @Injectable()
-export class DatabaseService {
+export class DatabaseService extends BaseService {
   /**
    * @description
    */
   private connections: Map<string, Sequelize> = new Map();
   constructor(private readonly sequelize: Sequelize) {
+    super();
     let databases = ConfigService.getCustomConfig()["databases"] || [];
     Object.keys(databases).forEach((dbIdentifier: string) => {
       let seqObj: Sequelize = new Sequelize(databases[dbIdentifier]);

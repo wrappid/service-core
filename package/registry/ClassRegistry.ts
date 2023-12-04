@@ -4,6 +4,7 @@ import "reflect-metadata"; // Import reflect-metadata to use decorators
 
 export abstract class ClassRegistry {
   private static _registryFolderPaths: string[];
+  private static _decoratorFileSuffix: string = ".ts";
   private static _decoratorNames: string[];
   private static _typecastClass: Function = Function;
   private static _classes: { [key: string]: new (...args: any[]) => any } = {};
@@ -83,7 +84,7 @@ export abstract class ClassRegistry {
         if (file.isDirectory()) {
           // Recursively initialize files from subdirectories
           ClassRegistry.initializeClassesInFolder([filePath]);
-        } else if (filePath.endsWith(".ts")) {
+        } else if (filePath.endsWith(this._decoratorFileSuffix)) {
           // Initialize file
           require(filePath);
         }
@@ -96,6 +97,13 @@ export abstract class ClassRegistry {
    */
   protected static set registryFolderPaths(value: string[]) {
     ClassRegistry._registryFolderPaths = value;
+  }
+
+  /**
+   *
+   */
+  public static set decoratorFileSuffix(value: string) {
+    ClassRegistry._decoratorFileSuffix = value;
   }
 
   /**

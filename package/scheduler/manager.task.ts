@@ -41,7 +41,7 @@ export class ManagerTask extends BaseTask {
             element.name,
             element.expression,
             this.moduleRef.get(taskname)
-            // new tasksRegistry[""](),
+            // new tasksRegistry["taskname"],
           );
         }
       });

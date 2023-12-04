@@ -1,8 +1,11 @@
 const Sequelize = require("sequelize");
+import { ModelDecorator } from "../decorators/model.decorator";
+import BaseModel from "../common/base.model";
 import { Column, Model, Table, DataType } from "sequelize-typescript";
 
+@ModelDecorator
 @Table
-export class ApiRequestLogs extends Model {
+export class ApiRequestLogs extends Model implements BaseModel {
   @Column({
     field: "id",
     type: DataType.INTEGER,
