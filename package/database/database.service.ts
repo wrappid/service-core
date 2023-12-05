@@ -1,10 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "../config/config.service";
 import { Model, ModelCtor, Sequelize } from "sequelize-typescript";
-import { Transaction } from "sequelize";
 import BaseService from "../common/base.service";
-import BaseModel from "../common/base.model";
-import { ApiRequestLogs } from "models/ApiRequestLogs.model";
+import { Transaction } from "sequelize";
+
+type ModelWithAssociations = Model & {
+  associate: (models: any) => void;
+};
 
 /**
  * @todo missing coding documentation
@@ -89,6 +91,22 @@ export class DatabaseService extends BaseService {
     } catch (error) {
       return false;
     }
+  }
+
+  associateModels() {
+    console.log("====================================");
+    console.log("Associating Models");
+    this.connections.forEach((value: Sequelize, key: string) => {
+      /**
+       * @todo any type needs to be removed
+       */
+      console.log(value.models);
+      Object.keys(value.models).forEach((key: string) => {
+        let model: any = value.models[key];
+        console.log(model.associate(value.models));
+      });
+    });
+    console.log("====================================");
   }
 
   /**

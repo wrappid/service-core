@@ -4,7 +4,6 @@ import { LoggingMiddleware } from "./middleware/logging.middleware";
 import { ValidationPipe } from "./middleware/validation.pipes";
 import { DatabaseService } from "./database/database.service";
 import { DatabaseModule } from "./database/database.module";
-import { ApiRequestLogs } from "./models/ApiRequestLogs.model";
 import { ConfigConstant } from "./constant/config.constant";
 import BaseModule from "./common/base.module";
 import BaseController from "./common/base.controller";
@@ -14,6 +13,7 @@ import { ModelRegistry } from "./registry/ModelRegistry";
 import { ModelCtor } from "sequelize-typescript";
 import { join } from "path";
 import { ModelDecorator } from "./decorators/model.decorator";
+import BaseModel from "./common/base.model";
 
 @Module({
   imports: [ConfigModule, DatabaseModule],
@@ -32,6 +32,8 @@ class RootModule extends BaseModule {
     const modelArray = ClassRegistry.getClasses();
     console.log(modelArray);
     this.databaseService.addModels(modelArray as ModelCtor[], "wrappid");
+    console.log(this.databaseService.getConnection("wrappid"));
+    this.databaseService.associateModels();
   }
 }
 
@@ -39,6 +41,7 @@ export {
   ModelDecorator,
   ModelRegistry,
   ClassRegistry,
+  BaseModel,
   BaseModule,
   BaseService,
   BaseController,

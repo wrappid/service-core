@@ -1,11 +1,13 @@
-const Sequelize = require("sequelize");
 import { ModelDecorator } from "../decorators/model.decorator";
 import BaseModel from "../common/base.model";
 import { Column, Model, Table, DataType } from "sequelize-typescript";
+import { Sequelize } from "sequelize";
 
 @ModelDecorator
 @Table
 export class ApiRequestLogs extends Model implements BaseModel {
+  static associate(models: any) {}
+
   @Column({
     field: "id",
     type: DataType.INTEGER,
@@ -78,7 +80,7 @@ export class ApiRequestLogs extends Model implements BaseModel {
 
   @Column({
     field: "start_ts",
-    type: Sequelize.DATE,
+    type: DataType.DATE,
     // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     allowNull: true,
   })
@@ -86,7 +88,7 @@ export class ApiRequestLogs extends Model implements BaseModel {
 
   @Column({
     field: "end_ts",
-    type: Sequelize.DATE,
+    type: DataType.DATE,
     // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     allowNull: true,
   })
@@ -94,7 +96,7 @@ export class ApiRequestLogs extends Model implements BaseModel {
 
   @Column({
     field: "created_ts",
-    type: Sequelize.DATE,
+    type: DataType.DATE,
     // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     allowNull: true,
   })
@@ -102,7 +104,7 @@ export class ApiRequestLogs extends Model implements BaseModel {
 
   @Column({
     field: "updated_ts",
-    type: Sequelize.DATE,
+    type: DataType.DATE,
     // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     allowNull: true,
   })
