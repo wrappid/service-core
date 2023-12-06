@@ -32,10 +32,10 @@ class RootModule extends BaseModule {
     console.log(`::===RootModule has been Initialization===::`);
     this.databaseService.addModels([ApiRequestLogs], "wrappid");
 
-    // ModelRegistry.initialize([join(__dirname, "./")]);
-    // const modelArray = ClassRegistry.getClasses();
-    // console.log(modelArray);
-    // this.databaseService.addModels(modelArray as ModelCtor[], "wrappid");
+    ModelRegistry.initialize([join(__dirname, "./")]);
+    const modelArray = ClassRegistry.getClasses();
+    console.log(modelArray);
+    this.databaseService.addModels(modelArray as ModelCtor[], "wrappid");
     // console.log(this.databaseService.getConnection("wrappid"));
     // this.databaseService.associateModels();
   }
