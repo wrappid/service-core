@@ -103,7 +103,12 @@ export class DatabaseService extends BaseService {
       console.log(value.models);
       Object.keys(value.models).forEach((key: string) => {
         let model: any = value.models[key];
-        console.log(model.associate(value.models));
+        if (
+          model.hasOwnProperty("associate") &&
+          typeof model["associate"] === "function"
+        ) {
+          model.associate();
+        }
       });
     });
     console.log("====================================");

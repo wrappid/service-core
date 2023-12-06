@@ -5,12 +5,14 @@ import {
   Column,
   ForeignKey,
   BelongsTo,
+  ModelCtor,
 } from "sequelize-typescript";
 import { User } from "./user.model";
 import { ModelDecorator } from "../decorators/model.decorator";
+import { ModelRegistry } from "../registry/ModelRegistry";
 
 @ModelDecorator
-@Table
+@Table({ tableName: "Posts" })
 export class Post extends Model<Post> {
   @Column
   title: string;
@@ -19,6 +21,11 @@ export class Post extends Model<Post> {
   @Column
   userId: number;
 
-  @BelongsTo(() => User)
-  user: User;
+  // @BelongsTo(() => User)
+  // user: User;
+
+  static associate(): void {
+    let model = ModelRegistry.getClass("User");
+    Post.belongsTo(model as ModelCtor, { foreignKey: "userId" });
+  }
 }
