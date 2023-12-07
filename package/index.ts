@@ -36,8 +36,8 @@ class RootModule extends BaseModule {
     const modelArray = ClassRegistry.getClasses();
     console.log(modelArray);
     this.databaseService.addModels(modelArray as ModelCtor[], "wrappid");
-    this.databaseService.associateModels();
-    console.log(this.databaseService.getConnection("wrappid"));
+    // this.databaseService.associateModels();
+    // console.log(this.databaseService.getConnection("wrappid"));
     console.log(`==================================`);
   }
 }
