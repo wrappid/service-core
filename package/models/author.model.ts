@@ -3,17 +3,14 @@ import { Table, Model, Column, HasMany, ModelCtor } from "sequelize-typescript";
 import { ModelDecorator } from "../decorators/model.decorator";
 import { ModelRegistry } from "../registry/ModelRegistry";
 
-// @ModelDecorator
+@ModelDecorator
 @Table({ tableName: "Authors" })
 export class Author extends Model<Author> {
   @Column
   name: string;
 
-  // @HasMany(() => Post)
-  // posts: Post[];
-
-  static associate(): void {
-    let model = ModelRegistry.getClass("Post");
-    Author.hasMany(model as ModelCtor, { foreignKey: "authorId" });
-  }
+  // static associate(): void {
+  //   let model = ModelRegistry.getClass("Post");
+  //   Author.hasMany(model as ModelCtor, { foreignKey: "authorId" });
+  // }
 }
