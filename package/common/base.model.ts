@@ -1,4 +1,3 @@
-import { Model, Sequelize } from "sequelize";
 import { Table } from "sequelize-typescript";
 
 /**
