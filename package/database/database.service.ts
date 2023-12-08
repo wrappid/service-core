@@ -107,7 +107,13 @@ export class DatabaseService extends BaseService {
           model.hasOwnProperty("associate") &&
           typeof model["associate"] === "function"
         ) {
-          model.associate();
+          try {
+            model.associate();
+            console.log(`${model} association success`);
+          } catch (error) {
+            console.log(`${model} association failed`);
+            console.error(error);
+          }
         }
       });
     });

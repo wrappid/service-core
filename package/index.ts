@@ -15,7 +15,6 @@ import { join } from "path";
 import { ModelDecorator } from "./decorators/model.decorator";
 import BaseModel from "./common/base.model";
 import { FileHandlerMiddleware } from "./middleware/fileHandler.middleware";
-import { ApiRequestLogs } from "./models/ApiRequestLogs.model";
 
 @Module({
   imports: [ConfigModule, DatabaseModule],
@@ -30,10 +29,10 @@ class RootModule extends BaseModule {
 
   onModuleInit() {
     console.log(`::===RootModule has been Initialization===::`);
-    this.databaseService.addModels([ApiRequestLogs], "wrappid");
+    // this.databaseService.addModels([ApiRequestLogs], "wrappid");
 
     ModelRegistry.initialize([join(__dirname, "./")]);
-    const modelArray = ClassRegistry.getClasses();
+    const modelArray = ModelRegistry.getClasses();
     console.log(modelArray);
     this.databaseService.addModels(modelArray as ModelCtor[], "wrappid");
     // this.databaseService.associateModels();
