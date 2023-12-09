@@ -15,9 +15,11 @@ import { join } from "path";
 import { ModelDecorator } from "./decorators/model.decorator";
 import BaseModel from "./common/base.model";
 import { FileHandlerMiddleware } from "./middleware/fileHandler.middleware";
+import { WrappidCacheModule } from "./cache/wrappidcache.module";
+import { RedisCacheService } from "./cache/cache.service";
 
 @Module({
-  imports: [ConfigModule, DatabaseModule],
+  imports: [ConfigModule, DatabaseModule, WrappidCacheModule],
   controllers: [],
   providers: [],
   exports: [], // Export AppModule to make it available for other modules
@@ -43,6 +45,7 @@ class RootModule extends BaseModule {
 }
 
 export {
+  RedisCacheService,
   FileHandlerMiddleware,
   ModelDecorator,
   ModelRegistry,
