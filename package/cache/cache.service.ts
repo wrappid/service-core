@@ -71,14 +71,26 @@ export class RedisCacheService extends BaseService {
    * @param key
    * @param value
    */
-  async update(connectionName: string, key: string, value: string) {
+  async update(
+    connectionName: string,
+    key: string,
+    value: string,
+    ttl?: number
+  ) {
     try {
+      const DEFAULT_TTL: number = 40;
+      if (ttl == null) {
+        ttl = DEFAULT_TTL;
+      }
       const cacheConnection = this.cacheModules.get(connectionName);
       let d = await cacheConnection.exists(key);
-      if (d == 1) {
+      if (!d) {
+        //create cache
+        console.log("Cache Key Not Present");
         await cacheConnection.set(key, value);
+        await cacheConnection.expire(key, ttl);
       } else {
-        console.log("Key Not Present");
+        //update cache
         await cacheConnection.set(key, value);
       }
     } catch (error: any) {
@@ -110,10 +122,10 @@ export class RedisCacheService extends BaseService {
     try {
       const cacheConnection = this.cacheModules.get(connectionName);
       let d = await cacheConnection.exists(key);
-      if (d == 1) {
-        await cacheConnection.del(key);
+      if (!d) {
+        console.log("Cache Key Not Present");
       } else {
-        console.log("Key Not Present");
+        await cacheConnection.del(key);
       }
     } catch (error: any) {
       throw new Error(error);
