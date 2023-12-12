@@ -1,9 +1,9 @@
 import { ConfigConstant } from "constant/config.constant";
-import { SmsCommunicationService } from "./smsCommunication.service";
+import { SmsCommunicationService } from "./sms.communication.service";
 import { ConfigService } from "../config/config.service";
 import { validatePhone } from "./validation.schema";
 
-export class Kit19Service extends SmsCommunicationService {
+export class Kit19SmsCommunicationService extends SmsCommunicationService {
   async communicateSMS(smsOptions: any) {
     let { phone, message, dlttemplateid } = smsOptions;
     const { service, url, username, password, sender } =
