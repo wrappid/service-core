@@ -8,11 +8,14 @@ import { RedisCacheService } from "./cache.service";
   exports: [RedisCacheService],
 })
 export class WrappidCacheModule extends BaseModule {
+  onCoreModuleInit(): void {
+    console.log(`::=== WrappidCacheModule::onModuleInit START ===::`);
+    // this.redisCacheService.checkConnection();
+    console.log(`::=== WrappidCacheModule::onModuleInit END ===::`);
+  }
+  onCoreModuleDestroy(): void {}
+  onCoreApplicationBootstrap(): void {}
   constructor(private readonly redisCacheService: RedisCacheService) {
     super();
-  }
-  async onModuleInit() {
-    console.log(`::=== WrappidCacheModule::onModuleInit START ===::`);
-    this.redisCacheService.checkConnection();
   }
 }

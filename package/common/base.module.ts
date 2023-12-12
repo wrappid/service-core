@@ -9,15 +9,25 @@ import {
 export default abstract class BaseModule
   implements OnModuleInit, OnModuleDestroy, OnApplicationBootstrap
 {
-  constructor() {}
+  className: string;
+  constructor() {
+    this.className = new.target.name;
+  }
 
   onModuleInit() {
-    console.log(`onModuleInit Called`);
+    console.log(`${this.className} onModuleInit Called`);
+    this.onCoreModuleInit();
   }
   onModuleDestroy() {
-    console.log(`onModuleDestroy Called`);
+    console.log(`${this.className} onModuleDestroy Called`);
+    this.onCoreModuleDestroy();
   }
   onApplicationBootstrap() {
-    console.log(`onApplicationBootstrap Called`);
+    console.log(`${this.className} onApplicationBootstrap Called`);
+    this.onCoreApplicationBootstrap();
   }
+
+  abstract onCoreModuleInit(): void;
+  abstract onCoreModuleDestroy(): void;
+  abstract onCoreApplicationBootstrap(): void;
 }

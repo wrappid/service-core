@@ -15,8 +15,10 @@ import BaseModule from "../common/base.module";
   exports: [ConfigService],
 })
 export class ConfigModule extends BaseModule {
-  async onModuleInit() {
+  onCoreModuleInit(): void {
     console.log(`::=== ConfigModule::onModuleInit START ===::`);
     console.log(`::=== ConfigModule::onModuleInit END ===::`);
   }
+  onCoreModuleDestroy(): void {}
+  onCoreApplicationBootstrap(): void {}
 }

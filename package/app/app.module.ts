@@ -12,7 +12,7 @@ import { ModelRegistry } from "../registry/ModelRegistry";
   exports: [],
 })
 export class AppModule extends BaseModule {
-  // onModuleInit() {}
-  // onModuleDestroy() {}
-  // onApplicationBootstrap() {}
+  onCoreModuleInit(): void {}
+  onCoreModuleDestroy(): void {}
+  onCoreApplicationBootstrap(): void {}
 }

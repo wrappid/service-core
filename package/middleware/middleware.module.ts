@@ -9,4 +9,8 @@ import { DatabaseModule } from "../database/database.module";
   providers: [ValidationPipe, LoggingMiddleware],
   exports: [ValidationPipe, LoggingMiddleware],
 })
-export class MiddlewareModule extends BaseModule {}
+export class MiddlewareModule extends BaseModule {
+  onCoreModuleInit(): void {}
+  onCoreModuleDestroy(): void {}
+  onCoreApplicationBootstrap(): void {}
+}

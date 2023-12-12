@@ -6,4 +6,8 @@ import BaseModule from "../common/base.module";
   providers: [],
   exports: [],
 })
-export class LoggingModule extends BaseModule {}
+export class LoggingModule extends BaseModule {
+  onCoreModuleInit(): void {}
+  onCoreModuleDestroy(): void {}
+  onCoreApplicationBootstrap(): void {}
+}

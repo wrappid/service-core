@@ -12,14 +12,16 @@ import BaseModule from "../common/base.module";
   exports: [CommTask],
 })
 export class TasksModule extends BaseModule {
-  constructor(
-    private taskRegistry: TaskRegistry,
-    private managerTask: ManagerTask,
-  ) {
-    super();
-  }
-  async onModuleInit() {
+  onCoreModuleInit(): void {
     console.log(`::===TaskModule has been Initialization===::`);
     this.taskRegistry.addTask("task-manager", "0 10 * * * *", this.managerTask);
+  }
+  onCoreModuleDestroy(): void {}
+  onCoreApplicationBootstrap(): void {}
+  constructor(
+    private taskRegistry: TaskRegistry,
+    private managerTask: ManagerTask
+  ) {
+    super();
   }
 }

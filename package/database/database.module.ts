@@ -14,22 +14,23 @@ import BaseModule from "../common/base.module";
   exports: [DatabaseService],
 })
 export class DatabaseModule extends BaseModule {
-  constructor(private readonly databaseService: DatabaseService) {
-    super();
-  }
-
-  async onModuleInit() {
+  async onCoreModuleInit(): Promise<void> {
     console.log(`::=== DatabaseModule::onModuleInit START ===::`);
     let connectionRes = await this.databaseService.checkConnection();
-    if (connectionRes) {
-      console.log(
-        `All database connection has been established successfully...`
-      );
-    } else {
-      console.log(
-        `No database connection has been established successfully...`
-      );
-    }
+    // if (connectionRes) {
+    //   console.log(
+    //     `All database connection has been established successfully...`
+    //   );
+    // } else {
+    //   console.log(
+    //     `No database connection has been established successfully...`
+    //   );
+    // }
     console.log(`::=== DatabaseModule::onModuleInit END ===::`);
+  }
+  onCoreModuleDestroy(): void {}
+  onCoreApplicationBootstrap(): void {}
+  constructor(private readonly databaseService: DatabaseService) {
+    super();
   }
 }
