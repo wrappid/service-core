@@ -1,11 +1,11 @@
 import { Module } from "@nestjs/common";
-import { CommunicationService } from "./communication.service";
 import BaseModule from "common/base.module";
+import { Kit19SmsCommunicationService } from "./kit19.sms.communication.service";
 
 @Module({
   imports: [],
   controllers: [],
-  providers: [CommunicationService],
+  providers: [Kit19SmsCommunicationService],
   exports: [],
 })
 export class CommunicationModule extends BaseModule {
