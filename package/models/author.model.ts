@@ -2,8 +2,8 @@ import { ModelRegistry } from "../registry/ModelRegistry";
 import { ModelDecorator } from "../decorators/model.decorator";
 import { Table, Model, Column, HasMany, ModelCtor } from "sequelize-typescript";
 
-@ModelDecorator
-@Table({ tableName: "Authors" })
+// @ModelDecorator
+@Table({ schema: "wrappid", tableName: "Authors" })
 export class Author extends Model<Author> {
   @Column
   name: string;

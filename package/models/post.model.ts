@@ -9,8 +9,8 @@ import {
   BelongsTo,
 } from "sequelize-typescript";
 
-@ModelDecorator
-@Table({ tableName: "Posts" })
+// @ModelDecorator
+@Table({ schema: "wrappid", tableName: "Posts" })
 export class Post extends Model<Post> {
   @Column
   title: string;

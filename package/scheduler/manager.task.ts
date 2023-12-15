@@ -12,7 +12,7 @@ export class ManagerTask extends BaseTask {
   constructor(
     private readonly moduleRef: ModuleRef,
     private taskRegistry: TaskRegistry,
-    private readonly databaseService: DatabaseService,
+    private readonly databaseService: DatabaseService
   ) {
     super();
   }
@@ -23,14 +23,18 @@ export class ManagerTask extends BaseTask {
     const tasksRegistry = { ...TasksRegistry };
 
     //datbase call to get Task schemas
-    const DatabaseSchemas = await this.databaseService.findAll('wrappid-database1','CronSchemas');
+    const DatabaseSchemas = await this.databaseService.findAll(
+      "",
+      "wrappid-database1",
+      "CronSchemas"
+    );
     if (
       DatabaseSchemas &&
       Array.isArray(DatabaseSchemas) &&
       DatabaseSchemas.length > 0
     ) {
       DatabaseSchemas.forEach((element) => {
-        const taskname:string = element.cronModule;
+        const taskname: string = element.cronModule;
         // const cronModule: BaseTask = tasksRegistry[`${taskname}`];
 
         // this.moduleRef.get(taskname, { strict: false }).run();
@@ -60,7 +64,7 @@ export class ManagerTask extends BaseTask {
     //   this.taskRegistry.addTask(element.name, element.expression);
     // });
   }
-  
+
   postPerform(): void {
     console.log(`Core Task postPerform is completed`, new Date());
   }

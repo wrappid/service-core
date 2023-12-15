@@ -108,7 +108,7 @@ export class DatabaseService extends BaseService {
           typeof model["associate"] === "function"
         ) {
           try {
-            model.associate();
+            model.schema("wrappid").associate();
             console.log(`${model} association success`);
           } catch (error) {
             console.log(`${model} association failed`);
@@ -145,7 +145,12 @@ export class DatabaseService extends BaseService {
   async findAndCountAll(connectionName: string, model: string, options?: any) {
     try {
       const datbaseProvider = this.connections.get(connectionName);
-      return await datbaseProvider.models[model].findAndCountAll(options);
+      /**
+       * @todo default schemnaName should be provide
+       */
+      return await datbaseProvider.models[model]
+        .schema(connectionName)
+        .findAndCountAll(options);
     } catch (error: any) {
       throw new Error(error);
     }
@@ -159,13 +164,19 @@ export class DatabaseService extends BaseService {
    * @returns
    */
   async findAll(
+    schemaName: string,
     connectionName: string,
     model: string,
     options?: any
   ): Promise<any[]> {
     try {
       const datbaseProvider = this.connections.get(connectionName);
-      return await datbaseProvider.models[model].findAll(options);
+      /**
+       * @todo default schemnaName should be provide
+       */
+      return await datbaseProvider.models[model]
+        .schema(schemaName)
+        .findAll(options);
     } catch (error: any) {
       throw new Error(error);
     }
@@ -185,7 +196,12 @@ export class DatabaseService extends BaseService {
   ): Promise<any> {
     try {
       const datbaseProvider = this.connections.get(connectionName);
-      return await datbaseProvider.models[model].findOne(options);
+      /**
+       * @todo default schemnaName should be provide
+       */
+      return await datbaseProvider.models[model]
+        .schema(connectionName)
+        .findOne(options);
     } catch (error: any) {
       throw new Error(error);
     }
@@ -205,7 +221,12 @@ export class DatabaseService extends BaseService {
   ): Promise<number> {
     try {
       const datbaseProvider = this.connections.get(connectionName);
-      return await datbaseProvider.models[model].destroy(options);
+      /**
+       * @todo default schemnaName should be provide
+       */
+      return await datbaseProvider.models[model]
+        .schema(connectionName)
+        .destroy(options);
     } catch (error: any) {
       throw new Error(error);
     }
@@ -227,7 +248,12 @@ export class DatabaseService extends BaseService {
   ): Promise<any> {
     try {
       const datbaseProvider = this.connections.get(connectionName);
-      return await datbaseProvider.models[model].update(data, options);
+      /**
+       * @todo default schemnaName should be provide
+       */
+      return await datbaseProvider.models[model]
+        .schema(connectionName)
+        .update(data, options);
     } catch (error: any) {
       throw new Error(error);
     }
@@ -248,7 +274,12 @@ export class DatabaseService extends BaseService {
   ): Promise<any> {
     try {
       const datbaseProvider = this.connections.get(connectionName);
-      return datbaseProvider.models[model].create(data, transaction);
+      /**
+       * @todo default schemnaName should be provide
+       */
+      return datbaseProvider.models[model]
+        .schema(connectionName)
+        .create(data, transaction);
     } catch (error: any) {
       throw new Error(error);
     }
