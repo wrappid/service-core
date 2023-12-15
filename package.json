@@ -10,7 +10,7 @@
     "test": "exit 0",
     "build": "npx tsc",
     "build-dev": "npx babel package --out-dir dist --copy-files",
-    "publish": "npm publish ./package --registry=https://npm.pkg.github.com --scope=@wrappid"
+    "publish": "npm publish ./dist --registry=https://npm.pkg.github.com --scope=@wrappid"
   },
   "repository": {
     "type": "git",
