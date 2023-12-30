@@ -3,7 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { TaskRegistry } from "./task.registry";
 import TasksRegistry from "./tasks.registry";
 import { ModuleRef } from "@nestjs/core";
-import { DatabaseService } from "../database/database.service";
+import { DatabaseService } from "../seqlize-db/database/database.service";
 
 @Injectable()
 export class ManagerTask extends BaseTask {

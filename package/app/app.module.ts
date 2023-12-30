@@ -1,7 +1,7 @@
 import { Module, OnModuleInit } from "@nestjs/common";
 import { AppService } from "./app.service";
 import { AppController } from "./app.controller";
-import { DatabaseModule } from "../database/database.module";
+import { DatabaseModule } from "../seqlize-db/database/database.module";
 import BaseModule from "../common/base.module";
 import { ModelRegistry } from "../registry/ModelRegistry";
 

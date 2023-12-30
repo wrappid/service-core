@@ -20,28 +20,28 @@ import { RedisCacheService } from "./cache/cache.service";
 import { Kit19SmsCommunicationService } from "./communication/sms/kit19.sms.communication.service";
 import { WhatsappSmsCommunicationService } from "./communication/whatsapp/whatsapp.sms.communication.service";
 import { MailSmsCommunicationService } from "./communication/mail/mail.sms.communication.service";
-import { WhatsappModule } from "./whatsapp/whatsapp.module";
+import { ApplicationContext } from "./ApplicationContext";
+import { ControllerRegistry } from "./registry/controller.registry";
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, WrappidCacheModule, WhatsappModule],
+  imports: [ConfigModule, DatabaseModule, WrappidCacheModule],
   controllers: [],
   providers: [],
   exports: [], // Export AppModule to make it available for other modules
 })
 class RootModule extends BaseModule {
-  onCoreModuleInit(): void {
+  async onCoreModuleInit(): Promise<void> {
     console.log(`::===RootModule::onModuleInit===::`);
     // this.databaseService.addModels([ApiRequestLogs], "wrappid");
-
     ModelRegistry.initialize([join(__dirname, "./")]);
-    // const modelArray = ModelRegistry.getClasses();
-    // console.log(modelArray);
+    const modelArray = ModelRegistry.getClasses();
+    console.log(`modelArray::`, modelArray);
     // this.databaseService.addModels(modelArray as ModelCtor[], "wrappid");
     // this.databaseService.associateModels();
     // console.log(this.databaseService.getConnection("wrappid"));
-    // console.log(`==================================`);
+    console.log(`==================================`);
   }
-  onCoreModuleDestroy(): void {}
+  async onCoreModuleDestroy(): Promise<void> {}
   onCoreApplicationBootstrap(): void {}
   constructor(private readonly databaseService: DatabaseService) {
     super();
@@ -49,6 +49,8 @@ class RootModule extends BaseModule {
 }
 
 export {
+  ControllerRegistry,
+  ApplicationContext,
   MailSmsCommunicationService,
   WhatsappSmsCommunicationService,
   Kit19SmsCommunicationService,

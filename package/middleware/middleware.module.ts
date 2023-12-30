@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import BaseModule from "../common/base.module";
 import { ValidationPipe } from "./validation.pipes";
 import { LoggingMiddleware } from "./logging.middleware";
-import { DatabaseModule } from "../database/database.module";
+import { DatabaseModule } from "../seqlize-db/database/database.module";
 
 @Module({
   imports: [DatabaseModule],

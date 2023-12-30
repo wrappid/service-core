@@ -1,8 +1,9 @@
-import { Injectable, NestMiddleware } from "@nestjs/common";
-import { DatabaseService } from "../database/database.service";
+import { Global, Injectable, NestMiddleware } from "@nestjs/common";
+import { DatabaseService } from "../seqlize-db/database/database.service";
 import { Request, Response } from "express";
 import { Sequelize } from "sequelize";
 
+@Global()
 @Injectable()
 export class LoggingMiddleware implements NestMiddleware {
   constructor(private readonly databaseService: DatabaseService) {}
