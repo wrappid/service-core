@@ -22,6 +22,11 @@ import { WhatsappSmsCommunicationService } from "./communication/whatsapp/whatsa
 import { MailSmsCommunicationService } from "./communication/mail/mail.sms.communication.service";
 import { ApplicationContext } from "./ApplicationContext";
 import { ControllerRegistry } from "./registry/controller.registry";
+import { EntityRegistry } from "./registry/entity.registry";
+import { Posts } from "./entity/post.entity";
+import { Users } from "./entity/user.entity";
+import { Routes } from "./entity/routes.entity";
+import { log } from "console";
 
 @Module({
   imports: [ConfigModule, DatabaseModule, WrappidCacheModule],
@@ -32,6 +37,10 @@ import { ControllerRegistry } from "./registry/controller.registry";
 class RootModule extends BaseModule {
   async onCoreModuleInit(): Promise<void> {
     console.log(`::===RootModule::onModuleInit===::`);
+    EntityRegistry.register("Posts", Posts);
+    EntityRegistry.register("Users", Users);
+    EntityRegistry.register("Routes", Routes);
+
     // this.databaseService.addModels([ApiRequestLogs], "wrappid");
     ModelRegistry.initialize([join(__dirname, "./")]);
     const modelArray = ModelRegistry.getClasses();
@@ -42,13 +51,14 @@ class RootModule extends BaseModule {
     console.log(`==================================`);
   }
   async onCoreModuleDestroy(): Promise<void> {}
-  onCoreApplicationBootstrap(): void {}
+  async onCoreApplicationBootstrap(): Promise<void> {}
   constructor(private readonly databaseService: DatabaseService) {
     super();
   }
 }
 
 export {
+  EntityRegistry,
   ControllerRegistry,
   ApplicationContext,
   MailSmsCommunicationService,

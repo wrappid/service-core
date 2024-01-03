@@ -6,7 +6,7 @@ import { Sequelize } from "sequelize";
 @Global()
 @Injectable()
 export class LoggingMiddleware implements NestMiddleware {
-  constructor(private readonly databaseService: DatabaseService) {}
+  // constructor(private readonly databaseService: DatabaseService) {}
 
   /**
    * @param req
@@ -14,7 +14,9 @@ export class LoggingMiddleware implements NestMiddleware {
    * @param next
    */
   async use(req: Request, res: Response, next: Function) {
+    /*
     try {
+      
       let apiRequestLog = await this.databaseService.create(
         "wrappid",
         "ApiRequestLogs",
@@ -58,6 +60,9 @@ export class LoggingMiddleware implements NestMiddleware {
     } catch (error) {
       console.error("Error during API Middleware:", error);
     }
+    */
+    console.log(`Request ${req.method} ${req.url} received.`);
+
     next();
   }
 }

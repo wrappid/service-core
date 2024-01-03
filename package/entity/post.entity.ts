@@ -7,9 +7,11 @@ import {
   BaseEntity,
 } from "typeorm";
 import { Users } from "./user.entity";
-import { ModelDecorator } from "../decorators/model.decorator";
+// import { Users } from "./user.entity";
+// import { ModelDecorator } from "../decorators/model.decorator";
+// import { EntityRegistry } from "../registry/entity.registry";
+// const Users = EntityRegistry.getRegistryEntity("Users");
 
-@ModelDecorator
 @Entity({ name: "Posts" })
 export class Posts extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -21,7 +23,7 @@ export class Posts extends BaseEntity {
   @Column()
   content: string;
 
-  @ManyToOne(() => Users, (users) => users.posts)
+  @ManyToOne(() => Users, (users: any) => users.posts)
   @JoinColumn({ name: "authorId" })
-  user: Users;
+  user: typeof Users;
 }

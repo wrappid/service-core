@@ -1,7 +1,7 @@
 import { Module, OnModuleInit } from "@nestjs/common";
 import { DatabaseService } from "./database.service";
-import { Users } from "../entity/user.entity";
-import { Posts } from "../entity/post.entity";
+// import { Users } from "../entity/user.entity";
+// import { Posts } from "../entity/post.entity";
 
 /**
  * @todo missing coding documentation
@@ -19,9 +19,9 @@ export class DatabaseModule implements OnModuleInit {
   async onModuleInit() {
     try {
       console.log(`DatabaseModule:: Start`);
-      const connection = await (
-        await this.databaseService.getConnection("wrappid")
-      ).initialize();
+      // const connection = await (
+      //   await this.databaseService.getConnection("wrappid")
+      // ).initialize();
 
       // console.log(connection);
 
@@ -29,7 +29,7 @@ export class DatabaseModule implements OnModuleInit {
       // const postRepository = connection.getRepository(Posts);
 
       // Create a user
-      const user = new Users();
+      // const user = new Users();
       // user.username = "john_doe";
 
       // Create a post associated with the user
@@ -45,19 +45,19 @@ export class DatabaseModule implements OnModuleInit {
       // });
       // console.log(photoToUpdate);
 
-      const userWithPosts = await connection.manager.findOne(Users, {
-        where: { id: 1 },
-        relations: ["posts"],
-      });
-      if (userWithPosts) {
-        console.log("User:", userWithPosts.username);
-        console.log("Posts:");
-        userWithPosts.posts.forEach((post: { title: any; content: any }) => {
-          console.log(`- ${post.title}: ${post.content}`);
-        });
-      } else {
-        console.log("User not found");
-      }
+      // const userWithPosts = await connection.manager.findOne(Users, {
+      //   where: { id: 1 },
+      //   relations: ["posts"],
+      // });
+      // if (userWithPosts) {
+      //   console.log("User:", userWithPosts.username);
+      //   console.log("Posts:");
+      //   userWithPosts.posts.forEach((post: { title: any; content: any }) => {
+      //     console.log(`- ${post.title}: ${post.content}`);
+      //   });
+      // } else {
+      //   console.log("User not found");
+      // }
       // const newEntities = [User];
       // connection.entityMetadatas.push(
       //   ...newEntities.map((entity) => connection.getMetadata(entity)),

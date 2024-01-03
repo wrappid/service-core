@@ -5,6 +5,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { ModelRegistry } from "../registry/ModelRegistry";
 import { join } from "path";
 import { EntityRegistry } from "../registry/entity.registry";
+// import { Users } from "../entity/user.entity";
 
 /**
  * @todo missing coding documentation
@@ -18,10 +19,10 @@ export class DatabaseService {
    */
   private connections: Map<string, DataSource> = new Map();
   constructor() {
-    const modelArray = EntityRegistry.getRegistry();
-    const registryEntityData = Array.from(modelArray.values()).map(
-      ({ registryEntity }) => registryEntity
-    );
+    // const modelArray = EntityRegistry.getRegistry();
+    // const registryEntityData = Array.from(modelArray.values()).map(
+    //   ({ registryEntity }) => registryEntity
+    // );
 
     // console.log(registryEntityData);
 
@@ -29,8 +30,8 @@ export class DatabaseService {
     Object.keys(databases).forEach(async (dbIdentifier: string) => {
       const connectDB: DataSource = new DataSource({
         ...databases[dbIdentifier],
-        entities: [...registryEntityData],
       });
+      /*
       connectDB
         .initialize()
         .then(() => {
@@ -41,6 +42,7 @@ export class DatabaseService {
             `Error during ${dbIdentifier} Data Source initialization ${err}`
           );
         });
+        */
       // load entities, establish db connection, sync schema, etc.
       // let seqObj: Sequelize = new Sequelize(databases[dbIdentifier]);
       this.connections.set(dbIdentifier, connectDB);
