@@ -8,12 +8,13 @@ const cacheActions = require("./cache/cache.actions");
 const communicate = require("./communication/communicate.communicator");
 const setupTasks = require("./tasks/setup.tasks");
 const { constant, DEFAULT_PORT } = require("./constants/server.constant");
+const { setupFunctions } = require("./function/setup.functions");
 const {
   FunctionsRegistry,
   MiddlewaresRegistry,
   ModelsRegistry,
   TasksRegistry,
-  ValidationsRegistry
+  ValidationsRegistry,
 } = require("./registry");
 
 module.exports = {
@@ -59,5 +60,10 @@ module.exports = {
   /**
    * Cron Functions
    */
-  setupTasks
+  setupTasks,
+
+  /**
+   * setupFunctions
+   */
+  setupFunctions,
 };

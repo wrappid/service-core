@@ -69,25 +69,27 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   routes.associate = (models) => {
-    routes.belongsTo(models.Pages, {
-      foreignKey: { name: "pageRef", type: DataTypes.STRING },
-      targetKey: "entityRef",
-    });
-    routes.belongsTo(models.Users, {
-      foreignKey: "createdBy",
-      as: "Owner",
-      sourceKey: "id",
-    });
-    routes.belongsTo(models.Users, {
-      foreignKey: "updatedBy",
-      as: "Updater",
-      sourceKey: "id",
-    });
-    routes.belongsTo(models.Users, {
-      foreignKey: "deletedBy",
-      as: "Destroyer",
-      sourceKey: "id",
-    });
+    if (models.Pages && models.Users) {
+      routes.belongsTo(models.Pages, {
+        foreignKey: { name: "pageRef", type: DataTypes.STRING },
+        targetKey: "entityRef",
+      });
+      routes.belongsTo(models.Users, {
+        foreignKey: "createdBy",
+        as: "Owner",
+        sourceKey: "id",
+      });
+      routes.belongsTo(models.Users, {
+        foreignKey: "updatedBy",
+        as: "Updater",
+        sourceKey: "id",
+      });
+      routes.belongsTo(models.Users, {
+        foreignKey: "deletedBy",
+        as: "Destroyer",
+        sourceKey: "id",
+      });
+    }
   };
 
   return routes;
