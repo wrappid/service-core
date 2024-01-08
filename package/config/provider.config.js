@@ -1,5 +1,5 @@
 /**
- * @todo 
+ * @todo
  * must get it from application context
  * and
  * merge core specific config here
@@ -7,8 +7,10 @@
  * environment must comes from env
  */
 const path = require("path");
-
-const wrappidConfig = require(path.resolve("./config.json"));
+const constant = require("../constants/server.constant");
+const configFileContent =
+  process.env[constant.constant.entityStatus.WRAPPID_SERVICE_CONFIG_PATH];
+const wrappidConfig = require(path.resolve(configFileContent));
 
 const configProvider = wrappidConfig;
 console.log("###########################################");

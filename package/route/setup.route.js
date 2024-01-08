@@ -16,13 +16,16 @@ const setupRoutes = async (app, AppControllersRegistry) => {
     },
   });
   console.log(`----------------------------------`);
-  console.log(apiRoutes);
+  // console.log(apiRoutes);
   console.log(`----------------------------------`);
 
   console.log(`----------------------------------`);
   console.log(`Setting up routes...`);
   apiRoutes.forEach((apiRoute) => {
-    if (typeof controllersRegistry[apiRoute?.controllerRef] === "function" || typeof controllersRegistry[apiRoute?.controllerRef] === "object") {
+    if (
+      typeof controllersRegistry[apiRoute?.controllerRef] === "function" ||
+      typeof controllersRegistry[apiRoute?.controllerRef] === "object"
+    ) {
       console.log(`Adding ${apiRoute?.name} route...`);
       let funcArray = [];
       if (typeof controllersRegistry[apiRoute?.controllerRef] === "function") {
@@ -38,28 +41,16 @@ const setupRoutes = async (app, AppControllersRegistry) => {
 
       switch (apiRoute?.reqMethod) {
         case constant.httpMethod.HTTP_GET:
-          app.get(
-            `/${apiRoute?.url}`,
-            funcArray
-          );
+          app.get(`/${apiRoute?.url}`, funcArray);
           break;
         case constant.httpMethod.HTTP_POST:
-          app.post(
-            `/${apiRoute?.url}`,
-            funcArray
-          );
+          app.post(`/${apiRoute?.url}`, funcArray);
           break;
         case constant.httpMethod.HTTP_PUT:
-          app.put(
-            `/${apiRoute?.url}`,
-            funcArray
-          );
+          app.put(`/${apiRoute?.url}`, funcArray);
           break;
         case constant.httpMethod.HTTP_PATCH:
-          app.patch(
-            `/${apiRoute?.url}`,
-            funcArray
-          );
+          app.patch(`/${apiRoute?.url}`, funcArray);
           break;
         default:
           console.log(

@@ -25,6 +25,7 @@ const constant = {
     PENDING: "pending",
     PUBLISHED: "published",
     CHANGE_REQUESTED: "change_requested",
+    WRAPPID_SERVICE_CONFIG_PATH: "WRAPPID_SERVICE_CONFIG_PATH",
   },
 
   httpMethod: {
@@ -58,11 +59,11 @@ const constant = {
   },
 
   emailService: {
-    GMAIL: "gmail"
+    GMAIL: "gmail",
   },
 
   smsService: {
-    KIT_19: "kit19"
+    KIT_19: "kit19",
   },
 
   communication: {
@@ -103,8 +104,7 @@ const constant = {
   storageType: {
     AWS_S3: "aws_s3",
     LOCAL: "local",
-  }
+  },
 };
-
 
 module.exports = { constant: constant, DEFAULT_PORT: 8080 };
