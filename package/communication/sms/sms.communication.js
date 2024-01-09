@@ -30,22 +30,26 @@ const communicate = async (smsOptions) => {
           headers: {
             "Content-Type": "application/json",
           },
-        }).then((res) => {
-          if (res.status !== 200) {
-            throw new Error(`SMS sent failed. Status Code: ${smsRes.status}`);
-          }
-          return res.text();
-        }).then((data) => {
-          console.log(data);
-          if (data.includes("Sent.c")) {
-            return true;
-          } else {
-            throw new Error({
-              message: "SMS sent failed",
-              stacktrace: data
-            })
-          }
-        });
+        })
+          .then((res) => {
+            if (res.status !== 200) {
+              throw new Error(`SMS sent failed. Status Code: ${smsRes.status}`);
+            }
+            return res.text();
+          })
+          .then((data) => {
+            console.log(data);
+            if (data.includes("Sent.c")) {
+              return true;
+            } else {
+              throw new Error({
+                message: "SMS sent failed",
+                stacktrace: data,
+              });
+            }
+          });
+
+        return smsRes;
       } else {
         throw new Error(`Invalid phone number (${phone}) for sending SMS.`);
       }
@@ -56,6 +60,6 @@ const communicate = async (smsOptions) => {
     console.error(error);
     throw error;
   }
-}
+};
 
 module.exports = communicate;
