@@ -8,9 +8,14 @@
  */
 const path = require("path");
 const constant = require("../constants/server.constant");
-const configFileContent =
+const configFilePath =
   process.env[constant.constant.entityStatus.WRAPPID_SERVICE_CONFIG_PATH];
-const wrappidConfig = require(path.resolve(configFileContent));
+let wrappidConfig;
+if (configFilePath === undefined) {
+  wrappidConfig = require(path.resolve("./config.json"));
+} else {
+  wrappidConfig = require(path.resolve(configFilePath));
+}
 
 const configProvider = wrappidConfig;
 console.log("###########################################");
