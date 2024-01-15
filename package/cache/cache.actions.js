@@ -33,7 +33,7 @@ const cacheActions = {
       const cacheProvider = require("./cache.provider");
       await clientConnect(clientName);
 
-      const value = await cacheProvider[clientName].client.set(cacheKey, data);
+      await cacheProvider[clientName].client.set(cacheKey, data);
     } catch (error) {
       throw new Error(error);
     } finally {

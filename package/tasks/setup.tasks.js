@@ -4,7 +4,7 @@ const { TasksRegistry } = require("../registry");
 const setupTasks = async (AppTasksRegistry) => {
   let cronSchemas = [];
   let tasksRegistry = { ...TasksRegistry, ...AppTasksRegistry };
-  console.log(`::----- Its initializeCronJobs -----::`);
+  console.log("::----- Its initializeCronJobs -----::");
   try {
     const { databaseActions } = require("../index");
     cronSchemas = await databaseActions.findAll("application", "CronSchemas");
@@ -39,7 +39,7 @@ const setupTasks = async (AppTasksRegistry) => {
             cronModule.perform(); // pass or access db inside
           }
         } catch (error) {
-          cronModule.handleError(e); // pass or access db inside
+          cronModule.handleError(error); // pass or access db inside
         } finally {
           cronModule.postPerform(); // pass or access db inside
         }
@@ -48,4 +48,4 @@ const setupTasks = async (AppTasksRegistry) => {
   }
 };
 
-module.exports =  setupTasks ;
+module.exports = setupTasks;

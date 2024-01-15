@@ -4,10 +4,10 @@ const jwtVerify = require("../middlewares/jwtVerify.middleware");
 const validation = require("../middlewares/validation.middleware");
 
 const MiddlewaresRegistry = {
-    "apiLogger": apiLogger,
-    "fileHandler": fileHandler,
-    "jwtVerify": jwtVerify,
-    "validation": validation,
+  apiLogger: apiLogger,
+  fileHandler: fileHandler,
+  jwtVerify: jwtVerify,
+  validation: validation,
 };
 
 module.exports = MiddlewaresRegistry;
