@@ -7,7 +7,7 @@
     "code:lint": "eslint --ignore-path .gitignore ./package",
     "code:format": "npm run code:lint --fix ./package",
     "test": "exit 0",
-    "build":"node -e \"require('fs').cpSync('./package', './dist', {recursive: true});\"",
+    "build": "node -e \"require('fs').cpSync('./package', './dist', {recursive: true});\"",
     "build-dev": "npx babel package --out-dir dist --copy-files",
     "publish": "npm publish ./package --registry=https://npm.pkg.github.com --scope=@wrappid"
   },
@@ -41,6 +41,7 @@
     "redis-json": "^6.0.3",
     "save": "^2.9.0",
     "sequelize": "^6.32.1",
+    "swagger-ui-express": "^5.0.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {

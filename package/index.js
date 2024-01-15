@@ -9,6 +9,7 @@ const communicate = require("./communication/communicate.communicator");
 const setupTasks = require("./tasks/setup.tasks");
 const { constant, DEFAULT_PORT } = require("./constants/server.constant");
 const { setupFunctions } = require("./function/setup.functions");
+const setupSwagger = require("./swagger/swagger.setup");
 const {
   FunctionsRegistry,
   MiddlewaresRegistry,
@@ -66,4 +67,9 @@ module.exports = {
    * setupFunctions
    */
   setupFunctions,
+
+  /**
+   * Setup swagger API Docs
+   */
+  setupSwagger,
 };
