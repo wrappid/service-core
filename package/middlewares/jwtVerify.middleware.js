@@ -2,15 +2,15 @@ var jwt = require("jsonwebtoken");
 
 const config = require("../config/provider.config");
 const {
-    accessTokenSecret,
-    // refreshAccessTokenSecret,
-    // expTime,
-    // expTimeRefreshToken
+  accessTokenSecret,
+  // refreshAccessTokenSecret,
+  // expTime,
+  // expTimeRefreshToken
 } = config?.jwt || {
-    "accessTokenSecret": "",
-    // "refreshAccessTokenSecret": "",
-    // "expTime": "60m",
-    // "expTimeRefreshToken": "1000m"
+  accessTokenSecret: "",
+  // "refreshAccessTokenSecret": "",
+  // "expTime": "60m",
+  // "expTimeRefreshToken": "1000m"
 };
 
 const jwtVerify = (req, res, next) => {

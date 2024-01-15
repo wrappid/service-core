@@ -1,14 +1,8 @@
 const nodemailer = require("nodemailer");
 const configProvider = require("../../config/provider.config");
 const { validateEmails } = require("../../utils/communication.utils");
-const {
-  fromName,
-  fromEmail,
-  replyTo,
-  service,
-  email,
-  password
-} = configProvider.emailProvider;
+const { fromName, fromEmail, replyTo, service, email, password } =
+  configProvider.emailProvider;
 
 let transporter = nodemailer.createTransport({
   service: service,
@@ -23,7 +17,7 @@ const communicate = async (mailOptions) => {
   mailOptions = {
     ...mailOptions,
     from: `${fromName} <${fromEmail}>`,
-    replyTo: replyTo
+    replyTo: replyTo,
   };
   try {
     if (validateEmails(mailOptions)) {
@@ -34,24 +28,26 @@ const communicate = async (mailOptions) => {
             console.log("error: ", err);
             reject(err);
           } else {
-            console.log(`Mail sent successfully!`);
+            console.log("Mail sent successfully!");
             resolve(info);
           }
         });
-      }).then(res => {
-        console.log("Email sent.................");
-        console.log(res);
-        return true;
-      }).catch(error => {
-        console.log("Email sent failed.................");
-        console.error(error);
-        throw error;
-      });
+      })
+        .then((res) => {
+          console.log("Email sent.................");
+          console.log(res);
+          return true;
+        })
+        .catch((error) => {
+          console.log("Email sent failed.................");
+          console.error(error);
+          throw error;
+        });
     } else {
       throw new Error("Invalid email recipients.");
     }
   } catch (error) {
-    throw new error;
+    throw new error();
   }
 };
 
