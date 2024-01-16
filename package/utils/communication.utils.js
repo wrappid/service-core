@@ -8,15 +8,20 @@ const communicationUtils = {
    * @returns
    */
   validateEmails: (mailRecipients) => {
-    let valid = true;
-    let { to = [], cc = [], bcc = [] } = mailRecipients;
+    try{
+      let valid = true;
+      let { to = [], cc = [], bcc = [] } = mailRecipients;
 
-    [...to, ...cc, ...bcc].forEach((eachRecipient) => {
-      if (!validateEmail.validate(eachRecipient)) {
-        valid = false;
-      }
-    });
-    return valid;
+      [...to, ...cc, ...bcc].forEach((eachRecipient) => {
+        if (!validateEmail.validate(eachRecipient)) {
+          valid = false;
+        }
+      });
+      return valid;
+    }catch(error){
+      console.log(error);
+      throw error;
+    }
   },
 
   /**

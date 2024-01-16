@@ -12,20 +12,25 @@ const morgan = require("morgan");
  */
 const setupLogging = (app) => {
   // log only 4xx and 5xx responses to console
-  app.use(
-    morgan("dev", {
-      skip: function (req, res) {
-        return res.statusCode < 400;
-      },
-    })
-  );
+  try{
+    app.use(
+      morgan("dev", {
+        skip: function (req, res) {
+          return res.statusCode < 400;
+        },
+      })
+    );
 
-  // log all requests to access.log
-  app.use(
-    morgan("common", {
-      stream: fs.createWriteStream(path.resolve("access.log"), { flags: "a" }),
-    })
-  );
+    // log all requests to access.log
+    app.use(
+      morgan("common", {
+        stream: fs.createWriteStream(path.resolve("access.log"), { flags: "a" }),
+      })
+    );
+  }catch(error){
+    console.log(error);
+    throw error;
+  }
 };
 
 module.exports = setupLogging;
