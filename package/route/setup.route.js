@@ -9,18 +9,18 @@ const setupRoutes = async (app, AppControllersRegistry) => {
   };
   console.log(controllersRegistry);
 
-  console.log(`----------------------------------`);
+  console.log("----------------------------------");
   let apiRoutes = await databaseActions.findAll("application", "Routes", {
     where: {
       source: "server",
     },
   });
-  console.log(`----------------------------------`);
+  console.log("----------------------------------");
   // console.log(apiRoutes);
-  console.log(`----------------------------------`);
+  console.log("----------------------------------");
 
-  console.log(`----------------------------------`);
-  console.log(`Setting up routes...`);
+  console.log("----------------------------------");
+  console.log("Setting up routes...");
   apiRoutes.forEach((apiRoute) => {
     if (
       typeof controllersRegistry[apiRoute?.controllerRef] === "function" ||
@@ -62,8 +62,8 @@ const setupRoutes = async (app, AppControllersRegistry) => {
       console.log(`CANNOT ADD ${apiRoute?.name} ROUTE...`);
     }
   });
-  console.log(`Routes setup successfully.`);
-  console.log(`----------------------------------`);
+  console.log("Routes setup successfully.");
+  console.log("----------------------------------");
 };
 
 module.exports = setupRoutes;

@@ -6,10 +6,10 @@ const TasksRegistry = require("./TasksRegistry");
 const ValidationsRegistry = require("./ValidationsRegistry");
 
 module.exports = {
-    ControllersRegistry,
-    FunctionsRegistry,
-    MiddlewaresRegistry,
-    ModelsRegistry,
-    TasksRegistry,
-    ValidationsRegistry
-}
+  ControllersRegistry,
+  FunctionsRegistry,
+  MiddlewaresRegistry,
+  ModelsRegistry,
+  TasksRegistry,
+  ValidationsRegistry,
+};

@@ -1,10 +1,10 @@
-const ApplicationContext = {};
+let ApplicationContext = {};
 
 const setApplicationContext = (applicationContext) => {
-    console.log(`-------------------------------------------`);
-    console.log(applicationContext);
-    console.log(`-------------------------------------------`);
-    ApplicationContext = applicationContext;
-}
+  console.log("-------------------------------------------");
+  console.log(applicationContext);
+  console.log("-------------------------------------------");
+  ApplicationContext = applicationContext;
+};
 
-module.exports = {ApplicationContext, setApplicationContext};
+module.exports = { ApplicationContext, setApplicationContext };
