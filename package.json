@@ -4,12 +4,13 @@
   "description": "wrappid service-core",
   "main": "index.js",
   "scripts": {
+    "prepare": "husky install",
     "code:lint": "eslint --ignore-path .gitignore ./package",
     "code:format": "npm run code:lint --fix ./package",
     "test": "exit 0",
-    "build": "node -e \"require('fs').cpSync('./package', './dist', {recursive: true});\"",
-    "build-dev": "npx babel package --out-dir dist --copy-files",
-    "publish": "npm publish ./package --registry=https://npm.pkg.github.com --scope=@wrappid"
+    "build:dev": "node -e \"require('fs').cpSync('./package', './dist', {recursive: true});\"",
+    "build": "npx babel package --out-dir dist --copy-files",
+    "publish": "npm publish ./dist --registry=https://npm.pkg.github.com --scope=@wrappid"
   },
   "repository": {
     "type": "git",
@@ -58,6 +59,7 @@
     "eslint-plugin-require-extensions": "^0.1.3",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "husky": "^8.0.3"
   }
 }
