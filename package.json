@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "husky install",
     "code:lint": "eslint --ignore-path .gitignore ./package",
-    "code:format": "npm run code:lint --fix ./package",
+    "code:format": "npm run code:lint:app -- --fix",
     "test": "exit 0",
     "build:dev": "node -e \"require('fs').cpSync('./package', './dist', {recursive: true});\"",
     "build": "npx babel package --out-dir dist --copy-files",
@@ -17,8 +17,12 @@
     "url": "git+https://github.com/wrappid/service-core.git"
   },
   "keywords": [],
-  "author": "wrappid",
-  "license": "ISC",
+  "author": {
+		"name": "Wrappid",
+		"email": "wrappid.framework@gmail.com",
+		"url": "https://www.github.com/wrappid/service-core"
+	},
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/wrappid/service-core/issues"
   },
