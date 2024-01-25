@@ -23,14 +23,27 @@ const setupModels = (AppModelsRegistry) => {
       });
       console.log(`Models added to ${databaseName} database successfully.`);
 
-      /**
+
+     
+    });
+
+
+    /**
       * Run sequelize association
       */
+    let allModels = {};
+    Object.assign(allModels, ...Object.keys(databaseProvider).map((databaseName)=>{
+      return databaseProvider[databaseName].models;
+    }));
+
+    Object.keys(databaseProvider).forEach((databaseName) => {
+      let models = Object.keys(modelsRegistry).filter((model) => {
+        return modelsRegistry[model].database === databaseName;
+      });
+
       models.forEach((modelName) => {
         if (databaseProvider[databaseName].models[modelName].associate) {
-          databaseProvider[databaseName].models[modelName].associate(
-            databaseProvider[databaseName].models
-          );
+          databaseProvider[databaseName].models[modelName].associate(allModels);
         }
       });
     });
