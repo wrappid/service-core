@@ -12,7 +12,10 @@ const clientConnect = async (clientName) => {
 
 const cacheActions = {
   /**
-   *
+   * 
+   * @param {*} clientName 
+   * @param {*} cacheKey 
+   * @returns 
    */
   read: async (clientName, cacheKey) => {
     try {
@@ -28,6 +31,12 @@ const cacheActions = {
     }
   },
 
+  /**
+   * 
+   * @param {*} clientName 
+   * @param {*} cacheKey 
+   * @param {*} data 
+   */
   update: async (clientName, cacheKey, data) => {
     try {
       const cacheProvider = require("./cache.provider");
@@ -42,6 +51,11 @@ const cacheActions = {
     }
   },
 
+  /**
+   * 
+   * @param {*} clientName 
+   * @param {*} cacheKey 
+   */
   delete: async (clientName, cacheKey) => {
     try {
       const cacheProvider = require("./cache.provider");
