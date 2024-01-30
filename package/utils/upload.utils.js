@@ -26,6 +26,7 @@ var s3 = new aws.S3({
   /* ... */
 });
 
+/*
 const validation = {
   file_count: "single",
   mimeType: [
@@ -40,6 +41,7 @@ const validation = {
   ],
   maxSize: 5000000,
 };
+*/
 
 /*
 function uploadS3({ filename, req, res, next }) {
@@ -215,10 +217,15 @@ const s3Config = new aws.S3({
 });
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-    cb(null, true);
-  } else {
-    cb(null, false);
+  try{
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  }catch(error){
+    console.log(error);
+    throw error;
   }
 };
 
