@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
-const { ModelsRegistry } = require("../registry");
-const databaseProvider = require("./provider.database");
+import { ModelsRegistry } from "../registry/ModelsRegistry";
+import { databaseProvider } from "./provider.database";
 
 export const setupModels = (AppModelsRegistry: any) => {
   let modelsRegistry = { ...ModelsRegistry, ...AppModelsRegistry };

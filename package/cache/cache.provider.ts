@@ -1,4 +1,4 @@
-const { createClient } = require("redis");
+import { createClient } from "redis";
 // const {JSONCache} = require('redis-json');
 // const{ Redis } = require('ioredis');
 import { configProvider } from "../config/provider.config";
@@ -18,7 +18,7 @@ configProvider.cache.forEach(async (data: cacheDataType) => {
       password: data.password,
       socket: {
         host: data.host,
-        port: data.port,
+        port: Number(data.port),
       },
     });
     cacheProvider[data.name] = {};
@@ -29,4 +29,4 @@ configProvider.cache.forEach(async (data: cacheDataType) => {
   }
 });
 
-module.exports = cacheProvider;
+export { cacheProvider };

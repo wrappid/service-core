@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import { configProvider } from "../../config/provider.config";
-const { validateEmails } = require("../../utils/communication.utils");
+import { validateEmails } from "../../utils/communication.utils";
 const { fromName, fromEmail, replyTo, service, email, password } =
   configProvider.emailProvider;
 

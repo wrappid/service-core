@@ -1,6 +1,6 @@
-const CronSchemas = require("../models/CronSchemas.model");
-const ApiRequestLogs = require("../models/ApiRequestLogs.model");
-const Routes = require("../models/Routes.models");
+import { CronSchemas } from "../models/CronSchemas.model";
+import { ApiRequestLogs } from "../models/ApiRequestLogs.model";
+import { Routes } from "../models/Routes.models";
 
 export const ModelsRegistry: any = {
   ApiRequestLogs: {

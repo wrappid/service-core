@@ -70,5 +70,3 @@ configProvider.databases.forEach(async (database: databaseDataType) => {
     console.error(error);
   }
 });
-
-module.exports = databaseProvider;

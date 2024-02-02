@@ -1,4 +1,4 @@
-module.exports = (sequelize: any, DataTypes: any) => {
+export const Routes = (sequelize: any, DataTypes: any) => {
   const routes = sequelize.define("Routes", {
     id: {
       type: DataTypes.INTEGER,

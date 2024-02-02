@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-module.exports = (sequelize: any, DataTypes: any) => {
+export const CronSchemas = (sequelize: any, DataTypes: any) => {
   const CronSchema = sequelize.define(
     "CronSchemas",
     {

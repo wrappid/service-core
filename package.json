@@ -59,6 +59,7 @@
     "@commitlint/prompt-cli": "^17.5.0",
     "@types/node-fetch": "^2.6.11",
     "@types/nodemailer": "^6.4.14",
+    "@types/swagger-ui-express": "^4.1.6",
     "eslint": "^8.47.0",
     "eslint-plugin-etc": "^2.0.2",
     "eslint-plugin-import": "^2.27.5",

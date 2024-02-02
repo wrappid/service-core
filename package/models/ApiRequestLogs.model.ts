@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-module.exports = (sequelize: any, DataTypes: any) => {
+export const ApiRequestLogs = (sequelize: any, DataTypes: any) => {
   const ApiRequestLogs = sequelize.define(
     "ApiRequestLogs",
     {

@@ -1,10 +1,10 @@
+import { databaseProvider } from "./provider.database";
 export const databaseActions = {
   /**
    *
    */
-  findAndCountAll: async (database: string, model: string, options: any) => {
+  findAndCountAll: async (database: string, model: string, options?: any) => {
     try {
-      const databaseProvider = require("./provider.database");
       return await databaseProvider[database].models[model].findAndCountAll(
         options
       );
@@ -16,9 +16,8 @@ export const databaseActions = {
   /**
    *
    */
-  findAll: async (database: string, model: string, options: any) => {
+  findAll: async (database: string, model: string, options?: any) => {
     try {
-      const databaseProvider = require("./provider.database");
       return await databaseProvider[database].models[model].findAll(options);
     } catch (error: any) {
       throw new Error(error);
@@ -27,7 +26,6 @@ export const databaseActions = {
 
   delete: async (database: string, model: string, data: any) => {
     try {
-      const databaseProvider = require("./provider.database");
       return await databaseProvider[database].models[model].destroy(data);
     } catch (error: any) {
       throw new Error(error);
@@ -39,10 +37,9 @@ export const databaseActions = {
     model: string,
     data: any,
     where: any,
-    transaction: any
+    transaction?: any
   ) => {
     try {
-      const databaseProvider = require("./provider.database");
       return await databaseProvider[database].models[model].update(
         data,
         where,
@@ -56,7 +53,6 @@ export const databaseActions = {
   findOne: async (database: string, model: string, data: any) => {
     try {
       console.log("::---", data, "---::");
-      const databaseProvider = require("./provider.database");
       return await databaseProvider[database].models[model].findOne(data);
     } catch (error: any) {
       throw new Error(error);
@@ -67,10 +63,9 @@ export const databaseActions = {
     database: string,
     model: string,
     data: any,
-    transaction: any
+    transaction?: any
   ) => {
     try {
-      const databaseProvider = require("./provider.database");
       return await databaseProvider[database].models[model].create(
         data,
         transaction
@@ -82,7 +77,6 @@ export const databaseActions = {
 
   findByPk: async (database: string, model: string, primaryKey: number) => {
     try {
-      const databaseProvider = require("./provider.database");
       return await databaseProvider[database].models[model].findByPk(
         primaryKey
       );
