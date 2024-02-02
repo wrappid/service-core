@@ -1,3 +1,4 @@
+import { cacheProvider } from "./cache.provider";
 const clientConnect = async (clientName: string) => {
   try {
     const cacheProvider = require("./cache.provider");
@@ -19,7 +20,6 @@ export const cacheActions = {
    */
   read: async (clientName: string, cacheKey: string) => {
     try {
-      const cacheProvider = require("./cache.provider");
       await clientConnect(clientName);
       const value = await cacheProvider[clientName].client.get(cacheKey);
       return value;
@@ -39,7 +39,6 @@ export const cacheActions = {
    */
   update: async (clientName: string, cacheKey: string, data: string) => {
     try {
-      const cacheProvider = require("./cache.provider");
       await clientConnect(clientName);
 
       await cacheProvider[clientName].client.set(cacheKey, data);
@@ -58,7 +57,6 @@ export const cacheActions = {
    */
   delete: async (clientName: string, cacheKey: string) => {
     try {
-      const cacheProvider = require("./cache.provider");
       await clientConnect(clientName);
       let d = await cacheProvider[clientName].client.exists(cacheKey);
       if (d == 1) {

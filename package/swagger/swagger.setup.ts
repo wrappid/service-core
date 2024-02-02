@@ -1,5 +1,5 @@
-const swaggerUi = require("swagger-ui-express");
-const setupSwagger = async (wrappidApp: any, swaggerJsonFile: JSON) => {
+import swaggerUi from "swagger-ui-express";
+const setupSwagger = async (wrappidApp: any, swaggerJsonFile: any) => {
   try {
     /**
      * @todo

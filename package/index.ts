@@ -10,7 +10,7 @@ import { setupTasks } from "./tasks/setup.tasks";
 import { constant, DEFAULT_PORT } from "./constants/server.constant";
 import { setupFunctions } from "./function/setup.functions";
 import setupSwagger from "./swagger/swagger.setup";
-
+import { ControllersRegistry } from "./registry/index";
 import {
   FunctionsRegistry,
   MiddlewaresRegistry,
@@ -24,6 +24,7 @@ export {
   /**
    * Registry
    */
+  ControllersRegistry as CoreControllersRegistry,
   FunctionsRegistry as CoreFunctionsRegistry,
   MiddlewaresRegistry as CoreMiddlewaresRegistry,
   ModelsRegistry as CoreModelsRegistry,
