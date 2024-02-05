@@ -6,7 +6,7 @@ import { constant } from "../constants/server.constant";
 export const setupRoutes = async (
   app: any,
   AppControllersRegistry: any,
-  ModulesRouts: any
+  AppRoutes: any
 ) => {
   try {
     let controllersRegistry = {
@@ -24,7 +24,8 @@ export const setupRoutes = async (
     console.log("----------------------------------");
     // console.log(apiRoutes);
     console.log("----------------------------------");
-    let apiRoutes = { ...dbRoutes, ...ModulesRouts };
+    let appRoutes = Object.values(AppRoutes.default);
+    let apiRoutes = [...dbRoutes, ...appRoutes];
     console.log("----------------------------------");
     console.log("Setting up routes...");
     apiRoutes.forEach((apiRoute: any) => {
