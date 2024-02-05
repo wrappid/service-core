@@ -3,7 +3,11 @@ import { ControllersRegistry } from "../registry/ControllersRegistry";
 import { databaseActions } from "../database/actions.database";
 import { constant } from "../constants/server.constant";
 
-export const setupRoutes = async (app: any, AppControllersRegistry: any) => {
+export const setupRoutes = async (
+  app: any,
+  AppControllersRegistry: any,
+  AppRoutes: any
+) => {
   try {
     let controllersRegistry = {
       ...ControllersRegistry,
@@ -12,19 +16,16 @@ export const setupRoutes = async (app: any, AppControllersRegistry: any) => {
     console.log(controllersRegistry);
 
     console.log("----------------------------------");
-    let apiRoutes: any = await databaseActions.findAll(
-      "application",
-      "Routes",
-      {
-        where: {
-          source: "server",
-        },
-      }
-    );
+    let dbRoutes: any = await databaseActions.findAll("application", "Routes", {
+      where: {
+        source: "server",
+      },
+    });
     console.log("----------------------------------");
     // console.log(apiRoutes);
     console.log("----------------------------------");
-
+    let appRoutes = Object.values(AppRoutes.default);
+    let apiRoutes = [...dbRoutes, ...appRoutes];
     console.log("----------------------------------");
     console.log("Setting up routes...");
     apiRoutes.forEach((apiRoute: any) => {
