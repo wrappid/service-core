@@ -77,4 +77,4 @@ async function communicate(whatsappOptions: any) {
   return res;
 }
 
-module.exports = communicate;
+export default communicate;

@@ -1,7 +1,7 @@
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 import { configProvider } from "../../config/provider.config";
-const { constant } = require("../../constants/server.constant");
-const { validatePhone } = require("../../validation/default.validation");
+import { constant } from "../../constants/server.constant";
+import { validatePhone } from "../../validation/default.validation";
 
 const { service, url, username, password, sender } = configProvider.smsProvider;
 
@@ -26,7 +26,7 @@ const communicate = async (smsOptions: any) => {
         kit19Url += `&dlttemplateid=${dlttemplateid}`;
 
         console.log(kit19Url);
-        var smsRes = await fetch(kit19Url, {
+        let smsRes: any = await fetch(kit19Url, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -59,4 +59,4 @@ const communicate = async (smsOptions: any) => {
   }
 };
 
-module.exports = communicate;
+export default communicate;
