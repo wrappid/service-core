@@ -54,7 +54,12 @@ configProvider.databases.forEach(async (database: databaseDataType) => {
       database.database,
       database.username,
       database.password,
-      { dialect: database.dialect, logging: database.logging }
+      {
+        host: database.host,
+        port: Number(database.port),
+        dialect: database.dialect,
+        logging: database.logging,
+      }
     );
 
     (databaseProvider[database.name] = {}),
