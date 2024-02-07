@@ -3649,13 +3649,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@wrappid/service-core@0.0.6</summary>
+  <summary>@wrappid/service-core@0.0.7</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@wrappid/service-core@0.0.6|
-  >|**Version**|@0.0.6|
+  >|**Name**|@wrappid/service-core@0.0.7|
+  >|**Version**|@0.0.7|
   >|**Repository**|https://github.com/wrappid/service-core|
   >|**Licenses**|MIT|
   >|**Publisher**|Wrappid|
@@ -3664,7 +3664,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @wrappid/service-core@0.0.6
+  npm i @wrappid/service-core@0.0.7
   ```
   </details>
 <details>
