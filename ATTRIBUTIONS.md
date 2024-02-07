@@ -3649,13 +3649,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@wrappid/service-core@0.0.5</summary>
+  <summary>@wrappid/service-core@0.0.6</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@wrappid/service-core@0.0.5|
-  >|**Version**|@0.0.5|
+  >|**Name**|@wrappid/service-core@0.0.6|
+  >|**Version**|@0.0.6|
   >|**Repository**|https://github.com/wrappid/service-core|
   >|**Licenses**|MIT|
   >|**Publisher**|Wrappid|
@@ -3664,7 +3664,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @wrappid/service-core@0.0.5
+  npm i @wrappid/service-core@0.0.6
   ```
   </details>
 <details>
@@ -6309,6 +6309,25 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
+  <summary>eslint-plugin-es@3.0.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|eslint-plugin-es@3.0.1|
+  >|**Version**|@3.0.1|
+  >|**Repository**|https://github.com/mysticatea/eslint-plugin-es|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Toru Nagashima|
+  >|**Contact**|NA|
+  >|**Homepage**|https://github.com/mysticatea|
+  
+  #### Use this package in your project
+  ```bash
+  npm i eslint-plugin-es@3.0.1
+  ```
+  </details>
+<details>
   <summary>eslint-plugin-etc@2.0.3</summary>
   
   #### Basic details about the package
@@ -6344,6 +6363,44 @@ This file lists the third-party libraries, frameworks, and other components used
   #### Use this package in your project
   ```bash
   npm i eslint-plugin-import@2.29.1
+  ```
+  </details>
+<details>
+  <summary>eslint-plugin-node@11.1.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|eslint-plugin-node@11.1.0|
+  >|**Version**|@11.1.0|
+  >|**Repository**|https://github.com/mysticatea/eslint-plugin-node|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Toru Nagashima|
+  >|**Contact**|NA|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i eslint-plugin-node@11.1.0
+  ```
+  </details>
+<details>
+  <summary>eslint-plugin-promise@6.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|eslint-plugin-promise@6.1.1|
+  >|**Version**|@6.1.1|
+  >|**Repository**|https://github.com/eslint-community/eslint-plugin-promise|
+  >|**Licenses**|ISC|
+  >|**Publisher**|jden|
+  >|**Contact**|jason@denizac.org|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i eslint-plugin-promise@6.1.1
   ```
   </details>
 <details>
@@ -6458,6 +6515,25 @@ This file lists the third-party libraries, frameworks, and other components used
   #### Use this package in your project
   ```bash
   npm i eslint-scope@7.2.2
+  ```
+  </details>
+<details>
+  <summary>eslint-utils@2.1.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|eslint-utils@2.1.0|
+  >|**Version**|@2.1.0|
+  >|**Repository**|https://github.com/mysticatea/eslint-utils|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Toru Nagashima|
+  >|**Contact**|NA|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i eslint-utils@2.1.0
   ```
   </details>
 <details>
@@ -12310,6 +12386,25 @@ This file lists the third-party libraries, frameworks, and other components used
   #### Use this package in your project
   ```bash
   npm i regexp.prototype.flags@1.5.1
+  ```
+  </details>
+<details>
+  <summary>regexpp@3.2.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|regexpp@3.2.0|
+  >|**Version**|@3.2.0|
+  >|**Repository**|https://github.com/mysticatea/regexpp|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Toru Nagashima|
+  >|**Contact**|NA|
+  >|**Homepage**|https://github.com/mysticatea|
+  
+  #### Use this package in your project
+  ```bash
+  npm i regexpp@3.2.0
   ```
   </details>
 <details>
