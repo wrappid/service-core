@@ -1,10 +1,10 @@
-const { constant } = require("../constants/server.constant");
-const databaseActions = require("../database/actions.database");
+import { constant } from "../constants/server.constant";
+import { databaseActions } from "../database/actions.database";
 // const { FunctionsRegistry } = require("../registry");
-const communicationUtils = require("../utils/communication.utils");
-const communicateEmail = require("./email/email.communication");
-const communicateSMS = require("./sms/sms.communication");
-const communicateWhatsApp = require("./whatsapp/whatsapp.communication");
+import * as communicationUtils from "../utils/communication.utils";
+import communicateEmail from "./email/email.communication";
+import communicateSMS from "./sms/sms.communication";
+import communicateWhatsApp from "./whatsapp/whatsapp.communication";
 
 /**
  *
@@ -52,7 +52,10 @@ export const communicate = async ({
               dlttemplateid: communicationTemplate.externalTemplateId,
             });
           case constant.commType.WHATSAPP:
-            return communicateWhatsApp();
+            return communicateWhatsApp({
+              phone: commRecipients.to[0],
+              ...messageObject,
+            });
           default:
             throw new Error("Communication type is invalid.");
         }

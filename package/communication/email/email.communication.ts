@@ -51,4 +51,4 @@ const communicate = async (mailOptions: any) => {
   }
 };
 
-module.exports = communicate;
+export default communicate;
