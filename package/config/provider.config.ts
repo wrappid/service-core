@@ -12,10 +12,10 @@ import { constant } from "../constants/server.constant";
 const configFilePath =
   process.env[constant.entityStatus.WRAPPID_SERVICE_CONFIG_PATH];
 let wrappidConfig;
-if (configFilePath === undefined) {
-  wrappidConfig = require(path.resolve("./config.json"));
-} else {
+if (configFilePath) {
   wrappidConfig = require(path.resolve(configFilePath));
+} else {
+  wrappidConfig = require(path.resolve("./config.json"));
 }
 
 export const configProvider = wrappidConfig;
