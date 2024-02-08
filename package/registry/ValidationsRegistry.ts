@@ -1,1 +1,2 @@
-export const ValidationsRegistry: any = {};
+const ValidationsRegistry: any = {};
+export default ValidationsRegistry;

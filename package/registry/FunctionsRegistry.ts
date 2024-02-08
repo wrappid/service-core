@@ -1,4 +1,5 @@
 import { appFunctionsRegistry } from "../function/setup.functions";
-export const FunctionsRegistry: any = {
+const FunctionsRegistry: any = {
   ...appFunctionsRegistry,
 };
+export default FunctionsRegistry;

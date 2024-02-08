@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import { ModelsRegistry } from "../registry/ModelsRegistry";
+import ModelsRegistry from "../registry/ModelsRegistry";
 import { databaseProvider } from "./provider.database";
 
 export const setupModels = (AppModelsRegistry: any) => {

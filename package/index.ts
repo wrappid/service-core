@@ -18,7 +18,11 @@ import {
   TasksRegistry,
   ValidationsRegistry,
 } from "./registry/index";
-
+import {
+  getDatabases,
+  getTables,
+  getColumns,
+} from "./database/helper.database";
 export {
   configProvider,
   /**
@@ -54,6 +58,9 @@ export {
   databaseProvider,
   databaseActions,
   cacheActions,
+  getDatabases,
+  getTables,
+  getColumns,
 
   /**
    * communication

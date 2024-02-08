@@ -1,8 +1,7 @@
-import { MiddlewaresRegistry } from "../registry/MiddlewaresRegistry";
-import { ControllersRegistry } from "../registry/ControllersRegistry";
+import MiddlewaresRegistry from "../registry/MiddlewaresRegistry";
+import ControllersRegistry from "../registry/ControllersRegistry";
 import { databaseActions } from "../database/actions.database";
 import { constant } from "../constants/server.constant";
-
 export const setupRoutes = async (
   app: any,
   AppControllersRegistry: any,

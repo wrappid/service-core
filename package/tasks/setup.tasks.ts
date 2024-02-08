@@ -1,5 +1,5 @@
 const cron = require("node-cron");
-import { TasksRegistry } from "../registry/TasksRegistry";
+import TasksRegistry from "../registry/TasksRegistry";
 
 export const setupTasks = async (AppTasksRegistry: any) => {
   let cronSchemas = [];
