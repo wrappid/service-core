@@ -8,6 +8,7 @@ import { MasterData } from "models/MasterData.model";
 import { StringValues } from "models/StringValues.model";
 import { SupportedLanguages } from "models/SupportedLanguages.model";
 import { SettingMeta } from "models/SettingMeta.model";
+import AppBuilderModelsRegistry from "app-builder/models.registry";
 const ModelsRegistry: any = {
   ApiRequestLogs: {
     database: "application",
@@ -49,5 +50,6 @@ const ModelsRegistry: any = {
     database: "application",
     model: SettingMeta,
   },
+  ...AppBuilderModelsRegistry,
 };
 export default ModelsRegistry;
