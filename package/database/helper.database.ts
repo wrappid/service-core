@@ -1,5 +1,5 @@
 import { databaseProvider } from "./provider.database";
-import { getNormalCaseFromCamelCase } from "utils/business.utilis";
+import { getNormalCaseFromCamelCase } from "../utils/business.utilis";
 const getDatabases = (req: any, res: any) => {
   try {
     let searchValue = req.query._searchValue;

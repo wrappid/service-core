@@ -2,13 +2,13 @@ import { CronSchemas } from "../models/CronSchemas.model";
 import { ApiRequestLogs } from "../models/ApiRequestLogs.model";
 import { Routes } from "../models/Routes.models";
 import { Pages } from "../models/Pages.model";
-import { Applications } from "models/Applications.model";
-import { DataTableOptions } from "models/DataTableOptions.model";
-import { MasterData } from "models/MasterData.model";
-import { StringValues } from "models/StringValues.model";
-import { SupportedLanguages } from "models/SupportedLanguages.model";
-import { SettingMeta } from "models/SettingMeta.model";
-import AppBuilderModelsRegistry from "app-builder/models.registry";
+import { Applications } from "../models/Applications.model";
+import { DataTableOptions } from "../models/DataTableOptions.model";
+import { MasterData } from "../models/MasterData.model";
+import { StringValues } from "../models/StringValues.model";
+import { SupportedLanguages } from "../models/SupportedLanguages.model";
+import { SettingMeta } from "../models/SettingMeta.model";
+import AppBuilderModelsRegistry from "../app-builder/models.registry";
 const ModelsRegistry: any = {
   ApiRequestLogs: {
     database: "application",
@@ -23,7 +23,7 @@ const ModelsRegistry: any = {
     model: Routes,
   },
   Pages: {
-    database: "Pages",
+    database: "application",
     model: Pages,
   },
   Applications: {

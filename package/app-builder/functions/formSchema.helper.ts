@@ -1,8 +1,8 @@
-import { coreConstant } from "index";
-import { databaseProvider } from "index";
-import { databaseActions } from "index";
+import { coreConstant } from "../../index";
+import { databaseProvider } from "../../index";
+import { databaseActions } from "../../index";
 
-const { httpMethod, entityStatus } = coreConstant;
+// const { httpMethod, entityStatus } = coreConstant;
 import { getEntitySchema, getColumnsFromSchema } from "./businessEntity.helper";
 
 const auditAttributes = [
@@ -68,7 +68,7 @@ async function generateFormSchema(modelName: any) {
     let formSchema = {
       create: {
         endpoint: endpoint,
-        method: httpMethod.HTTP_POST,
+        method: coreConstant.httpMethod.HTTP_POST,
         authRequired: true,
         successType: [
           "CREATE_" + modelName.toLocaleUpperCase() + "_SUCCESS",
@@ -90,7 +90,7 @@ async function generateFormSchema(modelName: any) {
       // },
       edit: {
         endpoint: endpoint,
-        method: httpMethod.HTTP_PUT,
+        method: coreConstant.httpMethod.HTTP_PUT,
         authRequired: true,
         successType: [
           "UPDATE_" + modelName.toLocaleUpperCase() + "_SUCCESS",
@@ -104,7 +104,7 @@ async function generateFormSchema(modelName: any) {
       },
       delete: {
         endpoint: endpoint,
-        method: httpMethod.HTTP_PATCH,
+        method: coreConstant.httpMethod.HTTP_PATCH,
         authRequired: true,
         successType: [
           "DELETE_" + modelName.toLocaleUpperCase() + "_SUCCESS",
@@ -140,7 +140,7 @@ async function getFormSchemaFromDB(formID: any, auth: any) {
     let dbSequelize = databaseProvider[dbName].Sequelize;
     let whereClause: any = {
       formID: formID,
-      _status: entityStatus.PUBLISHED,
+      _status: coreConstant.entityStatus.PUBLISHED,
     };
     if (auth) {
       whereClause["authRequired"] = true;

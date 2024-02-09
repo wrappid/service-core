@@ -1,10 +1,10 @@
-import { coreConstant } from "index";
-import { databaseProvider } from "index";
-import { databaseActions } from "index";
+import { coreConstant } from "../../index";
+import { databaseProvider } from "../../index";
+import { databaseActions } from "../../index";
 
 import sequelize from "sequelize";
 
-const { entityStatus } = coreConstant;
+// const entityStatus = coreConstant;
 import whereConst from "../constants/whereConstants";
 import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
 const auditAttributes = [
@@ -34,7 +34,7 @@ const getEntitySchema = async (entityStr: any) => {
     {
       where: {
         name: entityStr,
-        _status: entityStatus.PUBLISHED,
+        _status: coreConstant.entityStatus.PUBLISHED,
       },
     }
   );

@@ -1,4 +1,4 @@
-import { databaseProvider } from "database/provider.database";
+import { databaseProvider } from "../../database/provider.database";
 import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
 import { getEntityColumns } from "../functions/businessEntity.get.helper";
 

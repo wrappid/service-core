@@ -1,5 +1,5 @@
-const { coreConstant } = require("@wrappid/service-core");
-const { getEntitySchema, auditAttributes } = require("./businessEntity.helper");
+import { coreConstant } from "../../index";
+import { getEntitySchema, auditAttributes } from "./businessEntity.helper";
 
 /**
  *
@@ -65,7 +65,7 @@ const postBusinessEntityData = async (
   request: any
 ) => {
   try {
-    let schema = await getEntitySchema(db, schemaName);
+    let schema = await getEntitySchema(schemaName);
     if (!schema) {
       throw new Error("Business entity is missing");
     }
