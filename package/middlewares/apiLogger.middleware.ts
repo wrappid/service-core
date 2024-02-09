@@ -39,7 +39,7 @@ export const apiLogger = async (req: any, res: any, next: any) => {
       );
       bodySetFlag = true;
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     // throw new Error(error);
   } finally {

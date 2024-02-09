@@ -26,7 +26,7 @@ export const fileHandler =
         }
       );
       // res.status(200).json({message: "FileHandler middleware res.status"});
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       return res
         .status(500)
