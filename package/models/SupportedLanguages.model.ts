@@ -1,4 +1,4 @@
-export const SupportedLanguages = (sequelize:any, DataTypes:any) => {
+export const SupportedLanguages = (sequelize: any, DataTypes: any) => {
   const supportedLanguages = sequelize.define("SupportedLanguages", {
     id: {
       type: DataTypes.INTEGER,
@@ -24,26 +24,28 @@ export const SupportedLanguages = (sequelize:any, DataTypes:any) => {
     },
   });
 
-  supportedLanguages.associate = (models:any) => {
-    supportedLanguages.belongsTo(models.Users, {
-      foreignKey: "createdBy",
-      as: "Owner",
-      sourceKey: "id",
-    });
-    supportedLanguages.belongsTo(models.Users, {
-      foreignKey: "updatedBy",
-      as: "Updater",
-      sourceKey: "id",
-    });
-    supportedLanguages.hasMany(models.StringValues, {
-      foreignKey: "locale",
-      sourceKey: "locale",
-    });
-    supportedLanguages.belongsTo(models.Users, {
-      foreignKey: "deletedBy",
-      as: "Destroyer",
-      sourceKey: "id",
-    });
+  supportedLanguages.associate = (models: any) => {
+    if (models.Users && models.StringValues) {
+      supportedLanguages.belongsTo(models.Users, {
+        foreignKey: "createdBy",
+        as: "Owner",
+        sourceKey: "id",
+      });
+      supportedLanguages.belongsTo(models.Users, {
+        foreignKey: "updatedBy",
+        as: "Updater",
+        sourceKey: "id",
+      });
+      supportedLanguages.hasMany(models.StringValues, {
+        foreignKey: "locale",
+        sourceKey: "locale",
+      });
+      supportedLanguages.belongsTo(models.Users, {
+        foreignKey: "deletedBy",
+        as: "Destroyer",
+        sourceKey: "id",
+      });
+    }
   };
 
   return supportedLanguages;

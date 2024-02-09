@@ -51,25 +51,27 @@ export const Pages = (sequelize: any, DataTypes: any) => {
   });
 
   pages.associate = (models: any) => {
-    pages.hasMany(models.Routes, {
-      foreignKey: "pageRef",
-      sourceKey: "entityRef",
-    });
-    pages.belongsTo(models.Users, {
-      foreignKey: "createdBy",
-      as: "Owner",
-      sourceKey: "id",
-    });
-    pages.belongsTo(models.Users, {
-      foreignKey: "updatedBy",
-      as: "Updater",
-      sourceKey: "id",
-    });
-    pages.belongsTo(models.Users, {
-      foreignKey: "deletedBy",
-      as: "Destroyer",
-      sourceKey: "id",
-    });
+    if (models.Users && models.Routes) {
+      pages.hasMany(models.Routes, {
+        foreignKey: "pageRef",
+        sourceKey: "entityRef",
+      });
+      pages.belongsTo(models.Users, {
+        foreignKey: "createdBy",
+        as: "Owner",
+        sourceKey: "id",
+      });
+      pages.belongsTo(models.Users, {
+        foreignKey: "updatedBy",
+        as: "Updater",
+        sourceKey: "id",
+      });
+      pages.belongsTo(models.Users, {
+        foreignKey: "deletedBy",
+        as: "Destroyer",
+        sourceKey: "id",
+      });
+    }
   };
 
   return pages;

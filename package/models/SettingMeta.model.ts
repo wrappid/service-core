@@ -34,22 +34,24 @@ export const SettingMeta = (sequelize: any, DataTypes: any) => {
     },
   });
 
-  SettingMeta.associate = (models:any) => {
-    SettingMeta.belongsTo(models.Users, {
-      foreignKey: "createdBy",
-      as: "Owner",
-      sourceKey: "id",
-    });
-    SettingMeta.belongsTo(models.Users, {
-      foreignKey: "updatedBy",
-      as: "Updater",
-      sourceKey: "id",
-    });
-    SettingMeta.belongsTo(models.Users, {
-      foreignKey: "deletedBy",
-      as: "Destroyer",
-      sourceKey: "id",
-    });
+  SettingMeta.associate = (models: any) => {
+    if (models.Users) {
+      SettingMeta.belongsTo(models.Users, {
+        foreignKey: "createdBy",
+        as: "Owner",
+        sourceKey: "id",
+      });
+      SettingMeta.belongsTo(models.Users, {
+        foreignKey: "updatedBy",
+        as: "Updater",
+        sourceKey: "id",
+      });
+      SettingMeta.belongsTo(models.Users, {
+        foreignKey: "deletedBy",
+        as: "Destroyer",
+        sourceKey: "id",
+      });
+    }
   };
   return SettingMeta;
 };

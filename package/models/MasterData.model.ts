@@ -63,31 +63,33 @@ export const MasterData = (sequelize: any, DataTypes: any) => {
   });
 
   masterData.associate = (models: any) => {
-    masterData.belongsTo(models.Users, {
-      foreignKey: "createdBy",
-      as: "Owner",
-      sourceKey: "id",
-    });
-    masterData.belongsTo(models.Users, {
-      foreignKey: "updatedBy",
-      as: "Updater",
-      sourceKey: "id",
-    });
-    masterData.hasMany(models.MasterData, {
-      foreignKey: "parentId",
-      sourceKey: "id",
-      as: "Children",
-    });
-    masterData.belongsTo(models.MasterData, {
-      foreignKey: "parentId",
-      sourceKey: "id",
-      as: "Parent",
-    });
-    masterData.belongsTo(models.Users, {
-      foreignKey: "deletedBy",
-      as: "Destroyer",
-      sourceKey: "id",
-    });
+    if (models.Users && models.MasterData) {
+      masterData.belongsTo(models.Users, {
+        foreignKey: "createdBy",
+        as: "Owner",
+        sourceKey: "id",
+      });
+      masterData.belongsTo(models.Users, {
+        foreignKey: "updatedBy",
+        as: "Updater",
+        sourceKey: "id",
+      });
+      masterData.hasMany(models.MasterData, {
+        foreignKey: "parentId",
+        sourceKey: "id",
+        as: "Children",
+      });
+      masterData.belongsTo(models.MasterData, {
+        foreignKey: "parentId",
+        sourceKey: "id",
+        as: "Parent",
+      });
+      masterData.belongsTo(models.Users, {
+        foreignKey: "deletedBy",
+        as: "Destroyer",
+        sourceKey: "id",
+      });
+    }
   };
 
   return masterData;

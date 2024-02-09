@@ -26,25 +26,27 @@ export const StringValues = (sequelize: any, DataTypes: any) => {
   });
 
   stringValues.associate = (models: any) => {
-    stringValues.belongsTo(models.SupportedLanguages, {
-      foreignKey: "locale",
-      sourceKey: "locale",
-    });
-    stringValues.belongsTo(models.Users, {
-      as: "Owner",
-      foreignKey: "createdBy",
-      sourceKey: "id",
-    });
-    stringValues.belongsTo(models.Users, {
-      as: "Updater",
-      foreignKey: "updatedBy",
-      sourceKey: "id",
-    });
-    stringValues.belongsTo(models.Users, {
-      as: "Destroyer",
-      foreignKey: "deletedBy",
-      sourceKey: "id",
-    });
+    if (models.Users && models.SupportedLanguages) {
+      stringValues.belongsTo(models.SupportedLanguages, {
+        foreignKey: "locale",
+        sourceKey: "locale",
+      });
+      stringValues.belongsTo(models.Users, {
+        as: "Owner",
+        foreignKey: "createdBy",
+        sourceKey: "id",
+      });
+      stringValues.belongsTo(models.Users, {
+        as: "Updater",
+        foreignKey: "updatedBy",
+        sourceKey: "id",
+      });
+      stringValues.belongsTo(models.Users, {
+        as: "Destroyer",
+        foreignKey: "deletedBy",
+        sourceKey: "id",
+      });
+    }
   };
 
   return stringValues;

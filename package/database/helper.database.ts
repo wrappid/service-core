@@ -1,5 +1,5 @@
 import { databaseProvider } from "./provider.database";
-
+import { getNormalCaseFromCamelCase } from "utils/business.utilis";
 const getDatabases = (req: any, res: any) => {
   try {
     let searchValue = req.query._searchValue;
@@ -97,9 +97,4 @@ const getColumns = async (req: any, res: any) => {
   }
 };
 
-const getNormalCaseFromCamelCase = (camelCase: any) => {
-  const result = camelCase.replace(/([A-Z])/g, " $1");
-  const normalCase = result.charAt(0).toUpperCase() + result.slice(1);
-  return normalCase;
-};
 export { getDatabases, getTables, getColumns };
