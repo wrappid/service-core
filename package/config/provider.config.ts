@@ -6,19 +6,25 @@
  * and
  * environment must comes from env
  */
-const path = require("path");
-
+import * as fs from "fs";
+import * as path from "path";
 import { constant } from "../constants/server.constant";
-const configFilePath =
-  process.env[constant.entityStatus.WRAPPID_SERVICE_CONFIG_PATH];
-let wrappidConfig;
-if (configFilePath) {
-  wrappidConfig = require(path.resolve(configFilePath));
-} else {
-  wrappidConfig = require(path.resolve("./config.json"));
-}
+import ConfigType from "./types.config";
 
-export const configProvider = wrappidConfig;
-console.log("###########################################");
-console.log("configProvider found");
-console.log("###########################################");
+export const configProvider = (): ConfigType => {
+  try {
+    let configFilePath: string =
+      process.env[constant.entityStatus.WRAPPID_SERVICE_CONFIG_PATH];
+    let wrappidConfig: ConfigType;
+    if (!configFilePath) {
+      configFilePath = "./config.json";
+    }
+    wrappidConfig = JSON.parse(fs.readFileSync(configFilePath, "utf-8"));
+    console.log("###########################################");
+    console.log("configProvider found");
+    console.log("###########################################");
+    return wrappidConfig;
+  } catch (error: any) {
+    throw error;
+  }
+};

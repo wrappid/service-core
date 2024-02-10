@@ -1,7 +1,10 @@
-import { MiddlewaresRegistry } from "../registry/MiddlewaresRegistry";
-import { ControllersRegistry } from "../registry/ControllersRegistry";
-import { databaseActions } from "../database/actions.database";
 import { constant } from "../constants/server.constant";
+import { databaseActions } from "../database/actions.database";
+import { apiLogger } from "../middlewares/apiLogger.middleware";
+import { handleError } from "../middlewares/handleError.middleware";
+import ControllersRegistry from "../registry/ControllersRegistry";
+import MiddlewaresRegistry from "../registry/MiddlewaresRegistry";
+import { getServerRoutes } from "./helper.route";
 
 export const setupRoutes = async (
   app: any,
@@ -9,26 +12,39 @@ export const setupRoutes = async (
   AppRoutes: any
 ) => {
   try {
-    let controllersRegistry = {
+    /**
+     * apply middleware(s)
+     * 1. apiLogger
+     * 2. handleError
+     */
+    app.use(apiLogger);
+    app.use(handleError);
+
+    const controllersRegistry = {
       ...ControllersRegistry,
       ...AppControllersRegistry,
     };
     console.log(controllersRegistry);
 
     console.log("----------------------------------");
-    let dbRoutes: any = await databaseActions.findAll("application", "Routes", {
-      where: {
-        source: "server",
-      },
-    });
-    console.log("----------------------------------");
-    // console.log(apiRoutes);
-    console.log("----------------------------------");
-    let appRoutes = Object.values(AppRoutes.default);
-    let apiRoutes = [...dbRoutes, ...appRoutes];
+    const authenticatedServerRoutes: any = await getServerRoutes(
+      "application",
+      true
+    );
+    const unauthenticatedServerRoutes: any = await getServerRoutes(
+      "application",
+      false
+    );
+    const localServerRoutes = Object.values(AppRoutes.default);
+    const serverRoutes = [
+      ...authenticatedServerRoutes,
+      ...unauthenticatedServerRoutes,
+      ...localServerRoutes,
+    ];
+
     console.log("----------------------------------");
     console.log("Setting up routes...");
-    apiRoutes.forEach((apiRoute: any) => {
+    serverRoutes.forEach((apiRoute: any) => {
       if (
         typeof controllersRegistry[apiRoute?.controllerRef] === "function" ||
         typeof controllersRegistry[apiRoute?.controllerRef] === "object"

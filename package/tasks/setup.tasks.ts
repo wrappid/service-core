@@ -1,9 +1,10 @@
+import TasksRegistry from "../registry/TasksRegistry";
+
 const cron = require("node-cron");
-import { TasksRegistry } from "../registry/TasksRegistry";
 
 export const setupTasks = async (AppTasksRegistry: any) => {
   let cronSchemas = [];
-  let tasksRegistry = { ...TasksRegistry, ...AppTasksRegistry };
+  const tasksRegistry = { ...TasksRegistry, ...AppTasksRegistry };
   console.log("::----- Its initializeCronJobs -----::");
   try {
     const { databaseActions } = require("../index");
@@ -31,8 +32,8 @@ export const setupTasks = async (AppTasksRegistry: any) => {
       }
 
       cron.schedule(cronSchema?.expression, () => {
-        let taskname = cronSchema.cronModule;
-        let cronModule = tasksRegistry[`${taskname}`];
+        const taskname = cronSchema.cronModule;
+        const cronModule = tasksRegistry[`${taskname}`];
         try {
           // console.log("running every minute to 1 from 5");
           if (cronModule.prePerform() /*pass or access db inside*/) {

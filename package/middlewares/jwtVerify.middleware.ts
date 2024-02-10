@@ -1,12 +1,13 @@
-var jwt = require("jsonwebtoken");
+import { configProvider } from "../config/provider.config";
 
-const config = require("../config/provider.config");
+const jwt = require("jsonwebtoken");
+
 const {
   accessTokenSecret,
   // refreshAccessTokenSecret,
   // expTime,
   // expTimeRefreshToken
-} = config?.jwt || {
+} = configProvider().jwt || {
   accessTokenSecret: "",
   // "refreshAccessTokenSecret": "",
   // "expTime": "60m",
