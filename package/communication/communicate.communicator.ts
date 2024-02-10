@@ -1,6 +1,5 @@
 import { constant } from "../constants/server.constant";
 import { databaseActions } from "../database/actions.database";
-// const { FunctionsRegistry } = require("../registry");
 import * as communicationUtils from "../utils/communication.utils";
 import communicateEmail from "./email/email.communication";
 import communicateSMS from "./sms/sms.communication";

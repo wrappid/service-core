@@ -3,7 +3,7 @@ import { configProvider } from "../../config/provider.config";
 import { validateEmails } from "../../utils/communication.utils";
 
 const { fromName, fromEmail, replyTo, service, email, password } =
-  configProvider.emailProvider;
+  configProvider().emailProvider;
 
 const transporter = nodemailer.createTransport({
   service: service,

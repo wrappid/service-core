@@ -33,22 +33,14 @@
  */
 
 "use strict";
-interface databaseDataType {
-  name: string;
-  host: string;
-  port: string;
-  dialect: Dialect;
-  database: string;
-  username: string;
-  password: string;
-  logging: boolean;
-}
+
 import { Dialect, Sequelize } from "sequelize";
 import { configProvider } from "../config/provider.config";
+import { DatabaseConfig } from "../config/types.config";
 
 export const databaseProvider: any = {};
 
-configProvider.databases.forEach(async (database: databaseDataType) => {
+configProvider().databases.forEach(async (database: DatabaseConfig) => {
   try {
     const sequelize = new Sequelize(
       database.database,

@@ -3,7 +3,8 @@ import { configProvider } from "../../config/provider.config";
 import { constant } from "../../constants/server.constant";
 import { validatePhone } from "../../validation/default.validation";
 
-const { service, url, username, password, sender } = configProvider.smsProvider;
+const { service, url, username, password, sender } =
+  configProvider().smsProvider;
 
 const communicate = async (smsOptions: any) => {
   const { phone, message, dlttemplateid } = smsOptions;

@@ -2,7 +2,6 @@ import { cacheProvider } from "./cache.provider";
 
 const clientConnect = async (clientName: string) => {
   try {
-    const cacheProvider = require("./cache.provider");
     cacheProvider[clientName].client.on("error", (err: any) =>
       console.log("Redis Client Error", err)
     );
@@ -27,7 +26,6 @@ export const cacheActions = {
     } catch (error: any) {
       throw new Error(error);
     } finally {
-      const cacheProvider = require("./cache.provider");
       await cacheProvider[clientName].client.disconnect();
     }
   },
@@ -46,7 +44,6 @@ export const cacheActions = {
     } catch (error: any) {
       throw new Error(error);
     } finally {
-      const cacheProvider = require("./cache.provider");
       await cacheProvider[clientName].client.disconnect();
     }
   },
@@ -68,7 +65,6 @@ export const cacheActions = {
     } catch (error: any) {
       throw new Error(error);
     } finally {
-      const cacheProvider = require("./cache.provider");
       await cacheProvider[clientName].client.disconnect();
     }
   },

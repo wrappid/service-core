@@ -1,18 +1,10 @@
+import { CacheConfig } from "config/types.config";
 import { createClient } from "redis";
-// const {JSONCache} = require('redis-json');
-// const{ Redis } = require('ioredis');
 import { configProvider } from "../config/provider.config";
 
-interface cacheDataType {
-  name: string;
-  username: string;
-  password: string;
-  host: string;
-  port: string;
-}
 const cacheProvider: any = {};
 
-configProvider.cache.forEach(async (data: cacheDataType) => {
+configProvider().cache.forEach(async (data: CacheConfig) => {
   try {
     const client = createClient({
       username: data.username,

@@ -12,7 +12,8 @@ import { databaseProvider } from "./database/provider.database";
 import { setupModels } from "./database/setup.database";
 import { setupFunctions } from "./function/setup.functions";
 import { setupLogging } from "./logging/setup.logging";
-import { ControllersRegistry ,
+import {
+  ControllersRegistry,
   FunctionsRegistry,
   MiddlewaresRegistry,
   ModelsRegistry,
