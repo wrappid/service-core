@@ -8,6 +8,7 @@ import { configProvider } from "../config/provider.config";
 import aws from "aws-sdk";
 import multer from "multer";
 import multerS3 from "multer-s3";
+import { S3Client } from "@aws-sdk/client-s3";
 
 const env = process.env.NODE_ENV || "development";
 const s3Bucket = configProvider().storage.s3.bucket;
@@ -209,11 +210,19 @@ function _upload({ storageType, filename, req, res, next }) {
 }
 */
 
+/*
 const s3Config = new aws.S3({
   region: region,
   accessKeyId: accessKeyId,
   secretAccessKey: secretAccessKey,
-  Bucket: s3Bucket,
+});
+*/
+const s3Config = new S3Client({
+  region: region,
+  credentials: {
+    accessKeyId: accessKeyId,
+    secretAccessKey: secretAccessKey,
+  },
 });
 
 const fileFilter = (req: any, file: any, cb: any) => {
@@ -268,4 +277,4 @@ const upload = multer({
 //     );
 //   };
 
-export = upload;
+export default upload;
