@@ -1,21 +1,22 @@
-import MiddlewaresRegistry from "../registry/MiddlewaresRegistry";
-import ControllersRegistry from "../registry/ControllersRegistry";
-import { databaseActions } from "../database/actions.database";
 import { constant } from "../constants/server.constant";
+import { databaseActions } from "../database/actions.database";
+import ControllersRegistry from "../registry/ControllersRegistry";
+import MiddlewaresRegistry from "../registry/MiddlewaresRegistry";
+
 export const setupRoutes = async (
   app: any,
   AppControllersRegistry: any,
   AppRoutes: any
 ) => {
   try {
-    let controllersRegistry = {
+    const controllersRegistry = {
       ...ControllersRegistry,
       ...AppControllersRegistry,
     };
     console.log(controllersRegistry);
 
     console.log("----------------------------------");
-    let dbRoutes: any = await databaseActions.findAll("application", "Routes", {
+    const dbRoutes: any = await databaseActions.findAll("application", "Routes", {
       where: {
         source: "server",
       },
@@ -23,8 +24,8 @@ export const setupRoutes = async (
     console.log("----------------------------------");
     // console.log(apiRoutes);
     console.log("----------------------------------");
-    let appRoutes = Object.values(AppRoutes.default);
-    let apiRoutes = [...dbRoutes, ...appRoutes];
+    const appRoutes = Object.values(AppRoutes.default);
+    const apiRoutes = [...dbRoutes, ...appRoutes];
     console.log("----------------------------------");
     console.log("Setting up routes...");
     apiRoutes.forEach((apiRoute: any) => {

@@ -1,5 +1,4 @@
-import { databaseProvider } from "../../../index";
-import { databaseActions } from "../../../index";
+import { databaseProvider , databaseActions } from "../../../index";
 
 import {
   getEntitySchema,
@@ -25,15 +24,15 @@ const getEntityDataCount = async (
   query: any
 ) => {
   try {
-    let schema = await getEntitySchema(entityName);
+    const schema = await getEntitySchema(entityName);
     if (!schema) {
       throw new Error("Entity is missing");
     }
 
-    let entityDatabaseName = "application"; // getRequiredDB(schema?.database || DB_CONST.RXEFY_DB);
+    const entityDatabaseName = "application"; // getRequiredDB(schema?.database || DB_CONST.RXEFY_DB);
 
     // eslint-disable-next-line no-unused-vars
-    let { where, ...schemaOptions }: any = getEntityOption(
+    const { where, ...schemaOptions }: any = getEntityOption(
       entityDatabaseName,
       schema,
       query
@@ -47,9 +46,9 @@ const getEntityDataCount = async (
     );
 
     // order filter
-    let orderOB = prepareOrderOB(entityDatabaseName, schema, query?._order);
+    const orderOB = prepareOrderOB(entityDatabaseName, schema, query?._order);
 
-    let _options = {
+    const _options = {
       benchmark: true,
       logging: console.log,
       ...schemaOptions,
@@ -70,7 +69,7 @@ const getEntityDataCount = async (
     }
 
     if (schema?.attributes && schema?.attributes?.length > 0) {
-      let tempAuditAttributes = auditAttributes.filter((value) =>
+      const tempAuditAttributes = auditAttributes.filter((value) =>
         /** @todo hard-coded database name */
         Object.keys(
           databaseProvider["application"].models[schema?.model]?.rawAttributes
@@ -89,7 +88,7 @@ const getEntityDataCount = async (
       ];
     }
 
-    let count = await databaseProvider[entityDatabaseName].models[
+    const count = await databaseProvider[entityDatabaseName].models[
       schema.model
     ].count(_options);
 
@@ -105,7 +104,7 @@ const getEntityDataCount = async (
 
 const getEntityColumns = async (db: any, entityName: any) => {
   try {
-    let schema: any = await getEntitySchema(entityName);
+    const schema: any = await getEntitySchema(entityName);
     if (!schema) {
       throw new Error("Entity is missing");
     }
@@ -129,16 +128,16 @@ const getEntityColumns = async (db: any, entityName: any) => {
  */
 const getEntityDataName = async (entityName: any, query: any) => {
   try {
-    let db = "application";
-    let schema = await getEntitySchema(entityName);
+    const db = "application";
+    const schema = await getEntitySchema(entityName);
     if (!schema) {
       throw new Error("Entity is missing");
     }
 
-    let entityDatabaseName = /* schema?.database ||  */ "application";
+    const entityDatabaseName = /* schema?.database ||  */ "application";
 
     // eslint-disable-next-line no-unused-vars
-    let { where, ...schemaOptions }: any = getEntityOption(
+    const { where, ...schemaOptions }: any = getEntityOption(
       entityDatabaseName,
       schema,
       query
@@ -152,9 +151,9 @@ const getEntityDataName = async (entityName: any, query: any) => {
     );
 
     // order filter
-    let orderOB = prepareOrderOB(entityDatabaseName, schema, query?._order);
+    const orderOB = prepareOrderOB(entityDatabaseName, schema, query?._order);
 
-    let _options = {
+    const _options = {
       benchmark: true,
       logging: console.log,
       ...schemaOptions,
@@ -175,7 +174,7 @@ const getEntityDataName = async (entityName: any, query: any) => {
     }
 
     if (schema?.attributes && schema?.attributes?.length > 0) {
-      let tempAuditAttributes = auditAttributes.filter((value) =>
+      const tempAuditAttributes = auditAttributes.filter((value) =>
         Object.keys(
           databaseProvider[db].models[schema?.model]?.rawAttributes
         ).includes(value)
@@ -200,8 +199,8 @@ const getEntityDataName = async (entityName: any, query: any) => {
       _options["limit"] = query?.limit;
     }
 
-    let columns = getColumnsFromSchema(entityDatabaseName, schema);
-    let { count, rows } = await databaseActions.findAndCountAll(
+    const columns = getColumnsFromSchema(entityDatabaseName, schema);
+    const { count, rows } = await databaseActions.findAndCountAll(
       entityDatabaseName,
       schema?.model,
       _options
@@ -228,13 +227,13 @@ const getIndivEntityData = async (
   entityName: any,
   query: any
 ) => {
-  let schema = await getEntitySchema(entityName);
+  const schema = await getEntitySchema(entityName);
   if (!schema) {
     throw new Error("Entity is missing");
   }
 
   // eslint-disable-next-line no-unused-vars
-  let { where, ...schemaOptions }: any = getEntityOption(
+  const { where, ...schemaOptions }: any = getEntityOption(
     entityDatabaseName,
     schema,
     query
@@ -247,7 +246,7 @@ const getIndivEntityData = async (
     query?._searchValue
   );
 
-  let _options = {
+  const _options = {
     benchmark: true,
     logging: console.log,
     raw: Object.prototype.hasOwnProperty.call(schema, "raw")

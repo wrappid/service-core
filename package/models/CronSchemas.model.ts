@@ -1,4 +1,5 @@
 import Sequelize from "sequelize";
+
 export const CronSchemas = (sequelize: any, DataTypes: any) => {
   const CronSchema = sequelize.define(
     "CronSchemas",

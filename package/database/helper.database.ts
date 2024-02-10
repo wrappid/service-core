@@ -1,9 +1,10 @@
-import { databaseProvider } from "./provider.database";
 import { getNormalCaseFromCamelCase } from "../utils/business.utilis";
+import { databaseProvider } from "./provider.database";
+
 const getDatabases = (req: any, res: any) => {
   try {
-    let searchValue = req.query._searchValue;
-    let dataBases = databaseProvider;
+    const searchValue = req.query._searchValue;
+    const dataBases = databaseProvider;
     let searchedDatabase = Object.keys(dataBases);
 
     if (searchValue) {
@@ -14,7 +15,7 @@ const getDatabases = (req: any, res: any) => {
       });
     }
 
-    let _data = {
+    const _data = {
       rows: searchedDatabase.map((key) => {
         return { id: key, name: key };
       }),
@@ -32,9 +33,9 @@ const getDatabases = (req: any, res: any) => {
 const getTables = (req: any, res: any) => {
   try {
     // eslint-disable-next-line no-unused-vars
-    let database = req.params.database;
-    let requestedDBTables = databaseProvider[database].models;
-    let searchValue = req.query._searchValue;
+    const database = req.params.database;
+    const requestedDBTables = databaseProvider[database].models;
+    const searchValue = req.query._searchValue;
 
     let searchedTables = Object.keys(requestedDBTables);
 
@@ -46,7 +47,7 @@ const getTables = (req: any, res: any) => {
       });
     }
 
-    let _data = {
+    const _data = {
       rows: searchedTables.map((key) => {
         return { id: key, name: key };
       }),
@@ -64,15 +65,15 @@ const getTables = (req: any, res: any) => {
 };
 const getColumns = async (req: any, res: any) => {
   try {
-    let database = req.params.database;
-    let table = req.params.table;
+    const database = req.params.database;
+    const table = req.params.table;
     // eslint-disable-next-line no-unused-vars
-    let _searchValue = req.query._searchValue;
+    const _searchValue = req.query._searchValue;
 
-    let requestedDBTables: any = Object.keys(databaseProvider[database].models);
-    let rawAttributes = requestedDBTables[table]?.rawAttributes || {};
+    const requestedDBTables: any = Object.keys(databaseProvider[database].models);
+    const rawAttributes = requestedDBTables[table]?.rawAttributes || {};
 
-    let _data = {
+    const _data = {
       entity: table,
       rows: Object.keys(rawAttributes)
         ?.filter((key) => {

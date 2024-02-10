@@ -1,9 +1,10 @@
 import { databaseProvider } from "../database/provider.database";
-let Sequelize = require("sequelize");
+
+const Sequelize = require("sequelize");
 
 export const apiLogger = async (req: any, res: any, next: any) => {
   try {
-    let apiRequestLog = await databaseProvider["application"].models[
+    const apiRequestLog = await databaseProvider["application"].models[
       "ApiRequestLogs"
     ].create({
       ip: req.socket.remoteAddress,
@@ -15,8 +16,8 @@ export const apiLogger = async (req: any, res: any, next: any) => {
       start_ts: Sequelize.literal("CURRENT_TIMESTAMP"),
     });
 
-    let id = apiRequestLog.id;
-    let send = res.send;
+    const id = apiRequestLog.id;
+    const send = res.send;
     let res_body: any;
     let bodySetFlag = false;
     res.send = function (body: any) {

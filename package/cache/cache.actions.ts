@@ -1,4 +1,5 @@
 import { cacheProvider } from "./cache.provider";
+
 const clientConnect = async (clientName: string) => {
   try {
     const cacheProvider = require("./cache.provider");
@@ -58,7 +59,7 @@ export const cacheActions = {
   delete: async (clientName: string, cacheKey: string) => {
     try {
       await clientConnect(clientName);
-      let d = await cacheProvider[clientName].client.exists(cacheKey);
+      const d = await cacheProvider[clientName].client.exists(cacheKey);
       if (d == 1) {
         await cacheProvider[clientName].client.del(cacheKey);
       } else {

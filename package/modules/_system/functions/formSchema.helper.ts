@@ -1,6 +1,4 @@
-import { coreConstant } from "../../../index";
-import { databaseProvider } from "../../../index";
-import { databaseActions } from "../../../index";
+import { coreConstant , databaseProvider , databaseActions } from "../../../index";
 
 // const { httpMethod, entityStatus } = coreConstant;
 import { getEntitySchema, getColumnsFromSchema } from "./businessEntity.helper";
@@ -49,10 +47,10 @@ async function generateFormSchema(modelName: any) {
      * @todo check if present in business entity
      */
 
-    let schema = await getEntitySchema(modelName);
+    const schema = await getEntitySchema(modelName);
     let fieldsData = [];
     if (schema && schema?.model) {
-      let entityDB = "application" || schema?.database;
+      const entityDB = "application" || schema?.database;
       fieldsData = getColumnsFromSchema(entityDB, schema)?.filter(
         (col: any) => {
           return !auditAttributes.includes(col.id);
@@ -63,9 +61,9 @@ async function generateFormSchema(modelName: any) {
       });
     }
 
-    let endpoint = "/data/" + modelName;
-    let actions: any = [];
-    let formSchema = {
+    const endpoint = "/data/" + modelName;
+    const actions: any = [];
+    const formSchema = {
       create: {
         endpoint: endpoint,
         method: coreConstant.httpMethod.HTTP_POST,
@@ -136,9 +134,9 @@ async function generateFormSchema(modelName: any) {
  */
 async function getFormSchemaFromDB(formID: any, auth: any) {
   try {
-    let dbName = "application";
-    let dbSequelize = databaseProvider[dbName].Sequelize;
-    let whereClause: any = {
+    const dbName = "application";
+    const dbSequelize = databaseProvider[dbName].Sequelize;
+    const whereClause: any = {
       formID: formID,
       _status: coreConstant.entityStatus.PUBLISHED,
     };
@@ -153,7 +151,7 @@ async function getFormSchemaFromDB(formID: any, auth: any) {
       };
     }
 
-    let formSchema = await databaseActions.findOne(dbName, "FormSchemas", {
+    const formSchema = await databaseActions.findOne(dbName, "FormSchemas", {
       where: whereClause,
     });
     return formSchema;
@@ -200,7 +198,7 @@ const updateStringValue = async (databaseProvider: any, req: any) => {
 
   const result = await databaseProvider.application.sequelize.transaction(
     async (t: any) => {
-      let stringValue = await databaseActions.findOne(
+      const stringValue = await databaseActions.findOne(
         "application",
         "StringValues",
         {
@@ -209,7 +207,7 @@ const updateStringValue = async (databaseProvider: any, req: any) => {
           },
         }
       );
-      let [nrows, rows] = await databaseActions.update(
+      const [nrows, rows] = await databaseActions.update(
         "application",
         "StringValues",
         {
@@ -227,7 +225,7 @@ const updateStringValue = async (databaseProvider: any, req: any) => {
       console.log(`rows=${rows}`);
       console.log("Old data deactivated");
 
-      let freshData = {
+      const freshData = {
         // key: req.body.key,
         key: stringValue.key,
         value: req.body.value,
@@ -235,7 +233,7 @@ const updateStringValue = async (databaseProvider: any, req: any) => {
       };
       console.log("BODY", freshData);
 
-      let data = await databaseActions.create(
+      const data = await databaseActions.create(
         "application",
         "StringValues",
         {

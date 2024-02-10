@@ -3,11 +3,11 @@ import ModelsRegistry from "../registry/ModelsRegistry";
 import { databaseProvider } from "./provider.database";
 
 export const setupModels = (AppModelsRegistry: any) => {
-  let modelsRegistry = { ...ModelsRegistry, ...AppModelsRegistry };
+  const modelsRegistry = { ...ModelsRegistry, ...AppModelsRegistry };
 
   try {
     Object.keys(databaseProvider).forEach((databaseName) => {
-      let models = Object.keys(modelsRegistry).filter((model) => {
+      const models = Object.keys(modelsRegistry).filter((model) => {
         return modelsRegistry[model].database === databaseName;
       });
 
@@ -16,7 +16,7 @@ export const setupModels = (AppModelsRegistry: any) => {
       models.forEach((model) => {
         console.log(`Adding ~${model}~ model...`);
         try {
-          let modelInstance = modelsRegistry[model].model(
+          const modelInstance = modelsRegistry[model].model(
             databaseProvider[databaseName].sequelize,
             Sequelize
           );

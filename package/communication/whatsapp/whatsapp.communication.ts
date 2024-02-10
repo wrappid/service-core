@@ -1,14 +1,15 @@
 import fetch from "node-fetch";
 import { configProvider } from "../../config/provider.config";
+
 let { api_url, id, token } = configProvider.whatsappProvider;
 api_url = api_url.replace(":id", id);
 const whatsapp_accessToken = token;
 
 async function communicate(whatsappOptions: any) {
-  let { phone, data } = whatsappOptions;
+  const { phone, data } = whatsappOptions;
   let res = {};
   try {
-    let body = {
+    const body = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",

@@ -1,14 +1,15 @@
-import { CronSchemas } from "../models/CronSchemas.model";
 import { ApiRequestLogs } from "../models/ApiRequestLogs.model";
-import { Routes } from "../models/Routes.models";
-import { Pages } from "../models/Pages.model";
 import { Applications } from "../models/Applications.model";
+import { CronSchemas } from "../models/CronSchemas.model";
 import { DataTableOptions } from "../models/DataTableOptions.model";
 import { MasterData } from "../models/MasterData.model";
+import { Pages } from "../models/Pages.model";
+import { Routes } from "../models/Routes.models";
+import { SettingMeta } from "../models/SettingMeta.model";
 import { StringValues } from "../models/StringValues.model";
 import { SupportedLanguages } from "../models/SupportedLanguages.model";
-import { SettingMeta } from "../models/SettingMeta.model";
 import AppBuilderModelsRegistry from "../modules/_system/models.registry";
+
 const ModelsRegistry: any = {
   ApiRequestLogs: {
     database: "application",

@@ -6,9 +6,10 @@
  * and
  * environment must comes from env
  */
+import { constant } from "../constants/server.constant";
+
 const path = require("path");
 
-import { constant } from "../constants/server.constant";
 const configFilePath =
   process.env[constant.entityStatus.WRAPPID_SERVICE_CONFIG_PATH];
 let wrappidConfig;

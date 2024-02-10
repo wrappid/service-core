@@ -1,28 +1,28 @@
-import { configProvider } from "./config/provider.config";
-import { databaseProvider } from "./database/provider.database";
-import { databaseActions } from "./database/actions.database";
-import { setupLogging } from "./logging/setup.logging";
-import { setupRoutes } from "./route/setup.route";
-import { setupModels } from "./database/setup.database";
 import { cacheActions } from "./cache/cache.actions";
 import { communicate } from "./communication/communicate.communicator";
-import { setupTasks } from "./tasks/setup.tasks";
+import { configProvider } from "./config/provider.config";
 import { constant, DEFAULT_PORT } from "./constants/server.constant";
-import { setupFunctions } from "./function/setup.functions";
-import setupSwagger from "./swagger/swagger.setup";
-import { ControllersRegistry } from "./registry/index";
+import { databaseActions } from "./database/actions.database";
 import {
+  getDatabases,
+  getTables,
+  getColumns,
+} from "./database/helper.database";
+import { databaseProvider } from "./database/provider.database";
+import { setupModels } from "./database/setup.database";
+import { setupFunctions } from "./function/setup.functions";
+import { setupLogging } from "./logging/setup.logging";
+import { ControllersRegistry ,
   FunctionsRegistry,
   MiddlewaresRegistry,
   ModelsRegistry,
   TasksRegistry,
   ValidationsRegistry,
 } from "./registry/index";
-import {
-  getDatabases,
-  getTables,
-  getColumns,
-} from "./database/helper.database";
+import { setupRoutes } from "./route/setup.route";
+import setupSwagger from "./swagger/swagger.setup";
+import { setupTasks } from "./tasks/setup.tasks";
+
 export {
   configProvider,
   /**

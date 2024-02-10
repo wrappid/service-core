@@ -1,20 +1,18 @@
 /* eslint-disable no-console */
-import { coreConstant } from "../../../index";
-import { databaseActions } from "../../../index";
-import { databaseProvider } from "../../../index";
 import { v4 as uuidv4 } from "uuid";
+import { coreConstant , databaseActions , databaseProvider } from "../../../index";
 // eslint-disable-next-line no-unused-vars
 const { getFormSchema, updateStringValue } = require("./formSchema.helper");
 
 // eslint-disable-next-line no-unused-vars
 const putFormSchemaFunc = async (req: any, res: any) => {
-  let model = req?.params?.model;
+  const model = req?.params?.model;
   try {
     console.log("model=" + model);
-    let modelID = req.params.id;
+    const modelID = req.params.id;
     console.log("modelID=" + modelID);
 
-    let body = req.body;
+    const body = req.body;
     console.log(body);
 
     if (!model) {
@@ -53,7 +51,7 @@ const putFormSchemaFunc = async (req: any, res: any) => {
       }
     });
 
-    var result = null;
+    let result = null;
 
     const models = [
       { model: "FormSchemas" },
@@ -74,7 +72,7 @@ const putFormSchemaFunc = async (req: any, res: any) => {
       currentEntry._status !== coreConstant.entityStatus.CHANGE_REQUESTED
     ) {
       // create new entry as draft
-      let createData = { ...body };
+      const createData = { ...body };
       delete createData["id"];
 
       /* let newEntry =  */ await databaseActions.create("application", model, {

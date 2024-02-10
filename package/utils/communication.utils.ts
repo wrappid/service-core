@@ -9,7 +9,7 @@ import { validateEmail } from "../validation/default.validation";
 export function validateEmails(mailRecipients: any) {
   try {
     let valid = true;
-    let { to = [], cc = [], bcc = [] } = mailRecipients;
+    const { to = [], cc = [], bcc = [] } = mailRecipients;
 
     [...to, ...cc, ...bcc].forEach((eachRecipient) => {
       if (!validateEmail.validate(eachRecipient)) {
@@ -34,7 +34,7 @@ export function getMessageObject(
   }
 ) {
   try {
-    let { communicationTemplate, commData }: any = commOptions;
+    const { communicationTemplate, commData }: any = commOptions;
     let messageObj: any = {};
 
     switch (communicationTemplate.type) {
@@ -67,7 +67,7 @@ export function getMessageObject(
     }
 
     Object.keys(commData).forEach((commDataKey) => {
-      let regExpr = new RegExp("#" + commDataKey, "g");
+      const regExpr = new RegExp("#" + commDataKey, "g");
       switch (communicationTemplate.type) {
         case constant.commType.EMAIL:
           messageObj.subject = messageObj.subject.replace(

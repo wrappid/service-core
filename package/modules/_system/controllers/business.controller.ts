@@ -13,7 +13,7 @@ import {
  */
 const getBusinessEntities = async (req: any, res: any) => {
   try {
-    let data: any = databaseActions.findAll(
+    const data: any = databaseActions.findAll(
       "application",
       "BusinessEntitySchemas",
       {
@@ -49,7 +49,7 @@ const getBusinessEntities = async (req: any, res: any) => {
  * @returns
  */
 const getEntityData = async (req: any, res: any) => {
-  let entity = req.params.entity;
+  const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
   try {
@@ -58,7 +58,7 @@ const getEntityData = async (req: any, res: any) => {
       return;
     }
 
-    let data = await getEntityDataCount(databaseActions, entity, req.query);
+    const data = await getEntityDataCount(databaseActions, entity, req.query);
 
     if (!data || data.length === 0) {
       res.status(204).json({ message: "Entity is missing" });
@@ -88,7 +88,7 @@ const getEntityData = async (req: any, res: any) => {
  * @returns
  */
 const getIndividualEntityData = async (req: any, res: any) => {
-  let entity = req.params.entity;
+  const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
   try {
@@ -97,7 +97,7 @@ const getIndividualEntityData = async (req: any, res: any) => {
       return;
     }
 
-    let data = await getIndivEntityData("application", entity, req.query);
+    const data = await getIndivEntityData("application", entity, req.query);
 
     if (!data) {
       res
@@ -129,7 +129,7 @@ const getIndividualEntityData = async (req: any, res: any) => {
  * @returns
  */
 const getAllEntityData = async (req: any, res: any) => {
-  let entity = req.params.entity;
+  const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
   try {
@@ -140,7 +140,7 @@ const getAllEntityData = async (req: any, res: any) => {
       return;
     }
 
-    let data: any = await getEntityDataName(entity, req.query);
+    const data: any = await getEntityDataName(entity, req.query);
 
     if (!data || data.length === 0) {
       res.status(204).json({ message: "Entity is missing" });
@@ -170,10 +170,10 @@ const getAllEntityData = async (req: any, res: any) => {
  * @returns
  */
 const noAuthGetAllEntityData = async (req: any, res: any) => {
-  let entity = req.params.entity;
+  const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
-  let entities = ["RoutePages"];
+  const entities = ["RoutePages"];
 
   try {
     if (!entity && !entities.includes(entity)) {
@@ -181,7 +181,7 @@ const noAuthGetAllEntityData = async (req: any, res: any) => {
       return;
     }
 
-    let data: any = await getEntityDataName(entity, req.query);
+    const data: any = await getEntityDataName(entity, req.query);
 
     if (!data || data.length === 0) {
       res.status(204).json({ message: "No data found for entity" });

@@ -20,7 +20,7 @@ export const communicate = async ({
 }: any) => {
   try {
     // get template
-    let communicationTemplate = await databaseActions.findOne(
+    const communicationTemplate = await databaseActions.findOne(
       "application",
       "CommunicationTemplates",
       {
@@ -34,7 +34,7 @@ export const communicate = async ({
       throw new Error(`Template not found: ${commTemplateID}`);
     }
 
-    let messageObject = communicationUtils.getMessageObject({
+    const messageObject = communicationUtils.getMessageObject({
       communicationTemplate,
       commData,
     });

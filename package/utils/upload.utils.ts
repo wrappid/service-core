@@ -3,11 +3,13 @@
 // // -upload in s3
 // // -upload in local
 // // -upload (storage type, naming, validation) type = s3/local
-var multer = require("multer");
-const multerS3 = require("multer-s3");
-const aws = require("aws-sdk");
-import { constant } from "../constants/server.constant";
 import { configProvider } from "../config/provider.config";
+import { constant } from "../constants/server.constant";
+
+const aws = require("aws-sdk");
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+
 
 const env = process.env.NODE_ENV || "development";
 const s3Bucket = configProvider.storage.s3.bucket;
@@ -22,7 +24,7 @@ aws.config.update({
   secretAccessKey: secretAccessKey,
 });
 
-var s3 = new aws.S3({
+const s3 = new aws.S3({
   /* ... */
 });
 

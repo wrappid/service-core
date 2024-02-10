@@ -9,7 +9,7 @@ import * as formsController from "../functions/formSchema.helper";
  */
 const getNoAuthFormSchema = async (req: any, res: any) => {
   try {
-    let formID = req.params.formID;
+    const formID = req.params.formID;
 
     if (!formID) {
       return res
@@ -17,7 +17,7 @@ const getNoAuthFormSchema = async (req: any, res: any) => {
         .json({ message: "formID is missing api path parameter" });
     }
 
-    let formSchema = await formsController.getFormSchema(formID, false);
+    const formSchema = await formsController.getFormSchema(formID, false);
 
     if (formSchema) {
       res.status(200).json({
@@ -45,7 +45,7 @@ const getNoAuthFormSchema = async (req: any, res: any) => {
  */
 const getFormSchema = async (req: any, res: any) => {
   try {
-    let formID: any = req;
+    const formID: any = req;
 
     if (!formID) {
       return res
@@ -53,7 +53,7 @@ const getFormSchema = async (req: any, res: any) => {
         .json({ message: "formID is missing api path parameter" });
     }
 
-    let formSchema = await formsController.getFormSchema(formID);
+    const formSchema = await formsController.getFormSchema(formID);
 
     if (formSchema) {
       res.status(200).json({
@@ -76,8 +76,8 @@ const getFormSchema = async (req: any, res: any) => {
 const putFormSchema = async (req: any, res: any) => {
   try {
     // res.status(200).json({message: "API call succecfully!!"});
-    let result = await putFormSchemaFunc(req, res);
-    let { status, ...resdata } = result;
+    const result = await putFormSchemaFunc(req, res);
+    const { status, ...resdata } = result;
     res.status(status).json({ ...resdata });
   } catch (err: any) {
     res.status(500).json({ message: err });

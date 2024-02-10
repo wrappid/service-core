@@ -50,7 +50,7 @@ export const databaseProvider: any = {};
 
 configProvider.databases.forEach(async (database: databaseDataType) => {
   try {
-    let sequelize = new Sequelize(
+    const sequelize = new Sequelize(
       database.database,
       database.username,
       database.password,
@@ -63,7 +63,7 @@ configProvider.databases.forEach(async (database: databaseDataType) => {
     );
 
     (databaseProvider[database.name] = {}),
-      (databaseProvider[database.name]["sequelize"] = sequelize);
+    (databaseProvider[database.name]["sequelize"] = sequelize);
     databaseProvider[database.name]["Sequelize"] = Sequelize;
 
     await databaseProvider[database.name].sequelize.authenticate();

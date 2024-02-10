@@ -20,8 +20,8 @@ const prepareCreateData = (
   if (!db[modelName]) {
     throw new Error(`${modelName} is missing in DB`);
   }
-  let _attributes = attributes || Object.keys(db[modelName]?.rawAttributes);
-  let _createData: any = {};
+  const _attributes = attributes || Object.keys(db[modelName]?.rawAttributes);
+  const _createData: any = {};
   // prepare data
   _attributes.forEach((attr: any) => {
     if (!auditAttributes.includes(attr)) {
@@ -41,7 +41,7 @@ const createData = async (
   transaction: any,
   request: any
 ) => {
-  let createData = prepareCreateData(
+  const createData = prepareCreateData(
     db,
     modelName,
     attributes || null,
@@ -65,11 +65,11 @@ const postBusinessEntityData = async (
   request: any
 ) => {
   try {
-    let schema = await getEntitySchema(schemaName);
+    const schema = await getEntitySchema(schemaName);
     if (!schema) {
       throw new Error("Business entity is missing");
     }
-    let schemaResult: any = {};
+    const schemaResult: any = {};
     /* let result =  */ await db.sequelize.transaction(async (t: any) => {
       schemaResult[schema?.model] = await createData(
         db,

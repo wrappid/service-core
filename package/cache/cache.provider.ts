@@ -2,6 +2,7 @@ import { createClient } from "redis";
 // const {JSONCache} = require('redis-json');
 // const{ Redis } = require('ioredis');
 import { configProvider } from "../config/provider.config";
+
 interface cacheDataType {
   name: string;
   username: string;
