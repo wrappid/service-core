@@ -1,5 +1,5 @@
-import { databaseProvider } from "../../index";
-import { databaseActions } from "../../index";
+import { databaseProvider } from "../../../index";
+import { databaseActions } from "../../../index";
 
 import {
   getEntitySchema,

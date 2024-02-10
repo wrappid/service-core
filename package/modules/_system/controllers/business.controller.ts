@@ -1,4 +1,4 @@
-import { databaseActions } from "../../database/actions.database";
+import { databaseActions } from "../../../database/actions.database";
 import {
   getEntityDataName,
   getEntityDataCount,

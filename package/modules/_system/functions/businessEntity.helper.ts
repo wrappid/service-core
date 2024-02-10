@@ -1,6 +1,6 @@
-import { coreConstant } from "../../index";
-import { databaseProvider } from "../../index";
-import { databaseActions } from "../../index";
+import { coreConstant } from "../../../index";
+import { databaseProvider } from "../../../index";
+import { databaseActions } from "../../../index";
 
 import sequelize from "sequelize";
 

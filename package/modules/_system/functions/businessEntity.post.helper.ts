@@ -1,4 +1,4 @@
-import { coreConstant } from "../../index";
+import { coreConstant } from "../../../index";
 import { getEntitySchema, auditAttributes } from "./businessEntity.helper";
 
 /**

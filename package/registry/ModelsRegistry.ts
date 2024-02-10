@@ -8,7 +8,7 @@ import { MasterData } from "../models/MasterData.model";
 import { StringValues } from "../models/StringValues.model";
 import { SupportedLanguages } from "../models/SupportedLanguages.model";
 import { SettingMeta } from "../models/SettingMeta.model";
-import AppBuilderModelsRegistry from "../app-builder/models.registry";
+import AppBuilderModelsRegistry from "../modules/_system/models.registry";
 const ModelsRegistry: any = {
   ApiRequestLogs: {
     database: "application",

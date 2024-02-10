@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { coreConstant } from "../../index";
-import { databaseActions } from "../../index";
-import { databaseProvider } from "../../index";
+import { coreConstant } from "../../../index";
+import { databaseActions } from "../../../index";
+import { databaseProvider } from "../../../index";
 import { v4 as uuidv4 } from "uuid";
 // eslint-disable-next-line no-unused-vars
 const { getFormSchema, updateStringValue } = require("./formSchema.helper");
