@@ -1,1 +1,2 @@
-export const TasksRegistry: any = {};
+const TasksRegistry: any = {};
+export default TasksRegistry;

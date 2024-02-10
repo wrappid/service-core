@@ -1,13 +1,13 @@
 import { Sequelize } from "sequelize";
-import { ModelsRegistry } from "../registry/ModelsRegistry";
+import ModelsRegistry from "../registry/ModelsRegistry";
 import { databaseProvider } from "./provider.database";
 
 export const setupModels = (AppModelsRegistry: any) => {
-  let modelsRegistry = { ...ModelsRegistry, ...AppModelsRegistry };
+  const modelsRegistry = { ...ModelsRegistry, ...AppModelsRegistry };
 
   try {
     Object.keys(databaseProvider).forEach((databaseName) => {
-      let models = Object.keys(modelsRegistry).filter((model) => {
+      const models = Object.keys(modelsRegistry).filter((model) => {
         return modelsRegistry[model].database === databaseName;
       });
 
@@ -15,22 +15,34 @@ export const setupModels = (AppModelsRegistry: any) => {
       databaseProvider[databaseName].models = {};
       models.forEach((model) => {
         console.log(`Adding ~${model}~ model...`);
-        let modelInstance = modelsRegistry[model].model(
-          databaseProvider[databaseName].sequelize,
-          Sequelize
-        );
-        databaseProvider[databaseName].models[model] = modelInstance;
+        try {
+          const modelInstance = modelsRegistry[model].model(
+            databaseProvider[databaseName].sequelize,
+            Sequelize
+          );
+          databaseProvider[databaseName].models[model] = modelInstance;
+        } catch (error: any) {
+          console.error(
+            `${model} not added to the ${databaseName} database due to ${error?.message}`
+          );
+        }
       });
-      console.log(`Models added to ${databaseName} database successfully.`);
+      console.log(`Setup models to ${databaseName} database successfully.`);
 
       /**
        * Run sequelize association
        */
       models.forEach((modelName) => {
         if (databaseProvider[databaseName].models[modelName].associate) {
-          databaseProvider[databaseName].models[modelName].associate(
-            databaseProvider[databaseName].models
-          );
+          try {
+            databaseProvider[databaseName].models[modelName].associate(
+              databaseProvider[databaseName].models
+            );
+          } catch (error: any) {
+            console.error(
+              `${modelName} not associated due to ${error?.message}`
+            );
+          }
         }
       });
     });

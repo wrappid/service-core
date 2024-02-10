@@ -3,17 +3,17 @@
 // // -upload in s3
 // // -upload in local
 // // -upload (storage type, naming, validation) type = s3/local
-var multer = require("multer");
-const multerS3 = require("multer-s3");
-const aws = require("aws-sdk");
-import { constant } from "../constants/server.constant";
 import { configProvider } from "../config/provider.config";
 
+import aws from "aws-sdk";
+import multer from "multer";
+import multerS3 from "multer-s3";
+
 const env = process.env.NODE_ENV || "development";
-const s3Bucket = configProvider.storage.s3.bucket;
-const region = configProvider.storage.s3.region;
-const accessKeyId = configProvider.storage.s3.accessKeyId;
-const secretAccessKey = configProvider.storage.s3.secretAccessKey;
+const s3Bucket = configProvider().storage.s3.bucket;
+const region = configProvider().storage.s3.region;
+const accessKeyId = configProvider().storage.s3.accessKeyId;
+const secretAccessKey = configProvider().storage.s3.secretAccessKey;
 const acceptedType = ["pdf", "doc", "docx", "jpg", "jpeg", "png"];
 
 aws.config.update({
@@ -22,7 +22,7 @@ aws.config.update({
   secretAccessKey: secretAccessKey,
 });
 
-var s3 = new aws.S3({
+const s3 = new aws.S3({
   /* ... */
 });
 

@@ -3,10 +3,11 @@ import { configProvider } from "../../config/provider.config";
 import { constant } from "../../constants/server.constant";
 import { validatePhone } from "../../validation/default.validation";
 
-const { service, url, username, password, sender } = configProvider.smsProvider;
+const { service, url, username, password, sender } =
+  configProvider().smsProvider;
 
 const communicate = async (smsOptions: any) => {
-  let { phone, message, dlttemplateid } = smsOptions;
+  const { phone, message, dlttemplateid } = smsOptions;
 
   try {
     if (service === constant.smsService.KIT_19) {
@@ -26,7 +27,7 @@ const communicate = async (smsOptions: any) => {
         kit19Url += `&dlttemplateid=${dlttemplateid}`;
 
         console.log(kit19Url);
-        let smsRes: any = await fetch(kit19Url, {
+        const smsRes: any = await fetch(kit19Url, {
           headers: {
             "Content-Type": "application/json",
           },

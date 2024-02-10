@@ -1,14 +1,14 @@
 import fetch from "node-fetch";
 import { configProvider } from "../../config/provider.config";
-let { api_url, id, token } = configProvider.whatsappProvider;
+
+let { api_url, id, accessToken } = configProvider().whatsappProvider;
 api_url = api_url.replace(":id", id);
-const whatsapp_accessToken = token;
 
 async function communicate(whatsappOptions: any) {
-  let { phone, data } = whatsappOptions;
+  const { phone, data } = whatsappOptions;
   let res = {};
   try {
-    let body = {
+    const body = {
       messaging_product: "whatsapp",
       to: phone,
       type: "template",
@@ -17,7 +17,7 @@ async function communicate(whatsappOptions: any) {
     res = await fetch(api_url, {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + whatsapp_accessToken,
+        Authorization: "Bearer " + accessToken,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
