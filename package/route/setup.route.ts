@@ -1,5 +1,4 @@
 import { constant } from "../constants/server.constant";
-import { databaseActions } from "../database/actions.database";
 import { apiLogger } from "../middlewares/apiLogger.middleware";
 import { handleError } from "../middlewares/handleError.middleware";
 import ControllersRegistry from "../registry/ControllersRegistry";

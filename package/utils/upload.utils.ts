@@ -3,12 +3,12 @@
 // // -upload in s3
 // // -upload in local
 // // -upload (storage type, naming, validation) type = s3/local
-import { configProvider } from "../config/provider.config";
-
+import { S3Client } from "@aws-sdk/client-s3";
 import aws from "aws-sdk";
+
 import multer from "multer";
 import multerS3 from "multer-s3";
-import { S3Client } from "@aws-sdk/client-s3";
+import { configProvider } from "../config/provider.config";
 
 const env = process.env.NODE_ENV || "development";
 const s3Bucket = configProvider().storage.s3.bucket;

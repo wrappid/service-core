@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
 import { v4 as uuidv4 } from "uuid";
-import { coreConstant , databaseActions , databaseProvider } from "../../../index";
-// eslint-disable-next-line no-unused-vars
-const { getFormSchema, updateStringValue } = require("./formSchema.helper");
+import {
+  coreConstant,
+  databaseActions,
+  databaseProvider,
+} from "../../../index";
 
 // eslint-disable-next-line no-unused-vars
 const putFormSchemaFunc = async (req: any, res: any) => {

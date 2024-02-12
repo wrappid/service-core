@@ -1,6 +1,6 @@
-import { CacheConfig } from "config/types.config";
 import { createClient } from "redis";
 import { configProvider } from "../config/provider.config";
+import { CacheConfig } from "config/types.config";
 
 const cacheProvider: any = {};
 

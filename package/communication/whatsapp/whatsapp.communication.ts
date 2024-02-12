@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import { configProvider } from "../../config/provider.config";
 
+// eslint-disable-next-line prefer-const
 let { api_url, id, accessToken } = configProvider().whatsappProvider;
 api_url = api_url.replace(":id", id);
 

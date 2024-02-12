@@ -1,6 +1,5 @@
+import Sequelize from "sequelize";
 import { databaseProvider } from "../database/provider.database";
-
-const Sequelize = require("sequelize");
 
 export const apiLogger = async (req: any, res: any, next: any) => {
   try {

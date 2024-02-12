@@ -1,6 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const morgan = require("morgan");
+import fs from "fs";
+import path from "path";
+import morgan from "morgan";
 
 /**
  * @todo

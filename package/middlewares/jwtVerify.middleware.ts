@@ -1,6 +1,5 @@
+import jwt from "jsonwebtoken";
 import { configProvider } from "../config/provider.config";
-
-const jwt = require("jsonwebtoken");
 
 const {
   accessTokenSecret,
