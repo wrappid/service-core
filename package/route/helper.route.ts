@@ -1,4 +1,4 @@
-import { Op, Sequelize } from "sequelize";
+import { Op } from "sequelize";
 import { constant } from "../constants/server.constant";
 import { databaseActions } from "../database/actions.database";
 
@@ -6,6 +6,7 @@ export const getClientRoutes = async (
   dbName: string,
   authRequired: boolean
 ) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     /**
      * Getting all routes
@@ -26,6 +27,7 @@ export const getServerRoutes = async (
   dbName: string,
   authRequired: boolean
 ) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     /**
      * Getting all routes

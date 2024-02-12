@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * @todo
  *
@@ -34,7 +35,7 @@
 
 "use strict";
 
-import { Dialect, Sequelize } from "sequelize";
+import { Sequelize } from "sequelize";
 import { configProvider } from "../config/provider.config";
 import { DatabaseConfig } from "../config/types.config";
 

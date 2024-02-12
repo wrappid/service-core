@@ -7,11 +7,11 @@
  * environment must comes from env
  */
 import * as fs from "fs";
-import * as path from "path";
 import { constant } from "../constants/server.constant";
 import ConfigType from "./types.config";
 
 export const configProvider = (): ConfigType => {
+  // eslint-disable-next-line no-useless-catch
   try {
     let configFilePath: string =
       process.env[constant.entityStatus.WRAPPID_SERVICE_CONFIG_PATH];
@@ -19,6 +19,7 @@ export const configProvider = (): ConfigType => {
     if (!configFilePath) {
       configFilePath = "./config.json";
     }
+    // eslint-disable-next-line prefer-const
     wrappidConfig = JSON.parse(fs.readFileSync(configFilePath, "utf-8"));
     console.log("###########################################");
     console.log("configProvider found");
