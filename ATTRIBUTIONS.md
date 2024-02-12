@@ -39,13 +39,811 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@babel/cli@7.23.4</summary>
+  <summary>@aws-crypto/crc32@3.0.0</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/cli@7.23.4|
-  >|**Version**|@7.23.4|
+  >|**Name**|@aws-crypto/crc32@3.0.0|
+  >|**Version**|@323.0.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-crypto-helpers|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Crypto Tools Team|
+  >|**Contact**|aws-cryptools@amazon.com|
+  >|**Homepage**|https://docs.aws.amazon.com/aws-crypto-tools/index.html?id=docs_gateway#lang/en_us|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-crypto/crc32@3.0.0
+  ```
+  </details>
+<details>
+  <summary>@aws-crypto/crc32c@3.0.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-crypto/crc32c@3.0.0|
+  >|**Version**|@323.0.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-crypto-helpers|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Crypto Tools Team|
+  >|**Contact**|aws-cryptools@amazon.com|
+  >|**Homepage**|https://docs.aws.amazon.com/aws-crypto-tools/index.html?id=docs_gateway#lang/en_us|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-crypto/crc32c@3.0.0
+  ```
+  </details>
+<details>
+  <summary>@aws-crypto/ie11-detection@3.0.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-crypto/ie11-detection@3.0.0|
+  >|**Version**|@113.0.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-crypto-helpers|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Crypto Tools Team|
+  >|**Contact**|aws-cryptools@amazon.com|
+  >|**Homepage**|https://docs.aws.amazon.com/aws-crypto-tools/index.html?id=docs_gateway#lang/en_us|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-crypto/ie11-detection@3.0.0
+  ```
+  </details>
+<details>
+  <summary>@aws-crypto/sha1-browser@3.0.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-crypto/sha1-browser@3.0.0|
+  >|**Version**|@13.0.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-crypto-helpers|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Crypto Tools Team|
+  >|**Contact**|aws-cryptools@amazon.com|
+  >|**Homepage**|https://docs.aws.amazon.com/aws-crypto-tools/index.html?id=docs_gateway#lang/en_us|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-crypto/sha1-browser@3.0.0
+  ```
+  </details>
+<details>
+  <summary>@aws-crypto/sha256-browser@3.0.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-crypto/sha256-browser@3.0.0|
+  >|**Version**|@2563.0.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-crypto-helpers|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Crypto Tools Team|
+  >|**Contact**|aws-cryptools@amazon.com|
+  >|**Homepage**|https://docs.aws.amazon.com/aws-crypto-tools/index.html?id=docs_gateway#lang/en_us|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-crypto/sha256-browser@3.0.0
+  ```
+  </details>
+<details>
+  <summary>@aws-crypto/sha256-js@3.0.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-crypto/sha256-js@3.0.0|
+  >|**Version**|@2563.0.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-crypto-helpers|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Crypto Tools Team|
+  >|**Contact**|aws-cryptools@amazon.com|
+  >|**Homepage**|https://docs.aws.amazon.com/aws-crypto-tools/index.html?id=docs_gateway#lang/en_us|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-crypto/sha256-js@3.0.0
+  ```
+  </details>
+<details>
+  <summary>@aws-crypto/supports-web-crypto@3.0.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-crypto/supports-web-crypto@3.0.0|
+  >|**Version**|@3.0.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-crypto-helpers|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Crypto Tools Team|
+  >|**Contact**|aws-cryptools@amazon.com|
+  >|**Homepage**|https://docs.aws.amazon.com/aws-crypto-tools/index.html?id=docs_gateway#lang/en_us|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-crypto/supports-web-crypto@3.0.0
+  ```
+  </details>
+<details>
+  <summary>@aws-crypto/util@3.0.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-crypto/util@3.0.0|
+  >|**Version**|@3.0.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-crypto-helpers|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Crypto Tools Team|
+  >|**Contact**|aws-cryptools@amazon.com|
+  >|**Homepage**|https://docs.aws.amazon.com/aws-crypto-tools/index.html?id=docs_gateway#lang/en_us|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-crypto/util@3.0.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/client-s3@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/client-s3@3.511.0|
+  >|**Version**|@33.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/client-s3@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/client-sso-oidc@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/client-sso-oidc@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/client-sso-oidc@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/client-sso@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/client-sso@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/client-sso@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/client-sts@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/client-sts@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/client-sts@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/core@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/core@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/core@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/credential-provider-env@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/credential-provider-env@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/credential-provider-env@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/credential-provider-http@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/credential-provider-http@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/credential-provider-http@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/credential-provider-ini@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/credential-provider-ini@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/credential-provider-ini@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/credential-provider-node@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/credential-provider-node@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/credential-provider-node@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/credential-provider-process@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/credential-provider-process@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/credential-provider-process@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/credential-provider-sso@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/credential-provider-sso@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/credential-provider-sso@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/credential-provider-web-identity@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/credential-provider-web-identity@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/credential-provider-web-identity@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-bucket-endpoint@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-bucket-endpoint@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-bucket-endpoint@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-expect-continue@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-expect-continue@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-expect-continue@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-flexible-checksums@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-flexible-checksums@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-flexible-checksums@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-host-header@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-host-header@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-host-header@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-location-constraint@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-location-constraint@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-location-constraint@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-logger@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-logger@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-logger@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-recursion-detection@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-recursion-detection@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-recursion-detection@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-sdk-s3@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-sdk-s3@3.511.0|
+  >|**Version**|@33.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-sdk-s3@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-signing@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-signing@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-signing@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-ssec@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-ssec@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-ssec@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/middleware-user-agent@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/middleware-user-agent@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/middleware-user-agent@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/region-config-resolver@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/region-config-resolver@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/region-config-resolver@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/signature-v4-multi-region@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/signature-v4-multi-region@3.511.0|
+  >|**Version**|@43.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/signature-v4-multi-region@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/token-providers@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/token-providers@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/token-providers@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/types@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/types@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/types@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/util-arn-parser@3.495.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/util-arn-parser@3.495.0|
+  >|**Version**|@3.495.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/util-arn-parser@3.495.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/util-endpoints@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/util-endpoints@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/util-endpoints@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/util-locate-window@3.495.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/util-locate-window@3.495.0|
+  >|**Version**|@3.495.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/util-locate-window@3.495.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/util-user-agent-browser@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/util-user-agent-browser@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/util-user-agent-browser@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/util-user-agent-node@3.511.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/util-user-agent-node@3.511.0|
+  >|**Version**|@3.511.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/util-user-agent-node@3.511.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/util-utf8-browser@3.259.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/util-utf8-browser@3.259.0|
+  >|**Version**|@83.259.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/util-utf8-browser@3.259.0
+  ```
+  </details>
+<details>
+  <summary>@aws-sdk/xml-builder@3.496.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@aws-sdk/xml-builder@3.496.0|
+  >|**Version**|@3.496.0|
+  >|**Repository**|https://github.com/aws/aws-sdk-js-v3|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @aws-sdk/xml-builder@3.496.0
+  ```
+  </details>
+<details>
+  <summary>@babel/cli@7.23.9</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@babel/cli@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -54,7 +852,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/cli@7.23.4
+  npm i @babel/cli@7.23.9
   ```
   </details>
 <details>
@@ -96,13 +894,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@babel/core@7.23.7</summary>
+  <summary>@babel/core@7.23.9</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/core@7.23.7|
-  >|**Version**|@7.23.7|
+  >|**Name**|@babel/core@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -111,7 +909,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/core@7.23.7
+  npm i @babel/core@7.23.9
   ```
   </details>
 <details>
@@ -191,13 +989,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@babel/helper-create-class-features-plugin@7.23.7</summary>
+  <summary>@babel/helper-create-class-features-plugin@7.23.10</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/helper-create-class-features-plugin@7.23.7|
-  >|**Version**|@7.23.7|
+  >|**Name**|@babel/helper-create-class-features-plugin@7.23.10|
+  >|**Version**|@7.23.10|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -206,7 +1004,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/helper-create-class-features-plugin@7.23.7
+  npm i @babel/helper-create-class-features-plugin@7.23.10
   ```
   </details>
 <details>
@@ -229,13 +1027,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@babel/helper-define-polyfill-provider@0.4.4</summary>
+  <summary>@babel/helper-define-polyfill-provider@0.5.0</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/helper-define-polyfill-provider@0.4.4|
-  >|**Version**|@0.4.4|
+  >|**Name**|@babel/helper-define-polyfill-provider@0.5.0|
+  >|**Version**|@0.5.0|
   >|**Repository**|https://github.com/babel/babel-polyfills|
   >|**Licenses**|MIT|
   >|**Publisher**|NA|
@@ -244,7 +1042,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/helper-define-polyfill-provider@0.4.4
+  npm i @babel/helper-define-polyfill-provider@0.5.0
   ```
   </details>
 <details>
@@ -571,13 +1369,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@babel/helpers@7.23.8</summary>
+  <summary>@babel/helpers@7.23.9</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/helpers@7.23.8|
-  >|**Version**|@7.23.8|
+  >|**Name**|@babel/helpers@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -586,7 +1384,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/helpers@7.23.8
+  npm i @babel/helpers@7.23.9
   ```
   </details>
 <details>
@@ -609,13 +1407,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@babel/parser@7.23.6</summary>
+  <summary>@babel/parser@7.23.9</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/parser@7.23.6|
-  >|**Version**|@7.23.6|
+  >|**Name**|@babel/parser@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -624,7 +1422,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/parser@7.23.6
+  npm i @babel/parser@7.23.9
   ```
   </details>
 <details>
@@ -1065,13 +1863,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@babel/plugin-transform-async-generator-functions@7.23.7</summary>
+  <summary>@babel/plugin-transform-async-generator-functions@7.23.9</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/plugin-transform-async-generator-functions@7.23.7|
-  >|**Version**|@7.23.7|
+  >|**Name**|@babel/plugin-transform-async-generator-functions@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -1080,7 +1878,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/plugin-transform-async-generator-functions@7.23.7
+  npm i @babel/plugin-transform-async-generator-functions@7.23.9
   ```
   </details>
 <details>
@@ -1483,13 +2281,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@babel/plugin-transform-modules-systemjs@7.23.3</summary>
+  <summary>@babel/plugin-transform-modules-systemjs@7.23.9</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/plugin-transform-modules-systemjs@7.23.3|
-  >|**Version**|@7.23.3|
+  >|**Name**|@babel/plugin-transform-modules-systemjs@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -1498,7 +2296,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/plugin-transform-modules-systemjs@7.23.3
+  npm i @babel/plugin-transform-modules-systemjs@7.23.9
   ```
   </details>
 <details>
@@ -1977,13 +2775,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@babel/preset-env@7.23.8</summary>
+  <summary>@babel/preset-env@7.23.9</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/preset-env@7.23.8|
-  >|**Version**|@7.23.8|
+  >|**Name**|@babel/preset-env@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -1992,7 +2790,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/preset-env@7.23.8
+  npm i @babel/preset-env@7.23.9
   ```
   </details>
 <details>
@@ -2034,13 +2832,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@babel/runtime@7.23.8</summary>
+  <summary>@babel/runtime@7.23.9</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/runtime@7.23.8|
-  >|**Version**|@7.23.8|
+  >|**Name**|@babel/runtime@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -2049,17 +2847,17 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/runtime@7.23.8
+  npm i @babel/runtime@7.23.9
   ```
   </details>
 <details>
-  <summary>@babel/template@7.22.15</summary>
+  <summary>@babel/template@7.23.9</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/template@7.22.15|
-  >|**Version**|@7.22.15|
+  >|**Name**|@babel/template@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -2068,17 +2866,17 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/template@7.22.15
+  npm i @babel/template@7.23.9
   ```
   </details>
 <details>
-  <summary>@babel/traverse@7.23.7</summary>
+  <summary>@babel/traverse@7.23.9</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/traverse@7.23.7|
-  >|**Version**|@7.23.7|
+  >|**Name**|@babel/traverse@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -2087,17 +2885,17 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/traverse@7.23.7
+  npm i @babel/traverse@7.23.9
   ```
   </details>
 <details>
-  <summary>@babel/types@7.23.6</summary>
+  <summary>@babel/types@7.23.9</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@babel/types@7.23.6|
-  >|**Version**|@7.23.6|
+  >|**Name**|@babel/types@7.23.9|
+  >|**Version**|@7.23.9|
   >|**Repository**|https://github.com/babel/babel|
   >|**Licenses**|MIT|
   >|**Publisher**|The Babel Team|
@@ -2106,7 +2904,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @babel/types@7.23.6
+  npm i @babel/types@7.23.9
   ```
   </details>
 <details>
@@ -2718,13 +3516,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@jridgewell/trace-mapping@0.3.21</summary>
+  <summary>@jridgewell/trace-mapping@0.3.22</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@jridgewell/trace-mapping@0.3.21|
-  >|**Version**|@0.3.21|
+  >|**Name**|@jridgewell/trace-mapping@0.3.22|
+  >|**Version**|@0.3.22|
   >|**Repository**|https://github.com/jridgewell/trace-mapping|
   >|**Licenses**|MIT|
   >|**Publisher**|Justin Ridgewell|
@@ -2733,7 +3531,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @jridgewell/trace-mapping@0.3.21
+  npm i @jridgewell/trace-mapping@0.3.22
   ```
   </details>
 <details>
@@ -2889,13 +3687,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@redis/client@1.5.13</summary>
+  <summary>@redis/client@1.5.14</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@redis/client@1.5.13|
-  >|**Version**|@1.5.13|
+  >|**Name**|@redis/client@1.5.14|
+  >|**Version**|@1.5.14|
   >|**Repository**|https://github.com/redis/node-redis|
   >|**Licenses**|MIT|
   >|**Publisher**|NA|
@@ -2904,7 +3702,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @redis/client@1.5.13
+  npm i @redis/client@1.5.14
   ```
   </details>
 <details>
@@ -2981,6 +3779,956 @@ This file lists the third-party libraries, frameworks, and other components used
   #### Use this package in your project
   ```bash
   npm i @redis/time-series@1.0.5
+  ```
+  </details>
+<details>
+  <summary>@smithy/abort-controller@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/abort-controller@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/abort-controller@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/chunked-blob-reader-native@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/chunked-blob-reader-native@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/chunked-blob-reader-native@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/chunked-blob-reader@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/chunked-blob-reader@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/chunked-blob-reader@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/config-resolver@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/config-resolver@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/config-resolver@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/core@1.3.2</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/core@1.3.2|
+  >|**Version**|@1.3.2|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Smithy Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://smithy.io|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/core@1.3.2
+  ```
+  </details>
+<details>
+  <summary>@smithy/credential-provider-imds@2.2.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/credential-provider-imds@2.2.1|
+  >|**Version**|@2.2.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/credential-provider-imds@2.2.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/eventstream-codec@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/eventstream-codec@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/eventstream-codec@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/eventstream-serde-browser@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/eventstream-serde-browser@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/eventstream-serde-browser@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/eventstream-serde-config-resolver@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/eventstream-serde-config-resolver@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/eventstream-serde-config-resolver@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/eventstream-serde-node@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/eventstream-serde-node@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/eventstream-serde-node@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/eventstream-serde-universal@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/eventstream-serde-universal@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/eventstream-serde-universal@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/fetch-http-handler@2.4.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/fetch-http-handler@2.4.1|
+  >|**Version**|@2.4.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/fetch-http-handler@2.4.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/hash-blob-browser@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/hash-blob-browser@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/hash-blob-browser@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/hash-node@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/hash-node@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/hash-node@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/hash-stream-node@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/hash-stream-node@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/hash-stream-node@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/invalid-dependency@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/invalid-dependency@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/invalid-dependency@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/is-array-buffer@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/is-array-buffer@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/is-array-buffer@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/md5-js@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/md5-js@2.1.1|
+  >|**Version**|@52.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/md5-js@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/middleware-content-length@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/middleware-content-length@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/middleware-content-length@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/middleware-endpoint@2.4.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/middleware-endpoint@2.4.1|
+  >|**Version**|@2.4.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/middleware-endpoint@2.4.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/middleware-retry@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/middleware-retry@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/middleware-retry@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/middleware-serde@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/middleware-serde@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/middleware-serde@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/middleware-stack@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/middleware-stack@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/middleware-stack@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/node-config-provider@2.2.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/node-config-provider@2.2.1|
+  >|**Version**|@2.2.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/node-config-provider@2.2.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/node-http-handler@2.3.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/node-http-handler@2.3.1|
+  >|**Version**|@2.3.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/node-http-handler@2.3.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/property-provider@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/property-provider@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/property-provider@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/protocol-http@3.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/protocol-http@3.1.1|
+  >|**Version**|@3.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Smithy Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://smithy.io|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/protocol-http@3.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/querystring-builder@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/querystring-builder@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/querystring-builder@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/querystring-parser@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/querystring-parser@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/querystring-parser@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/service-error-classification@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/service-error-classification@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/service-error-classification@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/shared-ini-file-loader@2.3.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/shared-ini-file-loader@2.3.1|
+  >|**Version**|@2.3.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/shared-ini-file-loader@2.3.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/signature-v4@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/signature-v4@2.1.1|
+  >|**Version**|@42.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/signature-v4@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/smithy-client@2.3.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/smithy-client@2.3.1|
+  >|**Version**|@2.3.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/smithy-client@2.3.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/types@2.9.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/types@2.9.1|
+  >|**Version**|@2.9.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS Smithy Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://smithy.io|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/types@2.9.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/url-parser@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/url-parser@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/url-parser@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-base64@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-base64@2.1.1|
+  >|**Version**|@642.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-base64@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-body-length-browser@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-body-length-browser@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-body-length-browser@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-body-length-node@2.2.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-body-length-node@2.2.1|
+  >|**Version**|@2.2.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-body-length-node@2.2.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-buffer-from@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-buffer-from@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-buffer-from@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-config-provider@2.2.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-config-provider@2.2.1|
+  >|**Version**|@2.2.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-config-provider@2.2.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-defaults-mode-browser@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-defaults-mode-browser@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-defaults-mode-browser@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-defaults-mode-node@2.2.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-defaults-mode-node@2.2.0|
+  >|**Version**|@2.2.0|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-defaults-mode-node@2.2.0
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-endpoints@1.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-endpoints@1.1.1|
+  >|**Version**|@1.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-endpoints@1.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-hex-encoding@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-hex-encoding@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-hex-encoding@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-middleware@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-middleware@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-middleware@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-retry@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-retry@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-retry@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-stream@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-stream@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-stream@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-uri-escape@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-uri-escape@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-uri-escape@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-utf8@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-utf8@2.1.1|
+  >|**Version**|@82.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-utf8@2.1.1
+  ```
+  </details>
+<details>
+  <summary>@smithy/util-waiter@2.1.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@smithy/util-waiter@2.1.1|
+  >|**Version**|@2.1.1|
+  >|**Repository**|https://github.com/awslabs/smithy-typescript|
+  >|**Licenses**|Apache-2.0|
+  >|**Publisher**|AWS SDK for JavaScript Team|
+  >|**Contact**|NA|
+  >|**Homepage**|https://aws.amazon.com/javascript/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @smithy/util-waiter@2.1.1
   ```
   </details>
 <details>
@@ -3117,13 +4865,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@types/express-serve-static-core@4.17.42</summary>
+  <summary>@types/express-serve-static-core@4.17.43</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@types/express-serve-static-core@4.17.42|
-  >|**Version**|@4.17.42|
+  >|**Name**|@types/express-serve-static-core@4.17.43|
+  >|**Version**|@4.17.43|
   >|**Repository**|https://github.com/DefinitelyTyped/DefinitelyTyped|
   >|**Licenses**|MIT|
   >|**Publisher**|NA|
@@ -3132,7 +4880,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @types/express-serve-static-core@4.17.42
+  npm i @types/express-serve-static-core@4.17.43
   ```
   </details>
 <details>
@@ -3266,6 +5014,44 @@ This file lists the third-party libraries, frameworks, and other components used
   #### Use this package in your project
   ```bash
   npm i @types/ms@0.7.34
+  ```
+  </details>
+<details>
+  <summary>@types/multer-s3@3.0.3</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@types/multer-s3@3.0.3|
+  >|**Version**|@33.0.3|
+  >|**Repository**|https://github.com/DefinitelyTyped/DefinitelyTyped|
+  >|**Licenses**|MIT|
+  >|**Publisher**|NA|
+  >|**Contact**|NA|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @types/multer-s3@3.0.3
+  ```
+  </details>
+<details>
+  <summary>@types/multer@1.4.11</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@types/multer@1.4.11|
+  >|**Version**|@1.4.11|
+  >|**Repository**|https://github.com/DefinitelyTyped/DefinitelyTyped|
+  >|**Licenses**|MIT|
+  >|**Publisher**|NA|
+  >|**Contact**|NA|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @types/multer@1.4.11
   ```
   </details>
 <details>
@@ -3459,13 +5245,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@types/validator@13.11.8</summary>
+  <summary>@types/uuid@9.0.8</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@types/validator@13.11.8|
-  >|**Version**|@13.11.8|
+  >|**Name**|@types/uuid@9.0.8|
+  >|**Version**|@9.0.8|
   >|**Repository**|https://github.com/DefinitelyTyped/DefinitelyTyped|
   >|**Licenses**|MIT|
   >|**Publisher**|NA|
@@ -3474,7 +5260,26 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @types/validator@13.11.8
+  npm i @types/uuid@9.0.8
+  ```
+  </details>
+<details>
+  <summary>@types/validator@13.11.9</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@types/validator@13.11.9|
+  >|**Version**|@13.11.9|
+  >|**Repository**|https://github.com/DefinitelyTyped/DefinitelyTyped|
+  >|**Licenses**|MIT|
+  >|**Publisher**|NA|
+  >|**Contact**|NA|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @types/validator@13.11.9
   ```
   </details>
 <details>
@@ -3516,6 +5321,25 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
+  <summary>@typescript-eslint/eslint-plugin@5.62.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@typescript-eslint/eslint-plugin@5.62.0|
+  >|**Version**|@5.62.0|
+  >|**Repository**|https://github.com/typescript-eslint/typescript-eslint|
+  >|**Licenses**|MIT|
+  >|**Publisher**|NA|
+  >|**Contact**|NA|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @typescript-eslint/eslint-plugin@5.62.0
+  ```
+  </details>
+<details>
   <summary>@typescript-eslint/experimental-utils@5.62.0</summary>
   
   #### Basic details about the package
@@ -3535,6 +5359,25 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
+  <summary>@typescript-eslint/parser@5.62.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@typescript-eslint/parser@5.62.0|
+  >|**Version**|@5.62.0|
+  >|**Repository**|https://github.com/typescript-eslint/typescript-eslint|
+  >|**Licenses**|BSD-2-Clause|
+  >|**Publisher**|NA|
+  >|**Contact**|NA|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @typescript-eslint/parser@5.62.0
+  ```
+  </details>
+<details>
   <summary>@typescript-eslint/scope-manager@5.62.0</summary>
   
   #### Basic details about the package
@@ -3551,6 +5394,25 @@ This file lists the third-party libraries, frameworks, and other components used
   #### Use this package in your project
   ```bash
   npm i @typescript-eslint/scope-manager@5.62.0
+  ```
+  </details>
+<details>
+  <summary>@typescript-eslint/type-utils@5.62.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|@typescript-eslint/type-utils@5.62.0|
+  >|**Version**|@5.62.0|
+  >|**Repository**|https://github.com/typescript-eslint/typescript-eslint|
+  >|**Licenses**|MIT|
+  >|**Publisher**|NA|
+  >|**Contact**|NA|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i @typescript-eslint/type-utils@5.62.0
   ```
   </details>
 <details>
@@ -3649,13 +5511,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>@wrappid/service-core@0.0.7</summary>
+  <summary>@wrappid/service-core@0.0.8</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|@wrappid/service-core@0.0.7|
-  >|**Version**|@0.0.7|
+  >|**Name**|@wrappid/service-core@0.0.8|
+  >|**Version**|@0.0.8|
   >|**Repository**|https://github.com/wrappid/service-core|
   >|**Licenses**|MIT|
   >|**Publisher**|Wrappid|
@@ -3664,7 +5526,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i @wrappid/service-core@0.0.7
+  npm i @wrappid/service-core@0.0.8
   ```
   </details>
 <details>
@@ -4086,13 +5948,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>array-buffer-byte-length@1.0.0</summary>
+  <summary>array-buffer-byte-length@1.0.1</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|array-buffer-byte-length@1.0.0|
-  >|**Version**|@1.0.0|
+  >|**Name**|array-buffer-byte-length@1.0.1|
+  >|**Version**|@1.0.1|
   >|**Repository**|https://github.com/inspect-js/array-buffer-byte-length|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -4101,7 +5963,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i array-buffer-byte-length@1.0.0
+  npm i array-buffer-byte-length@1.0.1
   ```
   </details>
 <details>
@@ -4200,13 +6062,32 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>array.prototype.findlastindex@1.2.3</summary>
+  <summary>array.prototype.filter@1.0.3</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|array.prototype.findlastindex@1.2.3|
-  >|**Version**|@..1.2.3|
+  >|**Name**|array.prototype.filter@1.0.3|
+  >|**Version**|@..1.0.3|
+  >|**Repository**|https://github.com/es-shims/Array.prototype.filter|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Jordan Harband|
+  >|**Contact**|ljharb@gmail.com|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i array.prototype.filter@1.0.3
+  ```
+  </details>
+<details>
+  <summary>array.prototype.findlastindex@1.2.4</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|array.prototype.findlastindex@1.2.4|
+  >|**Version**|@..1.2.4|
   >|**Repository**|https://github.com/es-shims/Array.prototype.findLastIndex|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -4215,7 +6096,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i array.prototype.findlastindex@1.2.3
+  npm i array.prototype.findlastindex@1.2.4
   ```
   </details>
 <details>
@@ -4257,13 +6138,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>arraybuffer.prototype.slice@1.0.2</summary>
+  <summary>arraybuffer.prototype.slice@1.0.3</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|arraybuffer.prototype.slice@1.0.2|
-  >|**Version**|@..1.0.2|
+  >|**Name**|arraybuffer.prototype.slice@1.0.3|
+  >|**Version**|@..1.0.3|
   >|**Repository**|https://github.com/es-shims/ArrayBuffer.prototype.slice|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -4272,7 +6153,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i arraybuffer.prototype.slice@1.0.2
+  npm i arraybuffer.prototype.slice@1.0.3
   ```
   </details>
 <details>
@@ -4352,13 +6233,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>available-typed-arrays@1.0.5</summary>
+  <summary>available-typed-arrays@1.0.6</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|available-typed-arrays@1.0.5|
-  >|**Version**|@1.0.5|
+  >|**Name**|available-typed-arrays@1.0.6|
+  >|**Version**|@1.0.6|
   >|**Repository**|https://github.com/inspect-js/available-typed-arrays|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -4367,17 +6248,17 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i available-typed-arrays@1.0.5
+  npm i available-typed-arrays@1.0.6
   ```
   </details>
 <details>
-  <summary>aws-sdk@2.1537.0</summary>
+  <summary>aws-sdk@2.1555.0</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|aws-sdk@2.1537.0|
-  >|**Version**|@2.1537.0|
+  >|**Name**|aws-sdk@2.1555.0|
+  >|**Version**|@2.1555.0|
   >|**Repository**|https://github.com/aws/aws-sdk-js|
   >|**Licenses**|Apache-2.0|
   >|**Publisher**|Amazon Web Services|
@@ -4386,17 +6267,17 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i aws-sdk@2.1537.0
+  npm i aws-sdk@2.1555.0
   ```
   </details>
 <details>
-  <summary>babel-plugin-polyfill-corejs2@0.4.7</summary>
+  <summary>babel-plugin-polyfill-corejs2@0.4.8</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|babel-plugin-polyfill-corejs2@0.4.7|
-  >|**Version**|@20.4.7|
+  >|**Name**|babel-plugin-polyfill-corejs2@0.4.8|
+  >|**Version**|@20.4.8|
   >|**Repository**|https://github.com/babel/babel-polyfills|
   >|**Licenses**|MIT|
   >|**Publisher**|NA|
@@ -4405,17 +6286,17 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i babel-plugin-polyfill-corejs2@0.4.7
+  npm i babel-plugin-polyfill-corejs2@0.4.8
   ```
   </details>
 <details>
-  <summary>babel-plugin-polyfill-corejs3@0.8.7</summary>
+  <summary>babel-plugin-polyfill-corejs3@0.9.0</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|babel-plugin-polyfill-corejs3@0.8.7|
-  >|**Version**|@30.8.7|
+  >|**Name**|babel-plugin-polyfill-corejs3@0.9.0|
+  >|**Version**|@30.9.0|
   >|**Repository**|https://github.com/babel/babel-polyfills|
   >|**Licenses**|MIT|
   >|**Publisher**|NA|
@@ -4424,17 +6305,17 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i babel-plugin-polyfill-corejs3@0.8.7
+  npm i babel-plugin-polyfill-corejs3@0.9.0
   ```
   </details>
 <details>
-  <summary>babel-plugin-polyfill-regenerator@0.5.4</summary>
+  <summary>babel-plugin-polyfill-regenerator@0.5.5</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|babel-plugin-polyfill-regenerator@0.5.4|
-  >|**Version**|@0.5.4|
+  >|**Name**|babel-plugin-polyfill-regenerator@0.5.5|
+  >|**Version**|@0.5.5|
   >|**Repository**|https://github.com/babel/babel-polyfills|
   >|**Licenses**|MIT|
   >|**Publisher**|NA|
@@ -4443,7 +6324,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i babel-plugin-polyfill-regenerator@0.5.4
+  npm i babel-plugin-polyfill-regenerator@0.5.5
   ```
   </details>
 <details>
@@ -4580,6 +6461,25 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
+  <summary>bowser@2.11.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|bowser@2.11.0|
+  >|**Version**|@2.11.0|
+  >|**Repository**|https://github.com/lancedikson/bowser|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Dustin Diaz|
+  >|**Contact**|dustin@dustindiaz.com|
+  >|**Homepage**|http://dustindiaz.com|
+  
+  #### Use this package in your project
+  ```bash
+  npm i bowser@2.11.0
+  ```
+  </details>
+<details>
   <summary>brace-expansion@1.1.11</summary>
   
   #### Basic details about the package
@@ -4618,13 +6518,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>browserslist@4.22.2</summary>
+  <summary>browserslist@4.22.3</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|browserslist@4.22.2|
-  >|**Version**|@4.22.2|
+  >|**Name**|browserslist@4.22.3|
+  >|**Version**|@4.22.3|
   >|**Repository**|https://github.com/browserslist/browserslist|
   >|**Licenses**|MIT|
   >|**Publisher**|Andrey Sitnik|
@@ -4633,7 +6533,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i browserslist@4.22.2
+  npm i browserslist@4.22.3
   ```
   </details>
 <details>
@@ -4751,13 +6651,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>call-bind@1.0.5</summary>
+  <summary>call-bind@1.0.6</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|call-bind@1.0.5|
-  >|**Version**|@1.0.5|
+  >|**Name**|call-bind@1.0.6|
+  >|**Version**|@1.0.6|
   >|**Repository**|https://github.com/ljharb/call-bind|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -4766,7 +6666,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i call-bind@1.0.5
+  npm i call-bind@1.0.6
   ```
   </details>
 <details>
@@ -4827,13 +6727,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>caniuse-lite@1.0.30001578</summary>
+  <summary>caniuse-lite@1.0.30001585</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|caniuse-lite@1.0.30001578|
-  >|**Version**|@1.0.30001578|
+  >|**Name**|caniuse-lite@1.0.30001585|
+  >|**Version**|@1.0.30001585|
   >|**Repository**|https://github.com/browserslist/caniuse-lite|
   >|**Licenses**|CC-BY-4.0|
   >|**Publisher**|Ben Briggs|
@@ -4842,7 +6742,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i caniuse-lite@1.0.30001578
+  npm i caniuse-lite@1.0.30001585
   ```
   </details>
 <details>
@@ -4903,13 +6803,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>chokidar@3.5.3</summary>
+  <summary>chokidar@3.6.0</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|chokidar@3.5.3|
-  >|**Version**|@3.5.3|
+  >|**Name**|chokidar@3.6.0|
+  >|**Version**|@3.6.0|
   >|**Repository**|https://github.com/paulmillr/chokidar|
   >|**Licenses**|MIT|
   >|**Publisher**|Paul Miller|
@@ -4918,7 +6818,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i chokidar@3.5.3
+  npm i chokidar@3.6.0
   ```
   </details>
 <details>
@@ -5378,13 +7278,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>core-js-compat@3.35.0</summary>
+  <summary>core-js-compat@3.35.1</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|core-js-compat@3.35.0|
-  >|**Version**|@3.35.0|
+  >|**Name**|core-js-compat@3.35.1|
+  >|**Version**|@3.35.1|
   >|**Repository**|https://github.com/zloirock/core-js|
   >|**Licenses**|MIT|
   >|**Publisher**|Denis Pushkarev|
@@ -5393,7 +7293,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i core-js-compat@3.35.0
+  npm i core-js-compat@3.35.1
   ```
   </details>
 <details>
@@ -5682,13 +7582,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>define-data-property@1.1.1</summary>
+  <summary>define-data-property@1.1.2</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|define-data-property@1.1.1|
-  >|**Version**|@1.1.1|
+  >|**Name**|define-data-property@1.1.2|
+  >|**Version**|@1.1.2|
   >|**Repository**|https://github.com/ljharb/define-data-property|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -5697,7 +7597,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i define-data-property@1.1.1
+  npm i define-data-property@1.1.2
   ```
   </details>
 <details>
@@ -6024,13 +7924,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>electron-to-chromium@1.4.635</summary>
+  <summary>electron-to-chromium@1.4.665</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|electron-to-chromium@1.4.635|
-  >|**Version**|@1.4.635|
+  >|**Name**|electron-to-chromium@1.4.665|
+  >|**Version**|@1.4.665|
   >|**Repository**|https://github.com/kilian/electron-to-chromium|
   >|**Licenses**|ISC|
   >|**Publisher**|Kilian Valkhof|
@@ -6039,7 +7939,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i electron-to-chromium@1.4.635
+  npm i electron-to-chromium@1.4.665
   ```
   </details>
 <details>
@@ -6119,6 +8019,44 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
+  <summary>es-array-method-boxes-properly@1.0.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|es-array-method-boxes-properly@1.0.0|
+  >|**Version**|@1.0.0|
+  >|**Repository**|https://github.com/ljharb/es-array-method-boxes-properly|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Jordan Harband|
+  >|**Contact**|ljharb@gmail.com|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i es-array-method-boxes-properly@1.0.0
+  ```
+  </details>
+<details>
+  <summary>es-errors@1.3.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|es-errors@1.3.0|
+  >|**Version**|@1.3.0|
+  >|**Repository**|https://github.com/ljharb/es-errors|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Jordan Harband|
+  >|**Contact**|ljharb@gmail.com|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i es-errors@1.3.0
+  ```
+  </details>
+<details>
   <summary>es-set-tostringtag@2.0.2</summary>
   
   #### Basic details about the package
@@ -6176,13 +8114,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>escalade@3.1.1</summary>
+  <summary>escalade@3.1.2</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|escalade@3.1.1|
-  >|**Version**|@3.1.1|
+  >|**Name**|escalade@3.1.2|
+  >|**Version**|@3.1.2|
   >|**Repository**|https://github.com/lukeed/escalade|
   >|**Licenses**|MIT|
   >|**Publisher**|Luke Edwards|
@@ -6191,7 +8129,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i escalade@3.1.1
+  npm i escalade@3.1.2
   ```
   </details>
 <details>
@@ -6917,13 +8855,32 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>fastq@1.16.0</summary>
+  <summary>fast-xml-parser@4.2.5</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|fastq@1.16.0|
-  >|**Version**|@1.16.0|
+  >|**Name**|fast-xml-parser@4.2.5|
+  >|**Version**|@4.2.5|
+  >|**Repository**|https://github.com/NaturalIntelligence/fast-xml-parser|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Amit Gupta|
+  >|**Contact**|NA|
+  >|**Homepage**|https://amitkumargupta.work/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i fast-xml-parser@4.2.5
+  ```
+  </details>
+<details>
+  <summary>fastq@1.17.1</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|fastq@1.17.1|
+  >|**Version**|@1.17.1|
   >|**Repository**|https://github.com/mcollina/fastq|
   >|**Licenses**|ISC|
   >|**Publisher**|Matteo Collina|
@@ -6932,7 +8889,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i fastq@1.16.0
+  npm i fastq@1.17.1
   ```
   </details>
 <details>
@@ -7411,13 +9368,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>get-intrinsic@1.2.2</summary>
+  <summary>get-intrinsic@1.2.4</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|get-intrinsic@1.2.2|
-  >|**Version**|@1.2.2|
+  >|**Name**|get-intrinsic@1.2.4|
+  >|**Version**|@1.2.4|
   >|**Repository**|https://github.com/ljharb/get-intrinsic|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -7426,7 +9383,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i get-intrinsic@1.2.2
+  npm i get-intrinsic@1.2.4
   ```
   </details>
 <details>
@@ -7449,13 +9406,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>get-symbol-description@1.0.0</summary>
+  <summary>get-symbol-description@1.0.2</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|get-symbol-description@1.0.0|
-  >|**Version**|@1.0.0|
+  >|**Name**|get-symbol-description@1.0.2|
+  >|**Version**|@1.0.2|
   >|**Repository**|https://github.com/inspect-js/get-symbol-description|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -7464,7 +9421,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i get-symbol-description@1.0.0
+  npm i get-symbol-description@1.0.2
   ```
   </details>
 <details>
@@ -7829,13 +9786,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>has-tostringtag@1.0.0</summary>
+  <summary>has-tostringtag@1.0.2</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|has-tostringtag@1.0.0|
-  >|**Version**|@1.0.0|
+  >|**Name**|has-tostringtag@1.0.2|
+  >|**Version**|@1.0.2|
   >|**Repository**|https://github.com/inspect-js/has-tostringtag|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -7844,7 +9801,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i has-tostringtag@1.0.0
+  npm i has-tostringtag@1.0.2
   ```
   </details>
 <details>
@@ -8076,13 +10033,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>ignore@5.3.0</summary>
+  <summary>ignore@5.3.1</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|ignore@5.3.0|
-  >|**Version**|@5.3.0|
+  >|**Name**|ignore@5.3.1|
+  >|**Version**|@5.3.1|
   >|**Repository**|https://github.com/kaelzhang/node-ignore|
   >|**Licenses**|MIT|
   >|**Publisher**|kael|
@@ -8091,7 +10048,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i ignore@5.3.0
+  npm i ignore@5.3.1
   ```
   </details>
 <details>
@@ -8247,13 +10204,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>internal-slot@1.0.6</summary>
+  <summary>internal-slot@1.0.7</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|internal-slot@1.0.6|
-  >|**Version**|@1.0.6|
+  >|**Name**|internal-slot@1.0.7|
+  >|**Version**|@1.0.7|
   >|**Repository**|https://github.com/ljharb/internal-slot|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -8262,7 +10219,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i internal-slot@1.0.6
+  npm i internal-slot@1.0.7
   ```
   </details>
 <details>
@@ -8323,13 +10280,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>is-array-buffer@3.0.2</summary>
+  <summary>is-array-buffer@3.0.4</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|is-array-buffer@3.0.2|
-  >|**Version**|@3.0.2|
+  >|**Name**|is-array-buffer@3.0.4|
+  >|**Version**|@3.0.4|
   >|**Repository**|https://github.com/inspect-js/is-array-buffer|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -8338,7 +10295,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i is-array-buffer@3.0.2
+  npm i is-array-buffer@3.0.4
   ```
   </details>
 <details>
@@ -8798,13 +10755,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>is-typed-array@1.1.12</summary>
+  <summary>is-typed-array@1.1.13</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|is-typed-array@1.1.12|
-  >|**Version**|@1.1.12|
+  >|**Name**|is-typed-array@1.1.13|
+  >|**Version**|@1.1.13|
   >|**Repository**|https://github.com/inspect-js/is-typed-array|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -8813,7 +10770,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i is-typed-array@1.1.12
+  npm i is-typed-array@1.1.13
   ```
   </details>
 <details>
@@ -10318,13 +12275,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>moment-timezone@0.5.44</summary>
+  <summary>moment-timezone@0.5.45</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|moment-timezone@0.5.44|
-  >|**Version**|@0.5.44|
+  >|**Name**|moment-timezone@0.5.45|
+  >|**Version**|@0.5.45|
   >|**Repository**|https://github.com/moment/moment-timezone|
   >|**Licenses**|MIT|
   >|**Publisher**|Tim Wood|
@@ -10333,7 +12290,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i moment-timezone@0.5.44
+  npm i moment-timezone@0.5.45
   ```
   </details>
 <details>
@@ -10486,6 +12443,25 @@ This file lists the third-party libraries, frameworks, and other components used
   #### Use this package in your project
   ```bash
   npm i mute-stream@0.0.7
+  ```
+  </details>
+<details>
+  <summary>natural-compare-lite@1.4.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|natural-compare-lite@1.4.0|
+  >|**Version**|@1.4.0|
+  >|**Repository**|https://github.com/litejs/natural-compare-lite|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Lauri Rooden|
+  >|**Contact**|NA|
+  >|**Homepage**|https://github.com/litejs/natural-compare-lite|
+  
+  #### Use this package in your project
+  ```bash
+  npm i natural-compare-lite@1.4.0
   ```
   </details>
 <details>
@@ -10926,13 +12902,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>object.groupby@1.0.1</summary>
+  <summary>object.groupby@1.0.2</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|object.groupby@1.0.1|
-  >|**Version**|@.1.0.1|
+  >|**Name**|object.groupby@1.0.2|
+  >|**Version**|@.1.0.2|
   >|**Repository**|https://github.com/es-shims/Object.groupBy|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -10941,7 +12917,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i object.groupby@1.0.1
+  npm i object.groupby@1.0.2
   ```
   </details>
 <details>
@@ -12256,13 +14232,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>redis@4.6.12</summary>
+  <summary>redis@4.6.13</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|redis@4.6.12|
-  >|**Version**|@4.6.12|
+  >|**Name**|redis@4.6.13|
+  >|**Version**|@4.6.13|
   >|**Repository**|https://github.com/redis/node-redis|
   >|**Licenses**|MIT|
   >|**Publisher**|NA|
@@ -12271,7 +14247,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i redis@4.6.12
+  npm i redis@4.6.13
   ```
   </details>
 <details>
@@ -12769,13 +14745,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>safe-regex-test@1.0.2</summary>
+  <summary>safe-regex-test@1.0.3</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|safe-regex-test@1.0.2|
-  >|**Version**|@1.0.2|
+  >|**Name**|safe-regex-test@1.0.3|
+  >|**Version**|@1.0.3|
   >|**Repository**|https://github.com/ljharb/safe-regex-test|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -12784,7 +14760,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i safe-regex-test@1.0.2
+  npm i safe-regex-test@1.0.3
   ```
   </details>
 <details>
@@ -12902,6 +14878,25 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
+  <summary>semver@7.6.0</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|semver@7.6.0|
+  >|**Version**|@7.6.0|
+  >|**Repository**|https://github.com/npm/node-semver|
+  >|**Licenses**|ISC|
+  >|**Publisher**|GitHub Inc.|
+  >|**Contact**|NA|
+  >|**Homepage**|NA|
+  
+  #### Use this package in your project
+  ```bash
+  npm i semver@7.6.0
+  ```
+  </details>
+<details>
   <summary>send@0.18.0</summary>
   
   #### Basic details about the package
@@ -12940,13 +14935,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>sequelize@6.35.2</summary>
+  <summary>sequelize@6.36.0</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|sequelize@6.35.2|
-  >|**Version**|@6.35.2|
+  >|**Name**|sequelize@6.36.0|
+  >|**Version**|@6.36.0|
   >|**Repository**|https://github.com/sequelize/sequelize|
   >|**Licenses**|MIT|
   >|**Publisher**|NA|
@@ -12955,7 +14950,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i sequelize@6.35.2
+  npm i sequelize@6.36.0
   ```
   </details>
 <details>
@@ -12997,13 +14992,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>set-function-length@1.2.0</summary>
+  <summary>set-function-length@1.2.1</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|set-function-length@1.2.0|
-  >|**Version**|@1.2.0|
+  >|**Name**|set-function-length@1.2.1|
+  >|**Version**|@1.2.1|
   >|**Repository**|https://github.com/ljharb/set-function-length|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -13012,7 +15007,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i set-function-length@1.2.0
+  npm i set-function-length@1.2.1
   ```
   </details>
 <details>
@@ -13092,13 +15087,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>side-channel@1.0.4</summary>
+  <summary>side-channel@1.0.5</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|side-channel@1.0.4|
-  >|**Version**|@1.0.4|
+  >|**Name**|side-channel@1.0.5|
+  >|**Version**|@1.0.5|
   >|**Repository**|https://github.com/ljharb/side-channel|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -13107,7 +15102,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i side-channel@1.0.4
+  npm i side-channel@1.0.5
   ```
   </details>
 <details>
@@ -13244,13 +15239,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>spdx-exceptions@2.3.0</summary>
+  <summary>spdx-exceptions@2.4.0</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|spdx-exceptions@2.3.0|
-  >|**Version**|@2.3.0|
+  >|**Name**|spdx-exceptions@2.4.0|
+  >|**Version**|@2.4.0|
   >|**Repository**|https://github.com/kemitchell/spdx-exceptions.json|
   >|**Licenses**|CC-BY-3.0|
   >|**Publisher**|The Linux Foundation|
@@ -13259,7 +15254,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i spdx-exceptions@2.3.0
+  npm i spdx-exceptions@2.4.0
   ```
   </details>
 <details>
@@ -13282,13 +15277,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>spdx-license-ids@3.0.16</summary>
+  <summary>spdx-license-ids@3.0.17</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|spdx-license-ids@3.0.16|
-  >|**Version**|@3.0.16|
+  >|**Name**|spdx-license-ids@3.0.17|
+  >|**Version**|@3.0.17|
   >|**Repository**|https://github.com/jslicense/spdx-license-ids|
   >|**Licenses**|CC0-1.0|
   >|**Publisher**|Shinnosuke Watanabe|
@@ -13297,7 +15292,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i spdx-license-ids@3.0.16
+  npm i spdx-license-ids@3.0.17
   ```
   </details>
 <details>
@@ -13719,6 +15714,25 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
+  <summary>strnum@1.0.5</summary>
+  
+  #### Basic details about the package
+  >|Key|Value|
+  >|:--|:--|
+  >|**Name**|strnum@1.0.5|
+  >|**Version**|@1.0.5|
+  >|**Repository**|https://github.com/NaturalIntelligence/strnum|
+  >|**Licenses**|MIT|
+  >|**Publisher**|Amit Gupta|
+  >|**Contact**|NA|
+  >|**Homepage**|https://amitkumargupta.work/|
+  
+  #### Use this package in your project
+  ```bash
+  npm i strnum@1.0.5
+  ```
+  </details>
+<details>
   <summary>supports-color@5.5.0</summary>
   
   #### Basic details about the package
@@ -13776,13 +15790,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>swagger-ui-dist@5.11.0</summary>
+  <summary>swagger-ui-dist@5.11.3</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|swagger-ui-dist@5.11.0|
-  >|**Version**|@5.11.0|
+  >|**Name**|swagger-ui-dist@5.11.3|
+  >|**Version**|@5.11.3|
   >|**Repository**|https://github.com/swagger-api/swagger-ui|
   >|**Licenses**|Apache-2.0|
   >|**Publisher**|NA|
@@ -13791,7 +15805,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i swagger-ui-dist@5.11.0
+  npm i swagger-ui-dist@5.11.3
   ```
   </details>
 <details>
@@ -14365,13 +16379,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>typed-array-buffer@1.0.0</summary>
+  <summary>typed-array-buffer@1.0.1</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|typed-array-buffer@1.0.0|
-  >|**Version**|@1.0.0|
+  >|**Name**|typed-array-buffer@1.0.1|
+  >|**Version**|@1.0.1|
   >|**Repository**|https://github.com/ljharb/typed-array-buffer|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -14380,7 +16394,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i typed-array-buffer@1.0.0
+  npm i typed-array-buffer@1.0.1
   ```
   </details>
 <details>
@@ -14935,13 +16949,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>which-typed-array@1.1.13</summary>
+  <summary>which-typed-array@1.1.14</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|which-typed-array@1.1.13|
-  >|**Version**|@1.1.13|
+  >|**Name**|which-typed-array@1.1.14|
+  >|**Version**|@1.1.14|
   >|**Repository**|https://github.com/inspect-js/which-typed-array|
   >|**Licenses**|MIT|
   >|**Publisher**|Jordan Harband|
@@ -14950,7 +16964,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i which-typed-array@1.1.13
+  npm i which-typed-array@1.1.14
   ```
   </details>
 <details>
@@ -15049,13 +17063,13 @@ This file lists the third-party libraries, frameworks, and other components used
   ```
   </details>
 <details>
-  <summary>xml2js@0.5.0</summary>
+  <summary>xml2js@0.6.2</summary>
   
   #### Basic details about the package
   >|Key|Value|
   >|:--|:--|
-  >|**Name**|xml2js@0.5.0|
-  >|**Version**|@20.5.0|
+  >|**Name**|xml2js@0.6.2|
+  >|**Version**|@20.6.2|
   >|**Repository**|https://github.com/Leonidas-from-XIV/node-xml2js|
   >|**Licenses**|MIT|
   >|**Publisher**|Marek Kubica|
@@ -15064,7 +17078,7 @@ This file lists the third-party libraries, frameworks, and other components used
   
   #### Use this package in your project
   ```bash
-  npm i xml2js@0.5.0
+  npm i xml2js@0.6.2
   ```
   </details>
 <details>
