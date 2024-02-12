@@ -12,6 +12,7 @@ export const handleError = async (
   err: Error,
   req: Request,
   res: Response,
+  // eslint-disable-next-line no-unused-vars
   next: NextFunction
 ) => {
   if (typeof err === "string") {

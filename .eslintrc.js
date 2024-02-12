@@ -9,7 +9,8 @@ module.exports = {
     ecmaVersion: 2021,
     sourceType: "module",
   },
-  plugins: ["import", "node", "promise", "unused-imports"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["import", "node", "promise", "unused-imports", "@typescript-eslint"],
   rules: {
     indent: ["error", 2, { MemberExpression: 1, SwitchCase: 1 }],
     "linebreak-style": ["error", "unix"],
@@ -23,4 +24,9 @@ module.exports = {
     ],
     "import/newline-after-import": "error",
   },
+  settings: {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
 };

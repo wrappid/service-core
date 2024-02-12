@@ -1,12 +1,12 @@
+import cron from "node-cron";
 import TasksRegistry from "../registry/TasksRegistry";
-
-const cron = require("node-cron");
 
 export const setupTasks = async (AppTasksRegistry: any) => {
   let cronSchemas = [];
   const tasksRegistry = { ...TasksRegistry, ...AppTasksRegistry };
   console.log("::----- Its initializeCronJobs -----::");
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { databaseActions } = require("../index");
     cronSchemas = await databaseActions.findAll("application", "CronSchemas");
   } catch (error: any) {
