@@ -1,7 +1,7 @@
 const _systemRoutesRegistry = {
   getVersion: {
     name: "Get Version API",
-    url: "getversion",
+    url: "version",
     authRequired: false,
     entityRef: "getVersion",
     reqMethod: "get",
