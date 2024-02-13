@@ -1,3 +1,5 @@
+import _systemRoutesRegistry from "../modules/_system/routes.registry";
+
 const RoutesRegistry = {
   getDatabases: {
     name: "getDatabases",
@@ -23,5 +25,6 @@ const RoutesRegistry = {
     reqMethod: "get",
     controllerRef: "getColumns",
   },
+  ..._systemRoutesRegistry
 };
 export default RoutesRegistry;

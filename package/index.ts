@@ -19,6 +19,7 @@ import {
   ModelsRegistry,
   TasksRegistry,
   ValidationsRegistry,
+  RoutesRegistry
 } from "./registry/index";
 import { setupRoutes } from "./route/setup.route";
 import setupSwagger from "./swagger/swagger.setup";
@@ -35,6 +36,7 @@ export {
   ModelsRegistry as CoreModelsRegistry,
   TasksRegistry as CoreTasksRegistry,
   ValidationsRegistry as CoreValidationsRegistry,
+  RoutesRegistry as CoreRoutesRegistry,
 
   /**
    * Constants
