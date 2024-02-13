@@ -1,3 +1,4 @@
+import * as _systemController from "./controllers/_system.controller";
 import * as businessController from "./controllers/business.controller";
 import * as databaseController from "./controllers/database.controller";
 import * as formsController from "./controllers/forms.controller";
@@ -18,7 +19,9 @@ const AppBuilderControllersRegistry = {
   // forms controller
   getNoAuthFormSchema: formsController.getNoAuthFormSchema,
   getFormSchema: formsController.getFormSchema,
-
   putFormSchema: formsController.putFormSchema,
+
+  // version 
+  getVersion: [_systemController.getVersion]
 };
 export default AppBuilderControllersRegistry;

@@ -3,12 +3,13 @@ import { apiLogger } from "../middlewares/apiLogger.middleware";
 import { handleError } from "../middlewares/handleError.middleware";
 import ControllersRegistry from "../registry/ControllersRegistry";
 import MiddlewaresRegistry from "../registry/MiddlewaresRegistry";
+import RoutesRegistry from "../registry/RoutesRegistry";
 import { getServerRoutes } from "./helper.route";
 
 export const setupRoutes = async (
   app: any,
   AppControllersRegistry: any,
-  AppRoutes: any
+  AppRoutes: any,
 ) => {
   try {
     /**
@@ -35,10 +36,14 @@ export const setupRoutes = async (
       false
     );
     const localServerRoutes = Object.values(AppRoutes.default);
+    const ServerRoutes = Object.values(RoutesRegistry);
     const serverRoutes = [
       ...authenticatedServerRoutes,
       ...unauthenticatedServerRoutes,
-      ...localServerRoutes,
+      ...localServerRoutes, ...ServerRoutes
+
+      
+      
     ];
 
     console.log("----------------------------------");
