@@ -21,6 +21,7 @@ import {
   ValidationsRegistry,
   RoutesRegistry
 } from "./registry/index";
+import { setupLandingRoute } from "./route/setup.landing.route";
 import { setupRoutes } from "./route/setup.route";
 import setupSwagger from "./swagger/swagger.setup";
 import { setupTasks } from "./tasks/setup.tasks";
@@ -53,6 +54,7 @@ export {
    * routes
    */
   setupRoutes,
+  setupLandingRoute,
 
   /**
    * database
