@@ -68,6 +68,7 @@
     "multer-s3": "~2.10.0",
     "node-cron": "~3.0.2",
     "node-device-detector": "~2.0.14",
+    "node-fetch": "~3.3.2",
     "nodemailer": "~6.9.9",
     "nodemon": "~3.0.1",
     "otp-generator": "~4.0.1",
