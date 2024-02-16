@@ -11,7 +11,7 @@
     "test": "exit 0",
     "build:dev": "node -e \"require('fs').cpSync('./package', './dist', {recursive: true});\"",
     "build": "npx tsc && npm run copy:content",
-    "copy:content": "mkdir './dist/content' && cp -r './package/content/default.landing.html' './dist/content/'",
+    "copy:content": "node -e \"require('fs').cpSync('./package/content', './dist/content/default.landing.html', {recursive: true});\"",
     "publish": "npm publish ./dist --registry=https://npm.pkg.github.com --scope=@wrappid"
   },
   "repository": {
@@ -68,7 +68,7 @@
     "multer-s3": "~2.10.0",
     "node-cron": "~3.0.2",
     "node-device-detector": "~2.0.14",
-    "node-fetch": "~3.3.2",
+    "node-fetch-commonjs": "~3.3.2",
     "nodemailer": "~6.9.9",
     "nodemon": "~3.0.1",
     "otp-generator": "~4.0.1",
