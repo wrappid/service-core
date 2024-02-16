@@ -21,11 +21,7 @@ export const setupRoutes = async (
     app.use(apiLogger);
     app.use(handleError);
 
-    /**
-     * Setup landing route
-     */
-    setupLandingRoute(app);
-
+   
     const controllersRegistry = {
       ...ControllersRegistry,
       ...AppControllersRegistry,
@@ -96,6 +92,11 @@ export const setupRoutes = async (
     });
     console.log("Routes setup successfully.");
     console.log("----------------------------------");
+    /**
+     * Setup landing route
+     */
+    setupLandingRoute(app);
+
   } catch (error) {
     console.log(error);
     throw error;
