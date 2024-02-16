@@ -5,6 +5,7 @@ import ControllersRegistry from "../registry/ControllersRegistry";
 import MiddlewaresRegistry from "../registry/MiddlewaresRegistry";
 import RoutesRegistry from "../registry/RoutesRegistry";
 import { getServerRoutes } from "./helper.route";
+import { setupLandingRoute } from "./setup.landing.route";
 
 export const setupRoutes = async (
   app: any,
@@ -19,6 +20,11 @@ export const setupRoutes = async (
      */
     app.use(apiLogger);
     app.use(handleError);
+
+    /**
+     * Setup landing route
+     */
+    setupLandingRoute(app);
 
     const controllersRegistry = {
       ...ControllersRegistry,
@@ -41,9 +47,6 @@ export const setupRoutes = async (
       ...authenticatedServerRoutes,
       ...unauthenticatedServerRoutes,
       ...localServerRoutes, ...ServerRoutes
-
-      
-      
     ];
 
     console.log("----------------------------------");

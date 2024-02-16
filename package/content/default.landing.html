@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PROJECT_NAME}} API :: Welcome</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+
+    <style type="text/css">
+        body {
+            font-family: "Rubik", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: normal;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Utility Styles starts */
+        .font-small {
+            font-size: 0.857rem;
+        }
+
+        .font-smaller {
+            font-size: 0.75rem;
+        }
+
+        .grid-row {
+            display: grid;
+            grid-template-columns: auto auto;
+            align-items: center;
+        }
+
+        .text-start {
+            text-align: start;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-end {
+            text-align: end;
+        }
+
+        /* Utility Styles ends */
+
+        /* Header Styles starts */
+        .header {
+            background-color: #f6f6f6;
+            height: 40px;
+            padding: 8px 16px;
+            /* Fix header to top */
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .brand {}
+
+        .brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Header Styles ends */
+
+        /* Content Styles starts */
+        .content {
+            padding: 8px 16px;
+            margin: 56px 0 56px;
+        }
+
+        /* Content Styles ends */
+
+        /* Footer Styles starts */
+        .footer {
+            background-color: #f6f6f6;
+            max-height: 40px;
+            padding: 8px 16px;
+            /* Fix footer to bottom */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        /* Footer Styles ends */
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="grid-row">
+            <div class="brand">
+                <img src="https://wrappid.dev/wp-content/uploads/2024/02/logo-1200x400-1-100x33.png"
+                    alt="Wrappid Logo" />
+            </div>
+
+            <div class="font-small text-end">
+                <span>Version:</span> <strong>{{PROJECT_VERSION}}</strong>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <h1>Welcome to the {{PROJECT_NAME}} API</h1>
+        <p>This API is designed for developers to programmatically access data and functionality and <b>not intended for
+                direct browsing</b>.</p>
+        <p>Please refer to the <a href="apidocs/">API Documentation</a> for proper usage guidelines.<br /><span
+                class="font-smaller">API
+                documentation is generated using <a href="https://swagger.io/">Swagger</a>.</span></p>
+        <p>{{PROJECT_DESC}}</p>
+        <p>
+            <a href="{{PROJECT_HOMEPAGE_URL}}" target="_blank" rel="noreferrer">{{PROJECT_NAME}}
+                homepage</a>&nbsp;|&nbsp;
+            <a href="{{PROJECT_REPO_URL}}" target="_blank" rel="noreferrer">{{PROJECT_NAME}}
+                repository</a>&nbsp;|&nbsp;
+            <a href="{{PROJECT_BUGS_URL}}" target="_blank" rel="noreferrer">{{PROJECT_NAME}} bugs</a>
+        </p>
+        <hr>
+        <div class="font-smaller">
+            <p>This API is built using the Wrappid Service template of the Wrappid framework</p>
+            <p>
+                <a href="https://wrappid.dev" target="_blank" rel="noreferrer">Wrappid homepage</a>&nbsp;|&nbsp;
+                <a href="https://github.com/wrappid" target="_blank" rel="noreferrer">Wrappid on GitHub</a>&nbsp;|&nbsp;
+                <a href="https://github.com/orgs/wrappid/repositories" target="_blank" rel="noreferrer">Wrappid
+                    repositories</a>
+            </p>
+            <p>
+                <a href="https://github.com/wrappid/service-core" target="_blank" rel="noreferrer">@wrappid/service-core
+                    source</a>&nbsp;|&nbsp;
+                <a href="https://github.com/wrappid/service-core/issues" target="_blank"
+                    rel="noreferrer">@wrappid/service-core issues</a>
+            </p>
+            <p>
+                <a href="https://github.com/wrappid/wrappid-service" target="_blank" rel="noreferrer">wrappid-service
+                    template source</a>&nbsp;|&nbsp;
+                <a href="https://github.com/wrappid/wrappid-service/issues" target="_blank"
+                    rel="noreferrer">wrappid-service template issues</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer font-smaller">
+        <div class="grid-row">
+            <div class="">
+                Copyright &copy; {{CURRENT_YEAR}} | {{PROJECT_AUTHOR}}
+            </div>
+
+            <div class="text-end">
+                Made with ❤️ using the <a href="https://wrappid.dev">Wrappid</a> framework
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
