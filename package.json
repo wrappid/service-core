@@ -11,7 +11,7 @@
     "test": "exit 0",
     "build:dev": "node -e \"require('fs').cpSync('./package', './dist', {recursive: true});\"",
     "build": "npx tsc && npm run copy:content",
-    "copy:content": "node -e \"require('fs').cpSync('./package/content', './dist/content/default.landing.html', {recursive: true});\"",
+    "copy:content": "node -e \"require('fs').cpSync('./package/content', './dist/content', {recursive: true});\"",
     "publish": "npm publish ./dist --registry=https://npm.pkg.github.com --scope=@wrappid"
   },
   "repository": {
