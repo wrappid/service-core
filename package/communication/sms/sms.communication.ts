@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import fetch from "node-fetch-commonjs";
 import { configProvider } from "../../config/provider.config";
 import { constant } from "../../constants/server.constant";
 import { validatePhone } from "../../validation/default.validation";

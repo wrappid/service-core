@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import fetch from "node-fetch-commonjs";
 import { configProvider } from "../../config/provider.config";
 
 // eslint-disable-next-line prefer-const
