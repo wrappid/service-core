@@ -1,8 +1,11 @@
 import { ApiRequestLogs } from "../models/ApiRequestLogs.model";
 import { Applications } from "../models/Applications.model";
+import { CommunicationHistories } from "../models/CommunicationHistory.model";
+import { CommunicationTemplates } from "../models/CommunicationTemplates.model"; 
 import { CronSchemas } from "../models/CronSchemas.model";
 import { DataTableOptions } from "../models/DataTableOptions.model";
 import { MasterData } from "../models/MasterData.model";
+import { Otps } from "../models/Otp.model";
 import { Pages } from "../models/Pages.model";
 import { Routes } from "../models/Routes.models";
 import { SettingMeta } from "../models/SettingMeta.model";
@@ -50,6 +53,18 @@ const ModelsRegistry: any = {
   SettingMeta: {
     database: "application",
     model: SettingMeta,
+  },
+  CommunicationHistories:{
+    database: "application",
+    model: CommunicationHistories
+  },
+  CommunicationTemplates:{
+    database: "application",
+    model: CommunicationTemplates
+  },
+  Otps:{
+    database: "application",
+    model: Otps
   },
   ...AppBuilderModelsRegistry,
 };
