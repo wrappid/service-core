@@ -75,6 +75,7 @@ export interface LoggingConfig {
 
 export interface WrappidConfig {
   otpLength: number;
+  defaultUserRole: string;
 }
 
 interface Config {
