@@ -1,0 +1,34 @@
+name: Release - CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag-name:
+        type: string
+        description: Enter tag
+    schedule:
+      - cron: "30 16 * * *"
+    branches:
+      - 'development'
+  repository_dispatch:
+
+jobs:        
+  call-create-app-release:
+    permissions: write-all
+    uses: wrappid/workflows/.github/workflows/util-create-package-release.yml@main
+    with:
+      GIT_USER_NAME: ${{ vars.GIT_USER_NAME }}
+      EMAIL_NOTIFY: ${{ vars.EMAIL_NOTIFY }}
+      EMAIL_SENDER_NAME: ${{ vars.EMAIL_SENDER_NAME }}
+      TOOLKIT_VERSION: ${{ vars.TOOLKIT_VERSION }}
+    secrets:
+      PAT: ${{ secrets.PAT }}
+      GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
+      WRAPPID_REGISTRY_TOKEN: ${{ secrets.WRAPPID_REGISTRY_TOKEN }}
+      EMAIL_SERVER_ADDRESS: ${{ secrets.EMAIL_SERVER_ADDRESS }}
+      EMAIL_SERVER_PORT: ${{ secrets.EMAIL_SERVER_PORT }}
+      EMAIL_USER_ID: ${{ secrets.EMAIL_USER_ID }}
+      EMAIL_USER_PASSWORD: ${{ secrets.EMAIL_USER_PASSWORD }}
+      EMAIL_TO: ${{ secrets.EMAIL_TO }}
+      EMAIL_CC: ${{ secrets.EMAIL_CC }}       ## Optional
+      EMAIL_BCC: ${{ secrets.EMAIL_BCC }}     ## Optional
