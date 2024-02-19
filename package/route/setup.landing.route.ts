@@ -97,7 +97,7 @@ function prepareLandingContent(): string{
 }
 
 export const  setupLandingRoute = (app: any) => {
-  app.use("/", (req:Request,res:Response)=>{
+  app.get("/", (req:Request,res:Response)=>{
     try {
       const content: string = prepareLandingContent();
       res.status(200).send(content);
