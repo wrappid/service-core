@@ -95,5 +95,13 @@ const _systemRoutesRegistry = {
     reqMethod: "put",
     controllerRef: "putFormSchema",
   },
+  getSettingMeta:{
+    name: "Setting Meta",
+    url: "settingMeta",
+    authRequired: true,
+    entityRef: "settingMeta",
+    reqMethod: "get",
+    controllerRef: "getSettingMeta"
+  }
 };
 export default _systemRoutesRegistry;
