@@ -45,7 +45,7 @@ const getNoAuthFormSchema = async (req: any, res: any) => {
  */
 const getFormSchema = async (req: any, res: any) => {
   try {
-    const formID: any = req;
+    const formID: any = req.params.formID;
 
     if (!formID) {
       return res
