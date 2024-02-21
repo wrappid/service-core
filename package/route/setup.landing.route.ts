@@ -26,10 +26,6 @@ const placeHolderKeyMap: { [key: string]: string } = {
   PROJECT_HOMEPAGE_URL: "package.homepage",
   PROJECT_REPO_URL: "package.repository.url",
   PROJECT_BUGS_URL: "package.bugs.url",
-  /**
-   * @todo write func to return current year in YYYY format
-   */
-  CURRENT_YEAR: "2024",
 };
 /**
  * 
@@ -54,7 +50,7 @@ function getDataValue(data: WrappidConfigObjectType, dataKey: string): string {
         console.error(`${key} is not a valid datatype`);
       }
     } else {
-      console.error(`${key} is not an object`);
+      console.warn(`${key} is not an object`);
     }
   });
 
@@ -80,12 +76,11 @@ function prepareLandingContent(): string{
     Object.keys(placeHolderKeyMap).forEach((placeHolder: string) => {
       if (/** @todo  */ template.includes(`{{${placeHolder}}}`)){
         const dataKey: string = placeHolderKeyMap[placeHolder]; //datakey = "package.name"
-        const dataValue: string = getDataValue(data, dataKey);
         /**
-         * @todo
-         *  1. if package.name datakey 
-         *    data['package']['name']
+         *  @todo
+         *  have to make more generic , presently supporting only "package."
          */
+        const dataValue = getDataValue(data, dataKey);
         template = template.replaceAll(`{{${placeHolder}}}`, dataValue);
       }
     });
