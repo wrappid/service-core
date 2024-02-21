@@ -26,7 +26,6 @@ const placeHolderKeyMap: { [key: string]: string } = {
   PROJECT_HOMEPAGE_URL: "package.homepage",
   PROJECT_REPO_URL: "package.repository.url",
   PROJECT_BUGS_URL: "package.bugs.url",
-  CURRENT_YEAR: new Date().getFullYear().toString(),
 };
 /**
  * 
@@ -81,11 +80,7 @@ function prepareLandingContent(): string{
          *  @todo
          *  have to make more generic , presently supporting only "package."
          */
-        let dataValue: string = dataKey;
-        if( dataKey.includes("package.") ){
-          dataValue = getDataValue(data, dataKey);
-        }
-       
+        const dataValue = getDataValue(data, dataKey);
         template = template.replaceAll(`{{${placeHolder}}}`, dataValue);
       }
     });
