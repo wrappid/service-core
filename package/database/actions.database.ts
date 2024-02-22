@@ -76,10 +76,10 @@ export const databaseActions = {
     }
   },
 
-  findByPk: async (database: string, model: string, primaryKey: number) => {
+  findByPk: async (database: string, model: string, primaryKey: number, options?: any) => {
     try {
       return await databaseProvider[database].models[model].findByPk(
-        primaryKey
+        primaryKey, options
       );
     } catch (error: any) {
       throw new Error(error);
