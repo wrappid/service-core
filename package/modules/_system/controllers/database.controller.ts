@@ -52,10 +52,9 @@ const getAttributes = async (req: any, res: any) => {
     const database = req.params.database;
     const table = req.params.table;
     // eslint-disable-next-line no-unused-vars
-    const _searchValue = req.query._searchValue;
+    const _searchValue = req.query?._searchValue || "";
 
-    const requestedDBTables: any = Object.keys(databaseProvider[database].models);
-    const rawAttributes = requestedDBTables[table]?.rawAttributes || {};
+    const rawAttributes = databaseProvider[database].models[table]?.rawAttributes || {};
 
     const _data = {
       entity: table,
@@ -63,7 +62,7 @@ const getAttributes = async (req: any, res: any) => {
         ?.filter((key) => {
           return key
             .toLocaleLowerCase()
-            .includes(req.query._searchValue?.toLocaleLowerCase());
+            .includes(_searchValue?.toLocaleLowerCase());
         })
         .map((key) => {
           // eslint-disable-next-line no-undef
