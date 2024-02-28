@@ -48,6 +48,10 @@ export const Pages = (sequelize: any, DataTypes: any) => {
       type: "TIMESTAMP",
       allowNull: true,
     },
+    layout: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   });
 
   pages.associate = (models: any) => {
