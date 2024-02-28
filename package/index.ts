@@ -2,6 +2,7 @@ import { cacheActions } from "./cache/cache.actions";
 import { communicate } from "./communication/communicate.communicator";
 import { configProvider } from "./config/provider.config";
 import { constant, DEFAULT_PORT } from "./constants/server.constant";
+import { coreApp } from "./coreApp";
 import { databaseActions } from "./database/actions.database";
 import {
   getDatabases,
@@ -9,9 +10,6 @@ import {
   getColumns,
 } from "./database/helper.database";
 import { databaseProvider } from "./database/provider.database";
-import { setupModels } from "./database/setup.database";
-import { setupFunctions } from "./function/setup.functions";
-import { setupLogging } from "./logging/setup.logging";
 import {
   ControllersRegistry,
   FunctionsRegistry,
@@ -21,10 +19,8 @@ import {
   ValidationsRegistry,
   RoutesRegistry
 } from "./registry/index";
-import { setupLandingRoute } from "./route/setup.landing.route";
-import { setupRoutes } from "./route/setup.route";
-import setupSwagger from "./swagger/swagger.setup";
-import { setupTasks } from "./tasks/setup.tasks";
+
+
 
 export {
   configProvider,
@@ -46,20 +42,8 @@ export {
   DEFAULT_PORT,
 
   /**
-   * logging
+   *  Database
    */
-  setupLogging,
-
-  /**
-   * routes
-   */
-  setupRoutes,
-  setupLandingRoute,
-
-  /**
-   * database
-   */
-  setupModels,
   databaseProvider,
   databaseActions,
   cacheActions,
@@ -72,18 +56,5 @@ export {
    */
   communicate,
 
-  /**
-   * Cron Functions
-   */
-  setupTasks,
-
-  /**
-   * setupFunctions
-   */
-  setupFunctions,
-
-  /**
-   * Setup swagger API Docs
-   */
-  setupSwagger,
+  coreApp
 };
