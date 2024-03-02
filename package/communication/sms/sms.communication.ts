@@ -46,18 +46,15 @@ const communicate = async (smsOptions: any) => {
         })
           .then(async (res: any) => {
             if (res.status !== 200) {
-              await databaseActions.create("application", "CommunicationHistories", {
-                type: constant.commType.SMS,
+              await databaseActions.update("application", "CommunicationHistories", {
                 from: sender,
                 to: phone,
-                retryCount: null,
                 status: "faild",
                 attachemnts: null,
                 variable: null,
                 extraInfo: null,
                 isActive: null,
                 _status: constant.entityStatus.SENT_FAILED,
-                createdAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
                 updatedAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
                 deletedAt: null,
                 updatedBy: null,
@@ -65,21 +62,22 @@ const communicate = async (smsOptions: any) => {
                 userId: null,
                 deletedBy: null,
                 templateId: null,
+              },{
+                where: {
+                  id: smsOptions.dbRowId
+                }
               });
               throw new Error(`SMS sent failed. Status Code: ${smsRes.status}`);
             }
-            await databaseActions.create("application", "CommunicationHistories", {
-              type: constant.commType.SMS,
+            await databaseActions.update("application", "CommunicationHistories", {
               from: sender,
               to: phone,
-              retryCount: null,
               status: "success",
               attachemnts: null,
               variable: null,
               extraInfo: null,
               isActive: null,
               _status: constant.entityStatus.SENT,
-              createdAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
               updatedAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
               deletedAt: null,
               updatedBy: null,
@@ -87,6 +85,10 @@ const communicate = async (smsOptions: any) => {
               userId: null,
               deletedBy: null,
               templateId: null,
+            },{
+              where: {
+                id: smsOptions.dbRowId
+              }
             });
             return res.text();
           })

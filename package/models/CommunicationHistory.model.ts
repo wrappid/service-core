@@ -1,5 +1,5 @@
 export const CommunicationHistories = (sequelize: any, DataTypes: any) => {
-  const CommunicationHistories = sequelize.define("CommunicationHistories", {
+  const CommunicationHistories = sequelize.define("CommunicationHistory", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -18,7 +18,7 @@ export const CommunicationHistories = (sequelize: any, DataTypes: any) => {
       defaultValue: null,
     },
     retryCount: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       defaultValue: null,
     },
     status: {

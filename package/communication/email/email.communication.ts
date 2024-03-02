@@ -29,18 +29,14 @@ const communicate = async (mailOptions: any) => {
       return new Promise(function (resolve, reject) {
         transporter.sendMail(mailOptions, async (err: any, info: any) => {
           if (err) {
-            await databaseActions.create("application", "CommunicationHistories", {
-              type: constant.commType.SMS,
+            await databaseActions.update("application", "CommunicationHistories", {
               from: fromEmail,
-              to: mailOptions.to[0],
-              retryCount: null,
               status: "faild",
               attachemnts: null,
               variable: null,
               extraInfo: null,
               isActive: null,
               _status: constant.entityStatus.SENT_FAILED,
-              createdAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
               updatedAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
               deletedAt: null,
               updatedBy: null,
@@ -48,22 +44,23 @@ const communicate = async (mailOptions: any) => {
               userId: null,
               deletedBy: null,
               templateId: null,
+            }, {
+              where: {
+                id: mailOptions.dbRowId
+              }
             });
             console.log("error: ", err);
             reject(err);
           } else {
-            await databaseActions.create("application", "CommunicationHistories", {
-              type: constant.commType.SMS,
+            await databaseActions.update("application", "CommunicationHistories", {
               from: fromEmail,
               to: mailOptions.to[0],
-              retryCount: null,
               status: "success",
               attachemnts: null,
               variable: null,
               extraInfo: null,
               isActive: null,
               _status: constant.entityStatus.SENT,
-              createdAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
               updatedAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
               deletedAt: null,
               updatedBy: null,
@@ -71,6 +68,10 @@ const communicate = async (mailOptions: any) => {
               userId: null,
               deletedBy: null,
               templateId: null,
+            },{
+              where: {
+                id: mailOptions.dbRowId
+              }
             });
             console.log("Mail sent successfully!");
             resolve(info);

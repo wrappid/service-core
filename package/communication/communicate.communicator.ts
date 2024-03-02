@@ -1,3 +1,4 @@
+import moment from "moment";
 import { constant } from "../constants/server.constant";
 import { databaseActions } from "../database/actions.database";
 import * as communicationUtils from "../utils/communication.utils";
@@ -5,14 +6,6 @@ import communicateEmail from "./email/email.communication";
 import communicateSMS from "./sms/sms.communication";
 import communicateWhatsApp from "./whatsapp/whatsapp.communication";
 
-type CommunicationParamType = {
-  commType: string,
-  commRecipients: any,
-  commData: string,
-  commTemplateID: string,
-  directFlag: boolean,
-  errorFlag: boolean,
-}
 
 /**
  *
@@ -25,7 +18,7 @@ export const communicate = async ({
   commTemplateID,
   directFlag,
   errorFlag=true,
-}: CommunicationParamType) => {
+}: any) => {
   try {
     // get template
     const communicationTemplate = await databaseActions.findOne(
@@ -48,21 +41,44 @@ export const communicate = async ({
     });
     //create
     //  FunctionsRegistry.createCommunicationHistory();
+    const { id } : any = await databaseActions.create("application", "CommunicationHistories", {
+      type: commType,
+      from: null,
+      to: commRecipients[0],
+      retryCount: 0,
+      status: "processing",
+      attachemnts: null,
+      variable: null,
+      extraInfo: null,
+      isActive: null,
+      _status: constant.entityStatus.PENDING,
+      createdAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
+      updatedAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
+      deletedAt: null,
+      updatedBy: null,
+      mailCommId: null,
+      userId: null,
+      deletedBy: null,
+      templateId: null,
+    });
+     
     try {
       if (directFlag) {
         switch (commType) {
           case constant.commType.EMAIL:
-            return communicateEmail({ ...commRecipients, ...messageObject });
+            return communicateEmail({ ...commRecipients, ...messageObject, dbRowId: id });
           case constant.commType.SMS:
             return communicateSMS({
               phone: commRecipients.to[0],
               ...messageObject,
               dlttemplateid: communicationTemplate.externalTemplateId,
+              dbRowId: id
             });
           case constant.commType.WHATSAPP:
             return communicateWhatsApp({
               phone: commRecipients.to[0],
               ...messageObject,
+              dbRowId: id
             });
           default:
             throw new Error("Communication type is invalid.");
