@@ -1,5 +1,8 @@
+import moment from "moment";
 import nodemailer from "nodemailer";
 import { configProvider } from "../../config/provider.config";
+import { constant } from "../../constants/server.constant";
+import { databaseActions } from "../../database/actions.database";
 import { validateEmails } from "../../utils/communication.utils";
 
 const { fromName, fromEmail, replyTo, service, email, password } =
@@ -24,11 +27,51 @@ const communicate = async (mailOptions: any) => {
     if (validateEmails(mailOptions)) {
       console.log("mailOptions", mailOptions);
       return new Promise(function (resolve, reject) {
-        transporter.sendMail(mailOptions, (err: any, info: any) => {
+        transporter.sendMail(mailOptions, async (err: any, info: any) => {
           if (err) {
+            await databaseActions.create("application", "CommunicationHistories", {
+              type: constant.commType.SMS,
+              from: fromEmail,
+              to: mailOptions.to[0],
+              retryCount: null,
+              status: "faild",
+              attachemnts: null,
+              variable: null,
+              extraInfo: null,
+              isActive: null,
+              _status: constant.entityStatus.SENT_FAILED,
+              createdAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
+              updatedAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
+              deletedAt: null,
+              updatedBy: null,
+              mailCommId: null,
+              userId: null,
+              deletedBy: null,
+              templateId: null,
+            });
             console.log("error: ", err);
             reject(err);
           } else {
+            await databaseActions.create("application", "CommunicationHistories", {
+              type: constant.commType.SMS,
+              from: fromEmail,
+              to: mailOptions.to[0],
+              retryCount: null,
+              status: "success",
+              attachemnts: null,
+              variable: null,
+              extraInfo: null,
+              isActive: null,
+              _status: constant.entityStatus.SENT,
+              createdAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
+              updatedAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
+              deletedAt: null,
+              updatedBy: null,
+              mailCommId: null,
+              userId: null,
+              deletedBy: null,
+              templateId: null,
+            });
             console.log("Mail sent successfully!");
             resolve(info);
           }

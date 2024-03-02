@@ -1,6 +1,9 @@
+import moment from "moment";
 import fetch from "node-fetch-commonjs";
+
 import { configProvider } from "../../config/provider.config";
 import { constant } from "../../constants/server.constant";
+import { databaseActions } from "../../database/actions.database";
 import { validatePhone } from "../../validation/default.validation";
 
 const { service, url, username, password, sender } =
@@ -8,7 +11,11 @@ const { service, url, username, password, sender } =
 
 const communicate = async (smsOptions: any) => {
   const { phone, message, dlttemplateid } = smsOptions;
-
+  console.log("====================================");
+  console.log(phone);
+  console.log(message);
+  console.log(dlttemplateid);
+  console.log("====================================");
   try {
     if (service === constant.smsService.KIT_19) {
       /**
@@ -25,17 +32,62 @@ const communicate = async (smsOptions: any) => {
         kit19Url += `&message=${message}`;
         // set dlt template id
         kit19Url += `&dlttemplateid=${dlttemplateid}`;
-
+        console.log("====================================");
+        console.log("sender::",sender);
+        console.log("phone::",phone);
+        console.log("message::",message);
+        console.log("dlttemplateid::",dlttemplateid);
+        console.log("====================================");
         console.log(kit19Url);
         const smsRes: any = await fetch(kit19Url, {
           headers: {
             "Content-Type": "application/json",
           },
         })
-          .then((res: any) => {
+          .then(async (res: any) => {
             if (res.status !== 200) {
+              await databaseActions.create("application", "CommunicationHistories", {
+                type: constant.commType.SMS,
+                from: sender,
+                to: phone,
+                retryCount: null,
+                status: "faild",
+                attachemnts: null,
+                variable: null,
+                extraInfo: null,
+                isActive: null,
+                _status: constant.entityStatus.SENT_FAILED,
+                createdAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
+                updatedAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
+                deletedAt: null,
+                updatedBy: null,
+                mailCommId: null,
+                userId: null,
+                deletedBy: null,
+                templateId: null,
+              });
               throw new Error(`SMS sent failed. Status Code: ${smsRes.status}`);
             }
+            await databaseActions.create("application", "CommunicationHistories", {
+              type: constant.commType.SMS,
+              from: sender,
+              to: phone,
+              retryCount: null,
+              status: "success",
+              attachemnts: null,
+              variable: null,
+              extraInfo: null,
+              isActive: null,
+              _status: constant.entityStatus.SENT,
+              createdAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
+              updatedAt:  moment().format("YYYY-MM-DD HH:mm:ss"),
+              deletedAt: null,
+              updatedBy: null,
+              mailCommId: null,
+              userId: null,
+              deletedBy: null,
+              templateId: null,
+            });
             return res.text();
           })
           .then((data: any) => {

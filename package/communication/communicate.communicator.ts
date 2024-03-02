@@ -5,6 +5,15 @@ import communicateEmail from "./email/email.communication";
 import communicateSMS from "./sms/sms.communication";
 import communicateWhatsApp from "./whatsapp/whatsapp.communication";
 
+type CommunicationParamType = {
+  commType: string,
+  commRecipients: any,
+  commData: string,
+  commTemplateID: string,
+  directFlag: boolean,
+  errorFlag: boolean,
+}
+
 /**
  *
  * @param {*} communicationObject
@@ -15,8 +24,8 @@ export const communicate = async ({
   commData,
   commTemplateID,
   directFlag,
-  errorFlag,
-}: any) => {
+  errorFlag=true,
+}: CommunicationParamType) => {
   try {
     // get template
     const communicationTemplate = await databaseActions.findOne(
