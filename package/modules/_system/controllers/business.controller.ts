@@ -13,7 +13,7 @@ import {
  */
 const getBusinessEntities = async (req: any, res: any) => {
   try {
-    const data: any = databaseActions.findAll(
+    const data: any = await databaseActions.findAll(
       "application",
       "BusinessEntitySchemas",
       {

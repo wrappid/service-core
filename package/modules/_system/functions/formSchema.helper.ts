@@ -142,10 +142,10 @@ async function getFormSchemaFromDB(formID: any, auth: any) {
     };
     if (auth) {
       whereClause["authRequired"] = true;
-    } else {
+    } else  {
       whereClause["authRequired"] = {
         [dbSequelize.Op.or]: {
-          [dbSequelize.Op.eq]: false,
+          [dbSequelize.Op.eq]: true,
           [dbSequelize.Op.is]: null,
         },
       };

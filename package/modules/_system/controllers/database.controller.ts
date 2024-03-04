@@ -11,7 +11,7 @@ const getDatabaseTables = (req: any, res: any) => {
   try {
     // eslint-disable-next-line no-unused-vars
     const database = req.params.database;
-    const requestedDBTables = databaseProvider.application.models;
+    const requestedDBTables = databaseProvider[database].models;
     const searchValue = req.query._searchValue;
 
     let searchedTables = Object.keys(requestedDBTables);
