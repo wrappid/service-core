@@ -26,7 +26,7 @@ const getNoAuthFormSchema = async (req: any, res: any) => {
         formID: formID,
       });
     } else {
-      res.status(204);
+      res.status(204).send();
     }
   } catch (error: any) {
     console.error(error);
