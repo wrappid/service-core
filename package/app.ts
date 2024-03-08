@@ -10,7 +10,7 @@ import setupSwagger from "./swagger/swagger.setup";
 import { setupTasks } from "./tasks/setup.tasks";
 
 
-export function coreApp(wrappidApp: any,ControllersRegistry: any, FunctionsRegistry: any, ModelsRegistry: any, RoutesRegistry: any, TasksRegistry: any, swaggerJsonFile: any){
+export function app(wrappidApp: any,ControllersRegistry: any, FunctionsRegistry: any, ModelsRegistry: any, RoutesRegistry: any, TasksRegistry: any, swaggerJsonFile: any){
   const options = {
     inflate: true,
     limit: "50mb",

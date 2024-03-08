@@ -1,8 +1,8 @@
+import { app } from "./app";
 import { cacheActions } from "./cache/cache.actions";
 import { communicate } from "./communication/communicate.communicator";
 import { configProvider } from "./config/provider.config";
 import { constant, DEFAULT_PORT } from "./constants/server.constant";
-import { coreApp } from "./coreApp";
 import { databaseActions } from "./database/actions.database";
 import {
   getDatabases,
@@ -56,5 +56,8 @@ export {
    */
   communicate,
 
-  coreApp
+  /**
+   * 
+   */
+  app
 };
