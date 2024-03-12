@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { Request, Response } from "express";
+import { extractUrl } from "../utils/routes.utils";
 
 // const RouteContentType = {
 //   HTML: "html",
@@ -43,9 +44,10 @@ function getDataValue(data: WrappidConfigObjectType, dataKey: string): string {
       if(tempData[key] && (typeof tempData[key] === "string" 
       || typeof tempData[key] === "number" 
       || typeof tempData[key] === "boolean")){
-        value = tempData[key].toString();
+        value = extractUrl(tempData[key].toString());
       } else if(tempData[key] && typeof tempData[key] === "object"){
         tempData = <WrappidConfigObjectType>tempData[key];
+        
       } else {
         console.error(`${key} is not a valid datatype`);
       }
