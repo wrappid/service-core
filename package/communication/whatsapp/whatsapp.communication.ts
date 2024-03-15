@@ -1,30 +1,33 @@
 import fetch from "node-fetch-commonjs";
-import { configProvider } from "../../config/provider.config";
+import { getDefaultCommunicationConfig } from "../../utils/communication.utils";
 
 // eslint-disable-next-line prefer-const
-let { api_url, id, accessToken } = configProvider().whatsappProvider;
-api_url = api_url.replace(":id", id);
+// let { api_url, id, accessToken } = configProvider().whatsappProvider;
+// api_url = api_url.replace(":id", id);
 
 async function communicate(whatsappOptions: any) {
   const { phone, data } = whatsappOptions;
   let res = {};
   try {
-    const body = {
-      messaging_product: "whatsapp",
-      to: phone,
-      type: "template",
-      template: JSON.parse(data),
-    };
-    res = await fetch(api_url, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + accessToken,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then((response: any) => {
-        return response.json();
+    const defaultProvider = await getDefaultCommunicationConfig("whatsapp");
+    if (defaultProvider) {
+      const { api_url,  accessToken }: any = defaultProvider;
+      const body = {
+        messaging_product: "whatsapp",
+        to: phone,
+        type: "template",
+        template: JSON.parse(data),
+      };
+      res = await fetch(api_url, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + accessToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      })
+        .then((response: any) => {
+          return response.json();
         // console.log("Send status : ", response.status);
         // console.log("Error Msg", response.message);
         // if (!response.ok) {
@@ -46,32 +49,37 @@ async function communicate(whatsappOptions: any) {
         //     error: "Error to send prescription",
         //   };
         // }
-      })
-      .then((data: any) => {
-        if (data.error) {
-          console.error("whatsapp cloud api returned error", data.error);
+        })
+        .then((data: any) => {
+          if (data.error) {
+            console.error("whatsapp cloud api returned error", data.error);
+            return {
+              status: 500,
+              success: false,
+              error: data.error,
+            };
+          } else
+            return {
+              status: 200,
+              success: true,
+              error: null,
+              data: data,
+            };
+        })
+        .catch((err: any) => {
+          console.log("Error to send whatsapp");
           return {
             status: 500,
             success: false,
-            error: data.error,
+            error: err,
           };
-        } else
-          return {
-            status: 200,
-            success: true,
-            error: null,
-            data: data,
-          };
-      })
-      .catch((err: any) => {
-        console.log("Error to send whatsapp");
-        return {
-          status: 500,
-          success: false,
-          error: err,
-        };
-      });
-  } catch (err) {
+        });
+    } 
+    else{
+      console.log("No Whatsapp provider with 'default': true found.");
+      throw new Error("No Whatsapp provider with 'default': true found.");
+    }
+  }catch (err) {
     console.log(err);
     throw err;
   }
