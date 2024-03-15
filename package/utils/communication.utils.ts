@@ -1,6 +1,39 @@
+import { configProvider } from "../config/provider.config";
+import { EmailProvider, SmsProvider, WhatsappProvider } from "../config/types.config";
 import { constant } from "../constants/server.constant";
 import { validateEmail } from "../validation/default.validation";
 
+export async function getDefaultCommunicationConfig(commType: "email" | "sms" | "whatsapp"): Promise<EmailProvider | SmsProvider | WhatsappProvider> {
+  try {
+    const multipleDefaults = configProvider().communication[commType].providers.filter(provider => provider.default === true);
+    if (multipleDefaults.length > 1) {
+      throw new Error(commType + " providers cannot have multiple 'default': true");
+    }
+    if (multipleDefaults.length == 0) {
+      throw new Error(commType + " providers cannot have any 'default': true");
+    }
+    return multipleDefaults[0];
+  } catch (error:any) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function checkIfCommunicationEnabled(commType: "email" | "sms" | "whatsapp" ): Promise<boolean>{
+  try {
+    //check communciation enabled or not
+    if(!configProvider().communication.enabled === true){
+      throw new Error("Communication Disabled!!");
+    }
+    if(!configProvider().communication[commType].enabled === true){
+      throw new Error(commType+ " Communciaation Disabled!!");
+    }
+    return true;
+  } catch (error:any) {
+    console.log(error);
+    throw error;
+  }
+}
 /**
  *
  * @param {*} mailRecipients
