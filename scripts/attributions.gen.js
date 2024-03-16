@@ -1,14 +1,13 @@
 #!/usr/bin/env node
-/* eslint-disable import/order */
-/* eslint-disable no-console */
-// eslint-disable-next-line no-undef
-const path = require("path");
-// eslint-disable-next-line no-undef
-const licenseChecker = require("license-checker");
-// eslint-disable-next-line no-undef, id-length
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require("fs");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path");
 
-// eslint-disable-next-line no-undef
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const licenseChecker = require("license-checker");
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require("../package.json");
 
 /**
