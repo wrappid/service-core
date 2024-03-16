@@ -165,7 +165,14 @@ const _systemRoutesRegistry = {
     reqMethod: "patch",
     controllerRef: "patchDatabaseModel"
   },
-
-
+  //test communication
+  postTestCommunication: {
+    name: "Test communication",
+    url: "communication/test/:commType",
+    authRequired: false,
+    entityRef: "postTestCommunication",
+    reqMethod: "post",
+    controllerRef: "postTestCommunication"
+  }
 };
 export default _systemRoutesRegistry;
