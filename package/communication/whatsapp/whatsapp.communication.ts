@@ -6,7 +6,7 @@ import { getDefaultCommunicationConfig } from "../../utils/communication.utils";
 // api_url = api_url.replace(":id", id);
 
 async function communicate(whatsappOptions: any) {
-  const { phone, data } = whatsappOptions;
+  const { phone, messageObject } = whatsappOptions;
   let res = {};
   try {
     const defaultProvider = await getDefaultCommunicationConfig("whatsapp");
@@ -14,9 +14,9 @@ async function communicate(whatsappOptions: any) {
       const { api_url,  accessToken }: any = defaultProvider;
       const body = {
         messaging_product: "whatsapp",
-        to: phone,
-        type: "template",
-        template: JSON.parse(data),
+        to: "91"+phone,
+        type: "template", 
+        template: JSON.parse(messageObject.message)
       };
       res = await fetch(api_url, {
         method: "POST",
@@ -53,6 +53,7 @@ async function communicate(whatsappOptions: any) {
         .then((data: any) => {
           if (data.error) {
             console.error("whatsapp cloud api returned error", data.error);
+            throw data.error;
             return {
               status: 500,
               success: false,

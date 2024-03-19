@@ -55,7 +55,7 @@ export const communicate = async ({
           case constant.commType.WHATSAPP:
             return communicateWhatsApp({
               phone: commRecipients.to[0],
-              ...messageObject,
+              messageObject,
             });
           default:
             throw new Error("Communication type is invalid.");
