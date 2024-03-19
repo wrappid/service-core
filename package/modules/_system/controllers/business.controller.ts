@@ -173,13 +173,8 @@ const noAuthGetAllEntityData = async (req: any, res: any) => {
   const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
-  const entities = ["RoutePages"];
 
   try {
-    if (!entity && !entities.includes(entity)) {
-      res.status(204).json({ message: "Entity is missing" });
-      return;
-    }
 
     const data: any = await getEntityDataName(entity, req.query);
 
