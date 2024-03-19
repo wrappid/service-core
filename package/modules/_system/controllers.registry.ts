@@ -4,7 +4,7 @@ import * as businessController from "./controllers/business.controller";
 import * as dataController from "./controllers/data.controller";
 import * as databaseController from "./controllers/database.controller";
 import * as formsController from "./controllers/forms.controller";
-import { getSettingMeta } from "./validations/_system.validation";
+import { getSettingMeta, sentOtp } from "./validations/_system.validation";
 
 const AppBuilderControllersRegistry = {
   //database
@@ -40,7 +40,10 @@ const AppBuilderControllersRegistry = {
   postDatabaseModel: [dataController.postDatabaseModel],
   putUpdateStatus: [dataController.putUpdateStatus],
   putDatabaseModel: [dataController.putDatabaseModel],
-  patchDatabaseModel: [dataController.patchDatabaseModel]
+  patchDatabaseModel: [dataController.patchDatabaseModel],
 
+  //test communication
+  postTestCommunication: [validation(sentOtp),
+    _systemController.postTestCommunication,]
 };
 export default AppBuilderControllersRegistry;

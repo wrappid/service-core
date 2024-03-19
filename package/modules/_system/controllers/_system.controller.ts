@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import { getSettingMetaFunc } from "../functions/_system.function";
+import { getSettingMetaFunc, postTestCommunicationFunc } from "../functions/_system.function";
 
 export const getVersion = async (req: Request, res: Response) => {
   try {
@@ -25,4 +25,17 @@ export const getSettingMeta = async (req:Request, res:Response) => {
     res.status(500).json({ message: "Error in User Setting  fetch" });
   }
 
+};
+
+
+export const postTestCommunication = async (req:Request, res:Response) => {
+  try {
+    const {status, ...restData} = await postTestCommunicationFunc(req, res);
+    res.status(status).json({
+      ...restData
+    });
+  } catch (error:any) {
+    console.log(error);
+    res.status(500).json({ message: "Error ::" +error.message  });
+  }
 };
