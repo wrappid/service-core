@@ -102,6 +102,77 @@ const _systemRoutesRegistry = {
     entityRef: "settingMeta",
     reqMethod: "get",
     controllerRef: "getSettingMeta"
+  },
+  //done
+  getModels: {
+    name: "Get Database Models",
+    url: "models/:database",
+    authRequired: true,
+    entityRef: "getModels",
+    reqMethod: "get",
+    controllerRef: "getModels"
+  },
+  //done
+  getDatabaseModels: {
+    name: "Get database Models",
+    url: "data/:database/:model",
+    authRequired: true,
+    entityRef: "getDatabaseModels",
+    reqMethod: "get",
+    controllerRef: "getDatabaseModels"
+  },
+  //done
+  getDatabaseModelRow: {
+    name: "Get Database Model Row by id ",
+    url: "data/:database/:model/:id",
+    authRequired: true,
+    entityRef: "getDatabaseModelRow",
+    reqMethod: "get",
+    controllerRef: "getDatabaseModelRow"
+  },
+  
+  postDatabaseModel: {
+    name: "Create row in model",
+    url: "data/:database/:model",
+    authRequired: true,
+    entityRef: "postDatabaseModel",
+    reqMethod: "post",
+    controllerRef: "postDatabaseModel"
+  },
+  putDatabaseModel: {
+    name: "Update model",
+    url: "data/:database/:model/:id",
+    authRequired: true,
+    entityRef: "putDatabaseModel",
+    reqMethod: "put",
+    controllerRef: "putDatabaseModel"
+  },
+  //done
+  putUpdateStatus: {
+    name: "Update Status",
+    url: "data/:database/:model/status/:id",
+    authRequired: true,
+    entityRef: "putUpdateStatus",
+    reqMethod: "put",
+    controllerRef: "putUpdateStatus"
+  },
+  //done
+  patchDatabaseModel: {
+    name: "Delete Database Model",
+    url: "data/:database/:model/:id",
+    authRequired: true,
+    entityRef: "patchDatabaseModel",
+    reqMethod: "patch",
+    controllerRef: "patchDatabaseModel"
+  },
+  //test communication
+  postTestCommunication: {
+    name: "Test communication",
+    url: "communication/test/:commType",
+    authRequired: false,
+    entityRef: "postTestCommunication",
+    reqMethod: "post",
+    controllerRef: "postTestCommunication"
   }
 };
 export default _systemRoutesRegistry;

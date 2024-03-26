@@ -78,15 +78,56 @@ export interface WrappidConfig {
   defaultUserRole: string;
 }
 
+export interface Communication {
+  enabled: boolean;
+  email: Email;
+  sms: Sms;
+  whatsapp: Whatsapp;
+}
+export interface Whatsapp {
+  enabled: boolean;
+  providers: WhatsappProvider[];
+}
+export interface WhatsappProvider {
+  default: boolean;
+  api_url: string;
+  id: string;
+  accessToken: string;
+}
+export interface Sms {
+  enabled: boolean;
+  providers: SmsProvider[];
+}
+export interface SmsProvider {
+  default: boolean;
+  enabled: boolean;
+  service: string;
+  url: string;
+  username: string;
+  password: string;
+  sender: string;
+}
+export interface Email {
+  enabled: boolean;
+  providers: EmailProvider[];
+}
+export interface EmailProvider {
+  default: boolean;
+  fromName: string;
+  fromEmail: string;
+  replyTo: string;
+  service: string;
+  email: string;
+  password: string;
+}
+
 interface Config {
   cache: CacheConfig[];
   databases: DatabaseConfig[];
+  communication: Communication;
   jwt: JwtConfig;
   storage: StorageConfig;
   razorpay: RazorpayConfig;
-  emailProvider: EmailProviderConfig;
-  smsProvider: SmsProviderConfig;
-  whatsappProvider: WhatsappProviderConfig;
   github: GithubConfig;
   logging: LoggingConfig;
   wrappid: WrappidConfig;

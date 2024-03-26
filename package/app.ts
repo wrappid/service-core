@@ -35,11 +35,6 @@ export function app(wrappidApp: any,ControllersRegistry: any, FunctionsRegistry:
   setupTasks(TasksRegistry);
   
   /**
-   * Setup Logging
-   */
-  setupLogging(wrappidApp);
-  
-  /**
    * Setup Default Middlewares
    */
   wrappidApp.use(MiddlewaresRegistry.apiLogger);
@@ -58,5 +53,9 @@ export function app(wrappidApp: any,ControllersRegistry: any, FunctionsRegistry:
    *  Setup swagger API Docs
    */
   setupSwagger(wrappidApp, swaggerJsonFile);
+
+  /**
+   * Setup Logging
+   */
+  setupLogging(wrappidApp);
 }
-  

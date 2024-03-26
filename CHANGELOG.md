@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.53](https://github.com/wrappid/service-core/compare/v0.0.52...v0.0.53) (2024-03-21)
+
+
+### Features
+
+* **global:** :zap: database action fix ([4eedebb](https://github.com/wrappid/service-core/commit/4eedebb14b0631ecbc4453dbc979a8fb14d32a0b)), closes [#113](https://github.com/wrappid/service-core/issues/113)
+
+### 0.0.52 (2024-03-19)
+
+### 0.0.51 (2024-03-19)
+
+### 0.0.50 (2024-03-19)
+
+### 0.0.49 (2024-03-19)
+
+### 0.0.48 (2024-03-19)
+
+### 0.0.47 (2024-03-18)
+
+### 0.0.46 (2024-03-16)
+
+### 0.0.45 (2024-03-15)
+
+### 0.0.44 (2024-03-15)
+
+### 0.0.43 (2024-03-12)
+
+### 0.0.42 (2024-03-12)
+
+### 0.0.41 (2024-03-12)
+
+### 0.0.40 (2024-03-12)
+
+### 0.0.39 (2024-03-12)
+
+### 0.0.38 (2024-03-12)
+
+### 0.0.37 (2024-03-08)
+
 ### 0.0.36 (2024-03-08)
 
 ### 0.0.35 (2024-03-07)
