@@ -4,7 +4,7 @@ import * as businessController from "./controllers/business.controller";
 import * as dataController from "./controllers/data.controller";
 import * as databaseController from "./controllers/database.controller";
 import * as formsController from "./controllers/forms.controller";
-import { getSettingMeta, sentOtp } from "./validations/_system.validation";
+import { getSettingMeta, sentOtp, getMasterData } from "./validations/_system.validation";
 
 const AppBuilderControllersRegistry = {
   //database
@@ -34,6 +34,8 @@ const AppBuilderControllersRegistry = {
   ],
 
   //data
+  masterData: [validation(getMasterData), _systemController.masterData],
+
   // getModels: [dataController.getModels],
   getDatabaseModels: [dataController.getDatabaseModels],
   getDatabaseModelRow: [dataController.getDatabaseModelRow],

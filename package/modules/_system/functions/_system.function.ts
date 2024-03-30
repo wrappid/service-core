@@ -120,3 +120,76 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
     throw err;
   }
 };
+
+
+async function masterDataProcessing(data:any, level:any, model:any, status:any) {
+  if (level === 0 || data.length === 0) {
+    return [];
+  }
+
+  const currentLevelData = data;
+
+  const finalData:any = [];
+  for (let i = 0; i < currentLevelData.length; i++) {
+    const whereOb:any = {
+      parentId: currentLevelData[i].id,
+    };
+    if (status) {
+      whereOb["_status"] = status;
+    }
+
+    const nextLevelData = await databaseActions.findAll("application", model, {
+      where: whereOb,
+      order: [["order", "asc"]],
+    });
+
+    currentLevelData[i].dataValues["Children"] = await masterDataProcessing(
+      nextLevelData,
+      level - 1,
+      model, status
+    );
+
+    finalData.push(currentLevelData[i]);
+  }
+
+  return finalData;
+}
+
+export const getMasterDataFunc = async (req:any) => {
+  try {
+    const level = req.query.level || 10;
+    const whereOb:any = {
+      name: req.query.name,
+    };
+    if (req.query._status) {
+      whereOb["_status"] = req.query._status;
+    }
+    if (req.query.parentId) {
+      whereOb["parentId"] = req.query.parentId;
+    }
+    let data = await databaseActions.findAll("application", "MasterData", {
+      where: whereOb,
+    });
+    if (data.length == 1) {
+      console.log("master data fetched successfully", data.length);
+      if (level > 0) {
+        data = await masterDataProcessing(
+          data,
+          level,
+          "MasterData",
+          whereOb._status
+        );
+      }
+      return {
+        status: 200,
+        message: "Master data fetched successfully",
+        data: data,
+      };
+    } else {
+      return { status: 500, message: "master data not found", data: data };
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
