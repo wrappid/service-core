@@ -22,7 +22,7 @@ export const setupLogging = (app: any) => {
     }
     app.use(expressWinston.logger({
       transports: [
-        new transports.Console(),
+        // new transports.Console(),
         new transports.File({
           level: "info",
           filename: `${logDirectory}/info.log`

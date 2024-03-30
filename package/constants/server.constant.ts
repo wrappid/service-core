@@ -47,6 +47,11 @@ interface constantType {
     WHATSAPP: string;
     NOTIFICATION: string;
   };
+  paymentGateway: {
+    PAYPAL: string;
+    RAZORPAY: string
+  }
+
   emailService: {
     GMAIL: string;
   };
@@ -136,6 +141,10 @@ export const constant: constantType = {
     SMS: "sms",
     WHATSAPP: "whatsapp",
     NOTIFICATION: "notification",
+  },
+  paymentGateway: {
+    PAYPAL: "paypal",
+    RAZORPAY: "razorpay"
   },
   emailService: {
     GMAIL: "gmail",

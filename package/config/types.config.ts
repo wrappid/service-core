@@ -35,10 +35,7 @@ export interface StorageConfig {
   };
 }
 
-export interface RazorpayConfig {
-  razorpayKey: string;
-  razorpaySecret: string;
-}
+
 
 export interface EmailProviderConfig {
   fromName: string;
@@ -78,6 +75,18 @@ export interface WrappidConfig {
   defaultUserRole: string;
 }
 
+export interface PaymentConfig {
+  default: boolean;
+  key: string;
+  secret: string;
+}
+
+
+export interface Payment {
+  enabled: boolean;
+  razorpay: PaymentConfig;
+  paypal: PaymentConfig;
+}
 export interface Communication {
   enabled: boolean;
   email: Email;
@@ -127,7 +136,7 @@ interface Config {
   communication: Communication;
   jwt: JwtConfig;
   storage: StorageConfig;
-  razorpay: RazorpayConfig;
+  payment: Payment;
   github: GithubConfig;
   logging: LoggingConfig;
   wrappid: WrappidConfig;
