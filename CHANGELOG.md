@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.54](https://github.com/wrappid/service-core/compare/v0.0.53...v0.0.54) (2024-03-30)
+
+
+### Features
+
+* **global:** :sparkles: masterdata api moved to service-core ([48a7749](https://github.com/wrappid/service-core/commit/48a7749934b81afeb5a1f0ab6ec823d1fcce454b)), closes [#117](https://github.com/wrappid/service-core/issues/117)
+
 ### [0.0.53](https://github.com/wrappid/service-core/compare/v0.0.52...v0.0.53) (2024-03-21)
 
 
