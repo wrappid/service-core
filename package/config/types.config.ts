@@ -75,18 +75,7 @@ export interface WrappidConfig {
   defaultUserRole: string;
 }
 
-export interface PaymentConfig {
-  default: boolean;
-  key: string;
-  secret: string;
-}
 
-
-export interface Payment {
-  enabled: boolean;
-  razorpay: PaymentConfig;
-  paypal: PaymentConfig;
-}
 export interface Communication {
   enabled: boolean;
   email: Email;
@@ -130,13 +119,26 @@ export interface EmailProvider {
   password: string;
 }
 
+
+export interface PaymentGateway  {
+  name: string;
+  default: boolean;
+  key: string;
+  secret: string;
+}
+
+interface PaymentConfig  {
+    enabled: boolean;
+    gateways: PaymentGateway[];
+}
+
 interface Config {
   cache: CacheConfig[];
   databases: DatabaseConfig[];
   communication: Communication;
   jwt: JwtConfig;
   storage: StorageConfig;
-  payment: Payment;
+  payment: PaymentConfig;
   github: GithubConfig;
   logging: LoggingConfig;
   wrappid: WrappidConfig;

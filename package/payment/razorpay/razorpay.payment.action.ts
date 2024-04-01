@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import Razorpay from "razorpay";
-import { PaymentConfig } from "../../config/types.config";
+import { PaymentGateway } from "./../../config/types.config";
 
 type Config = {
     key_id: string,
@@ -51,7 +51,7 @@ type RazorpayOrderOptions = {
 
 
 export const razorpayPaymentActions = {
-  createOrder: async (gatewayConfig:PaymentConfig,  amount: string, notes?: string) => {
+  createOrder: async (gatewayConfig:PaymentGateway,  amount: string, notes?: string) => {
     try {
       const config: Config = {
         key_id: gatewayConfig.key,
