@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.58](https://github.com/wrappid/service-core/compare/v0.0.57...v0.0.58) (2024-04-01)
+
+
+### Features
+
+* **global:** :sparkles: added a new column in Pages Model ([41d16cf](https://github.com/wrappid/service-core/commit/41d16cf1ae4e418473404dd6152914f556b5ce01)), closes [#120](https://github.com/wrappid/service-core/issues/120)
+
 ### [0.0.57](https://github.com/wrappid/service-core/compare/v0.0.56...v0.0.57) (2024-04-01)
 
 ### [0.0.56](https://github.com/wrappid/service-core/compare/v0.0.55...v0.0.56) (2024-04-01)
