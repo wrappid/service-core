@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.56](https://github.com/wrappid/service-core/compare/v0.0.55...v0.0.56) (2024-04-01)
+
+
+### Features
+
+* **global:** :sparkles: razorpay integration ([1117760](https://github.com/wrappid/service-core/commit/11177602c0022ec206881ef7e54b3e6f0a9894a2)), closes [#116](https://github.com/wrappid/service-core/issues/116)
+
+
+### Bug Fixes
+
+* **global:** :bug: razorpay payment fix ([46524ec](https://github.com/wrappid/service-core/commit/46524ec06fa6ccdbd1bb2ab3a0160c7c3fcf4893)), closes [#116](https://github.com/wrappid/service-core/issues/116)
+
 ### [0.0.55](https://github.com/wrappid/service-core/compare/v0.0.54...v0.0.55) (2024-03-30)
 
 ### [0.0.54](https://github.com/wrappid/service-core/compare/v0.0.53...v0.0.54) (2024-03-30)
