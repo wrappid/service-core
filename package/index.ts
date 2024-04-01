@@ -10,6 +10,7 @@ import {
   getColumns,
 } from "./database/helper.database";
 import { databaseProvider } from "./database/provider.database";
+import { paymentActions } from "./payment/payment.action";
 import {
   ControllersRegistry,
   FunctionsRegistry,
@@ -47,6 +48,7 @@ export {
   databaseProvider,
   databaseActions,
   cacheActions,
+  paymentActions,
   getDatabases,
   getTables,
   getColumns,
@@ -59,5 +61,8 @@ export {
   /**
    * 
    */
-  app
+  app,
+  /**
+   * 
+   */
 };
