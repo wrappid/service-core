@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.60](https://github.com/wrappid/service-core/compare/v0.0.59...v0.0.60) (2024-04-06)
+
+
+### Bug Fixes
+
+* **global:** :bug: remove database params from data API ([cf31b30](https://github.com/wrappid/service-core/commit/cf31b3038ba4f65527d890b107aa7cb6507b744f)), closes [#122](https://github.com/wrappid/service-core/issues/122)
+
 ### [0.0.59](https://github.com/wrappid/service-core/compare/v0.0.58...v0.0.59) (2024-04-01)
 
 ### [0.0.58](https://github.com/wrappid/service-core/compare/v0.0.57...v0.0.58) (2024-04-01)
