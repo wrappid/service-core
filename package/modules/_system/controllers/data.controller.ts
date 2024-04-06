@@ -69,7 +69,7 @@ export const patchDatabaseModel = async (req: any, res: Response) => {
 
 export const getDatabaseModels = async (req: Request, res: Response) => {
   try {
-    const result = await getDatabaseModelsFunc();
+    const result = await getDatabaseModelsFunc(req);
     const {status, ...resData} = result;
     res.status(status).json(resData);
   } catch (error:any) {

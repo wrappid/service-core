@@ -36,7 +36,7 @@ const AppBuilderControllersRegistry = {
   //data
   masterData: [validation(getMasterData), _systemController.masterData],
 
-  // getModels: [dataController.getModels],
+  getModels: [dataController.getModels],
   getDatabaseModels: [dataController.getDatabaseModels],
   getDatabaseModelRow: [dataController.getDatabaseModelRow],
   postDatabaseModel: [dataController.postDatabaseModel],
