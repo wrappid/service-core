@@ -9,8 +9,8 @@ import { coreConstant } from "../../../index";
 
 export const getModelsFunc = async (req:Request) => {
   try{
-    const db = req.params?.database;
-    const _data:any = databaseProvider[db].models;
+    const database:string = <string>req.query?.database || "application";
+    const _data:any = databaseProvider[database].models;
     const output = Object.entries(_data)
       .map(([key], index) => ({ id: index + 1, name: key }));
   
@@ -42,7 +42,7 @@ export const getModelsFunc = async (req:Request) => {
 };
 
 export const getDatabaseModelRowFunc = async (req: Request) => {
-  const database = req.params.database;
+  const database:string = <string>req.query?.database || "application";
   console.log("database=" + database);
   const model = req.params.model;
   console.log("model=" + model);
@@ -73,7 +73,7 @@ export const getDatabaseModelRowFunc = async (req: Request) => {
 export const putUpdateStatusFunc = async (req:any) => {
   try {
     const model = req.params.model;
-    const database = req.params.database;
+    const database:string = <string>req.query?.database || "application";
     const currentEntry = await databaseActions.findByPk(database, model, Number(req.params.id));
     const comments = currentEntry?.dataValues?.comments;
     const comment = {
@@ -120,7 +120,7 @@ export const putUpdateStatusFunc = async (req:any) => {
 
 
 export const patchDatabaseModelFunc = async (req: any) => {
-  const database = req.params.database;
+  const database:string = <string>req.query?.database || "application";
   console.log("database=" + database);
   const model = req.params.model;
   console.log("model=" + model);
@@ -158,7 +158,7 @@ export const patchDatabaseModelFunc = async (req: any) => {
 
 export const putDatabaseModelFunc = async (req:any) => {
   const model = req.params.model;
-  const database = req.params.database;
+  const database:string = <string>req.query?.database || "application";
   console.log("model=" + model);
   console.log("database=" + database);
   try {
@@ -255,7 +255,7 @@ export const putDatabaseModelFunc = async (req:any) => {
   }
 };
 
-export const getDatabaseModelsFunc = async () => {
+export const getDatabaseModelsFunc = async (req:any) => {
   try {
     // let model = req.params.model;
     // console.log("model=" + model);
@@ -317,6 +317,8 @@ export const getDatabaseModelsFunc = async () => {
     //     console.log(err);
     //     res.status(500).json({ message: "Error to fetch data from model" });
     //   });
+    console.log(req?.query);
+    
     return {status:200, message: "API Call successfully!!"};
     throw new Error("API unavailable!");
   } catch (err) {
@@ -327,7 +329,7 @@ export const getDatabaseModelsFunc = async () => {
 
 export const postDatabaseModelFunc = async (req : any) => {
   const model = req.params.model;
-  const database = req.params.database;
+  const database:string = <string>req.query?.database || "application";
   console.log("model=" + model);
   console.log("database=" + database);
   try {

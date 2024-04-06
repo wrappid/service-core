@@ -103,7 +103,6 @@ const _systemRoutesRegistry = {
     reqMethod: "get",
     controllerRef: "getSettingMeta"
   },
-  //done
   getModels: {
     name: "Get Database Models",
     url: "models/:database",
@@ -112,28 +111,25 @@ const _systemRoutesRegistry = {
     reqMethod: "get",
     controllerRef: "getModels"
   },
-  //done
   getDatabaseModels: {
     name: "Get database Models",
-    url: "data/:database/:model",
+    url: "data/:model",
     authRequired: true,
     entityRef: "getDatabaseModels",
     reqMethod: "get",
     controllerRef: "getDatabaseModels"
   },
-  //done
   getDatabaseModelRow: {
     name: "Get Database Model Row by id ",
-    url: "data/:database/:model/:id",
+    url: "data/:model/:id",
     authRequired: true,
     entityRef: "getDatabaseModelRow",
     reqMethod: "get",
     controllerRef: "getDatabaseModelRow"
   },
-  
   postDatabaseModel: {
     name: "Create row in model",
-    url: "data/:database/:model",
+    url: "data/:model",
     authRequired: true,
     entityRef: "postDatabaseModel",
     reqMethod: "post",
@@ -141,25 +137,23 @@ const _systemRoutesRegistry = {
   },
   putDatabaseModel: {
     name: "Update model",
-    url: "data/:database/:model/:id",
+    url: "data/:model/:id",
     authRequired: true,
     entityRef: "putDatabaseModel",
     reqMethod: "put",
     controllerRef: "putDatabaseModel"
   },
-  //done
   putUpdateStatus: {
     name: "Update Status",
-    url: "data/:database/:model/status/:id",
+    url: "data/:model/status/:id",
     authRequired: true,
     entityRef: "putUpdateStatus",
     reqMethod: "put",
     controllerRef: "putUpdateStatus"
   },
-  //done
   patchDatabaseModel: {
     name: "Delete Database Model",
-    url: "data/:database/:model/:id",
+    url: "data/:model/:id",
     authRequired: true,
     entityRef: "patchDatabaseModel",
     reqMethod: "patch",
