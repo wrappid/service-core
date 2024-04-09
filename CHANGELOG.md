@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.62](https://github.com/wrappid/service-core/compare/v0.0.61...v0.0.62) (2024-04-09)
+
+
+### Features
+
+* **global:** :fire: themeSchema model added in ([f7b86f0](https://github.com/wrappid/service-core/commit/f7b86f09ba6102240bcc5df1c42b855ebe7e6572)), closes [#124](https://github.com/wrappid/service-core/issues/124)
+
 ### [0.0.61](https://github.com/wrappid/service-core/compare/v0.0.60...v0.0.61) (2024-04-06)
 
 ### [0.0.60](https://github.com/wrappid/service-core/compare/v0.0.59...v0.0.60) (2024-04-06)
