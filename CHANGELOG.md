@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.64](https://github.com/wrappid/service-core/compare/v0.0.63...v0.0.64) (2024-04-09)
+
+
+### Bug Fixes
+
+* **global:** :bug: post data model return error fix ([36fd208](https://github.com/wrappid/service-core/commit/36fd208d14e411e555261feaf2478a1764d075e9)), closes [#126](https://github.com/wrappid/service-core/issues/126)
+
 ### [0.0.63](https://github.com/wrappid/service-core/compare/v0.0.62...v0.0.63) (2024-04-09)
 
 ### [0.0.62](https://github.com/wrappid/service-core/compare/v0.0.61...v0.0.62) (2024-04-09)
