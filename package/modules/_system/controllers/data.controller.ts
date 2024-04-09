@@ -29,7 +29,7 @@ export const postDatabaseModel = async ( req: Request, res: Response) =>{
     res.status(status).json(resData);
   } catch (error: any) {
     console.error("Error :: ", error);
-    res.status(500).json({massage: error. message});
+    res.status(500).json({massage: "Faild to create data " + error.message});
     
   }
 };

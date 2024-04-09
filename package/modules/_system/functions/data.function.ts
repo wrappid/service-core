@@ -382,11 +382,6 @@ export const postDatabaseModelFunc = async (req : any) => {
     else throw new Error("Something went wrong");
   } catch (error) {
     console.error(error);
-    return{
-      return:500,
-      entity: model,
-      message: "Error to create " + model,
-      error: error,
-    };
+    throw error;
   }
 };
