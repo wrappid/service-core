@@ -167,6 +167,17 @@ const _systemRoutesRegistry = {
     entityRef: "postTestCommunication",
     reqMethod: "post",
     controllerRef: "postTestCommunication"
+  },
+
+  postDataModelSync: {
+    name: "Post data model sync",
+    url: "data/sync/:model",
+    authRequired: true,
+    entityRef: "postDataModelSync",
+    reqMethod: "post",
+    controllerRef: "postDataModelSync"
   }
+
+
 };
 export default _systemRoutesRegistry;

@@ -119,7 +119,7 @@ export const putUpdateStatusFunc = async (req:any) => {
 };
 
 
-export const patchDatabaseModelFunc = async (req: any) => {
+export const patchDatabaseModelFunc = async (req:any) => {
   const database:string = <string>req.query?.database || "application";
   console.log("database=" + database);
   const model = req.params.model;
@@ -327,7 +327,7 @@ export const getDatabaseModelsFunc = async (req:any) => {
   }
 };
 
-export const postDatabaseModelFunc = async (req : any) => {
+export const postDatabaseModelFunc = async (req:any) => {
   const model = req.params.model;
   const database:string = <string>req.query?.database || "application";
   console.log("model=" + model);
@@ -385,3 +385,61 @@ export const postDatabaseModelFunc = async (req : any) => {
     throw error;
   }
 };
+
+
+export const postDataModelSyncFunc = async (req: any) => {
+  try {
+    const body = req.body;
+    const database:string = <string>req.query?.database || "application";
+    const model:string = req.params?.model;
+    const entityRef = req.body?.entityRef;
+    let flag:boolean;
+    if(!entityRef){
+      throw new Error("entityRef is missing!!");
+    }
+    if(!model){
+      throw new Error("Model is missing!!");
+    }
+    switch (model) {
+      case "Routes":
+      case "FormSchemas":
+      case "BusinessEntitySchemas":
+      case "Pages":
+      case "ThemeSchemas":
+        flag = await checkEntityRefExist(database, model, entityRef);
+        break; 
+      default:
+        flag = false;
+        break;
+    }
+    
+    if(flag){
+      return { status: 200, message: "entityRef alredy exist"};
+    }else{
+      await databaseActions.create(database, model, {...body});
+      return {status: 200, message: model + "Data create succesfull"};
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+
+async function checkEntityRefExist(database:string, model:string, entityRef:string ): Promise<boolean>{
+  try {
+    const data = await databaseActions.findAll(database, model, {
+      where: {
+        entityRef: entityRef
+      }
+    });
+    if(data.length>0){
+      return true;
+    }else{
+      return false;
+    } 
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
