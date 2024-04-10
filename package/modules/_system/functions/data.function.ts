@@ -4,6 +4,7 @@ import { UUIDV4 } from "sequelize";
 import { databaseActions } from "../../../database/actions.database";
 import { databaseProvider  } from "../../../database/provider.database";
 import { coreConstant } from "../../../index";
+import { GenericObject } from "types/generic.types";
 // import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
 
 
@@ -386,14 +387,10 @@ export const postDatabaseModelFunc = async (req:any) => {
   }
 };
 
-
-export const postDataModelSyncFunc = async (req: any) => {
+const createModelData = async (database: string, model: string, data: GenericObject): Promise<boolean> => {
   try {
-    const body = req.body;
-    const database:string = <string>req.query?.database || "application";
-    const model:string = req.params?.model;
-    const entityRef = req.body?.entityRef;
-    let flag:boolean;
+    const entityRef:string = <string>data?.entityRef || "";
+    let dataExistFlag = false;
     if(!entityRef){
       throw new Error("entityRef is missing!!");
     }
@@ -406,18 +403,22 @@ export const postDataModelSyncFunc = async (req: any) => {
       case "BusinessEntitySchemas":
       case "Pages":
       case "ThemeSchemas":
-        flag = await checkEntityRefExist(database, model, entityRef);
+        dataExistFlag = await checkEntityRefExist(database, model, entityRef);
         break; 
       default:
-        flag = false;
+        dataExistFlag = false;
         break;
     }
-    
-    if(flag){
-      return { status: 200, message: "entityRef alredy exist"};
-    }else{
-      await databaseActions.create(database, model, {...body});
-      return {status: 200, message: model + "Data create succesfull"};
+  
+    if(dataExistFlag){
+      return false;
+    } else {
+      await databaseActions.create(database, model, {...data});
+      /**
+       * @todo review required @techoneel
+       * need to log it
+       */
+      return true;
     }
   } catch (error) {
     console.log(error);
@@ -425,8 +426,36 @@ export const postDataModelSyncFunc = async (req: any) => {
   }
 };
 
+export const postDataModelSyncFunc = async (req: any) => {
+  try {
+    const database:string = <string>req.query?.database || "application";
+    const model:string = req.params?.model;
+    const data: GenericObject[] = req.body || [];
 
-async function checkEntityRefExist(database:string, model:string, entityRef:string ): Promise<boolean>{
+    let dataSyncReport:{[key:string]: boolean} = {} ;
+    
+    if(data?.length > 0){
+      data?.forEach(async (eachData: GenericObject) => {
+        if(Object.prototype.hasOwnProperty.call(eachData, "entityRef")){
+          const result = <boolean> await createModelData(database, model, eachData);
+          dataSyncReport[eachData.entityRef] = result;
+        }
+      });
+    }
+
+    return {
+      status: 201, 
+      message: "Data synced successfully", 
+      data: dataSyncReport
+    }; 
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+
+const checkEntityRefExist = async (database:string, model:string, entityRef:string ): Promise<boolean> => {
   try {
     const data = await databaseActions.findAll(database, model, {
       where: {
@@ -442,4 +471,4 @@ async function checkEntityRefExist(database:string, model:string, entityRef:stri
     console.log(error);
     throw error;
   }
-}
+};
