@@ -1,12 +1,12 @@
 import { Request } from "express";
 import moment from "moment";
 import { UUIDV4 } from "sequelize";
+import { constant } from "../../../constants/server.constant";
 import { databaseActions } from "../../../database/actions.database";
 import { databaseProvider  } from "../../../database/provider.database";
 import { coreConstant } from "../../../index";
-import { GenericObject } from "types/generic.types";
+import { GenericObject } from "../../../types/generic.types";
 // import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
-
 
 export const getModelsFunc = async (req:Request) => {
   try{
@@ -411,9 +411,9 @@ const createModelData = async (database: string, model: string, data: GenericObj
     }
   
     if(dataExistFlag){
-      return false;
+      throw new Error("Data exist on database");
     } else {
-      await databaseActions.create(database, model, {...data});
+      await databaseActions.create(database, model, {...data, _status: constant.entityStatus.PUBLISHED});
       /**
        * @todo review required @techoneel
        * need to log it
@@ -426,28 +426,48 @@ const createModelData = async (database: string, model: string, data: GenericObj
   }
 };
 
+// const updateDataSyncReport =  async (key: string, result: boolean, dataSyncReport: {[key:string]: boolean}) => {
+//   dataSyncReport[key] = result;
+// };
+
 export const postDataModelSyncFunc = async (req: any) => {
   try {
     const database:string = <string>req.query?.database || "application";
     const model:string = req.params?.model;
     const data: GenericObject[] = req.body || [];
-
-    let dataSyncReport:{[key:string]: boolean} = {} ;
-    
+    const dataSyncReport:{[key:string]: GenericObject} = {} ;
     if(data?.length > 0){
-      data?.forEach(async (eachData: GenericObject) => {
-        if(Object.prototype.hasOwnProperty.call(eachData, "entityRef")){
-          const result = <boolean> await createModelData(database, model, eachData);
-          dataSyncReport[eachData.entityRef] = result;
-        }
+      const modifiedData = await Promise.all(
+        data?.map(async (eachData: GenericObject) => {
+          if(Object.prototype.hasOwnProperty.call(eachData, "entityRef")){
+            const key:string = eachData.entityRef;
+            try {
+              const result = <boolean> await createModelData(database, model, eachData).catch();
+              return { entityRef: key, result };
+            } catch (error:any) {
+              return { entityRef: key, result: false, error: { message: error.message } };
+            }
+          }
+        })
+      );
+      modifiedData.forEach((data: {entityRef: string, result: boolean}) =>{
+        dataSyncReport[data?.entityRef] = data;
       });
+      console.log(dataSyncReport);
+      return {
+        status: 201, 
+        message: "Data synced successfully", 
+        data: dataSyncReport
+      }; 
     }
-
     return {
-      status: 201, 
-      message: "Data synced successfully", 
-      data: dataSyncReport
+      status: 500, 
+      message: "Invalid Data", 
     }; 
+
+
+
+    
   } catch (error) {
     console.log(error);
     throw error;
@@ -459,7 +479,8 @@ const checkEntityRefExist = async (database:string, model:string, entityRef:stri
   try {
     const data = await databaseActions.findAll(database, model, {
       where: {
-        entityRef: entityRef
+        entityRef: entityRef,
+        _status: constant.entityStatus.PUBLISHED
       }
     });
     if(data.length>0){
@@ -467,7 +488,7 @@ const checkEntityRefExist = async (database:string, model:string, entityRef:stri
     }else{
       return false;
     } 
-  } catch (error) {
+  } catch (error:any) {
     console.log(error);
     throw error;
   }
