@@ -1,9 +1,9 @@
 import { Request } from "express";
 import moment from "moment";
 import { UUIDV4 } from "sequelize";
-import { constant } from "../../../constants/server.constant";
+import { APP_BUILDER_MODELS, constant } from "../../../constants/server.constant";
 import { databaseActions } from "../../../database/actions.database";
-import { databaseProvider  } from "../../../database/provider.database";
+import { databaseProvider } from "../../../database/provider.database";
 import { coreConstant } from "../../../index";
 import { GenericObject } from "../../../types/generic.types";
 // import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
@@ -98,8 +98,8 @@ export const putUpdateStatusFunc = async (req:any) => {
     // update the status of the particular entry
     const updated_result = await databaseActions.update(database, model,
       {
-        _status: req.body.nextStatus,
-        comments: [...comments, comment],
+        _status: req.body?.nextStatus,
+        comments: [...(comments || []), comment],
       },
       { where: { id: req.params.id } }
     );
@@ -172,7 +172,7 @@ export const putDatabaseModelFunc = async (req:any) => {
     if (!model) {
       throw new Error("model missing in path parameter");
     }
-    if (!databaseProvider[database].models) {
+    if (databaseProvider[database].models && !Object.prototype.hasOwnProperty.call(databaseProvider[database].models, model)) {
       throw new Error("model[" + model + "] not defined in database");
     }
 
@@ -321,7 +321,6 @@ export const getDatabaseModelsFunc = async (req:any) => {
     console.log(req?.query);
     
     return {status:200, message: "API Call successfully!!"};
-    throw new Error("API unavailable!");
   } catch (err) {
     console.log(err);
     return({status: 500, message: "Error to fetch data from model" });
@@ -387,7 +386,7 @@ export const postDatabaseModelFunc = async (req:any) => {
   }
 };
 
-const createModelData = async (database: string, model: string, data: GenericObject): Promise<boolean> => {
+const createModelData = async (database: string, model: string, data: GenericObject, additionalData?: GenericObject): Promise<boolean> => {
   try {
     const entityRef:string = <string>data?.entityRef || "";
     let dataExistFlag = false;
@@ -398,11 +397,11 @@ const createModelData = async (database: string, model: string, data: GenericObj
       throw new Error("Model is missing!!");
     }
     switch (model) {
-      case "Routes":
-      case "FormSchemas":
-      case "BusinessEntitySchemas":
-      case "Pages":
-      case "ThemeSchemas":
+      case APP_BUILDER_MODELS.ROUTES:
+      case APP_BUILDER_MODELS.FORM_SCHEMAS:
+      case APP_BUILDER_MODELS.BUSINESS_ENTITY_SCHEMAS:
+      case APP_BUILDER_MODELS.PAGES:
+      case APP_BUILDER_MODELS.THEME_SCHEMAS:
         dataExistFlag = await checkEntityRefExist(database, model, entityRef);
         break; 
       default:
@@ -413,7 +412,23 @@ const createModelData = async (database: string, model: string, data: GenericObj
     if(dataExistFlag){
       throw new Error("Data exist on database");
     } else {
-      await databaseActions.create(database, model, {...data, _status: constant.entityStatus.PUBLISHED});
+      let createOptions = {};
+      if (model === APP_BUILDER_MODELS.ROUTES) {
+        createOptions = {
+          include: [
+            {
+              association: databaseProvider[database].models.Users
+            }
+          ]
+        };
+        data = {
+          ...data,
+          name: entityRef,
+          source: `${additionalData?.source}-side`
+        };
+      }
+
+      await databaseActions.create(database, model, { ...data, _status: constant.entityStatus.PUBLISHED }, createOptions);
       /**
        * @todo review required @techoneel
        * need to log it
@@ -433,6 +448,7 @@ const createModelData = async (database: string, model: string, data: GenericObj
 export const postDataModelSyncFunc = async (req: any) => {
   try {
     const database:string = <string>req.query?.database || "application";
+    const source:string = <string>req.query?.source || "server";
     const model:string = req.params?.model;
     const data: GenericObject[] = req.body || [];
     const dataSyncReport:{[key:string]: GenericObject} = {} ;
@@ -442,7 +458,7 @@ export const postDataModelSyncFunc = async (req: any) => {
           if(Object.prototype.hasOwnProperty.call(eachData, "entityRef")){
             const key:string = eachData.entityRef;
             try {
-              const result = <boolean> await createModelData(database, model, eachData).catch();
+              const result = <boolean> await createModelData(database, model, eachData, {source}).catch();
               return { entityRef: key, result };
             } catch (error:any) {
               return { entityRef: key, result: false, error: { message: error.message } };
