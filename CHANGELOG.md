@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.66](https://github.com/wrappid/service-core/compare/v0.0.65...v0.0.66) (2024-04-18)
+
+
+### Bug Fixes
+
+* **global:** :bug: auther key change ([8194863](https://github.com/wrappid/service-core/commit/81948630261ae507263c1565ab19552591aa119e)), closes [#25](https://github.com/wrappid/service-core/issues/25)
+
 ### [0.0.65](https://github.com/wrappid/service-core/compare/v0.0.64...v0.0.65) (2024-04-09)
 
 ### [0.0.64](https://github.com/wrappid/service-core/compare/v0.0.63...v0.0.64) (2024-04-09)
