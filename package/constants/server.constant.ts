@@ -187,4 +187,12 @@ export const constant: constantType = {
   },
 };
 
+export const APP_BUILDER_MODELS = {
+  ROUTES: "Routes",
+  FORM_SCHEMAS: "FormSchemas",
+  BUSINESS_ENTITY_SCHEMAS: "BusinessEntitySchemas",
+  PAGES: "Pages",
+  THEME_SCHEMAS: "ThemeSchemas"
+};
+
 export const DEFAULT_PORT = 8080;

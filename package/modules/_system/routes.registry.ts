@@ -87,14 +87,6 @@ const _systemRoutesRegistry = {
     reqMethod: "get",
     controllerRef: "getFormSchema",
   },
-  putFormSchema: {
-    name: "Put Data",
-    url: "data/:model/:id",
-    authRequired: true,
-    entityRef: "putFormSchema",
-    reqMethod: "put",
-    controllerRef: "putFormSchema",
-  },
   getSettingMeta:{
     name: "Setting Meta",
     url: "settingMeta",
@@ -159,7 +151,6 @@ const _systemRoutesRegistry = {
     reqMethod: "patch",
     controllerRef: "patchDatabaseModel"
   },
-  //test communication
   postTestCommunication: {
     name: "Test communication",
     url: "communication/test/:commType",
@@ -167,6 +158,14 @@ const _systemRoutesRegistry = {
     entityRef: "postTestCommunication",
     reqMethod: "post",
     controllerRef: "postTestCommunication"
+  },
+  postDataModelSync: {
+    name: "Post data model sync",
+    url: "data/sync/:model",
+    authRequired: false,
+    entityRef: "postDataModelSync",
+    reqMethod: "post",
+    controllerRef: "postDataModelSync"
   }
 };
 export default _systemRoutesRegistry;
