@@ -58,3 +58,4 @@ export const masterData = async (req: Request, res: Response) => {
   }         
                   
 };
+

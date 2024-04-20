@@ -167,6 +167,23 @@ const _systemRoutesRegistry = {
     entityRef: "postTestCommunication",
     reqMethod: "post",
     controllerRef: "postTestCommunication"
+  },
+  //Get Registry data
+  getRegistry: {
+    name: "Get Registry Data",
+    url: "registry/:name",
+    authRequired: false,
+    entityRef: "getRegistry",
+    reqMethod: "get",
+    controllerRef: "getRegistry"
+  },
+  getRegistryList: {
+    name: "Get Registry Data",
+    url: "regitry/list",
+    authRequired: false,
+    entityRef: "getRegistryList",
+    reqMethod: "get",
+    controllerRef: "getRegistryList"
   }
 };
 export default _systemRoutesRegistry;

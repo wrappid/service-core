@@ -4,6 +4,7 @@ import * as businessController from "./controllers/business.controller";
 import * as dataController from "./controllers/data.controller";
 import * as databaseController from "./controllers/database.controller";
 import * as formsController from "./controllers/forms.controller";
+import * as registryController from "./controllers/registry.controller";
 import { getSettingMeta, sentOtp, getMasterData } from "./validations/_system.validation";
 
 const AppBuilderControllersRegistry = {
@@ -46,6 +47,10 @@ const AppBuilderControllersRegistry = {
 
   //test communication
   postTestCommunication: [validation(sentOtp),
-    _systemController.postTestCommunication,]
+    _systemController.postTestCommunication,],
+
+  //Get Registry
+  getRegistry: [registryController.getRegistry] ,
+  getRegistryList: [registryController.getRegistryList] 
 };
 export default AppBuilderControllersRegistry;
