@@ -214,7 +214,7 @@ export const constant: constantType = {
     CONTROLLER_REGISTRY: "ControllerRegistry",
     FUNCTION_REGISTRY: "FunctionRegistry",
     MIDDLEWARE_REGISTRY: "MiddlewareRegistry",
-    MODELS__REGISTRY: "Models_Registry",
+    MODELS__REGISTRY: "ModelsRegistry",
     ROUTES_REGISTRY: "RoutesRegistry",
     TASKS_REGISTRY: "TasksRegistry",
     VALIDATIONS_REGISTRY: "ValidationsRegistry",
