@@ -44,6 +44,7 @@ const AppBuilderControllersRegistry = {
   putUpdateStatus: [dataController.putUpdateStatus],
   putDatabaseModel: [dataController.putDatabaseModel],
   patchDatabaseModel: [dataController.patchDatabaseModel],
+  postDataModelSync: [dataController.postDataModelSync],
 
   //test communication
   postTestCommunication: [validation(sentOtp),

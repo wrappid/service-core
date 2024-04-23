@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.67](https://github.com/wrappid/service-core/compare/v0.0.66...v0.0.67) (2024-04-20)
+
+
+### Features
+
+* **global:** :bug: delivery oriented fix ([a7ab924](https://github.com/wrappid/service-core/commit/a7ab924de3bf324953cec4ffa257552dd8d25400)), closes [#128](https://github.com/wrappid/service-core/issues/128)
+* **global:** :sparkles: create API data/sync/:model ([1460d02](https://github.com/wrappid/service-core/commit/1460d024afe68e93a43785a1932a025a47e90c71)), closes [#128](https://github.com/wrappid/service-core/issues/128)
+
+
+### Bug Fixes
+
+* **core:** :zap: fixing the issue related to data api(s) ([f5ebcc7](https://github.com/wrappid/service-core/commit/f5ebcc78210abcefe5de2db61fa725d50b4a6d2a)), closes [#128](https://github.com/wrappid/service-core/issues/128)
+* **global:** :bug: data sync API fix multiple data insert ([db13e8b](https://github.com/wrappid/service-core/commit/db13e8b699d688437479192eaae795e931c40e57)), closes [#128](https://github.com/wrappid/service-core/issues/128)
+
 ### [0.0.66](https://github.com/wrappid/service-core/compare/v0.0.65...v0.0.66) (2024-04-18)
 
 
