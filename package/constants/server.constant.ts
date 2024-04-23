@@ -27,6 +27,14 @@ interface constantType {
     HTTP_PUT: string;
     HTTP_PATCH: string;
   };
+  contentType: {
+    TEXT_HTML: string,
+    TEXT_PLAIN: string,
+    MULTIPART_FORM_DATA: string,
+    APPLICATION_JSON: string,
+    APPLICATION_X_WWW_FORM_URLENCODED: string,
+    APPLICATION_OCTET_STREAM: string,
+  },
   userRoles: {
     ROLE_SYSTEM_ADMIN: string;
     ROLE_ONBOARDING_SALESFORCE: string;
@@ -121,6 +129,14 @@ export const constant: constantType = {
     HTTP_POST: "post",
     HTTP_PUT: "put",
     HTTP_PATCH: "patch",
+  },
+  contentType: {
+    "TEXT_HTML":"text/html",
+    "TEXT_PLAIN":"text/plain",
+    "MULTIPART_FORM_DATA":"multipart/form-data",
+    "APPLICATION_JSON":"application/json",
+    "APPLICATION_X_WWW_FORM_URLENCODED":"application/x-www-form-urlencoded",
+    "APPLICATION_OCTET_STREAM":"application/octet-stream"
   },
   userRoles: {
     ROLE_SYSTEM_ADMIN: "system_admin",
