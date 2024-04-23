@@ -1,5 +1,6 @@
-import { GenericObject } from "types/generic.types";
-
+type GenericObject = {
+  [key: string]: any;
+};
 
 export class ApplicationContext {
   private static context: GenericObject = {};
@@ -12,13 +13,4 @@ export class ApplicationContext {
     ApplicationContext.context[key] = value;
   }
 }
-  
-// // Usage
-// const key = "abdm";
-// const userData = "dfdfdf";
-  
-// ApplicationContext.setContext(key, userData);
-  
-// const retrievedData = ApplicationContext.getContext()[key];
-// console.log(retrievedData); // Output: { name: "Alice", role: "admin" }
-  
+ 
