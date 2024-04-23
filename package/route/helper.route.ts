@@ -1,4 +1,3 @@
-import { Op } from "sequelize";
 import { constant } from "../constants/server.constant";
 import { databaseActions } from "../database/actions.database";
 
@@ -33,22 +32,14 @@ export const getServerRoutes = async (
      * Getting all routes
      *
      */
-    return await databaseActions.findAll(dbName, "Routes", {
-      where: {
-        authRequired: authRequired,
-        _status: constant.entityStatus.PUBLISHED,
-        source: {
-          [Op.in]: [
-            constant.__RouteSource.SERVER_SIDE,
-            /**
-             * @todo
-             * Need to remove below value
-             */
-            "server",
-          ],
-        },
-      },
-    });
+    return await databaseActions.findAll(dbName, "Routes", 
+      {
+        where: {
+          authRequired: authRequired,
+          _status: constant.entityStatus.PUBLISHED,
+          source: constant.__RouteSource.SERVER_SIDE
+        }
+      });
   } catch (error) {
     throw error;
   }

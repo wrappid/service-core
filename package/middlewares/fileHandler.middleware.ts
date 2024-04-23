@@ -7,7 +7,7 @@ export const fileHandler =
     try {
       const singleUpload = upload.fields([{ name: filename, maxCount: 1 }]);
       //single(filename); // Assuming 'file' is the field name for the uploaded file
-/*
+      /*
       {
         single/multiple: true/false,
         if single true
