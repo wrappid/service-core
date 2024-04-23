@@ -100,9 +100,9 @@ interface constantType {
     LOCAL: string;
   };
   registry: {
-    CONTROLLER_REGISTRY: string;
-    FUNCTION_REGISTRY: string;
-    MIDDLEWARE_REGISTRY: string;
+    CONTROLLERS_REGISTRY: string;
+    FUNCTIONS_REGISTRY: string;
+    MIDDLEWARES_REGISTRY: string;
     MODELS__REGISTRY: string;
     ROUTES_REGISTRY: string;
     TASKS_REGISTRY: string;
@@ -211,9 +211,9 @@ export const constant: constantType = {
     LOCAL: "local",
   },
   registry: {
-    CONTROLLER_REGISTRY: "ControllerRegistry",
-    FUNCTION_REGISTRY: "FunctionRegistry",
-    MIDDLEWARE_REGISTRY: "MiddlewareRegistry",
+    CONTROLLERS_REGISTRY: "ControllersRegistry",
+    FUNCTIONS_REGISTRY: "FunctionsRegistry",
+    MIDDLEWARES_REGISTRY: "MiddlewaresRegistry",
     MODELS__REGISTRY: "ModelsRegistry",
     ROUTES_REGISTRY: "RoutesRegistry",
     TASKS_REGISTRY: "TasksRegistry",

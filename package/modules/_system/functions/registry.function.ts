@@ -11,14 +11,14 @@ export const getRegistryFunc =  async (req:any) => {
     const name = req.params.name;
     let registry: any = {};
     switch (name) {
-      case constant.registry.CONTROLLER_REGISTRY:
-        registry = ApplicationContext.getContext(constant.registry.CONTROLLER_REGISTRY);
+      case constant.registry.CONTROLLERS_REGISTRY:
+        registry = ApplicationContext.getContext(constant.registry.CONTROLLERS_REGISTRY);
         break;
-      case constant.registry.FUNCTION_REGISTRY:
-        registry = ApplicationContext.getContext(constant.registry.FUNCTION_REGISTRY);
+      case constant.registry.FUNCTIONS_REGISTRY:
+        registry = ApplicationContext.getContext(constant.registry.FUNCTIONS_REGISTRY);
         break;
-      case constant.registry.MIDDLEWARE_REGISTRY:
-        registry = ApplicationContext.getContext(constant.registry.MIDDLEWARE_REGISTRY);
+      case constant.registry.MIDDLEWARES_REGISTRY:
+        registry = ApplicationContext.getContext(constant.registry.MIDDLEWARES_REGISTRY);
         break;
       case constant.registry.MODELS__REGISTRY:
         registry = ApplicationContext.getContext(constant.registry.MODELS__REGISTRY);

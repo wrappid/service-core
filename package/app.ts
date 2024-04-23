@@ -88,9 +88,9 @@ export async function app(wrappidApp: any,ControllersRegistry: any, FunctionsReg
   /**
   * setup registries in appliaction context  
   */
-  ApplicationContext.setContext(constant.registry.CONTROLLER_REGISTRY, {...CoreControllersRegistry, ...ControllersRegistry});
-  ApplicationContext.setContext(constant.registry.FUNCTION_REGISTRY,{...CoreFunctionsRegistry, ...FunctionsRegistry});
-  ApplicationContext.setContext(constant.registry.MIDDLEWARE_REGISTRY,{...CoreMiddlewaresRegistry, ...MiddlewaresRegistry});
+  ApplicationContext.setContext(constant.registry.CONTROLLERS_REGISTRY, {...CoreControllersRegistry, ...ControllersRegistry});
+  ApplicationContext.setContext(constant.registry.FUNCTIONS_REGISTRY,{...CoreFunctionsRegistry, ...FunctionsRegistry});
+  ApplicationContext.setContext(constant.registry.MIDDLEWARES_REGISTRY,{...CoreMiddlewaresRegistry, ...MiddlewaresRegistry});
   ApplicationContext.setContext(constant.registry.MODELS__REGISTRY,{...CoreModelsRegistry, ...ModelsRegistry});
   ApplicationContext.setContext(constant.registry.TASKS_REGISTRY,{...CoreTasksRegistry, ...TasksRegistry});
   // ApplicationContext.setContext(constant.registry.VALIDATIONS_REGISTRY,{...CoreValidationsRegistry, ...ValidationsRegistry});
