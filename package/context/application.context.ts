@@ -1,5 +1,6 @@
-import { GenericObject } from "types/generic.types";
-
+type GenericObject = {
+  [key: string]: any;
+};
 
 export class ApplicationContext {
   private static context: GenericObject = {};

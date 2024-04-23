@@ -99,6 +99,15 @@ interface constantType {
     AWS_S3: string;
     LOCAL: string;
   };
+  registry: {
+    CONTROLLER_REGISTRY: string;
+    FUNCTION_REGISTRY: string;
+    MIDDLEWARE_REGISTRY: string;
+    MODELS__REGISTRY: string;
+    ROUTES_REGISTRY: string;
+    TASKS_REGISTRY: string;
+    VALIDATIONS_REGISTRY: string;
+  };
 }
 
 export const constant: constantType = {
@@ -201,6 +210,15 @@ export const constant: constantType = {
     AWS_S3: "aws_s3",
     LOCAL: "local",
   },
+  registry: {
+    CONTROLLER_REGISTRY: "ControllerRegistry",
+    FUNCTION_REGISTRY: "FunctionRegistry",
+    MIDDLEWARE_REGISTRY: "MiddlewareRegistry",
+    MODELS__REGISTRY: "Models_Registry",
+    ROUTES_REGISTRY: "RoutesRegistry",
+    TASKS_REGISTRY: "TasksRegistry",
+    VALIDATIONS_REGISTRY: "ValidationsRegistry",
+  }
 };
 
 export const DEFAULT_PORT = 8080;
