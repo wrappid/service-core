@@ -21,7 +21,7 @@ import { setupRoutes } from "./route/setup.route";
 import setupSwagger from "./swagger/swagger.setup";
 import { setupTasks } from "./tasks/setup.tasks";
 
-async function getDbRoutes() {
+async function getDbRoutes(): Promise<[any]> {
   console.log("----------------------------------");
   const authenticatedServerRoutes: any = await getServerRoutes(
     "application",
@@ -94,8 +94,19 @@ export async function app(wrappidApp: any,ControllersRegistry: any, FunctionsReg
   ApplicationContext.setContext(constant.registry.MODELS__REGISTRY,{...CoreModelsRegistry, ...ModelsRegistry});
   ApplicationContext.setContext(constant.registry.TASKS_REGISTRY,{...CoreTasksRegistry, ...TasksRegistry});
   // ApplicationContext.setContext(constant.registry.VALIDATIONS_REGISTRY,{...CoreValidationsRegistry, ...ValidationsRegistry});
-  ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...CoreRoutesRegistry, ...RoutesRegistry, ...await getDbRoutes()});
-  
+  const dbRoutes = await getDbRoutes();
+  let  allDbRoutes:any = {};
+  Object.keys(dbRoutes).forEach((element:any) => {
+    console.log("====================================");
+    const Routes = dbRoutes[element];
+    const { controllerRef, ...rest } = Routes.dataValues; // Destructuring assignment
+    const restructuredData = {
+      [controllerRef]: rest // Use entityRef as property name
+    };
+    allDbRoutes = {...allDbRoutes, ...restructuredData};
+  });
+  ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...CoreRoutesRegistry, ...RoutesRegistry.default, ...allDbRoutes});
+
   
 }
 
