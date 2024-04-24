@@ -97,7 +97,6 @@ export async function app(wrappidApp: any,ControllersRegistry: any, FunctionsReg
   const dbRoutes = await getDbRoutes();
   let  allDbRoutes:any = {};
   Object.keys(dbRoutes).forEach((element:any) => {
-    console.log("====================================");
     const Routes = dbRoutes[element];
     const { controllerRef, ...rest } = Routes.dataValues; // Destructuring assignment
     const restructuredData = {
