@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.68](https://github.com/wrappid/service-core/compare/v0.0.67...v0.0.68) (2024-04-23)
+
+
+### Features
+
+* **global:** :recycle: update code from development ([91a29bd](https://github.com/wrappid/service-core/commit/91a29bd6f01755393115a5ce6d31e8d145e0de06)), closes [#132](https://github.com/wrappid/service-core/issues/132)
+* **global:** :sparkles: get registry file data api added ([da3d030](https://github.com/wrappid/service-core/commit/da3d030cc19d61148e22d015bce09343c1d8d3ed)), closes [#132](https://github.com/wrappid/service-core/issues/132)
+* **global:** :zap: database call for routes improve ([e9693ad](https://github.com/wrappid/service-core/commit/e9693ad0c9f82b66b5f7f4f7bd97e92445a0d876)), closes [#132](https://github.com/wrappid/service-core/issues/132)
+
+
+### Bug Fixes
+
+* **global:** :fire: api caller ([ec0c37e](https://github.com/wrappid/service-core/commit/ec0c37ed49895fb9c8415ad7f6a71c07ba5932ad)), closes [#129](https://github.com/wrappid/service-core/issues/129)
+* **global:** :fire: fix object type ([368d7fb](https://github.com/wrappid/service-core/commit/368d7fbff3a31226062d79269922bc697c302932)), closes [#132](https://github.com/wrappid/service-core/issues/132)
+* **global:** :recycle: code lint fix ([7795011](https://github.com/wrappid/service-core/commit/779501148729c18cc6623f547a137cd8a85bbff1)), closes [#132](https://github.com/wrappid/service-core/issues/132)
+
+### [0.0.67](https://github.com/wrappid/service-core/compare/v0.0.66...v0.0.67) (2024-04-20)
+
+
+### Features
+
+* **global:** :bug: delivery oriented fix ([a7ab924](https://github.com/wrappid/service-core/commit/a7ab924de3bf324953cec4ffa257552dd8d25400)), closes [#128](https://github.com/wrappid/service-core/issues/128)
+* **global:** :sparkles: create API data/sync/:model ([1460d02](https://github.com/wrappid/service-core/commit/1460d024afe68e93a43785a1932a025a47e90c71)), closes [#128](https://github.com/wrappid/service-core/issues/128)
+
+
+### Bug Fixes
+
+* **core:** :zap: fixing the issue related to data api(s) ([f5ebcc7](https://github.com/wrappid/service-core/commit/f5ebcc78210abcefe5de2db61fa725d50b4a6d2a)), closes [#128](https://github.com/wrappid/service-core/issues/128)
+* **global:** :bug: data sync API fix multiple data insert ([db13e8b](https://github.com/wrappid/service-core/commit/db13e8b699d688437479192eaae795e931c40e57)), closes [#128](https://github.com/wrappid/service-core/issues/128)
+
 ### [0.0.66](https://github.com/wrappid/service-core/compare/v0.0.65...v0.0.66) (2024-04-18)
 
 

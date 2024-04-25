@@ -159,13 +159,22 @@ const _systemRoutesRegistry = {
     reqMethod: "post",
     controllerRef: "postTestCommunication"
   },
-  postDataModelSync: {
-    name: "Post data model sync",
-    url: "data/sync/:model",
+  //Get Registry data
+  getRegistry: {
+    name: "Get Registry Data",
+    url: "registry/:name",
     authRequired: false,
-    entityRef: "postDataModelSync",
-    reqMethod: "post",
-    controllerRef: "postDataModelSync"
+    entityRef: "getRegistry",
+    reqMethod: "get",
+    controllerRef: "getRegistry"
+  },
+  getRegistryList: {
+    name: "Get Registry Data",
+    url: "regitry/list",
+    authRequired: false,
+    entityRef: "getRegistryList",
+    reqMethod: "get",
+    controllerRef: "getRegistryList"
   }
 };
 export default _systemRoutesRegistry;
