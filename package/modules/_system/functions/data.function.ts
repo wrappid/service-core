@@ -205,8 +205,9 @@ export const putDatabaseModelFunc = async (req:any) => {
     const models = [
       { model: "FormSchemas" },
       { model: "BusinessEntitySchemas" },
-      // { model: "Routes" },
+      { model: "Routes" },
       { model: "Pages" },
+      { model: "ThemeSchemas" },
     ];
 
     const currentEntry = await databaseActions.findByPk(database,model,body.id);
