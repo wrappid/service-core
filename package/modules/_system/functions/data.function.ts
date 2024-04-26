@@ -509,3 +509,98 @@ const checkEntityRefExist = async (database:string, model:string, entityRef:stri
     throw error;
   }
 };
+
+
+/**
+ *
+ * @param {*} db
+ * @param {*} formID
+ */
+async function getDataFromDB(db: string, entityRef: string, model: string, auth=false) {
+  try {
+    const dbSequelize = databaseProvider[db].Sequelize;
+    const whereClause: any = {
+      entityRef: entityRef,
+      _status: constant.entityStatus.PUBLISHED,
+    };
+    if (auth) {
+      whereClause["authRequired"] = true;
+    } else {
+      whereClause["authRequired"] = {
+        [dbSequelize.Op.or]: {
+          [dbSequelize.Op.eq]: false,
+          [dbSequelize.Op.is]: null,
+        },
+      };
+    }
+    const formSchema = await databaseActions.findOne(db, model, {
+      where: whereClause,
+    });
+    return formSchema;
+  } catch (error) {
+    throw error;
+  }
+}
+  
+/**
+  * 
+  * @param req 
+  * @returns 
+  */ 
+export const postCloneDataModelFunc = async (req: any) => {
+  try {
+    const model = req.params.model;
+        const entityRef = req.params.entityRef;
+        let masterTableFlag = false;
+        const masterTableList = ["BusinessEntitySchemas", "Routes", "Pages", "FormSchemas", "ThemeSchemas"];
+        masterTableList.forEach(element => {
+            if (element === model) {
+                masterTableFlag = true;
+              }
+        });
+       if(!masterTableFlag){
+            return {
+            status: 500,
+            message: `${model} is not master data table`}
+       }  
+    if (!entityRef) {
+      return {
+        status: 500,
+        message: "entityRef is missing api path parameter"
+      };
+    }
+  
+    const dbData = await getDataFromDB("application", entityRef, model);
+    // object cloneSchema
+    const cloneSchema = {
+      formID: dbData?.formID + "-" + new Date().getTime(),
+      name: `Custom ${dbData.name}-${new Date().getTime()}`,
+      authRequired: true,
+      _status: constant.entityStatus.DRAFT,
+      schema: dbData.schema,
+      extraInfo: dbData.extraInfo,
+      entityRef: `${dbData?.entityRef}-${new Date().getTime()}`,
+    };
+  
+    if (dbData) {
+      const clonedSchema = await databaseActions.create("application", model,{
+        ...cloneSchema,
+        createdBy: req.user.userId,
+        updatedBy: req.user.userId
+      });
+      return {
+        status: 200,
+        name: clonedSchema.name,
+        data: clonedSchema,
+      };
+    } else {
+      return {
+        status: 200
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+  

@@ -175,6 +175,15 @@ const _systemRoutesRegistry = {
     entityRef: "getRegistryList",
     reqMethod: "get",
     controllerRef: "getRegistryList"
+  },
+  //clone 
+  postCloneDataModel: {
+    name: "Clone data model",
+    url: "data/clone/:model/:entityRef",
+    authRequired: true,
+    entityRef: "postCloneDataModel",
+    reqMethod: "post",
+    controllerRef: "postCloneDataModel"
   }
 };
 export default _systemRoutesRegistry;

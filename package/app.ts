@@ -8,7 +8,7 @@ import { setupFunctions } from "./function/setup.functions";
 import { setupLogging } from "./logging/setup.logging";
 import  CoreControllersRegistry  from "./registry/ControllersRegistry";
 import  CoreFunctionsRegistry from "./registry/FunctionsRegistry";
-import  {MiddlewaresRegistry} from "./registry/index";
+import  { MiddlewaresRegistry } from "./registry/index";
 import  CoreMiddlewaresRegistry from "./registry/MiddlewaresRegistry";
 import  CoreModelsRegistry from "./registry/ModelsRegistry";
 import  CoreRoutesRegistry from "./registry/RoutesRegistry";
