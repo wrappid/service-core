@@ -169,7 +169,7 @@ const _systemRoutesRegistry = {
     controllerRef: "getRegistry"
   },
   getRegistryList: {
-    name: "Get Registry Data",
+    name: "Get Registry list",
     url: "regitry/list",
     authRequired: false,
     entityRef: "getRegistryList",

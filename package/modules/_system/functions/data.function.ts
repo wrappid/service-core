@@ -177,10 +177,10 @@ export const putDatabaseModelFunc = async (req:any) => {
     }
 
     // data preparation
-    Object.keys(databaseProvider[database].models.rawAttributes).forEach((rawAttribute) => {
+    Object.keys(databaseProvider[database].models[model].rawAttributes).forEach((rawAttribute) => {
       // if json save object in db
       if (
-        databaseProvider[database].models.rawAttributes.type
+        databaseProvider[database].models[model].rawAttributes[rawAttribute].type
           .toString()
           .startsWith("JSON") &&
           // body.hasOwnProperty(rawAttribute) &&
