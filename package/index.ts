@@ -1,4 +1,4 @@
-import { app } from "./app";
+import { App } from "./app";
 import { cacheActions } from "./cache/cache.actions";
 import { communicate } from "./communication/communicate.communicator";
 import { configProvider } from "./config/provider.config";
@@ -64,7 +64,7 @@ export {
   /**
    * 
    */
-  app,
+  App,
   /**
    * 
    */
