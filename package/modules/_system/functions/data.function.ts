@@ -529,7 +529,6 @@ async function getDataFromDB(db: string, entityRef: string, model: string, auth=
       whereClause["authRequired"] = {
         [dbSequelize.Op.or]: {
           [dbSequelize.Op.eq]: false,
-          [dbSequelize.Op.eq]: true,
           [dbSequelize.Op.is]: null,
         },
       };
