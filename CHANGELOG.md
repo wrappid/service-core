@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.70](https://github.com/wrappid/service-core/compare/v0.0.69...v0.0.70) (2024-04-26)
+
+
+### Features
+
+* **global:** :bug: fix constant for registry ([f022297](https://github.com/wrappid/service-core/commit/f022297e9082cdf35976f739ae53f93ee669f0ff)), closes [#129](https://github.com/wrappid/service-core/issues/129)
+* **global:** :sparkles: get registry data fix ([f916dfd](https://github.com/wrappid/service-core/commit/f916dfd2bab4682c74cc23d1973b5408d231ec39)), closes [#129](https://github.com/wrappid/service-core/issues/129)
+* **global:** :sparkles: registry content read in application context ([788d6c6](https://github.com/wrappid/service-core/commit/788d6c67fb85a6d5f585d26a29ae46aab7074eb1)), closes [#129](https://github.com/wrappid/service-core/issues/129)
+
+
+### Bug Fixes
+
+* **global:** :ambulance: fix yup validation import ([f7dee33](https://github.com/wrappid/service-core/commit/f7dee33e4edd7dcbd2bfe4d6ddc47d7d89eb2da1)), closes [#129](https://github.com/wrappid/service-core/issues/129)
+* **global:** :ambulance: set routestRegistry  fix ([145ac7d](https://github.com/wrappid/service-core/commit/145ac7d0ced0660e0e052eb9f050e786ec35a8a5)), closes [#129](https://github.com/wrappid/service-core/issues/129)
+* **global:** :bug: putDatabaseModelFunc databaseprobider model rawattribute fix ([6fab725](https://github.com/wrappid/service-core/commit/6fab725e0668fe855ee973efd4e591a29cded986)), closes [#129](https://github.com/wrappid/service-core/issues/129)
+
 ### [0.0.69](https://github.com/wrappid/service-core/compare/v0.0.68...v0.0.69) (2024-04-26)
 
 ### [0.0.68](https://github.com/wrappid/service-core/compare/v0.0.67...v0.0.68) (2024-04-23)
