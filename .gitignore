@@ -57,6 +57,9 @@ web_modules/
 # Optional npm cache directory
 .npm
 
+# Eslint config
+.eslintrc.js
+
 # Optional eslint cache
 .eslintcache
 
@@ -134,3 +137,10 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+# Package Config
+package-lock.json
+package.json
+package/package-lock.json
+package/package.json

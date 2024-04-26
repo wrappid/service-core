@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import { getDatabaseModelRowFunc, getModelsFunc, patchDatabaseModelFunc, putDatabaseModelFunc, putUpdateStatusFunc, getDatabaseModelsFunc, postDatabaseModelFunc, postDataModelSyncFunc } from "../functions/data.function";
+import { postCloneDataModelFunc, getDatabaseModelRowFunc, getModelsFunc, patchDatabaseModelFunc, putDatabaseModelFunc, putUpdateStatusFunc, getDatabaseModelsFunc, postDatabaseModelFunc, postDataModelSyncFunc } from "../functions/data.function";
 
 
 export const getModels = async (req: Request, res: Response) => {
@@ -84,6 +84,22 @@ export const getDatabaseModels = async (req: Request, res: Response) => {
 export const postDataModelSync = async (req: Request, res: Response) => {
   try {
     const result = await postDataModelSyncFunc(req);
+    const {status, ...resData} = result;
+    res.status(status).json(resData);
+  } catch (error:any) {
+    console.log(error);
+    res.status(500).json({message: error.message});
+  }
+};
+
+/**
+ * 
+ * @param req 
+ * @param res 
+ */
+export const postCloneDataModel = async (req: Request, res: Response) => {
+  try {
+    const result = await postCloneDataModelFunc(req);
     const {status, ...resData} = result;
     res.status(status).json(resData);
   } catch (error:any) {
