@@ -442,10 +442,12 @@ const createModelData = async (database: string, model: string, data: GenericObj
   }
 };
 
-// const updateDataSyncReport =  async (key: string, result: boolean, dataSyncReport: {[key:string]: boolean}) => {
-//   dataSyncReport[key] = result;
-// };
 
+/**
+ * 
+ * @param req 
+ * @returns 
+ */
 export const postDataModelSyncFunc = async (req: any) => {
   try {
     const database:string = <string>req.query?.database || "application";
@@ -481,16 +483,11 @@ export const postDataModelSyncFunc = async (req: any) => {
       status: 500, 
       message: "Invalid Data", 
     }; 
-
-
-
-    
   } catch (error) {
     console.log(error);
     throw error;
   }
 };
-
 
 const checkEntityRefExist = async (database:string, model:string, entityRef:string ): Promise<boolean> => {
   try {
