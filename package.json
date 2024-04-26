@@ -1,6 +1,6 @@
 {
   "name": "@wrappid/service-core",
-  "version": "0.0.68",
+  "version": "0.0.69",
   "description": "wrappid service-core",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "build": "npx tsc && npm run copy:content",
     "copy:content": "node -e \"require('fs').cpSync('./package/content', './dist/content', {recursive: true});\"",
     "release": "standard-version --bumpFiles ./package.json ./package/package.json ./package-lock.json ./package/package-lock.json",
-    "publish": "npm publish *.tgz --registry=https://npm.pkg.github.com --scope=@wrappid"
+    "publish": "npm publish *.tgz --access public --registry=https://npm.pkg.github.com --scope=@wrappid"
   },
   "repository": {
     "type": "git",
@@ -60,6 +60,7 @@
     "eslint-import-resolver-typescript": "~3.6.1",
     "eslint-plugin-etc": "~2.0.2",
     "eslint-plugin-import": "~2.27.5",
+    "eslint-plugin-jsdoc": "~46.10.1",
     "eslint-plugin-node": "~11.1.0",
     "eslint-plugin-promise": "~6.1.1",
     "eslint-plugin-require-extensions": "~0.1.3",
