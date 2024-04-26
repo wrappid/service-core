@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.71](https://github.com/wrappid/service-core/compare/v0.0.70...v0.0.71) (2024-04-26)
+
+
+### Features
+
+* **global:** :sparkles: master data table clone api added ([2895e85](https://github.com/wrappid/service-core/commit/2895e850b76232e69c17cf262a13cbd8aca4edc1)), closes [#138](https://github.com/wrappid/service-core/issues/138)
+
+
+### Bug Fixes
+
+* **global:** :ambulance: whereclause authRequired  fix ([bb9265d](https://github.com/wrappid/service-core/commit/bb9265d5deda74b2e2ea027bc29baec2b96a29b5)), closes [#138](https://github.com/wrappid/service-core/issues/138)
+
 ### [0.0.70](https://github.com/wrappid/service-core/compare/v0.0.69...v0.0.70) (2024-04-26)
 
 
