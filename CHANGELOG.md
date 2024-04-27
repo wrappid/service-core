@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.73](https://github.com/wrappid/service-core/compare/v0.0.72...v0.0.73) (2024-04-27)
+
+
+### Bug Fixes
+
+* **config:** :package: add missing package axios ([5998424](https://github.com/wrappid/service-core/commit/59984242400d182d8a9a89126a3a66b3d9446e78)), closes [#142](https://github.com/wrappid/service-core/issues/142)
+
 ### [0.0.72](https://github.com/wrappid/service-core/compare/v0.0.71...v0.0.72) (2024-04-26)
 
 ### [0.0.71](https://github.com/wrappid/service-core/compare/v0.0.70...v0.0.71) (2024-04-26)
