@@ -184,6 +184,14 @@ const _systemRoutesRegistry = {
     entityRef: "postCloneDataModel",
     reqMethod: "post",
     controllerRef: "postCloneDataModel"
+  },
+  postDataModelSync: {
+    name: "Post data model sync",
+    url: "data/sync/:model",
+    authRequired: false,
+    entityRef: "postDataModelSync",
+    reqMethod: "post",
+    controllerRef: "postDataModelSync"
   }
 };
 export default _systemRoutesRegistry;

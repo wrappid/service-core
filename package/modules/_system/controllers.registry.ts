@@ -53,6 +53,6 @@ const AppBuilderControllersRegistry = {
   //Get Registry
   getRegistry: [registryController.getRegistry] ,
   getRegistryList: [registryController.getRegistryList],
-  postCloneDataModel: [dataController.postCloneDataModel] 
-};
+  postCloneDataModel: [dataController.postCloneDataModel],
+}
 export default AppBuilderControllersRegistry;
