@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.74](https://github.com/wrappid/service-core/compare/v0.0.73...v0.0.74) (2024-05-01)
+
+
+### Bug Fixes
+
+* **core:** :zap: added ThemesSchemas to data specific functions ([489d7b7](https://github.com/wrappid/service-core/commit/489d7b7df5db51a33249d12e494ea3f540335689)), closes [#128](https://github.com/wrappid/service-core/issues/128)
+* **global:** :bug: data sync api fix ([8ec977c](https://github.com/wrappid/service-core/commit/8ec977cf0233ddebd704cfab092a7b7bfaa88a17)), closes [#128](https://github.com/wrappid/service-core/issues/128)
+
 ### [0.0.73](https://github.com/wrappid/service-core/compare/v0.0.72...v0.0.73) (2024-04-27)
 
 
