@@ -23,7 +23,7 @@ const placeHolderKeyMap: { [key: string]: string } = {
   PROJECT_NAME: "package.name",
   PROJECT_DESC: "package.description",
   PROJECT_VERSION: "package.version",
-  PROJECT_AUTHOR: "package.author",
+  PROJECT_AUTHOR: "package.author.name",
   PROJECT_HOMEPAGE_URL: "package.homepage",
   PROJECT_REPO_URL: "package.repository.url",
   PROJECT_BUGS_URL: "package.bugs.url",

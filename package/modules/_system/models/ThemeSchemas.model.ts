@@ -1,26 +1,18 @@
-export const Pages = (sequelize: any, DataTypes: any) => {
-  const pages = sequelize.define("Pages", {
+export const ThemeSchemas = (sequelize: any, DataTypes: any) => {
+  const themeSchemas = sequelize.define("ThemeSchemas", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING,
-      defaultValue: null,
-    },
     entityRef: {
       type: DataTypes.STRING,
-      unique: true,
+      defaultValue: null,
     },
-    noScroll: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    appComponent: {
+    name: {
+      // This field has to be deleted ASAP
       type: DataTypes.STRING,
       defaultValue: null,
-      allowNull: true,
     },
     schema: {
       type: DataTypes.JSONB,
@@ -48,39 +40,28 @@ export const Pages = (sequelize: any, DataTypes: any) => {
       type: "TIMESTAMP",
       allowNull: true,
     },
-    layout: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    theme:{
-      type: DataTypes.STRING,
-      allowNull: true,
-    }
   });
-
-  pages.associate = (models: any) => {
-    if (models.Users && models.Routes) {
-      pages.hasMany(models.Routes, {
-        foreignKey: "pageRef",
-        sourceKey: "entityRef",
-      });
-      pages.belongsTo(models.Users, {
+  
+  themeSchemas.associate = (models: any) => {
+    if(models.Users){
+      themeSchemas.belongsTo(models.Users, {
         foreignKey: "createdBy",
         as: "Owner",
         sourceKey: "id",
       });
-      pages.belongsTo(models.Users, {
+      themeSchemas.belongsTo(models.Users, {
         foreignKey: "updatedBy",
         as: "Updater",
         sourceKey: "id",
       });
-      pages.belongsTo(models.Users, {
+      themeSchemas.belongsTo(models.Users, {
         foreignKey: "deletedBy",
         as: "Destroyer",
         sourceKey: "id",
       });
     }
   };
-
-  return pages;
+  
+  return themeSchemas;
 };
+  

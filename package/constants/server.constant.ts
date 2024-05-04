@@ -27,6 +27,14 @@ interface constantType {
     HTTP_PUT: string;
     HTTP_PATCH: string;
   };
+  contentType: {
+    TEXT_HTML: string,
+    TEXT_PLAIN: string,
+    MULTIPART_FORM_DATA: string,
+    APPLICATION_JSON: string,
+    APPLICATION_X_WWW_FORM_URLENCODED: string,
+    APPLICATION_OCTET_STREAM: string,
+  },
   userRoles: {
     ROLE_SYSTEM_ADMIN: string;
     ROLE_ONBOARDING_SALESFORCE: string;
@@ -47,6 +55,11 @@ interface constantType {
     WHATSAPP: string;
     NOTIFICATION: string;
   };
+  paymentGateway: {
+    PAYPAL: string;
+    RAZORPAY: string
+  }
+
   emailService: {
     GMAIL: string;
   };
@@ -86,6 +99,15 @@ interface constantType {
     AWS_S3: string;
     LOCAL: string;
   };
+  registry: {
+    CONTROLLERS_REGISTRY: string;
+    FUNCTIONS_REGISTRY: string;
+    MIDDLEWARES_REGISTRY: string;
+    MODELS__REGISTRY: string;
+    ROUTES_REGISTRY: string;
+    TASKS_REGISTRY: string;
+    VALIDATIONS_REGISTRY: string;
+  };
 }
 
 export const constant: constantType = {
@@ -117,6 +139,14 @@ export const constant: constantType = {
     HTTP_PUT: "put",
     HTTP_PATCH: "patch",
   },
+  contentType: {
+    "TEXT_HTML":"text/html",
+    "TEXT_PLAIN":"text/plain",
+    "MULTIPART_FORM_DATA":"multipart/form-data",
+    "APPLICATION_JSON":"application/json",
+    "APPLICATION_X_WWW_FORM_URLENCODED":"application/x-www-form-urlencoded",
+    "APPLICATION_OCTET_STREAM":"application/octet-stream"
+  },
   userRoles: {
     ROLE_SYSTEM_ADMIN: "system_admin",
     ROLE_ONBOARDING_SALESFORCE: "onboarding_salesforce",
@@ -136,6 +166,10 @@ export const constant: constantType = {
     SMS: "sms",
     WHATSAPP: "whatsapp",
     NOTIFICATION: "notification",
+  },
+  paymentGateway: {
+    PAYPAL: "paypal",
+    RAZORPAY: "razorpay"
   },
   emailService: {
     GMAIL: "gmail",
@@ -176,6 +210,23 @@ export const constant: constantType = {
     AWS_S3: "aws_s3",
     LOCAL: "local",
   },
+  registry: {
+    CONTROLLERS_REGISTRY: "ControllersRegistry",
+    FUNCTIONS_REGISTRY: "FunctionsRegistry",
+    MIDDLEWARES_REGISTRY: "MiddlewaresRegistry",
+    MODELS__REGISTRY: "ModelsRegistry",
+    ROUTES_REGISTRY: "RoutesRegistry",
+    TASKS_REGISTRY: "TasksRegistry",
+    VALIDATIONS_REGISTRY: "ValidationsRegistry",
+  }
+};
+
+export const APP_BUILDER_MODELS = {
+  ROUTES: "Routes",
+  FORM_SCHEMAS: "FormSchemas",
+  BUSINESS_ENTITY_SCHEMAS: "BusinessEntitySchemas",
+  PAGES: "Pages",
+  THEME_SCHEMAS: "ThemeSchemas"
 };
 
 export const DEFAULT_PORT = 8080;

@@ -4,7 +4,8 @@ import * as businessController from "./controllers/business.controller";
 import * as dataController from "./controllers/data.controller";
 import * as databaseController from "./controllers/database.controller";
 import * as formsController from "./controllers/forms.controller";
-import { getSettingMeta, sentOtp } from "./validations/_system.validation";
+import * as registryController from "./controllers/registry.controller";
+import { getSettingMeta, sentOtp, getMasterData } from "./validations/_system.validation";
 
 const AppBuilderControllersRegistry = {
   //database
@@ -34,16 +35,24 @@ const AppBuilderControllersRegistry = {
   ],
 
   //data
-  // getModels: [dataController.getModels],
+  masterData: [validation(getMasterData), _systemController.masterData],
+
+  getModels: [dataController.getModels],
   getDatabaseModels: [dataController.getDatabaseModels],
   getDatabaseModelRow: [dataController.getDatabaseModelRow],
   postDatabaseModel: [dataController.postDatabaseModel],
   putUpdateStatus: [dataController.putUpdateStatus],
   putDatabaseModel: [dataController.putDatabaseModel],
   patchDatabaseModel: [dataController.patchDatabaseModel],
+  postDataModelSync: [dataController.postDataModelSync],
 
   //test communication
   postTestCommunication: [validation(sentOtp),
-    _systemController.postTestCommunication,]
-};
+    _systemController.postTestCommunication,],
+
+  //Get Registry
+  getRegistry: [registryController.getRegistry] ,
+  getRegistryList: [registryController.getRegistryList],
+  postCloneDataModel: [dataController.postCloneDataModel],
+}
 export default AppBuilderControllersRegistry;

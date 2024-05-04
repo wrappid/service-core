@@ -1,16 +1,17 @@
 import { Request } from "express";
 import moment from "moment";
 import { UUIDV4 } from "sequelize";
+import { APP_BUILDER_MODELS, constant } from "../../../constants/server.constant";
 import { databaseActions } from "../../../database/actions.database";
-import { databaseProvider  } from "../../../database/provider.database";
+import { databaseProvider } from "../../../database/provider.database";
 import { coreConstant } from "../../../index";
+import { GenericObject } from "../../../types/generic.types";
 // import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
-
 
 export const getModelsFunc = async (req:Request) => {
   try{
-    const db = req.params?.database;
-    const _data:any = databaseProvider[db].models;
+    const database:string = <string>req.query?.database || "application";
+    const _data:any = databaseProvider[database].models;
     const output = Object.entries(_data)
       .map(([key], index) => ({ id: index + 1, name: key }));
   
@@ -42,7 +43,7 @@ export const getModelsFunc = async (req:Request) => {
 };
 
 export const getDatabaseModelRowFunc = async (req: Request) => {
-  const database = req.params.database;
+  const database:string = <string>req.query?.database || "application";
   console.log("database=" + database);
   const model = req.params.model;
   console.log("model=" + model);
@@ -73,7 +74,7 @@ export const getDatabaseModelRowFunc = async (req: Request) => {
 export const putUpdateStatusFunc = async (req:any) => {
   try {
     const model = req.params.model;
-    const database = req.params.database;
+    const database:string = <string>req.query?.database || "application";
     const currentEntry = await databaseActions.findByPk(database, model, Number(req.params.id));
     const comments = currentEntry?.dataValues?.comments;
     const comment = {
@@ -97,8 +98,8 @@ export const putUpdateStatusFunc = async (req:any) => {
     // update the status of the particular entry
     const updated_result = await databaseActions.update(database, model,
       {
-        _status: req.body.nextStatus,
-        comments: [...comments, comment],
+        _status: req.body?.nextStatus,
+        comments: [...(comments || []), comment],
       },
       { where: { id: req.params.id } }
     );
@@ -119,8 +120,8 @@ export const putUpdateStatusFunc = async (req:any) => {
 };
 
 
-export const patchDatabaseModelFunc = async (req: any) => {
-  const database = req.params.database;
+export const patchDatabaseModelFunc = async (req:any) => {
+  const database:string = <string>req.query?.database || "application";
   console.log("database=" + database);
   const model = req.params.model;
   console.log("model=" + model);
@@ -158,7 +159,7 @@ export const patchDatabaseModelFunc = async (req: any) => {
 
 export const putDatabaseModelFunc = async (req:any) => {
   const model = req.params.model;
-  const database = req.params.database;
+  const database:string = <string>req.query?.database || "application";
   console.log("model=" + model);
   console.log("database=" + database);
   try {
@@ -171,15 +172,15 @@ export const putDatabaseModelFunc = async (req:any) => {
     if (!model) {
       throw new Error("model missing in path parameter");
     }
-    if (!databaseProvider[database].models) {
+    if (databaseProvider[database].models && !Object.prototype.hasOwnProperty.call(databaseProvider[database].models, model)) {
       throw new Error("model[" + model + "] not defined in database");
     }
 
     // data preparation
-    Object.keys(databaseProvider[database].models.rawAttributes).forEach((rawAttribute) => {
+    Object.keys(databaseProvider[database].models[model].rawAttributes).forEach((rawAttribute) => {
       // if json save object in db
       if (
-        databaseProvider[database].models.rawAttributes.type
+        databaseProvider[database].models[model].rawAttributes[rawAttribute].type
           .toString()
           .startsWith("JSON") &&
           // body.hasOwnProperty(rawAttribute) &&
@@ -204,8 +205,9 @@ export const putDatabaseModelFunc = async (req:any) => {
     const models = [
       { model: "FormSchemas" },
       { model: "BusinessEntitySchemas" },
-      // { model: "Routes" },
+      { model: "Routes" },
       { model: "Pages" },
+      { model: "ThemeSchemas" },
     ];
 
     const currentEntry = await databaseActions.findByPk(database,model,body.id);
@@ -255,7 +257,7 @@ export const putDatabaseModelFunc = async (req:any) => {
   }
 };
 
-export const getDatabaseModelsFunc = async () => {
+export const getDatabaseModelsFunc = async (req:any) => {
   try {
     // let model = req.params.model;
     // console.log("model=" + model);
@@ -317,17 +319,18 @@ export const getDatabaseModelsFunc = async () => {
     //     console.log(err);
     //     res.status(500).json({ message: "Error to fetch data from model" });
     //   });
+    console.log(req?.query);
+    
     return {status:200, message: "API Call successfully!!"};
-    throw new Error("API unavailable!");
   } catch (err) {
     console.log(err);
     return({status: 500, message: "Error to fetch data from model" });
   }
 };
 
-export const postDatabaseModelFunc = async (req : any) => {
+export const postDatabaseModelFunc = async (req:any) => {
   const model = req.params.model;
-  const database = req.params.database;
+  const database:string = <string>req.query?.database || "application";
   console.log("model=" + model);
   console.log("database=" + database);
   try {
@@ -380,11 +383,222 @@ export const postDatabaseModelFunc = async (req : any) => {
     else throw new Error("Something went wrong");
   } catch (error) {
     console.error(error);
-    return{
-      return:500,
-      entity: model,
-      message: "Error to create " + model,
-      error: error,
-    };
+    throw error;
   }
 };
+
+const createModelData = async (database: string, model: string, data: GenericObject, additionalData?: GenericObject): Promise<boolean> => {
+  try {
+    const entityRef:string = <string>data?.entityRef || "";
+    let dataExistFlag = false;
+    if(!entityRef){
+      throw new Error("entityRef is missing!!");
+    }
+    if(!model){
+      throw new Error("Model is missing!!");
+    }
+    switch (model) {
+      case APP_BUILDER_MODELS.ROUTES:
+      case APP_BUILDER_MODELS.FORM_SCHEMAS:
+      case APP_BUILDER_MODELS.BUSINESS_ENTITY_SCHEMAS:
+      case APP_BUILDER_MODELS.PAGES:
+      case APP_BUILDER_MODELS.THEME_SCHEMAS:
+        dataExistFlag = await checkEntityRefExist(database, model, entityRef);
+        break; 
+      default:
+        dataExistFlag = false;
+        break;
+    }
+  
+    if(dataExistFlag){
+      throw new Error("Data exist on database");
+    } else {
+      let createOptions = {};
+      if (model === APP_BUILDER_MODELS.ROUTES) {
+        createOptions = {
+          include: [
+            {
+              association: databaseProvider[database].models.Users
+            }
+          ]
+        };
+        data = {
+          ...data,
+          name: entityRef,
+          source: `${additionalData?.source}-side`
+        };
+      }
+
+      await databaseActions.create(database, model, { ...data, _status: constant.entityStatus.PUBLISHED }, createOptions);
+      /**
+       * @todo review required @techoneel
+       * need to log it
+       */
+      return true;
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+
+/**
+ * 
+ * @param req 
+ * @returns 
+ */
+export const postDataModelSyncFunc = async (req: any) => {
+  try {
+    const database:string = <string>req.query?.database || "application";
+    const source:string = <string>req.query?.source || "server";
+    const model:string = req.params?.model;
+    const data: GenericObject[] = req.body || [];
+    const dataSyncReport:{[key:string]: GenericObject} = {} ;
+    if(data?.length > 0){
+      const modifiedData = await Promise.all(
+        data?.map(async (eachData: GenericObject) => {
+          if(Object.prototype.hasOwnProperty.call(eachData, "entityRef")){
+            const key:string = eachData.entityRef;
+            try {
+              const result = <boolean> await createModelData(database, model, eachData, {source}).catch();
+              return { entityRef: key, result };
+            } catch (error:any) {
+              return { entityRef: key, result: false, error: { message: error.message } };
+            }
+          }
+        })
+      );
+      modifiedData.forEach((data: {entityRef: string, result: boolean}) =>{
+        dataSyncReport[data?.entityRef] = data;
+      });
+      console.log(dataSyncReport);
+      return {
+        status: 201, 
+        message: "Data synced successfully", 
+        data: dataSyncReport
+      }; 
+    }
+    return {
+      status: 500, 
+      message: "Invalid Data", 
+    }; 
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const checkEntityRefExist = async (database:string, model:string, entityRef:string ): Promise<boolean> => {
+  try {
+    const data = await databaseActions.findAll(database, model, {
+      where: {
+        entityRef: entityRef,
+        _status: constant.entityStatus.PUBLISHED
+      }
+    });
+    if(data.length>0){
+      return true;
+    }else{
+      return false;
+    } 
+  } catch (error:any) {
+    console.log(error);
+    throw error;
+  }
+};
+
+
+/**
+ *
+ * @param {*} db
+ * @param {*} formID
+ */
+async function getDataFromDB(db: string, entityRef: string, model: string, auth=false) {
+  try {
+    const dbSequelize = databaseProvider[db].Sequelize;
+    const whereClause: any = {
+      entityRef: entityRef,
+      _status: constant.entityStatus.PUBLISHED,
+    };
+    if (auth) {
+      whereClause["authRequired"] = true;
+    } else {
+      whereClause["authRequired"] = {
+        [dbSequelize.Op.or]: {
+          [dbSequelize.Op.eq]: false,
+          [dbSequelize.Op.is]: null,
+        },
+      };
+    }
+    const formSchema = await databaseActions.findOne(db, model, {
+      where: whereClause,
+    });
+    return formSchema;
+  } catch (error) {
+    throw error;
+  }
+}
+  
+/**
+  * 
+  * @param req 
+  * @returns 
+  */ 
+export const postCloneDataModelFunc = async (req: any) => {
+  try {
+    const model = req.params.model;
+        const entityRef = req.params.entityRef;
+        let masterTableFlag = false;
+        const masterTableList = ["BusinessEntitySchemas", "Routes", "Pages", "FormSchemas", "ThemeSchemas"];
+        masterTableList.forEach(element => {
+            if (element === model) {
+                masterTableFlag = true;
+              }
+        });
+       if(!masterTableFlag){
+            return {
+            status: 500,
+            message: `${model} is not master data table`}
+       }  
+    if (!entityRef) {
+      return {
+        status: 500,
+        message: "entityRef is missing api path parameter"
+      };
+    }
+  
+    const dbData = await getDataFromDB("application", entityRef, model);
+    // object cloneSchema
+    const cloneSchema = {
+      formID: dbData?.formID + "-" + new Date().getTime(),
+      name: `Custom ${dbData.name}-${new Date().getTime()}`,
+      authRequired: true,
+      _status: constant.entityStatus.DRAFT,
+      schema: dbData.schema,
+      extraInfo: dbData.extraInfo,
+      entityRef: `${dbData?.entityRef}-${new Date().getTime()}`,
+    };
+  
+    if (dbData) {
+      const clonedSchema = await databaseActions.create("application", model,{
+        ...cloneSchema,
+        createdBy: req.user.userId,
+        updatedBy: req.user.userId
+      });
+      return {
+        status: 200,
+        name: clonedSchema.name,
+        data: clonedSchema,
+      };
+    } else {
+      return {
+        status: 200
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+  

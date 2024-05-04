@@ -87,14 +87,6 @@ const _systemRoutesRegistry = {
     reqMethod: "get",
     controllerRef: "getFormSchema",
   },
-  putFormSchema: {
-    name: "Put Data",
-    url: "data/:model/:id",
-    authRequired: true,
-    entityRef: "putFormSchema",
-    reqMethod: "put",
-    controllerRef: "putFormSchema",
-  },
   getSettingMeta:{
     name: "Setting Meta",
     url: "settingMeta",
@@ -103,7 +95,6 @@ const _systemRoutesRegistry = {
     reqMethod: "get",
     controllerRef: "getSettingMeta"
   },
-  //done
   getModels: {
     name: "Get Database Models",
     url: "models/:database",
@@ -112,28 +103,25 @@ const _systemRoutesRegistry = {
     reqMethod: "get",
     controllerRef: "getModels"
   },
-  //done
   getDatabaseModels: {
     name: "Get database Models",
-    url: "data/:database/:model",
+    url: "data/:model",
     authRequired: true,
     entityRef: "getDatabaseModels",
     reqMethod: "get",
     controllerRef: "getDatabaseModels"
   },
-  //done
   getDatabaseModelRow: {
     name: "Get Database Model Row by id ",
-    url: "data/:database/:model/:id",
+    url: "data/:model/:id",
     authRequired: true,
     entityRef: "getDatabaseModelRow",
     reqMethod: "get",
     controllerRef: "getDatabaseModelRow"
   },
-  
   postDatabaseModel: {
     name: "Create row in model",
-    url: "data/:database/:model",
+    url: "data/:model",
     authRequired: true,
     entityRef: "postDatabaseModel",
     reqMethod: "post",
@@ -141,31 +129,28 @@ const _systemRoutesRegistry = {
   },
   putDatabaseModel: {
     name: "Update model",
-    url: "data/:database/:model/:id",
+    url: "data/:model/:id",
     authRequired: true,
     entityRef: "putDatabaseModel",
     reqMethod: "put",
     controllerRef: "putDatabaseModel"
   },
-  //done
   putUpdateStatus: {
     name: "Update Status",
-    url: "data/:database/:model/status/:id",
+    url: "data/:model/status/:id",
     authRequired: true,
     entityRef: "putUpdateStatus",
     reqMethod: "put",
     controllerRef: "putUpdateStatus"
   },
-  //done
   patchDatabaseModel: {
     name: "Delete Database Model",
-    url: "data/:database/:model/:id",
+    url: "data/:model/:id",
     authRequired: true,
     entityRef: "patchDatabaseModel",
     reqMethod: "patch",
     controllerRef: "patchDatabaseModel"
   },
-  //test communication
   postTestCommunication: {
     name: "Test communication",
     url: "communication/test/:commType",
@@ -173,6 +158,40 @@ const _systemRoutesRegistry = {
     entityRef: "postTestCommunication",
     reqMethod: "post",
     controllerRef: "postTestCommunication"
+  },
+  //Get Registry data
+  getRegistry: {
+    name: "Get Registry Data",
+    url: "registry/:name",
+    authRequired: false,
+    entityRef: "getRegistry",
+    reqMethod: "get",
+    controllerRef: "getRegistry"
+  },
+  getRegistryList: {
+    name: "Get Registry list",
+    url: "regitry/list",
+    authRequired: false,
+    entityRef: "getRegistryList",
+    reqMethod: "get",
+    controllerRef: "getRegistryList"
+  },
+  //clone 
+  postCloneDataModel: {
+    name: "Clone data model",
+    url: "data/clone/:model/:entityRef",
+    authRequired: true,
+    entityRef: "postCloneDataModel",
+    reqMethod: "post",
+    controllerRef: "postCloneDataModel"
+  },
+  postDataModelSync: {
+    name: "Post data model sync",
+    url: "data/sync/:model",
+    authRequired: false,
+    entityRef: "postDataModelSync",
+    reqMethod: "post",
+    controllerRef: "postDataModelSync"
   }
 };
 export default _systemRoutesRegistry;

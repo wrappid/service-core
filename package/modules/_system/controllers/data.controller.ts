@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import { getDatabaseModelRowFunc, getModelsFunc, patchDatabaseModelFunc, putDatabaseModelFunc, putUpdateStatusFunc, getDatabaseModelsFunc, postDatabaseModelFunc } from "../functions/data.function";
+import { postCloneDataModelFunc, getDatabaseModelRowFunc, getModelsFunc, patchDatabaseModelFunc, putDatabaseModelFunc, putUpdateStatusFunc, getDatabaseModelsFunc, postDatabaseModelFunc, postDataModelSyncFunc } from "../functions/data.function";
 
 
 export const getModels = async (req: Request, res: Response) => {
@@ -29,7 +29,7 @@ export const postDatabaseModel = async ( req: Request, res: Response) =>{
     res.status(status).json(resData);
   } catch (error: any) {
     console.error("Error :: ", error);
-    res.status(500).json({massage: error. message});
+    res.status(500).json({massage: "Faild to create data " + error.message});
     
   }
 };
@@ -69,16 +69,41 @@ export const patchDatabaseModel = async (req: any, res: Response) => {
 
 export const getDatabaseModels = async (req: Request, res: Response) => {
   try {
-    const result = await getDatabaseModelsFunc();
+    const result = await getDatabaseModelsFunc(req);
     const {status, ...resData} = result;
     res.status(status).json(resData);
   } catch (error:any) {
     console.log(error);
     res.status(500).json({message: error.message});
+  }
+};
 
 
 
 
-    
+export const postDataModelSync = async (req: Request, res: Response) => {
+  try {
+    const result = await postDataModelSyncFunc(req);
+    const {status, ...resData} = result;
+    res.status(status).json(resData);
+  } catch (error:any) {
+    console.log(error);
+    res.status(500).json({message: error.message});
+  }
+};
+
+/**
+ * 
+ * @param req 
+ * @param res 
+ */
+export const postCloneDataModel = async (req: Request, res: Response) => {
+  try {
+    const result = await postCloneDataModelFunc(req);
+    const {status, ...resData} = result;
+    res.status(status).json(resData);
+  } catch (error:any) {
+    console.log(error);
+    res.status(500).json({message: error.message});
   }
 };

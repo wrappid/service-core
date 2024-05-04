@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import { getSettingMetaFunc, postTestCommunicationFunc } from "../functions/_system.function";
+import { getMasterDataFunc, getSettingMetaFunc, postTestCommunicationFunc } from "../functions/_system.function";
 
 export const getVersion = async (req: Request, res: Response) => {
   try {
@@ -39,3 +39,23 @@ export const postTestCommunication = async (req:Request, res:Response) => {
     res.status(500).json({ message: "Error ::" +error.message  });
   }
 };
+
+
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
+
+export const masterData = async (req: Request, res: Response) => {
+  try{
+    const data = await getMasterDataFunc(req);
+    const { status, ...restData } = data;
+    res.status(status).json(restData);
+  }catch(error:any){
+    console.error("Error:: ", error);
+    res.status(500).json({ message: error.message });
+  }         
+                  
+};
+
