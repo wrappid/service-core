@@ -1,26 +1,27 @@
-import { databaseProvider , databaseActions } from "../../../index";
+import { databaseActions, databaseProvider } from "../../../index";
 
+import { GenericObject } from "../../../types/generic.types";
 import {
-  getEntitySchema,
-  getEntityOption,
-  // eslint-disable-next-line no-unused-vars
-  getTotalCount,
-  prepareOrderOB,
-  getFinalWhereClause,
-  getColumnsFromSchema,
   auditAttributes,
+  getColumnsFromSchema,
+  getEntityOption,
+  getEntitySchema,
+  getFinalWhereClause,
+  prepareOrderOB
 } from "./businessEntity.helper";
 
+
 /**
- *
- * @param {*} db
- * @param {*} entityName
- * @param {*} query
+ * The get entity data count
+ * 
+ * @param dbName : dbName value
+ * @param entityName : entityName value
+ * @param query : query value
  * @returns
  */
 const getEntityDataCount = async (
-  databaseActions: any,
-  entityName: any,
+  dbName: string,
+  entityName: string,
   query: any
 ) => {
   try {
@@ -29,10 +30,10 @@ const getEntityDataCount = async (
       throw new Error("Entity is missing");
     }
 
-    const entityDatabaseName = "application"; // getRequiredDB(schema?.database || DB_CONST.RXEFY_DB);
+    const entityDatabaseName = dbName || "application"; // getRequiredDB(schema?.database || DB_CONST.RXEFY_DB);
 
     // eslint-disable-next-line no-unused-vars
-    const { where, ...schemaOptions }: any = getEntityOption(
+    const { where, ...schemaOptions }: GenericObject = getEntityOption(
       entityDatabaseName,
       schema,
       query
@@ -48,7 +49,7 @@ const getEntityDataCount = async (
     // order filter
     const orderOB = prepareOrderOB(entityDatabaseName, schema, query?._order);
 
-    const _options = {
+    const _options: GenericObject = {
       benchmark: true,
       logging: console.log,
       ...schemaOptions,
@@ -98,7 +99,7 @@ const getEntityDataCount = async (
     console.error("getBusinessEntity.helper>getEntityData");
     console.error(error);
     console.error("-------------------------------------");
-    throw new Error(error);
+    throw error;
   }
 };
 
@@ -115,18 +116,19 @@ const getEntityColumns = async (db: any, entityName: any) => {
     console.error("getBusinessEntity.helper>getEntityData");
     console.error(error);
     console.error("-------------------------------------");
-    throw new Error(error);
+    throw error;
   }
 };
 
 /**
- *
- * @param {*} db
- * @param {*} entityName
- * @param {*} query
+ * This is to get entity data name
+ * 
+ * @param db : db value
+ * @param entityName : entityName value
+ * @param query : query value
  * @returns
  */
-const getEntityDataName = async (entityName: any, query: any) => {
+const getEntityDataName = async (entityName: string, query: GenericObject) => {
   try {
     const db = "application";
     const schema = await getEntitySchema(entityName);
@@ -212,20 +214,23 @@ const getEntityDataName = async (entityName: any, query: any) => {
     console.error("getBusinessEntity.helper>getEntityData");
     console.error(error);
     console.error("-------------------------------------");
-    throw new Error(error);
+    throw error;
   }
 };
 
 /**
- *
- * @param {*} db
- * @param {*} entity
- * @param {*} query
+ * This function helps to get entity single data
+ * 
+ * @param entityDatabaseName : entityDatabaseName value
+ * @param entityName : entityName value
+ * @param query : query value
+ * 
+ * @returns
  */
 const getIndivEntityData = async (
-  entityDatabaseName: any,
-  entityName: any,
-  query: any
+  entityDatabaseName: string,
+  entityName: string,
+  query: GenericObject
 ) => {
   const schema = await getEntitySchema(entityName);
   if (!schema) {
@@ -269,9 +274,6 @@ const getIndivEntityData = async (
 // ---------------------------------------------------------------
 
 export {
-  getEntitySchema,
-  getEntityDataCount,
-  getEntityColumns,
-  getEntityDataName,
-  getIndivEntityData,
+  getEntityColumns, getEntityDataCount, getEntityDataName, getEntitySchema, getIndivEntityData
 };
+

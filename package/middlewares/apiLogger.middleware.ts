@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-import { databaseProvider } from "../database/provider.database";
+import { databaseProvider } from "../database/setup.database";
 
 export const apiLogger = async (req: any, res: any, next: any) => {
   try {
@@ -40,8 +40,8 @@ export const apiLogger = async (req: any, res: any, next: any) => {
       bodySetFlag = true;
     });
   } catch (error: any) {
+    console.error("WrappidError: Can't log api request to database.");
     console.error(error);
-    // throw new Error(error);
   } finally {
     next();
   }

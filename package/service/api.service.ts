@@ -10,7 +10,13 @@ export type RequestConfig = {
     headers?: GenericObject;
     data?: GenericObject;
     authRequired?: boolean;
-    statusCodeHandlers?: { [statusCode: number]: (data: any) => any }; // Optional handlers for specific status codes
+    statusCodeHandlers?: { [statusCode: number]: /**
+     *
+     */
+    (data: any) => any }; // Optional handlers for specific status codes
+    /**
+     *
+     */
     customError?: (error: any) => any; // Optional custom error handling function
 }
 
@@ -37,9 +43,10 @@ export abstract class APIService {
   
 
   /**
+   * This function helps us to call third party APIs
    * 
-   * @param requestConfig<RequestConfig> 
-   * @returns 
+   * @param requestConfig : Request configuration
+   * @returns response : Response data
    */
   async request<T>(requestConfig: RequestConfig): Promise<T> {
     try {

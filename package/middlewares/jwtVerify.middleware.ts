@@ -1,19 +1,14 @@
 import jwt from "jsonwebtoken";
-import { configProvider } from "../config/provider.config";
-
-const {
-  accessTokenSecret,
-  // refreshAccessTokenSecret,
-  // expTime,
-  // expTimeRefreshToken
-} = configProvider().jwt || {
-  accessTokenSecret: "",
-  // "refreshAccessTokenSecret": "",
-  // "expTime": "60m",
-  // "expTimeRefreshToken": "1000m"
-};
+import { constant } from "../constants/server.constant";
+import { ApplicationContext } from "../context/application.context";
 
 export const jwtVerify = (req: any, res: any, next: any) => {
+  const {
+    accessTokenSecret="",
+    // refreshAccessTokenSecret="",
+    // expTime="60m",
+    // expTimeRefreshToken="1000m"
+  } = ApplicationContext.getContext(constant.CONFIG_KEY);
   const authHeader = req.headers.authorization;
   if (authHeader) {
     const token = authHeader.split(" ")[1];

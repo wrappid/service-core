@@ -5,12 +5,12 @@ import expressWinston from "express-winston";
 import { format, transports } from "winston";
 
 /**
+ * This logging module built with morgan
+ * 
  * @todo
  * must implement winston for logging
  *
- * This logging module built with morgan
- *
- * @param {*} app
+ * @param app : express app
  */
 export const setupLogging = (app: any) => {
   // log only 4xx and 5xx responses to console

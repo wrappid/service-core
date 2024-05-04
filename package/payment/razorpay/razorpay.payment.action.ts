@@ -8,6 +8,12 @@ type Config = {
 }
 
 
+/**
+ * This function helps us to create payment gateway instance
+ * 
+ * @param config : payment auth config
+ * @returns instance
+ */
 async function createInstance(config: Config) {
   try {
     const instance = new Razorpay({
@@ -52,22 +58,18 @@ type RazorpayOrderOptions = {
 
 export const razorpayPaymentActions = {
   createOrder: async (gatewayConfig:PaymentGateway,  amount: string, notes?: string) => {
-    try {
-      const config: Config = {
-        key_id: gatewayConfig.key,
-        key_secret: gatewayConfig.secret
-      };
-      const instance = await createInstance(config);
-      const options:RazorpayOrderOptions = {
-        amount: Number(amount),
-        currency: "INR",
-        notes: { key: notes }
-      };
-      const order = await instance.orders.create(options);
-      return order;
-    } catch (error: any) {
-      throw new Error(error);
-    }
+    const config: Config = {
+      key_id: gatewayConfig.key,
+      key_secret: gatewayConfig.secret
+    };
+    const instance = await createInstance(config);
+    const options:RazorpayOrderOptions = {
+      amount: Number(amount),
+      currency: "INR",
+      notes: { key: notes }
+    };
+    const order = await instance.orders.create(options);
+    return order;
   },
 
   verifyPayment: async (secretKey: string, orderId: string, paymentId: string) => {

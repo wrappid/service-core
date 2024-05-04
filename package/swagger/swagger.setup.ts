@@ -1,6 +1,7 @@
 import swaggerUi from "swagger-ui-express";
+import { GenericObject } from "types/generic.types";
 
-const setupSwagger = async (wrappidApp: any, swaggerJsonFile: any) => {
+const setupSwagger = async (wrappidApp: any, swaggerJsonFile: GenericObject) => {
   try {
     /**
      * @todo

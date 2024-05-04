@@ -1,4 +1,8 @@
+/**
+ *
+ */
 interface constantType {
+  CONFIG_KEY: string,
   entityStatus: {
     DEFAULT: string;
     UNKNOWN: string;
@@ -111,6 +115,7 @@ interface constantType {
 }
 
 export const constant: constantType = {
+  CONFIG_KEY: "config",
   entityStatus: {
     DEFAULT: "active",
     UNKNOWN: "unknown",

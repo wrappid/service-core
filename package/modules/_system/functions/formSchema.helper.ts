@@ -1,7 +1,7 @@
-import { coreConstant , databaseProvider , databaseActions } from "../../../index";
+import { coreConstant, databaseActions, databaseProvider } from "../../../index";
 
 // const { httpMethod, entityStatus } = coreConstant;
-import { getEntitySchema, getColumnsFromSchema } from "./businessEntity.helper";
+import { getColumnsFromSchema, getEntitySchema } from "./businessEntity.helper";
 
 const auditAttributes = [
   "id",
@@ -13,7 +13,12 @@ const auditAttributes = [
   "deletedBy",
 ];
 
-function getFieldType(attributeType: any) {
+/**
+ * Determines the field type based on the provided attribute type.
+ * @param {string} attributeType - The type of attribute to determine the field type for.
+ * @returns {string} The field type corresponding to the attribute type.
+ */
+function getFieldType(attributeType: string) {
   try {
     let type = "text";
     switch (attributeType) {
@@ -41,14 +46,20 @@ function getFieldType(attributeType: any) {
   }
 }
 
-async function generateFormSchema(modelName: any) {
+/**
+ * This function will generate form schema
+ * 
+ * @param {string} modelName : model name 
+ * @returns 
+ */
+async function generateFormSchema(modelName: string) {
   try {
     /**
      * @todo check if present in business entity
      */
 
     const schema = await getEntitySchema(modelName);
-    let fieldsData = [];
+    let fieldsData: any = [];
     if (schema && schema?.model) {
       const entityDB = "application" || schema?.database;
       fieldsData = getColumnsFromSchema(entityDB, schema)?.filter(
@@ -128,11 +139,13 @@ async function generateFormSchema(modelName: any) {
 }
 
 /**
- *
- * @param {*} dbName
- * @param {*} formID
+ * This function will get form schema from database
+ * 
+ * @param {string} formID : formID stored in databse 
+ * @param {boolean} auth : defines authenticated or guest schema resource
+ * @returns formSchema
  */
-async function getFormSchemaFromDB(formID: any, auth: any) {
+async function getFormSchemaFromDB(formID: string, auth: boolean) {
   try {
     const dbName = "application";
     const dbSequelize = databaseProvider[dbName].Sequelize;
@@ -165,11 +178,13 @@ async function getFormSchemaFromDB(formID: any, auth: any) {
 }
 
 /**
- *
- * @param {*} dbName
- * @param {*} formID
+ * This function will return FormSchema
+ * 
+ * @param {string} formID : formID stored in databse 
+ * @param {boolean} auth : defines authenticated or guest schema resource
+ * @returns formSchema
  */
-export const getFormSchema = async (formID: any, auth = true) => {
+export const getFormSchema = async (formID: string, auth = true) => {
   try {
     let formSchema = await getFormSchemaFromDB(formID, auth);
     if (!formSchema && auth) {

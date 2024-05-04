@@ -1,11 +1,13 @@
-import { databaseProvider } from "../../../database/provider.database";
+import { databaseProvider } from "../../../database/setup.database";
 import { getEntityColumns } from "../functions/businessEntity.get.helper";
 import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
 
 /**
+ * This function helps to get database tables
  *
- * @param {*} req
- * @param {*} res
+ * @param req : req value
+ * @param res : res value
+ * @returns
  */
 const getDatabaseTables = (req: any, res: any) => {
   try {
@@ -42,9 +44,10 @@ const getDatabaseTables = (req: any, res: any) => {
 };
 
 /**
+ * This function helps to get table attributes
  *
- * @param {*} req
- * @param {*} res
+ * @param req : req value
+ * @param res : res value
  * @returns
  */
 const getAttributes = async (req: any, res: any) => {
@@ -82,9 +85,10 @@ const getAttributes = async (req: any, res: any) => {
 };
 
 /**
- *
- * @param {*} req
- * @param {*} res
+ * This function helps to get business entity columns
+ * 
+ * @param req : req value
+ * @param res : res value
  * @returns
  */
 const getBusinessEntityColumns = async (req: any, res: any) => {
@@ -113,4 +117,5 @@ const getBusinessEntityColumns = async (req: any, res: any) => {
   }
 };
 
-export { getDatabaseTables, getAttributes, getBusinessEntityColumns };
+export { getAttributes, getBusinessEntityColumns, getDatabaseTables };
+

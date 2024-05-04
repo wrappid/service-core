@@ -1,28 +1,35 @@
 import { coreConstant } from "../../../index";
 
-export function clearValidatePhoneEmail(text: any) {
-  let t = text;
-  if (t[0] == "'") {
-    t = t.slice(1);
-    t = t.toLowerCase();
+/**
+ * This function helps to validate Phone or Email
+ * 
+ * @param identifier : Phone or Email
+ * @returns valid { valid: boolean, type: string } | [boolean, string]
+ */
+export function clearValidatePhoneEmail(identifier: string) {
+  if (identifier[0] == "'") {
+    identifier = identifier.slice(1);
+    identifier = identifier.toLowerCase();
   }
-  let f = String(t).match(
+
+  // match if email
+  let matchedArray: string[] = String(identifier).match(
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
   
-  if (f) {
-    return { valid: f, type: coreConstant.commType.EMAIL };
-  } else if (!f) {
-    f = String(t).match(
+  if (matchedArray && matchedArray.length === identifier.length) {
+    return { valid: true, type: coreConstant.commType.EMAIL };
+  } else {
+    // match phone number
+    matchedArray = String(identifier).match(
       /((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/
     );
-    if (f) {
-      return { valid: f, type: coreConstant.commType.SMS };
+
+    if (matchedArray && matchedArray.length === identifier.length) {
+      return { valid: true, type: coreConstant.commType.SMS };
     } else {
-      return { valid: f, type: "" };
+      return { valid: false, type: "" };
     }
   }
-  
-  return [f, t];
 }
   

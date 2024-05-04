@@ -1,5 +1,5 @@
 import { getNormalCaseFromCamelCase } from "../utils/business.utilis";
-import { databaseProvider } from "./provider.database";
+import { databaseProvider } from "./setup.database";
 
 const getDatabases = (req: any, res: any) => {
   try {
@@ -98,4 +98,5 @@ const getColumns = async (req: any, res: any) => {
   }
 };
 
-export { getDatabases, getTables, getColumns };
+export { getColumns, getDatabases, getTables };
+

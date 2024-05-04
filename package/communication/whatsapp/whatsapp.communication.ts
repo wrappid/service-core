@@ -1,10 +1,12 @@
 import fetch from "node-fetch-commonjs";
 import { getDefaultCommunicationConfig } from "../../utils/communication.utils";
 
-// eslint-disable-next-line prefer-const
-// let { api_url, id, accessToken } = configProvider().whatsappProvider;
-// api_url = api_url.replace(":id", id);
-
+/**
+ * This function help us to communicate
+ * 
+ * @param whatsappOptions : WhatsApp Options
+ * @returns 
+ */
 async function communicate(whatsappOptions: any) {
   const { phone, messageObject } = whatsappOptions;
   let res = {};
@@ -54,11 +56,6 @@ async function communicate(whatsappOptions: any) {
           if (data.error) {
             console.error("whatsapp cloud api returned error", data.error);
             throw data.error;
-            return {
-              status: 500,
-              success: false,
-              error: data.error,
-            };
           } else
             return {
               status: 200,

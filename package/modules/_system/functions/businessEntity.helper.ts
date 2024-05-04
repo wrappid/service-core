@@ -1,8 +1,9 @@
 import sequelize from "sequelize";
-import { coreConstant , databaseProvider , databaseActions } from "../../../index";
+import { coreConstant, databaseActions, databaseProvider } from "../../../index";
 
 
 // const entityStatus = coreConstant;
+import { GenericObject } from "../../../types/generic.types";
 import whereConst from "../constants/whereConstants";
 import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
 
@@ -22,11 +23,10 @@ const auditAttributes = [
  * Get the schema from db
  * -------------------------------------
  *
- * @param {*} db
- * @param {*} entityStr
+ * @param {string} entityStr : entityStr value
  * @returns
  */
-const getEntitySchema = async (entityStr: any) => {
+const getEntitySchema = async (entityStr: string) => {
   const businessEntitySchema = await databaseActions.findOne(
     "application",
     "BusinessEntitySchemas",
@@ -56,12 +56,12 @@ const getEntitySchema = async (entityStr: any) => {
 /**
  * The total count of the rows based on the query generated
  *
- * @param {*} db
- * @param {*} model
- * @param {*} schemaOptions
+ * @param db : db value
+ * @param model : model value
+ * @param schemaOptions : schemaOptions value
  * @returns
  */
-const getTotalCount = async (db: any, model: any, schemaOptions: any) => {
+const getTotalCount = async (db: string, model: string, schemaOptions: GenericObject) => {
   let count = 0;
   try {
     const options = schemaOptions;
@@ -79,9 +79,15 @@ const getTotalCount = async (db: any, model: any, schemaOptions: any) => {
 };
 
 /**
- * recurrsive columns
+ * This function process recurrsive columns
+ * 
+ * @param dbName : dbName value
+ * @param schema : schema value
+ * @param preffix : preffix value
+ * 
+ * @returns
  */
-function recurrsive_NestedColumns(dbName: any, schema: any, preffix = "") {
+function recurrsive_NestedColumns(dbName: string, schema: GenericObject, preffix = "") {
   let columns: any = [];
   if (schema?.include) {
     schema?.include?.forEach((incSchema: any) => {
@@ -144,12 +150,12 @@ function recurrsive_NestedColumns(dbName: any, schema: any, preffix = "") {
 /**
  * The columns array of the selected fields by default else all fields
  *
- * @param {*} db
- * @param {*} schema
+ * @param dbName : dbName value
+ * @param schema : schema value
  * @returns
  */
-const getColumnsFromSchema = (dbName: any, schema: any) => {
-  let columns: any = [];
+const getColumnsFromSchema = (dbName: string, schema: GenericObject) => {
+  let columns: GenericObject[] = [];
 
   const schemaModelRawAttributes =
     databaseProvider[dbName].models[schema.model].rawAttributes;
@@ -182,6 +188,15 @@ const getColumnsFromSchema = (dbName: any, schema: any) => {
   return columns;
 };
 
+/**
+ * This function process column filter
+ * 
+ * @param _whereOB : _whereOB value
+ * @param _attribute : _attribute value
+ * @param _filterOB : _filterOB value
+ * 
+ * @returns
+ */
 function processColumnFilter(_whereOB: any, _attribute: any, _filterOB: any) {
   /**
      * 
@@ -310,6 +325,15 @@ function processColumnFilter(_whereOB: any, _attribute: any, _filterOB: any) {
   return _whereOB;
 }
 
+/**
+ * This function helps us to process recurrsive business entity where clauses
+ * 
+ * @param dbName : dbName value
+ * @param schema : schema value
+ * @param where : where value
+ * 
+ * @returns
+ */
 function recurrsive_BusinessEntityWhere(dbName: any, schema: any, where: any) {
   const whereSchema: any = where || {};
   const whereOB: any = {};
@@ -379,10 +403,12 @@ function recurrsive_BusinessEntityWhere(dbName: any, schema: any, where: any) {
  *    ]
  * }
  *
- * @param {*} db
- * @param {*} schema
+ * @param db : db value
+ * @param schema : schema value
+ * 
+ * @returns
  */
-function prepareBusinessEntityWhere(db: any, schema: any) {
+function prepareBusinessEntityWhere(db: string, schema: GenericObject) {
   const whereSchema = schema?.where || {};
   let whereOB = {};
   const rootModel = schema?.model;
@@ -397,28 +423,29 @@ function prepareBusinessEntityWhere(db: any, schema: any) {
  *    default: attributes and _searchValue
  *    else: rawAttributes of the model and _searchValue
  *
- * @param {*} db
- * @param {*} model
- * @param {*} attributes
- * @param {*} attributeSuffix
- * @param {*} _searchValue
+ * @param db : db value
+ * @param model : model value
+ * @param attributes : attributes value
+ * @param whereKeys : whereKeys value
+ * @param attributeSuffix : attributeSuffix value
+ * @param _searchValue : _searchValue value
  * @returns
  */
 function prepareGeneralSearchWhereOB(
-  db: any,
-  model: any,
-  attributes: any,
-  whereKeys: any,
-  attributeSuffix: any,
+  db: string,
+  model: string,
+  attributes: string[],
+  whereKeys: string[],
+  attributeSuffix: string,
   _searchValue: any
 ) {
-  const whereOB: any = {};
+  const whereOB: GenericObject = {};
   _searchValue = decodeURIComponent(_searchValue).toString();
   if (_searchValue) {
     const rawAttributes = databaseProvider[db].models[model].rawAttributes;
     const selectedAttributes = attributes || Object.keys(rawAttributes);
 
-    selectedAttributes?.forEach((attr: any) => {
+    selectedAttributes?.forEach((attr: string) => {
       if (whereKeys.includes(attr) && auditAttributes.includes(attr)) {
         return;
       }
@@ -447,12 +474,15 @@ function prepareGeneralSearchWhereOB(
 }
 
 /**
- * nested
+ * This function prepares nested search where object
  *
- * @param {*} db
- * @param {*} incSchemas
- * @param {*} attributeSuffix
- * @param {*} _searchValue
+ * @param db : db value
+ * @param model : model value
+ * @param incSchemas : incSchemas value
+ * @param attributeSuffix : attributeSuffix value
+ * @param _searchValue : _searchValue value
+ * 
+ * @returns
  */
 function nestedSearchWhereOB(
   db: any,
@@ -502,12 +532,16 @@ function nestedSearchWhereOB(
 }
 
 /**
+ * This functions prepares search where object
  *
- * @param {*} db
- * @param {*} _schema
- * @param {*} _orderQuery
+ * @param db : db value
+ * @param _schema : _schema value
+ * @param _orderQuery : _orderQuery value
+ * @param _searchValue : _searchValue value
+ * 
+ * @returns
  */
-function prepareSearchWhereOB(db: any, _schema: any, _searchValue: any) {
+function prepareSearchWhereOB(db: string, _schema: GenericObject, _searchValue: any) {
   let whereOB = {};
   if (_searchValue) {
     // for root model
@@ -542,12 +576,13 @@ function prepareSearchWhereOB(db: any, _schema: any, _searchValue: any) {
 /**
  * This function helps to prepare where clause
  *
- * @param {*} _schema
- * @param {*} _filterQuery
+ * @param db : db value
+ * @param _schema : _schema value
+ * @param _filterQuery : _filterQuery value
  * @returns
  */
 // eslint-disable-next-line no-unused-vars
-function prepareWhereOB(db: any, _schema: any, _filterQuery: any) {
+function prepareWhereOB(db: string, _schema: GenericObject, _filterQuery: any) {
   let whereOB = _schema?.where || {};
   if (_filterQuery) {
     const modelAttr = Object.keys(
@@ -579,18 +614,19 @@ function prepareWhereOB(db: any, _schema: any, _filterQuery: any) {
   }
   return whereOB;
 }
+
 /**
- *
- * @param {*} db
- * @param {*} parentModel
- * @param {*} _incSchema
- * @param {*} orderQuery
+ * This function process nested model order
+ * @param db : db value
+ * @param parentModel : parentModel value
+ * @param _incSchema : _incSchema value
+ * @param orderQuery : orderQuery value
  */
 // eslint-disable-next-line no-unused-vars
 function processNestedModelOrder(
-  db: any,
-  parentModel: any,
-  _incSchema: any,
+  db: string,
+  parentModel: string,
+  _incSchema: GenericObject,
   orderQuery: any
 ) {
   Object.keys(orderQuery).forEach((_eachOrder) => {
@@ -601,16 +637,18 @@ function processNestedModelOrder(
 }
 
 /**
+ * This function prepare order object
+ * 
  * @todo
  * one level nested data order by is working
  * more than one level not working
  *
- * @param {*} db
- * @param {*} schema
- * @param {*} orderQuery
+ * @param db : db value
+ * @param schema : schema value
+ * @param orderQuery : orderQuery value
  * @returns
  */
-const prepareOrderOB = (db: any, schema: any, orderQuery: any) => {
+const prepareOrderOB = (db: string, schema: GenericObject, orderQuery: any) => {
   try {
     const orderOB: any = [];
 
@@ -669,12 +707,12 @@ const prepareOrderOB = (db: any, schema: any, orderQuery: any) => {
 
 /**
  * Recursive function to prepare model options
- * @param {*} db | holds sequelize db object
+ * @param databaseName | holds database name
  * @param {*} schema | holds business entity schema
  * @param {*} query | holds query params
  * @returns
  */
-const getEntityOption = (databaseName: any, schema: any, query: any) => {
+const getEntityOption = (databaseName: string, schema: GenericObject, query: any) => {
   try {
     const model = schema?.model;
     if (!schema?.model) {
@@ -740,11 +778,18 @@ const getEntityOption = (databaseName: any, schema: any, query: any) => {
 };
 
 /**
- *
+ * This function helps to get final where clause
+ * 
+ * @param db : db value 
+ * @param schema : schema value 
+ * @param defaultFilterQuery : defaultFilterQuery value 
+ * @param searchValue : searchValue value
+ *  
+ * @returns 
  */
 const getFinalWhereClause = (
-  db: any,
-  schema: any,
+  db: string,
+  schema: GenericObject,
   defaultFilterQuery: any,
   searchValue: any
 ) => {
@@ -808,11 +853,6 @@ const getFinalWhereClause = (
 // ---------------------------------------------------------------
 
 export {
-  auditAttributes,
-  getEntitySchema,
-  getEntityOption,
-  getFinalWhereClause,
-  prepareOrderOB,
-  getTotalCount,
-  getColumnsFromSchema,
+  auditAttributes, getColumnsFromSchema, getEntityOption, getEntitySchema, getFinalWhereClause, getTotalCount, prepareOrderOB
 };
+
