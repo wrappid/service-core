@@ -36,7 +36,7 @@ async function getDbRoutes(): Promise<GenericObject> {
  * 
  * @param registry : all registry
  */
-export async function setupLocalRegistryContext(registry: WrappidRegistryType) {
+export function setupLocalRegistryContext(registry: WrappidRegistryType) {
   ApplicationContext.setContext(constant.registry.CONTROLLERS_REGISTRY, {...CoreControllersRegistry, ...registry.ControllersRegistry});
   ApplicationContext.setContext(constant.registry.FUNCTIONS_REGISTRY,{...CoreFunctionsRegistry, ...registry.FunctionsRegistry});
   ApplicationContext.setContext(constant.registry.MIDDLEWARES_REGISTRY,{...CoreMiddlewaresRegistry, ...registry.MiddlewaresRegistry});

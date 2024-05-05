@@ -1,8 +1,8 @@
 import { PutObjectCommand, PutObjectCommandInput, S3Client } from "@aws-sdk/client-s3";
 
 import multer from "multer";
-import { constant } from "constants/server.constant";
-import { ApplicationContext } from "context/application.context";
+import { constant } from "../constants/server.constant";
+import { ApplicationContext } from "../context/application.context";
 
 // const acceptedType = ["pdf", "doc", "docx", "jpg", "jpeg", "png"];
 

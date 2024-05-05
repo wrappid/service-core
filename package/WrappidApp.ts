@@ -89,7 +89,7 @@ export default class WrappidApp {
     setupSwagger(this.wrappidApp, wrappidAppConfig.swagger);
   }
 
-  init() {
+  async init() {
     /**
      * Setup Databases
      */
@@ -109,7 +109,7 @@ export default class WrappidApp {
     /**
      * update database registry to context
      */
-    updateDatabaseRegistryContext();
+    await updateDatabaseRegistryContext();
     
     /**
      * Setup Tasks

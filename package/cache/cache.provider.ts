@@ -1,7 +1,7 @@
 import { createClient } from "redis";
-import { CacheConfig } from "config/types.config";
-import { constant } from "constants/server.constant";
-import { ApplicationContext } from "context/application.context";
+import { CacheConfig } from "../config/types.config";
+import { constant } from "../constants/server.constant";
+import { ApplicationContext } from "../context/application.context";
 
 export const cacheProvider: any = {};
 
@@ -11,7 +11,7 @@ export const cacheProvider: any = {};
 export function setupCacheProvider() {
   const config = ApplicationContext.getContext(constant.CONFIG_KEY);
   
-  config?.cache.forEach(async (data: CacheConfig) => {
+  config?.cache?.forEach(async (data: CacheConfig) => {
     try {
       const client = createClient({
         username: data.username,
