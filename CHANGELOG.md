@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.79](https://github.com/wrappid/service-core/compare/v0.0.78...v0.0.79) (2024-05-06)
+
+
+### Bug Fixes
+
+* **global:** :bug: fix routes setup ([3f4ce50](https://github.com/wrappid/service-core/commit/3f4ce5075685b585374343aa4f8393487074bc35)), closes [#144](https://github.com/wrappid/service-core/issues/144)
+* **global:** :wrench: update package json file ([3cee483](https://github.com/wrappid/service-core/commit/3cee483bb03e1639e60b7e75fd27cd941ec0096e)), closes [#144](https://github.com/wrappid/service-core/issues/144)
+
 ### [0.0.78](https://github.com/wrappid/service-core/compare/v0.0.77...v0.0.78) (2024-05-06)
 
 ### [0.0.77](https://github.com/wrappid/service-core/compare/v0.0.76...v0.0.77) (2024-05-06)
