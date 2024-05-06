@@ -55,9 +55,9 @@ export async function updateDatabaseRegistryContext() {
     let  allDbRoutes: GenericObject = {};
     Object.keys(dbRoutes).forEach((element: string) => {
       const Routes = dbRoutes[element];
-      const { controllerRef, ...rest } = Routes.dataValues; // Destructuring assignment
+      const { controllerRef } = Routes.dataValues; // Destructuring assignment
       const restructuredData = {
-        [controllerRef]: {...rest} // Use entityRef as property name
+        [controllerRef]: {...Routes.dataValues} // Use entityRef as property name
       };
       allDbRoutes = {...allDbRoutes, ...restructuredData};
     });
