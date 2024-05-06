@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.75](https://github.com/wrappid/service-core/compare/v0.0.74...v0.0.75) (2024-05-05)
+
+
+### Features
+
+* **global:** :sparkles: new test suite added ([a633ae8](https://github.com/wrappid/service-core/commit/a633ae85437e2958453b6af825f75e2a8e0f5755)), closes [#144](https://github.com/wrappid/service-core/issues/144)
+
 ### [0.0.74](https://github.com/wrappid/service-core/compare/v0.0.73...v0.0.74) (2024-05-01)
 
 
