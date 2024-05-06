@@ -1,14 +1,15 @@
 import { databaseActions } from "../../../database/actions.database";
 import {
-  getEntityDataName,
   getEntityDataCount,
+  getEntityDataName,
   getIndivEntityData,
 } from "../functions/businessEntity.get.helper";
 
 /**
- *
- * @param {*} req
- * @param {*} res
+ * This function helps to get business entities
+ * 
+ * @param req : req value
+ * @param res : res value
  * @returns
  */
 const getBusinessEntities = async (req: any, res: any) => {
@@ -43,9 +44,10 @@ const getBusinessEntities = async (req: any, res: any) => {
 };
 
 /**
- *
- * @param {*} req
- * @param {*} res
+ * This function helps to get entity data
+ * 
+ * @param req : req value
+ * @param res : res value
  * @returns
  */
 const getEntityData = async (req: any, res: any) => {
@@ -58,7 +60,7 @@ const getEntityData = async (req: any, res: any) => {
       return;
     }
 
-    const data = await getEntityDataCount(databaseActions, entity, req.query);
+    const data = await getEntityDataCount("application", entity, req.query);
 
     if (!data || data.length === 0) {
       res.status(204).json({ message: "Entity is missing" });
@@ -82,9 +84,10 @@ const getEntityData = async (req: any, res: any) => {
 };
 
 /**
- *
- * @param {*} req
- * @param {*} res
+ * This function helps to get individual business entity data
+ * 
+ * @param req : req value
+ * @param res : res value
  * @returns
  */
 const getIndividualEntityData = async (req: any, res: any) => {
@@ -123,9 +126,10 @@ const getIndividualEntityData = async (req: any, res: any) => {
 };
 
 /**
- *
- * @param {*} req
- * @param {*} res
+ * This function helps to get all entity data 
+ * 
+ * @param req : req value
+ * @param res : res value
  * @returns
  */
 const getAllEntityData = async (req: any, res: any) => {
@@ -164,9 +168,10 @@ const getAllEntityData = async (req: any, res: any) => {
 };
 
 /**
- *
- * @param {*} req
- * @param {*} res
+ * This function helps to get all non authenticated business entity data 
+ * 
+ * @param req : req value
+ * @param res : res value
  * @returns
  */
 const noAuthGetAllEntityData = async (req: any, res: any) => {
@@ -200,9 +205,8 @@ const noAuthGetAllEntityData = async (req: any, res: any) => {
 };
 
 export {
-  getBusinessEntities,
+  getAllEntityData, getBusinessEntities,
   getEntityData,
-  getIndividualEntityData,
-  getAllEntityData,
-  noAuthGetAllEntityData,
+  getIndividualEntityData, noAuthGetAllEntityData
 };
+

@@ -1,5 +1,5 @@
-import {Request, Response} from "express";
-import { postCloneDataModelFunc, getDatabaseModelRowFunc, getModelsFunc, patchDatabaseModelFunc, putDatabaseModelFunc, putUpdateStatusFunc, getDatabaseModelsFunc, postDatabaseModelFunc, postDataModelSyncFunc } from "../functions/data.function";
+import { Request, Response } from "express";
+import { getDatabaseModelRowFunc, getDatabaseModelsFunc, getModelsFunc, patchDatabaseModelFunc, postCloneDataModelFunc, postDataModelSyncFunc, postDatabaseModelFunc, putDatabaseModelFunc, putUpdateStatusFunc } from "../functions/data.function";
 
 
 export const getModels = async (req: Request, res: Response) => {
@@ -93,9 +93,10 @@ export const postDataModelSync = async (req: Request, res: Response) => {
 };
 
 /**
+ * This function helps to clone model data
  * 
- * @param req 
- * @param res 
+ * @param req : req value
+ * @param res : res value
  */
 export const postCloneDataModel = async (req: Request, res: Response) => {
   try {

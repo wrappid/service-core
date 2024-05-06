@@ -1,55 +1,69 @@
-import { getServerRoutes } from "../route/helper.route";
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
-import  CoreControllersRegistry from  "./ControllersRegistry";
-import  CoreFunctionsRegistry  from  "./FunctionsRegistry";
-import  CoreMiddlewaresRegistry from  "./MiddlewaresRegistry";
-import  CoreModelsRegistry from  "./ModelsRegistry";
-import  CoreRoutesRegistry  from  "./RoutesRegistry";
-import  CoreTasksRegistry from  "./TasksRegistry";
-import  CoreValidationsRegistry  from  "./ValidationsRegistry";
+import { getServerRoutes } from "../route/helper.route";
+import { GenericObject } from "../types/generic.types";
+import { WrappidRegistryType } from "../WrappidApp";
+import CoreControllersRegistry from "./ControllersRegistry";
+import CoreFunctionsRegistry from "./FunctionsRegistry";
+import CoreMiddlewaresRegistry from "./MiddlewaresRegistry";
+import CoreModelsRegistry from "./ModelsRegistry";
+import CoreRoutesRegistry from "./RoutesRegistry";
+import CoreTasksRegistry from "./TasksRegistry";
+import CoreValidationsRegistry from "./ValidationsRegistry";
 
-async function getDbRoutes(): Promise<[any]> {
-    console.log("----------------------------------");
-    const authenticatedServerRoutes: any = await getServerRoutes(
-      "application",
-      true
-    );
-    const unauthenticatedServerRoutes: any = await getServerRoutes(
-      "application",
-      false
-    );
-    console.log("----------------------------------");
-    return {...authenticatedServerRoutes, ...unauthenticatedServerRoutes};
-  }
+/**
+ * This functions helps us to get all server routes from database
+ * 
+ * @returns serverRoutes
+ */
+async function getDbRoutes(): Promise<GenericObject> {
+  console.log("----------------------------------");
+  const authenticatedServerRoutes: GenericObject = await getServerRoutes(
+    "application",
+    true
+  );
+  const unauthenticatedServerRoutes: GenericObject = await getServerRoutes(
+    "application",
+    false
+  );
+  console.log("----------------------------------");
+  return <GenericObject>{...authenticatedServerRoutes, ...unauthenticatedServerRoutes};
+}
   
 
 /**
- * setup registries in appliaction context  
- * @param ControllersRegistry 
- * @param FunctionsRegistry 
- * @param ModelsRegistry 
- * @param RoutesRegistry 
- * @param TasksRegistry 
- * @param MiddlewaresRegistry 
- * @param ValidationsRegistry 
+ * Setup registries in appliaction context
+ * 
+ * @param registry : all registry
  */
-export async function setupRegistry(ControllersRegistry: any, FunctionsRegistry: any, ModelsRegistry: any, RoutesRegistry: any, TasksRegistry: any, MiddlewaresRegistry:any, ValidationsRegistry:any) {
-    ApplicationContext.setContext(constant.registry.CONTROLLERS_REGISTRY, {...CoreControllersRegistry, ...ControllersRegistry});
-    ApplicationContext.setContext(constant.registry.FUNCTIONS_REGISTRY,{...CoreFunctionsRegistry, ...FunctionsRegistry});
-    ApplicationContext.setContext(constant.registry.MIDDLEWARES_REGISTRY,{...CoreMiddlewaresRegistry, ...MiddlewaresRegistry});
-    ApplicationContext.setContext(constant.registry.MODELS__REGISTRY,{...CoreModelsRegistry, ...ModelsRegistry});
-    ApplicationContext.setContext(constant.registry.TASKS_REGISTRY,{...CoreTasksRegistry, ...TasksRegistry});
-    ApplicationContext.setContext(constant.registry.VALIDATIONS_REGISTRY,{...CoreValidationsRegistry, ...ValidationsRegistry});
-    const dbRoutes = await getDbRoutes();
-    let  allDbRoutes:any = {};
-    Object.keys(dbRoutes).forEach((element:any) => {
-    const Routes = dbRoutes[element];
-    const { controllerRef, ...rest } = Routes.dataValues; // Destructuring assignment
-    const restructuredData = {
-        [controllerRef]: rest // Use entityRef as property name
-    };
-    allDbRoutes = {...allDbRoutes, ...restructuredData};
+export function setupLocalRegistryContext(registry: WrappidRegistryType) {
+  ApplicationContext.setContext(constant.registry.CONTROLLERS_REGISTRY, {...CoreControllersRegistry, ...registry.ControllersRegistry});
+  ApplicationContext.setContext(constant.registry.FUNCTIONS_REGISTRY,{...CoreFunctionsRegistry, ...registry.FunctionsRegistry});
+  ApplicationContext.setContext(constant.registry.MIDDLEWARES_REGISTRY,{...CoreMiddlewaresRegistry, ...registry.MiddlewaresRegistry});
+  ApplicationContext.setContext(constant.registry.MODELS__REGISTRY,{...CoreModelsRegistry, ...registry.ModelsRegistry});
+  ApplicationContext.setContext(constant.registry.TASKS_REGISTRY,{...CoreTasksRegistry, ...registry.TasksRegistry});
+  ApplicationContext.setContext(constant.registry.VALIDATIONS_REGISTRY,{...CoreValidationsRegistry, ...registry.ValidationsRegistry});
+  ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...CoreRoutesRegistry, ...registry.RoutesRegistry.default});
+}
+
+/**
+ * This function will update database registry to context
+ */
+export async function updateDatabaseRegistryContext() {
+  try {
+    const dbRoutes: GenericObject = await getDbRoutes();
+    let  allDbRoutes: GenericObject = {};
+    Object.keys(dbRoutes).forEach((element: string) => {
+      const Routes = dbRoutes[element];
+      const { controllerRef, ...rest } = Routes.dataValues; // Destructuring assignment
+      const restructuredData = {
+        [controllerRef]: {...rest} // Use entityRef as property name
+      };
+      allDbRoutes = {...allDbRoutes, ...restructuredData};
     });
-    ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...CoreRoutesRegistry, ...RoutesRegistry.default, ...allDbRoutes});
+    ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...ApplicationContext.getContext(constant.registry.ROUTES_REGISTRY), ...allDbRoutes}); 
+    console.log("Setting up routes from database successful.");
+  } catch (error) {
+    console.error("WrappidError: Setting up routes from database failed.");
+  }
 }

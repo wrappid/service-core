@@ -1,5 +1,8 @@
 import * as yup from "yup";
 
+/**
+ *
+ */
 interface SettingMeta {
   body: yup.ObjectSchema<object>;
   query: yup.ObjectSchema<object>;
@@ -29,6 +32,9 @@ const sentOtp = {
 };
 
 
+/**
+ *
+ */
 interface GetMasterDataQuery {
   level?: string;
   name?: string;

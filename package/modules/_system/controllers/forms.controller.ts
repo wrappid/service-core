@@ -1,10 +1,10 @@
-// eslint-disable-next-line no-unused-vars
 import { putFormSchemaFunc } from "../functions/appbuilder.functions";
 import * as formsController from "../functions/formSchema.helper";
+
 /**
- *
- * @param {*} req
- * @param {*} res
+ * This functions helps to get no auth form schema
+ * @param req : req value
+ * @param res : res value
  * @returns
  */
 const getNoAuthFormSchema = async (req: any, res: any) => {
@@ -38,9 +38,10 @@ const getNoAuthFormSchema = async (req: any, res: any) => {
 };
 
 /**
+ * This functions helps to get form schema
  *
- * @param {*} req
- * @param {*} res
+ * @param req : req value
+ * @param res : res value
  * @returns
  */
 const getFormSchema = async (req: any, res: any) => {
@@ -84,4 +85,5 @@ const putFormSchema = async (req: any, res: any) => {
   }
 };
 
-export { getNoAuthFormSchema, getFormSchema, putFormSchema };
+export { getFormSchema, getNoAuthFormSchema, putFormSchema };
+

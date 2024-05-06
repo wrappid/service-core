@@ -13,59 +13,45 @@ const clientConnect = async (clientName: string) => {
 
 export const cacheActions = {
   /**
-   *
-   * @param {*} clientName
-   * @param {*} cacheKey
+   * The read function helps us to read cache from redis cache
+   * 
+   * @param clientName : clientName value
+   * @param cacheKey : cacheKey value
    * @returns
    */
   read: async (clientName: string, cacheKey: string) => {
-    try {
-      await clientConnect(clientName);
-      const value = await cacheProvider[clientName].client.get(cacheKey);
-      return value;
-    } catch (error: any) {
-      throw new Error(error);
-    } finally {
-      await cacheProvider[clientName].client.disconnect();
-    }
+    await clientConnect(clientName);
+    const value = await cacheProvider[clientName].client.get(cacheKey);
+    await cacheProvider[clientName].client.disconnect();
+    return value;
   },
 
   /**
-   *
-   * @param {*} clientName
-   * @param {*} cacheKey
-   * @param {*} data
+   * The update function helps us to update cache from redis cache
+   * @param clientName : clientName value
+   * @param cacheKey : cacheKey value
+   * @param data : data value
    */
   update: async (clientName: string, cacheKey: string, data: string) => {
-    try {
-      await clientConnect(clientName);
-
-      await cacheProvider[clientName].client.set(cacheKey, data);
-    } catch (error: any) {
-      throw new Error(error);
-    } finally {
-      await cacheProvider[clientName].client.disconnect();
-    }
+    await clientConnect(clientName);
+    await cacheProvider[clientName].client.set(cacheKey, data);
+    await cacheProvider[clientName].client.disconnect();
   },
 
   /**
-   *
-   * @param {*} clientName
-   * @param {*} cacheKey
+   * The delete function helps us to delete cache from redis cache
+   * 
+   * @param clientName : clientName value
+   * @param cacheKey : cacheKey value
    */
   delete: async (clientName: string, cacheKey: string) => {
-    try {
-      await clientConnect(clientName);
-      const d = await cacheProvider[clientName].client.exists(cacheKey);
-      if (d == 1) {
-        await cacheProvider[clientName].client.del(cacheKey);
-      } else {
-        console.log("Key Not Present");
-      }
-    } catch (error: any) {
-      throw new Error(error);
-    } finally {
-      await cacheProvider[clientName].client.disconnect();
+    await clientConnect(clientName);
+    const d = await cacheProvider[clientName].client.exists(cacheKey);
+    if (d == 1) {
+      await cacheProvider[clientName].client.del(cacheKey);
+    } else {
+      console.log("Key Not Present");
     }
+    await cacheProvider[clientName].client.disconnect();
   },
 };

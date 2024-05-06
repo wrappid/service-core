@@ -1,12 +1,11 @@
 import { Request } from "express";
 import moment from "moment";
-import { UUIDV4 } from "sequelize";
+import { v4 as uuidv4 } from "uuid";
 import { APP_BUILDER_MODELS, constant } from "../../../constants/server.constant";
 import { databaseActions } from "../../../database/actions.database";
-import { databaseProvider } from "../../../database/provider.database";
+import { databaseProvider } from "../../../database/setup.database";
 import { coreConstant } from "../../../index";
 import { GenericObject } from "../../../types/generic.types";
-// import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
 
 export const getModelsFunc = async (req:Request) => {
   try{
@@ -203,7 +202,7 @@ export const putDatabaseModelFunc = async (req:any) => {
     let result = null;
 
     const models = [
-      { model: "FormSchemas" },
+      // { model: "FormSchemas" },
       { model: "BusinessEntitySchemas" },
       { model: "Routes" },
       { model: "Pages" },
@@ -225,7 +224,7 @@ export const putDatabaseModelFunc = async (req:any) => {
         ...createData,
         _status: coreConstant.entityStatus.DRAFT,
         updatedBy: req.user.userId,
-        commitId: UUIDV4(),
+        commitId: uuidv4(),
       });
 
       console.log("New entry created as draft");
@@ -444,9 +443,10 @@ const createModelData = async (database: string, model: string, data: GenericObj
 
 
 /**
+ * This function will sync model data to database
  * 
- * @param req 
- * @returns 
+ * @param req : Request Object 
+ * @returns response
  */
 export const postDataModelSyncFunc = async (req: any) => {
   try {
@@ -510,57 +510,58 @@ const checkEntityRefExist = async (database:string, model:string, entityRef:stri
 
 
 /**
- *
- * @param {*} db
- * @param {*} formID
+ * This function will help us to get data from database
+ * 
+ * @param db : database value 
+ * @param entityRef : entityRef value 
+ * @param model : model value 
+ * @param auth : auth value 
+ * @returns 
  */
 async function getDataFromDB(db: string, entityRef: string, model: string, auth=false) {
-  try {
-    const dbSequelize = databaseProvider[db].Sequelize;
-    const whereClause: any = {
-      entityRef: entityRef,
-      _status: constant.entityStatus.PUBLISHED,
+  const dbSequelize = databaseProvider[db].Sequelize;
+  const whereClause: GenericObject = {
+    entityRef: entityRef,
+    _status: constant.entityStatus.PUBLISHED,
+  };
+  if (auth) {
+    whereClause["authRequired"] = true;
+  } else {
+    whereClause["authRequired"] = {
+      [dbSequelize.Op.or]: {
+        [dbSequelize.Op.eq]: false,
+        [dbSequelize.Op.is]: null,
+      },
     };
-    if (auth) {
-      whereClause["authRequired"] = true;
-    } else {
-      whereClause["authRequired"] = {
-        [dbSequelize.Op.or]: {
-          [dbSequelize.Op.eq]: false,
-          [dbSequelize.Op.is]: null,
-        },
-      };
-    }
-    const formSchema = await databaseActions.findOne(db, model, {
-      where: whereClause,
-    });
-    return formSchema;
-  } catch (error) {
-    throw error;
   }
+  const formSchema = await databaseActions.findOne(db, model, {
+    where: whereClause,
+  });
+  return formSchema;
 }
   
 /**
-  * 
-  * @param req 
-  * @returns 
-  */ 
+ * This function will helps to clone model data
+ * 
+ * @param req : Request Object
+ * @returns 
+ */
 export const postCloneDataModelFunc = async (req: any) => {
   try {
     const model = req.params.model;
-        const entityRef = req.params.entityRef;
-        let masterTableFlag = false;
-        const masterTableList = ["BusinessEntitySchemas", "Routes", "Pages", "FormSchemas", "ThemeSchemas"];
-        masterTableList.forEach(element => {
-            if (element === model) {
-                masterTableFlag = true;
-              }
-        });
-       if(!masterTableFlag){
-            return {
-            status: 500,
-            message: `${model} is not master data table`}
-       }  
+    const entityRef = req.params.entityRef;
+    let masterTableFlag = false;
+    const masterTableList = ["BusinessEntitySchemas", "Routes", "Pages", "FormSchemas", "ThemeSchemas"];
+    masterTableList.forEach(element => {
+      if (element === model) {
+        masterTableFlag = true;
+      }
+    });
+    if(!masterTableFlag){
+      return {
+        status: 500,
+        message: `${model} is not master data table`};
+    }  
     if (!entityRef) {
       return {
         status: 500,

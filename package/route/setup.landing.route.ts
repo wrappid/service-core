@@ -28,10 +28,13 @@ const placeHolderKeyMap: { [key: string]: string } = {
   PROJECT_REPO_URL: "package.repository.url",
   PROJECT_BUGS_URL: "package.bugs.url",
 };
+
 /**
+ * This function helps us to get values from the nested json object
  * 
- * @param data 
- * @param dataKey 
+ * @param data : Wrappid Config Object
+ * @param dataKey : the json key
+ * @returns 
  */
 function getDataValue(data: WrappidConfigObjectType, dataKey: string): string {
   const keysArray: string[] = dataKey.split(".");
@@ -60,7 +63,9 @@ function getDataValue(data: WrappidConfigObjectType, dataKey: string): string {
 }
 
 /**
+ * This functions helps us to prepare landing page content for our service
  * 
+ * @returns landingContent
  */
 function prepareLandingContent(): string{
   try {

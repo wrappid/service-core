@@ -7,8 +7,16 @@ import communicateSMS from "./sms/sms.communication";
 import communicateWhatsApp from "./whatsapp/whatsapp.communication";
 
 /**
+ * This function help us to initiate communication
  *
- * @param {*} communicationObject
+ * @param communicationObject : Communication Object
+ * @param communicationObject.commType : commType value
+ * @param communicationObject.commRecipients : commRecipients value
+ * @param communicationObject.commData : commData value
+ * @param communicationObject.commTemplateID : commTemplateID value
+ * @param communicationObject.directFlag : directFlag value
+ * @param communicationObject.errorFlag : errorFlag value
+ * @returns
  */
 export const communicate = async ({
   commType,

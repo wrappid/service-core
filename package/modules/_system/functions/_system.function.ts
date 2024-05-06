@@ -1,14 +1,11 @@
 import otpGenerator from "otp-generator";
 
 
+import { communicate } from "../../../communication/communicate.communicator";
 import { constant } from "../../../constants/server.constant";
+import { ApplicationContext } from "../../../context/application.context";
 import { databaseActions } from "../../../database/actions.database";
-import { communicate, configProvider, coreConstant } from "../../../index";
 import { clearValidatePhoneEmail } from "../utils/_system.utils";
-
-
-
-
 
 export const getSettingMetaFunc = async () => {
   try {
@@ -49,8 +46,8 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
     }
 
     const contactType =
-      commType === coreConstant.commType.SMS
-        ? coreConstant.contact.PHONE
+      commType === constant.commType.SMS
+        ? constant.contact.PHONE
         : commType;
     const personContact = await databaseActions.findOne(
       "application",
@@ -65,13 +62,14 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
 
     if (!templateID) {
       templateID =
-        commType === coreConstant.commType.EMAIL
-          ? coreConstant.communication.SENT_OTP_MAIL_EN
-          : coreConstant.communication.SENT_OTP_SMS_EN;
+        commType === constant.commType.EMAIL
+          ? constant.communication.SENT_OTP_MAIL_EN
+          : constant.communication.SENT_OTP_SMS_EN;
     }
 
+    const { wrappid } = ApplicationContext.getContext(constant.CONFIG_KEY);
     const genetatedOTP = otpGenerator.generate(
-      configProvider().wrappid.otpLength,
+      wrappid.otpLength,
       {
         specialChars: false,
         lowerCaseAlphabets: false,
@@ -98,7 +96,7 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
       await databaseActions.update(
         "application",
         "Otps",
-        { _status: coreConstant.entityStatus.INACTIVE },
+        { _status: constant.entityStatus.INACTIVE },
         {
           where: {
             type: commType,
@@ -109,7 +107,7 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
       await databaseActions.create("application", "Otps", {
         otp: genetatedOTP,
         type: commType,
-        _status: coreConstant.entityStatus.ACTIVE,
+        _status: constant.entityStatus.ACTIVE,
         userId: userId,
       });
       console.log(`OTP ${commType} sent successfully.`);
@@ -124,6 +122,16 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
 };
 
 
+/**
+ * This function helps us to process master data
+ * 
+ * @param data : master data
+ * @param level : master data level
+ * @param model : master data model
+ * @param status : master data status
+ * 
+ * @returns processedData
+ */
 async function masterDataProcessing(data:any, level:any, model:any, status:any) {
   if (level === 0 || data.length === 0) {
     return [];

@@ -1,34 +1,15 @@
-/* eslint-disable no-unused-vars */
-// // 3 functions
-// // -upload in s3
-// // -upload in local
-// // -upload (storage type, naming, validation) type = s3/local
-import { S3Client,PutObjectCommand, PutObjectCommandInput } from "@aws-sdk/client-s3";
+import { PutObjectCommand, PutObjectCommandInput, S3Client } from "@aws-sdk/client-s3";
 
 import multer from "multer";
-import { configProvider } from "../config/provider.config";
+import { constant } from "../constants/server.constant";
+import { ApplicationContext } from "../context/application.context";
 
-const s3Bucket = configProvider().storage.s3.bucket;
-const region = configProvider().storage.s3.region;
-const accessKeyId = configProvider().storage.s3.accessKeyId;
-const secretAccessKey = configProvider().storage.s3.secretAccessKey;
-const acceptedType = ["pdf", "doc", "docx", "jpg", "jpeg", "png"];
+// const acceptedType = ["pdf", "doc", "docx", "jpg", "jpeg", "png"];
 
 type UploadOptions = {
   name: string;
   maxCount: number;
 }
-
-// Replace with your AWS credentials and bucket configuration
-const s3Client = new S3Client({
-  credentials: {
-    accessKeyId: accessKeyId,
-    secretAccessKey: secretAccessKey,
-  },
-  region: region, // e.g., 'us-east-1'
-});
-
-
 
 const fileFilter = (req: any, file: any, cb: any) => {
   try {
@@ -52,11 +33,14 @@ export const upload = multer({
 });
 
 export const uploadToS3 = async (inputFile: {[key: string]: Express.Multer.File[]}, options: UploadOptions) => {
+  const { storage } = ApplicationContext.getContext(constant.CONFIG_KEY);
+  const { bucket, region = "us-east-1", accessKeyId, secretAccessKey } = storage.s3;
+
   // const file: Express.Multer.File = inputFile[options.name][0];
   const file: any = inputFile[options.name][0];
   const fileName = new Date().toISOString() + "-" + file.originalname; // Generate unique filename
   const uploadParams: PutObjectCommandInput = {
-    Bucket: s3Bucket,
+    Bucket: bucket,
     Key: fileName,
     Body: file.buffer,
     ContentType: file.mimetype,
@@ -64,9 +48,21 @@ export const uploadToS3 = async (inputFile: {[key: string]: Express.Multer.File[
   };
 
   try {
+    // Replace with your AWS credentials and bucket configuration
+    const s3Client = new S3Client({
+      credentials: {
+        accessKeyId: accessKeyId,
+        secretAccessKey: secretAccessKey,
+      },
+      region: region
+    });
+
     await s3Client.send(new PutObjectCommand(uploadParams));
-    const publicUrl = `https://s3.${region}.amazonaws.com/${s3Bucket}/${fileName}`; // Construct URL
+    
+    const publicUrl = `https://s3.${region}.amazonaws.com/${bucket}/${fileName}`; // Construct URL
+    
     file.location = publicUrl;
+    
     return publicUrl; 
   } catch (error) {
     console.error("Error uploading file to S3:", error);

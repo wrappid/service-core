@@ -2,10 +2,11 @@ import { constant } from "./../../../constants/server.constant";
 import { ApplicationContext } from "./../../../context/application.context";
 
 /**
-   * 
-   * @param req 
-   * @returns 
-   */
+ * This function will return registry entries
+ * 
+ * @param req : api request
+ * @returns registryEntries
+ */
 export const getRegistryFunc =  async (req:any) => {
   try {
     const name = req.params.name;

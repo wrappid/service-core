@@ -1,6 +1,12 @@
+import { constant } from "../constants/server.constant";
+import { ApplicationContext } from "../context/application.context";
+import { GenericObject } from "../types/generic.types";
+
 let appFunctionsRegistry: any = {};
 
-const setupFunctions = async (AppFunctionsRegistry: any) => {
+const setupFunctions = async () => {
+  const AppFunctionsRegistry: GenericObject = ApplicationContext.getContext(constant.registry.FUNCTIONS_REGISTRY);
+
   try {
     appFunctionsRegistry = AppFunctionsRegistry;
     console.log(appFunctionsRegistry);
@@ -10,4 +16,5 @@ const setupFunctions = async (AppFunctionsRegistry: any) => {
   }
 };
 
-export { setupFunctions, appFunctionsRegistry };
+export { appFunctionsRegistry, setupFunctions };
+

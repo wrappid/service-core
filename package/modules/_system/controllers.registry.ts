@@ -54,5 +54,5 @@ const AppBuilderControllersRegistry = {
   getRegistry: [registryController.getRegistry] ,
   getRegistryList: [registryController.getRegistryList],
   postCloneDataModel: [dataController.postCloneDataModel],
-}
+};
 export default AppBuilderControllersRegistry;

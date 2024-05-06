@@ -1,11 +1,20 @@
-import { configProvider } from "../config/provider.config";
 import { EmailProvider, SmsProvider, WhatsappProvider } from "../config/types.config";
 import { constant } from "../constants/server.constant";
+import { ApplicationContext } from "../context/application.context";
+import { GenericObject } from "../types/generic.types";
 import { validateEmail } from "../validation/default.validation";
 
+/**
+ * This function helps us to get the default communication configuration
+ * 
+ * @param commType ("email" | "sms" | "whatsapp")
+ * @returns Defafault Communication Config
+ */
 export async function getDefaultCommunicationConfig(commType: "email" | "sms" | "whatsapp"): Promise<EmailProvider | SmsProvider | WhatsappProvider> {
   try {
-    const multipleDefaults = configProvider().communication[commType].providers.filter(provider => provider.default === true);
+    const { communication } = ApplicationContext.getContext(constant.CONFIG_KEY);
+
+    const multipleDefaults = communication[commType]?.providers?.filter((provider: GenericObject) => provider.default === true);
     if (multipleDefaults.length > 1) {
       throw new Error(commType + " providers cannot have multiple 'default': true");
     }
@@ -19,13 +28,23 @@ export async function getDefaultCommunicationConfig(commType: "email" | "sms" | 
   }
 }
 
+/**
+ * This functions helps us to identify 
+ * if the communication is enabled or not 
+ * for a particular communication type
+ * 
+ * @param commType ("email" | "sms" | "whatsapp")
+ * @returns communication enabled : boolean
+ */
 export async function checkIfCommunicationEnabled(commType: "email" | "sms" | "whatsapp" ): Promise<boolean>{
   try {
+    const { communication } = ApplicationContext.getContext(constant.CONFIG_KEY);
+    
     //check communciation enabled or not
-    if(!configProvider().communication.enabled === true){
+    if(!communication.enabled === true){
       throw new Error("Communication Disabled!!");
     }
-    if(!configProvider().communication[commType].enabled === true){
+    if(!communication[commType].enabled === true){
       throw new Error(commType+ " Communciaation Disabled!!");
     }
     return true;
@@ -34,12 +53,17 @@ export async function checkIfCommunicationEnabled(commType: "email" | "sms" | "w
     throw error;
   }
 }
+
 /**
- *
- * @param {*} mailRecipients
- * @returns
+ * This function helps us to validate email
+ * 
+ * @param {*} mailRecipients { to = [], cc = [], bcc = [] }
+ * @param mailRecipients.to email to recipients
+ * @param mailRecipients.cc email cc recipients
+ * @param mailRecipients.bcc email bcc recipients
+ * @returns valid [if all the emails are valid]
  */
-export function validateEmails(mailRecipients: any) {
+export function validateEmails(mailRecipients: { to: string[], cc: string[], bcc: string[] }) {
   try {
     let valid = true;
     const { to = [], cc = [], bcc = [] } = mailRecipients;
@@ -57,11 +81,18 @@ export function validateEmails(mailRecipients: any) {
 }
 
 /**
- *
- * @param {*} commOptions
+ * This function help us to prepare message object with template and data
+ * 
+ * @param commOptions { communicationTemplate: object, commData: object }
+ * @param commOptions.communicationTemplate a message template
+ * @param commOptions.commData a placeholder dataset
+ * @returns messageObject
  */
 export function getMessageObject(
-  commOptions = {
+  commOptions: {
+    communicationTemplate: object,
+    commData: object,
+  } = {
     communicationTemplate: {},
     commData: {},
   }
