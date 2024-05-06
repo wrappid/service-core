@@ -1,6 +1,6 @@
 import { cacheActions } from "./cache/cache.actions";
 import { communicate } from "./communication/communicate.communicator";
-import { configProvider } from "./config/provider.config";
+// import { configProvider } from "./config/provider.config";
 import { DEFAULT_PORT, constant } from "./constants/server.constant";
 import { ApplicationContext } from "./context/application.context";
 import { databaseActions } from "./database/actions.database";
@@ -42,7 +42,8 @@ export {
   /**
    * communication
    */
-  communicate, configProvider,
+  communicate,
+  //  configProvider,
   /**
    * Constants
    */
