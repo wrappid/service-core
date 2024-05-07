@@ -3,6 +3,7 @@ import { PutObjectCommand, PutObjectCommandInput, S3Client } from "@aws-sdk/clie
 import multer from "multer";
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
+import { WrappidLogger } from "../logging/wrappid.logger";
 
 // const acceptedType = ["pdf", "doc", "docx", "jpg", "jpeg", "png"];
 
@@ -12,13 +13,15 @@ type UploadOptions = {
 }
 
 const fileFilter = (req: any, file: any, cb: any) => {
+  WrappidLogger.logFunctionStart();
   try {
     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
       cb(null, true);
     } else {
       cb(null, false);
     }
-  } catch (error) {
+  } catch (error:any) {
+    WrappidLogger.error(error);
     console.log(error);
     throw error;
   }
@@ -33,6 +36,7 @@ export const upload = multer({
 });
 
 export const uploadToS3 = async (inputFile: {[key: string]: Express.Multer.File[]}, options: UploadOptions) => {
+  WrappidLogger.logFunctionStart();
   const { storage } = ApplicationContext.getContext(constant.CONFIG_KEY);
   const { bucket, region = "us-east-1", accessKeyId, secretAccessKey } = storage.s3;
 
@@ -64,9 +68,12 @@ export const uploadToS3 = async (inputFile: {[key: string]: Express.Multer.File[
     file.location = publicUrl;
     
     return publicUrl; 
-  } catch (error) {
+  } catch (error:any) {
+    WrappidLogger.error(error);
     console.error("Error uploading file to S3:", error);
     throw new Error("Failed to upload file to S3");
+  } finally {
+    WrappidLogger.logFunctionEnd();
   }
 };
 

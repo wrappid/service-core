@@ -1,11 +1,13 @@
 import { Sequelize } from "sequelize";
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import ModelsRegistry from "../registry/ModelsRegistry";
 import { GenericObject } from "../types/generic.types";
 import { databaseProvider } from "./setup.database";
 
 export const setupModels = () => {
+  WrappidLogger.logFunctionStart();
   const AppModelsRegistry: GenericObject = ApplicationContext.getContext(constant.registry.MODELS__REGISTRY);
   const modelsRegistry = { ...ModelsRegistry, ...AppModelsRegistry };
 
@@ -50,8 +52,10 @@ export const setupModels = () => {
         }
       });
     });
-  } catch (error) {
-    console.log(error);
+  } catch (error:any) {
+    WrappidLogger.error(error);
     throw error;
+  } finally {
+    WrappidLogger.logFunctionEnd();
   }
 };

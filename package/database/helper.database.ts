@@ -1,8 +1,10 @@
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { getNormalCaseFromCamelCase } from "../utils/business.utilis";
 import { databaseProvider } from "./setup.database";
 
 const getDatabases = (req: any, res: any) => {
   try {
+    WrappidLogger.logFunctionStart();
     const searchValue = req.query._searchValue;
     const dataBases = databaseProvider;
     let searchedDatabase = Object.keys(dataBases);
@@ -26,12 +28,15 @@ const getDatabases = (req: any, res: any) => {
       message: "Databses fetched successfully",
     });
   } catch (error: any) {
-    console.error(error);
+    WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch databases" });
+  }finally {
+    WrappidLogger.logFunctionEnd();
   }
 };
 const getTables = (req: any, res: any) => {
   try {
+    WrappidLogger.logFunctionStart();
     // eslint-disable-next-line no-unused-vars
     const database = req.params.database;
     const requestedDBTables = databaseProvider[database].models;
@@ -59,12 +64,16 @@ const getTables = (req: any, res: any) => {
       message: "Tables fetched successfully",
     });
   } catch (error: any) {
-    console.error(error);
+    WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch tables" });
+  } finally {
+    WrappidLogger.logFunctionEnd();
   }
+  
 };
 const getColumns = async (req: any, res: any) => {
   try {
+    WrappidLogger.logFunctionStart();
     const database = req.params.database;
     const table = req.params.table;
     // eslint-disable-next-line no-unused-vars
@@ -93,8 +102,10 @@ const getColumns = async (req: any, res: any) => {
       message: "Attributes fetched successfully",
     });
   } catch (error: any) {
-    console.error(error);
+    WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch attributes" });
+  }finally {
+    WrappidLogger.logFunctionEnd();
   }
 };
 

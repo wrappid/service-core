@@ -1,13 +1,16 @@
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { cacheProvider } from "./cache.provider";
 
 const clientConnect = async (clientName: string) => {
   try {
+    WrappidLogger.logFunctionStart();
     cacheProvider[clientName].client.on("error", (err: any) =>
       console.log("Redis Client Error", err)
     );
     await cacheProvider[clientName].client.connect();
-  } catch (error) {
-    console.log(error);
+    WrappidLogger.logFunctionEnd();
+  } catch (error:any) {
+    WrappidLogger.error(error);
   }
 };
 
@@ -20,6 +23,7 @@ export const cacheActions = {
    * @returns
    */
   read: async (clientName: string, cacheKey: string) => {
+    WrappidLogger.logFunctionStart();
     await clientConnect(clientName);
     const value = await cacheProvider[clientName].client.get(cacheKey);
     await cacheProvider[clientName].client.disconnect();
@@ -33,9 +37,11 @@ export const cacheActions = {
    * @param data : data value
    */
   update: async (clientName: string, cacheKey: string, data: string) => {
+    WrappidLogger.logFunctionStart();
     await clientConnect(clientName);
     await cacheProvider[clientName].client.set(cacheKey, data);
     await cacheProvider[clientName].client.disconnect();
+    WrappidLogger.logFunctionEnd();
   },
 
   /**
@@ -45,6 +51,7 @@ export const cacheActions = {
    * @param cacheKey : cacheKey value
    */
   delete: async (clientName: string, cacheKey: string) => {
+    WrappidLogger.logFunctionStart();
     await clientConnect(clientName);
     const d = await cacheProvider[clientName].client.exists(cacheKey);
     if (d == 1) {
@@ -53,5 +60,6 @@ export const cacheActions = {
       console.log("Key Not Present");
     }
     await cacheProvider[clientName].client.disconnect();
+    WrappidLogger.logFunctionEnd();
   },
 };

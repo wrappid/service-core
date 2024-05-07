@@ -1,8 +1,10 @@
 import Sequelize from "sequelize";
 import { databaseProvider } from "../database/setup.database";
+import { WrappidLogger } from "../logging/wrappid.logger";
 
 export const apiLogger = async (req: any, res: any, next: any) => {
   try {
+    WrappidLogger.logFunctionStart();
     const apiRequestLog = await databaseProvider["application"].models[
       "ApiRequestLogs"
     ].create({
@@ -41,8 +43,10 @@ export const apiLogger = async (req: any, res: any, next: any) => {
     });
   } catch (error: any) {
     console.error("WrappidError: Can't log api request to database.");
+    WrappidLogger.error(error); 
     console.error(error);
   } finally {
+    WrappidLogger.logFunctionEnd();
     next();
   }
 };

@@ -1,6 +1,7 @@
 import { EmailProvider, SmsProvider, WhatsappProvider } from "../config/types.config";
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { GenericObject } from "../types/generic.types";
 import { validateEmail } from "../validation/default.validation";
 
@@ -12,6 +13,7 @@ import { validateEmail } from "../validation/default.validation";
  */
 export async function getDefaultCommunicationConfig(commType: "email" | "sms" | "whatsapp"): Promise<EmailProvider | SmsProvider | WhatsappProvider> {
   try {
+    WrappidLogger.logFunctionStart();
     const { communication } = ApplicationContext.getContext(constant.CONFIG_KEY);
 
     const multipleDefaults = communication[commType]?.providers?.filter((provider: GenericObject) => provider.default === true);
@@ -23,8 +25,10 @@ export async function getDefaultCommunicationConfig(commType: "email" | "sms" | 
     }
     return multipleDefaults[0];
   } catch (error:any) {
-    console.log(error);
+    WrappidLogger.error(error);
     throw error;
+  } finally {
+    WrappidLogger.logFunctionEnd();
   }
 }
 

@@ -1,3 +1,4 @@
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { databaseProvider } from "./setup.database";
 
 export const databaseActions = {
@@ -11,6 +12,7 @@ export const databaseActions = {
    * @returns 
    */
   findAndCountAll: async (database: string, model: string, options?: any, transaction?: any ) => {
+    WrappidLogger.logFunctionStart();
     if(databaseProvider && Object.keys(databaseProvider).length > 0){
       return await databaseProvider[database].models[model].findAndCountAll(options, transaction);
     } else {
@@ -28,6 +30,7 @@ export const databaseActions = {
    * @returns 
    */
   findAll: async (database: string, model: string, options?: any, transaction?: any) => {
+    WrappidLogger.logFunctionStart();
     if(databaseProvider && Object.keys(databaseProvider).length > 0){
       return await databaseProvider[database].models[model].findAll(options, transaction);
     } else {
@@ -45,6 +48,7 @@ export const databaseActions = {
    * @returns 
    */
   delete: async (database: string, model: string, data: any, transaction?: any) => {
+    WrappidLogger.logFunctionStart();
     if(databaseProvider && Object.keys(databaseProvider).length > 0){
       return await databaseProvider[database].models[model].destroy(data, transaction);
     } else {
@@ -69,6 +73,7 @@ export const databaseActions = {
     where: any,
     transaction?: any
   ) => {
+    WrappidLogger.logFunctionStart();
     if(databaseProvider && Object.keys(databaseProvider).length > 0){
       return await databaseProvider[database].models[model].update(
         data, where, transaction
@@ -88,6 +93,7 @@ export const databaseActions = {
    * @returns 
    */
   findOne: async (database: string, model: string, data: any, transaction?: any) => {
+    WrappidLogger.logFunctionStart();
     if(databaseProvider && Object.keys(databaseProvider).length > 0){
       console.log("::---", data, "---::");
       return await databaseProvider[database].models[model].findOne(data, transaction);
@@ -111,6 +117,7 @@ export const databaseActions = {
     data: any,
     transaction?: any
   ) => {
+    WrappidLogger.logFunctionStart();
     if(databaseProvider && Object.keys(databaseProvider).length > 0){
       return await databaseProvider[database].models[model].create(data, transaction);
     } else {
@@ -129,6 +136,7 @@ export const databaseActions = {
    * @returns 
    */
   findByPk: async (database: string, model: string, primaryKey: number, options?: any,  transaction?: any) => {
+    WrappidLogger.logFunctionStart();
     if(databaseProvider && Object.keys(databaseProvider).length > 0){
       return await databaseProvider[database].models[model].findByPk(primaryKey, options, transaction);
     } else {

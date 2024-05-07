@@ -1,9 +1,11 @@
+import { WrappidLogger } from "../logging/wrappid.logger";
 import {upload, uploadToS3} from "../utils/upload.utils";
 
 export const fileHandler = 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 ({ storageType, filename }: any) =>
   async (req: any, res: any, next: any) => {
+    WrappidLogger.logFunctionStart();
     try {
       const singleUpload = upload.fields([{ name: filename, maxCount: 1 }]);
       //single(filename); // Assuming 'file' is the field name for the uploaded file
@@ -27,11 +29,13 @@ export const fileHandler =
           const publicUrl = await uploadToS3(req.files,{ name: filename, maxCount: 1 });
           console.log(publicUrl);
           next();
-        } catch (error) {
+        } catch (error:any) {
+          WrappidLogger.error(error);
           next(error);
         }
       });
-    } catch (error) {
+    } catch (error:any) {
+      WrappidLogger.error(error);
       next(error);
     }
   };

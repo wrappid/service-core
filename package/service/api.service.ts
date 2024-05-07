@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { constant } from "./../constants/server.constant";
 
 type GenericObject = { [key: string]: any };
@@ -49,6 +50,7 @@ export abstract class APIService {
    * @returns response : Response data
    */
   async request<T>(requestConfig: RequestConfig): Promise<T> {
+    WrappidLogger.logFunctionStart();
     try {
       const axiosRequestConfig: AxiosRequestConfig = {
         url: `${this.config.baseUrl}${requestConfig.endpoint}`,

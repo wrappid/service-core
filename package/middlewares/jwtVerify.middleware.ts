@@ -1,8 +1,10 @@
 import jwt from "jsonwebtoken";
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
+import { WrappidLogger } from "../logging/wrappid.logger";
 
 export const jwtVerify = (req: any, res: any, next: any) => {
+  WrappidLogger.logFunctionStart();
   const {
     accessTokenSecret="",
     // refreshAccessTokenSecret="",

@@ -1,5 +1,6 @@
 import { constant } from "../constants/server.constant";
 import { databaseActions } from "../database/actions.database";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import * as communicationUtils from "../utils/communication.utils";
 import { checkIfCommunicationEnabled } from "../utils/communication.utils";
 import communicateEmail from "./email/email.communication";
@@ -26,6 +27,7 @@ export const communicate = async ({
   directFlag,
   errorFlag,
 }: any) => {
+  WrappidLogger.logFunctionStart();
   try {
     //check communication type enabled or not
     if(await checkIfCommunicationEnabled(commType)){
@@ -76,10 +78,12 @@ export const communicate = async ({
     }else{
       throw new Error("Communcation Disabled!!");
     }
-  } catch (error) {
+  } catch (error:any) {
     console.error(error);
+    WrappidLogger.error(error);
     if (errorFlag) {
       throw error;
     }
   }
+  WrappidLogger.logFunctionEnd();
 };
