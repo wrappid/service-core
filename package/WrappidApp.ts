@@ -7,7 +7,8 @@ import { ApplicationContext } from "./context/application.context";
 import { setupDatabase } from "./database/setup.database";
 import { setupModels } from "./database/setup.models.database";
 import { setupFunctions } from "./function/setup.functions";
-import { setupLogging } from "./logging/setup.logging";
+import { setupLogging } from "./logging/setup.logger";
+import { DEFAULT_LOGGER_OPTIONS, WrappidLogger } from "./logging/wrappid.logger";
 import { setupMiddlewares } from "./middlewares/setup.middleware";
 import { setupLocalRegistryContext, updateDatabaseRegistryContext } from "./registry/setup.registry";
 import { setupRoutes } from "./route/setup.route";
@@ -65,6 +66,10 @@ export default class WrappidApp {
     swagger: {},
     config: {}
   }) {
+    /**
+     * Setting up logging in wrappid service application
+     */
+    WrappidLogger.init(DEFAULT_LOGGER_OPTIONS);
     this.port = wrappidAppConfig.port;
     this.wrappidApp.use(express.static("uploads"));
     this.wrappidApp.use(express.static("build"));
@@ -90,6 +95,7 @@ export default class WrappidApp {
   }
 
   async init() {
+    WrappidLogger.logFunctionStart();
     /**
      * Setup Databases
      */
@@ -143,5 +149,6 @@ export default class WrappidApp {
     };
   
     this.wrappidApp.listen(this.port, serverInit);
+    WrappidLogger.logFunctionEnd();
   }
 }
