@@ -8,12 +8,12 @@ export class ApplicationContext {
   private static context: GenericObject = {};
   
   static getContext(key: string): GenericObject {
-    WrappidLogger.logFunctionStart();
+    WrappidLogger.logFunctionStart("ApplicationContext.getContext");
     return ApplicationContext.context[key];
   }
   
   static setContext(key: string, value: any): void {
-    WrappidLogger.logFunctionStart();
+    WrappidLogger.logFunctionStart("ApplicationContext.setContext");
     ApplicationContext.context[key] = value;
   }
 }

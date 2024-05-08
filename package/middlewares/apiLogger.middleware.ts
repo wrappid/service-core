@@ -4,7 +4,7 @@ import { WrappidLogger } from "../logging/wrappid.logger";
 
 export const apiLogger = async (req: any, res: any, next: any) => {
   try {
-    WrappidLogger.logFunctionStart();
+    WrappidLogger.logFunctionStart("apiLogger");
     const apiRequestLog = await databaseProvider["application"].models[
       "ApiRequestLogs"
     ].create({
@@ -42,11 +42,12 @@ export const apiLogger = async (req: any, res: any, next: any) => {
       bodySetFlag = true;
     });
   } catch (error: any) {
-    console.error("WrappidError: Can't log api request to database.");
+    WrappidLogger.error("WrappidError: Can't log api request to database.");
+    // console.error("WrappidError: Can't log api request to database.");
     WrappidLogger.error(error); 
     console.error(error);
   } finally {
-    WrappidLogger.logFunctionEnd();
+    WrappidLogger.logFunctionEnd("apiLogger");
     next();
   }
 };

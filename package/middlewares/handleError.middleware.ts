@@ -16,7 +16,7 @@ export const handleError = async (
   // eslint-disable-next-line no-unused-vars
   next: NextFunction
 ) => {
-  WrappidLogger.logFunctionStart();
+  WrappidLogger.logFunctionStart("handleError");
   if (typeof err === "string") {
     // Handle human-readable error messages directly
     res.status(400).json({ message: err });

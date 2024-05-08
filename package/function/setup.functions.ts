@@ -6,7 +6,7 @@ import { GenericObject } from "../types/generic.types";
 let appFunctionsRegistry: any = {};
 
 const setupFunctions = async () => {
-  WrappidLogger.logFunctionStart();
+  WrappidLogger.logFunctionStart("setupFunctions");
   const AppFunctionsRegistry: GenericObject = ApplicationContext.getContext(constant.registry.FUNCTIONS_REGISTRY);
 
   try {
@@ -15,6 +15,8 @@ const setupFunctions = async () => {
   } catch (error:any) {
     WrappidLogger.error(error);
     throw error;
+  } finally {
+    WrappidLogger.logFunctionEnd("setupFunctions");
   }
 };
 

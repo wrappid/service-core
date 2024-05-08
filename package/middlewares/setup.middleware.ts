@@ -6,6 +6,6 @@ import { MiddlewaresRegistry } from "../registry";
  * @param wrappidApp : express application
  */
 export function setupMiddlewares(wrappidApp: any) {
-  WrappidLogger.logFunctionStart();
+  WrappidLogger.logFunctionStart("setupMiddlewares");
   wrappidApp.use(MiddlewaresRegistry.apiLogger);
 }

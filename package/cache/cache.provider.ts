@@ -10,7 +10,7 @@ export const cacheProvider: any = {};
  * This function helps us to setup cache
  */
 export function setupCacheProvider() {
-  WrappidLogger.logFunctionStart();
+  WrappidLogger.logFunctionStart("setupCacheProvider");
   const config = ApplicationContext.getContext(constant.CONFIG_KEY);
   
   config?.cache?.forEach(async (data: CacheConfig) => {
@@ -30,5 +30,5 @@ export function setupCacheProvider() {
       WrappidLogger.error(error);
     }
   });
-  WrappidLogger.logFunctionEnd();
+  WrappidLogger.logFunctionEnd("setupCacheProvider");
 }

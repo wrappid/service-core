@@ -13,7 +13,7 @@ type UploadOptions = {
 }
 
 const fileFilter = (req: any, file: any, cb: any) => {
-  WrappidLogger.logFunctionStart();
+  WrappidLogger.logFunctionStart("fileFilter");
   try {
     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
       cb(null, true);
@@ -36,7 +36,7 @@ export const upload = multer({
 });
 
 export const uploadToS3 = async (inputFile: {[key: string]: Express.Multer.File[]}, options: UploadOptions) => {
-  WrappidLogger.logFunctionStart();
+  WrappidLogger.logFunctionStart("uploadToS3");
   const { storage } = ApplicationContext.getContext(constant.CONFIG_KEY);
   const { bucket, region = "us-east-1", accessKeyId, secretAccessKey } = storage.s3;
 
@@ -73,7 +73,7 @@ export const uploadToS3 = async (inputFile: {[key: string]: Express.Multer.File[
     console.error("Error uploading file to S3:", error);
     throw new Error("Failed to upload file to S3");
   } finally {
-    WrappidLogger.logFunctionEnd();
+    WrappidLogger.logFunctionEnd("uploadToS3");
   }
 };
 

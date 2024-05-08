@@ -1,5 +1,6 @@
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { PaymentGateway } from "./../config/types.config";
 import { razorpayPaymentActions } from "./razorpay/razorpay.payment.action";
 
@@ -13,6 +14,7 @@ type OrderOptions = {
  * @returns defaultPaymentConfig
  */
 async function getDefaultPaymentConfig() {
+  WrappidLogger.logFunctionStart("getDefaultPaymentConfig");
   try {
     const { payment } = ApplicationContext.getContext(constant.CONFIG_KEY);
 
@@ -20,14 +22,17 @@ async function getDefaultPaymentConfig() {
       (gateway: PaymentGateway) => gateway.default === true
     );
     if(defaultGateway.length > 1 ){
+      WrappidLogger.error("Payment gatway cannot have multiple 'default': true");
       throw new Error("Payment gatway cannot have multiple 'default': true");
     }
     if (defaultGateway.length == 0) {
+      WrappidLogger.error("Payment gatway cannot have any 'default': true");
       throw new Error("Payment gatway cannot have any 'default': true");
     }
     return defaultGateway;
-  } catch (error) {
-    console.log(error);
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    // console.log(error);
     throw error;
   }
 }

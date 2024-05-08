@@ -1,13 +1,13 @@
 import { constant } from "../constants/server.constant";
 import { databaseActions } from "../database/actions.database";
-import { WrappidLogger } from "logging/wrappid.logger";
+import { WrappidLogger } from "../logging/wrappid.logger";
 
 const getRoutes = async (
   dbName: string,
   authRequired: boolean,
   type: string
 ) => {
-  WrappidLogger.logFunctionStart();
+  WrappidLogger.logFunctionStart("getRoutes");
   // eslint-disable-next-line no-useless-catch
   try {
     /**
@@ -25,7 +25,7 @@ const getRoutes = async (
     WrappidLogger.error(error);
     throw error;
   }finally {
-    WrappidLogger.logFunctionEnd();
+    WrappidLogger.logFunctionEnd("getRoutes");
   }
 
 };

@@ -4,7 +4,7 @@ import { databaseProvider } from "./setup.database";
 
 const getDatabases = (req: any, res: any) => {
   try {
-    WrappidLogger.logFunctionStart();
+    WrappidLogger.logFunctionStart("getDatabases");
     const searchValue = req.query._searchValue;
     const dataBases = databaseProvider;
     let searchedDatabase = Object.keys(dataBases);
@@ -31,12 +31,12 @@ const getDatabases = (req: any, res: any) => {
     WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch databases" });
   }finally {
-    WrappidLogger.logFunctionEnd();
+    WrappidLogger.logFunctionEnd("getDatabases");
   }
 };
 const getTables = (req: any, res: any) => {
   try {
-    WrappidLogger.logFunctionStart();
+    WrappidLogger.logFunctionStart("getTables");
     // eslint-disable-next-line no-unused-vars
     const database = req.params.database;
     const requestedDBTables = databaseProvider[database].models;
@@ -67,13 +67,13 @@ const getTables = (req: any, res: any) => {
     WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch tables" });
   } finally {
-    WrappidLogger.logFunctionEnd();
+    WrappidLogger.logFunctionEnd("getTables");
   }
   
 };
 const getColumns = async (req: any, res: any) => {
   try {
-    WrappidLogger.logFunctionStart();
+    WrappidLogger.logFunctionStart("getColumns");
     const database = req.params.database;
     const table = req.params.table;
     // eslint-disable-next-line no-unused-vars
@@ -105,7 +105,7 @@ const getColumns = async (req: any, res: any) => {
     WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch attributes" });
   }finally {
-    WrappidLogger.logFunctionEnd();
+    WrappidLogger.logFunctionEnd("getColumns");
   }
 };
 

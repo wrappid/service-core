@@ -1,5 +1,6 @@
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { getServerRoutes } from "../route/helper.route";
 import { GenericObject } from "../types/generic.types";
 import { WrappidRegistryType } from "../WrappidApp";
@@ -17,17 +18,25 @@ import CoreValidationsRegistry from "./ValidationsRegistry";
  * @returns serverRoutes
  */
 async function getDbRoutes(): Promise<GenericObject> {
-  console.log("----------------------------------");
-  const authenticatedServerRoutes: GenericObject = await getServerRoutes(
-    "application",
-    true
-  );
-  const unauthenticatedServerRoutes: GenericObject = await getServerRoutes(
-    "application",
-    false
-  );
-  console.log("----------------------------------");
-  return <GenericObject>{...authenticatedServerRoutes, ...unauthenticatedServerRoutes};
+  try {
+    WrappidLogger.logFunctionStart("getDbRoutes");
+    console.log("----------------------------------");
+    const authenticatedServerRoutes: GenericObject = await getServerRoutes(
+      "application",
+      true
+    );
+    const unauthenticatedServerRoutes: GenericObject = await getServerRoutes(
+      "application",
+      false
+    );
+    console.log("----------------------------------");
+    return <GenericObject>{...authenticatedServerRoutes, ...unauthenticatedServerRoutes};
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    throw error;
+  } finally {
+    WrappidLogger.logFunctionEnd ("getDbRoutes");
+  }
 }
   
 
@@ -37,13 +46,22 @@ async function getDbRoutes(): Promise<GenericObject> {
  * @param registry : all registry
  */
 export function setupLocalRegistryContext(registry: WrappidRegistryType) {
-  ApplicationContext.setContext(constant.registry.CONTROLLERS_REGISTRY, {...CoreControllersRegistry, ...registry.ControllersRegistry});
-  ApplicationContext.setContext(constant.registry.FUNCTIONS_REGISTRY,{...CoreFunctionsRegistry, ...registry.FunctionsRegistry});
-  ApplicationContext.setContext(constant.registry.MIDDLEWARES_REGISTRY,{...CoreMiddlewaresRegistry, ...registry.MiddlewaresRegistry});
-  ApplicationContext.setContext(constant.registry.MODELS__REGISTRY,{...CoreModelsRegistry, ...registry.ModelsRegistry});
-  ApplicationContext.setContext(constant.registry.TASKS_REGISTRY,{...CoreTasksRegistry, ...registry.TasksRegistry});
-  ApplicationContext.setContext(constant.registry.VALIDATIONS_REGISTRY,{...CoreValidationsRegistry, ...registry.ValidationsRegistry});
-  ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...CoreRoutesRegistry, ...registry.RoutesRegistry.default});
+  try {
+    WrappidLogger.logFunctionStart("setupLocalRegistryContext");
+    ApplicationContext.setContext(constant.registry.CONTROLLERS_REGISTRY, {...CoreControllersRegistry, ...registry.ControllersRegistry});
+    ApplicationContext.setContext(constant.registry.FUNCTIONS_REGISTRY,{...CoreFunctionsRegistry, ...registry.FunctionsRegistry});
+    ApplicationContext.setContext(constant.registry.MIDDLEWARES_REGISTRY,{...CoreMiddlewaresRegistry, ...registry.MiddlewaresRegistry});
+    ApplicationContext.setContext(constant.registry.MODELS__REGISTRY,{...CoreModelsRegistry, ...registry.ModelsRegistry});
+    ApplicationContext.setContext(constant.registry.TASKS_REGISTRY,{...CoreTasksRegistry, ...registry.TasksRegistry});
+    ApplicationContext.setContext(constant.registry.VALIDATIONS_REGISTRY,{...CoreValidationsRegistry, ...registry.ValidationsRegistry});
+    ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...CoreRoutesRegistry, ...registry.RoutesRegistry.default});
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    throw error;
+  } finally {
+    WrappidLogger.logFunctionEnd("setupLocalRegistryContext");
+
+  }
 }
 
 /**
@@ -51,6 +69,7 @@ export function setupLocalRegistryContext(registry: WrappidRegistryType) {
  */
 export async function updateDatabaseRegistryContext() {
   try {
+    WrappidLogger.logFunctionStart("updateDatabaseRegistryContext");
     const dbRoutes: GenericObject = await getDbRoutes();
     let  allDbRoutes: GenericObject = {};
     Object.keys(dbRoutes).forEach((element: string) => {
@@ -62,8 +81,9 @@ export async function updateDatabaseRegistryContext() {
       allDbRoutes = {...allDbRoutes, ...restructuredData};
     });
     ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...ApplicationContext.getContext(constant.registry.ROUTES_REGISTRY), ...allDbRoutes}); 
-    console.log("Setting up routes from database successful.");
-  } catch (error) {
-    console.error("WrappidError: Setting up routes from database failed.");
+    WrappidLogger.logFunctionEnd("updateDatabaseRegistryContext");
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    // console.error("WrappidError: Setting up routes from database failed.");
   }
 }

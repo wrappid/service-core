@@ -4,7 +4,7 @@ import { ApplicationContext } from "../context/application.context";
 import { WrappidLogger } from "../logging/wrappid.logger";
 
 export const jwtVerify = (req: any, res: any, next: any) => {
-  WrappidLogger.logFunctionStart();
+  WrappidLogger.logFunctionStart("jwtVerify");
   const {
     accessTokenSecret="",
     // refreshAccessTokenSecret="",

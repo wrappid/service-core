@@ -123,10 +123,10 @@ export class WrappidLogger {
     });
   }
 
-  static logFunctionStart(){
-    WrappidLogger.info("Start of function...");
+  static logFunctionStart(functionName:string){
+    WrappidLogger.info("Start of function " + functionName);
   }
-  static logFunctionEnd(){
-    WrappidLogger.info("End of function.");
+  static logFunctionEnd(functionName:string){
+    WrappidLogger.info("End of function " + functionName);
   }  
 }

@@ -95,7 +95,7 @@ export default class WrappidApp {
   }
 
   async init() {
-    WrappidLogger.logFunctionStart();
+    WrappidLogger.logFunctionStart("WrappidApp.init");
     /**
      * Setup Databases
      */
@@ -143,12 +143,15 @@ export default class WrappidApp {
     setupLogging(this.wrappidApp);
 
     const serverInit = () => {
-      console.log("###########################################");
-      console.log(`Server is up and running on port ${this.port}...`);
-      console.log("###########################################");
+      // console.log("###########################################");
+      // console.log(`Server is up and running on port ${this.port}...`);
+      // console.log("###########################################");
+      WrappidLogger.info("###########################################");
+      WrappidLogger.info(`Server is up and running on port ${this.port}...`);
+      WrappidLogger.info("###########################################");
     };
   
     this.wrappidApp.listen(this.port, serverInit);
-    WrappidLogger.logFunctionEnd();
+    WrappidLogger.logFunctionEnd("WrappidApp.init");
   }
 }

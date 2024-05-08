@@ -13,7 +13,7 @@ import { validateEmail } from "../validation/default.validation";
  */
 export async function getDefaultCommunicationConfig(commType: "email" | "sms" | "whatsapp"): Promise<EmailProvider | SmsProvider | WhatsappProvider> {
   try {
-    WrappidLogger.logFunctionStart();
+    WrappidLogger.logFunctionStart("getDefaultCommunicationConfig");
     const { communication } = ApplicationContext.getContext(constant.CONFIG_KEY);
 
     const multipleDefaults = communication[commType]?.providers?.filter((provider: GenericObject) => provider.default === true);
@@ -28,7 +28,7 @@ export async function getDefaultCommunicationConfig(commType: "email" | "sms" | 
     WrappidLogger.error(error);
     throw error;
   } finally {
-    WrappidLogger.logFunctionEnd();
+    WrappidLogger.logFunctionEnd("getDefaultCommunicationConfig");
   }
 }
 
@@ -42,18 +42,22 @@ export async function getDefaultCommunicationConfig(commType: "email" | "sms" | 
  */
 export async function checkIfCommunicationEnabled(commType: "email" | "sms" | "whatsapp" ): Promise<boolean>{
   try {
+    WrappidLogger.logFunctionStart("checkIfCommunicationEnabled");
     const { communication } = ApplicationContext.getContext(constant.CONFIG_KEY);
     
     //check communciation enabled or not
     if(!communication.enabled === true){
+      WrappidLogger.error("Communication Disabled!!");
       throw new Error("Communication Disabled!!");
     }
     if(!communication[commType].enabled === true){
+      WrappidLogger.error(`${commType} Communciaation Disabled!!`);
       throw new Error(commType+ " Communciaation Disabled!!");
     }
     return true;
   } catch (error:any) {
-    console.log(error);
+    // console.log(error);
+    WrappidLogger.error(error);
     throw error;
   }
 }

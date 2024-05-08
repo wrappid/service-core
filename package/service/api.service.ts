@@ -50,7 +50,7 @@ export abstract class APIService {
    * @returns response : Response data
    */
   async request<T>(requestConfig: RequestConfig): Promise<T> {
-    WrappidLogger.logFunctionStart();
+    WrappidLogger.logFunctionStart("APIService.request");
     try {
       const axiosRequestConfig: AxiosRequestConfig = {
         url: `${this.config.baseUrl}${requestConfig.endpoint}`,
@@ -72,16 +72,21 @@ export abstract class APIService {
 
       if (error.response) {
         // Handle specific response errors (e.g., status codes)
+        WrappidLogger.error(`API request failed: ${error.response.data.message || error.response.statusText}`);
         throw new Error(
           `API request failed: ${error.response.data.message || error.response.statusText}`
         );
       } else if (error.request) {
         // Handle request errors (e.g., network issues)
+        WrappidLogger.error("Network error while making API request");
         throw new Error("Network error while making API request");
       } else {
         // Handle other errors
+        WrappidLogger.error(error.message);
         throw new Error(error.message);
       }
+    } finally {
+      WrappidLogger.logFunctionEnd("APIService.request");
     }
   }
 

@@ -2,7 +2,7 @@ import { WrappidLogger } from "../logging/wrappid.logger";
 
 export const validation =
   (schema: any) => async (req: any, res: any, next: any) => {
-    WrappidLogger.logFunctionStart();
+    WrappidLogger.logFunctionStart("validation");
     try {
       if (schema.body) {
         await schema.body.validate(req.body);
@@ -13,11 +13,11 @@ export const validation =
       if (schema.params) {
         await schema.params.validate(req.params);
       }
-      console.log("Validate successfully");
-      WrappidLogger.logFunctionEnd();
+      WrappidLogger.info("Validate successfully");
+      // console.log("Validate successfully");
+      WrappidLogger.logFunctionEnd("validation");
       next();
     } catch (err: any) {
-      console.log(err);
       WrappidLogger.error(err);
       return res
         .status(406)
