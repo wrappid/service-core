@@ -3,6 +3,7 @@ import { coreConstant, databaseActions, databaseProvider } from "../../../index"
 
 
 // const entityStatus = coreConstant;
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 import { GenericObject } from "../../../types/generic.types";
 import whereConst from "../constants/whereConstants";
 import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
@@ -27,6 +28,7 @@ const auditAttributes = [
  * @returns
  */
 const getEntitySchema = async (entityStr: string) => {
+  WrappidLogger.logFunctionStart("getEntitySchema");
   const businessEntitySchema = await databaseActions.findOne(
     "application",
     "BusinessEntitySchemas",
@@ -62,6 +64,7 @@ const getEntitySchema = async (entityStr: string) => {
  * @returns
  */
 const getTotalCount = async (db: string, model: string, schemaOptions: GenericObject) => {
+  WrappidLogger.logFunctionStart("getTotalCount");
   let count = 0;
   try {
     const options = schemaOptions;
@@ -70,10 +73,10 @@ const getTotalCount = async (db: string, model: string, schemaOptions: GenericOb
 
     count = await databaseProvider[db].models[model].count(options);
     return count;
-  } catch (error) {
-    console.error("-------businessEntityHelper>getTotalCount-------");
-    console.error(error);
-    console.error("------------------------------------------------");
+  } catch (error:any) {
+    WrappidLogger.error("-------businessEntityHelper>getTotalCount-------");
+    WrappidLogger.error(error);
+    WrappidLogger.error("------------------------------------------------");
     return count;
   }
 };
@@ -88,6 +91,7 @@ const getTotalCount = async (db: string, model: string, schemaOptions: GenericOb
  * @returns
  */
 function recurrsive_NestedColumns(dbName: string, schema: GenericObject, preffix = "") {
+  WrappidLogger.logFunctionStart("recurrsive_NestedColumns");
   let columns: any = [];
   if (schema?.include) {
     schema?.include?.forEach((incSchema: any) => {
@@ -155,6 +159,7 @@ function recurrsive_NestedColumns(dbName: string, schema: GenericObject, preffix
  * @returns
  */
 const getColumnsFromSchema = (dbName: string, schema: GenericObject) => {
+  WrappidLogger.logFunctionStart("getColumnsFromSchema");
   let columns: GenericObject[] = [];
 
   const schemaModelRawAttributes =
@@ -198,6 +203,7 @@ const getColumnsFromSchema = (dbName: string, schema: GenericObject) => {
  * @returns
  */
 function processColumnFilter(_whereOB: any, _attribute: any, _filterOB: any) {
+  WrappidLogger.logFunctionStart("processColumnFilter");
   /**
      * 
       [Op.eq]: 3,                              // = 3 // Basics
@@ -319,9 +325,9 @@ function processColumnFilter(_whereOB: any, _attribute: any, _filterOB: any) {
         break;
     }
   }
-  console.log("---------------_whereOB---------------");
-  console.log(_whereOB);
-  console.log("--------------------------------------");
+  WrappidLogger.info("---------------_whereOB---------------");
+  WrappidLogger.info(_whereOB);
+  WrappidLogger.info("--------------------------------------");
   return _whereOB;
 }
 
@@ -335,6 +341,7 @@ function processColumnFilter(_whereOB: any, _attribute: any, _filterOB: any) {
  * @returns
  */
 function recurrsive_BusinessEntityWhere(dbName: any, schema: any, where: any) {
+  WrappidLogger.logFunctionStart("recurrsive_BusinessEntityWhere");
   const whereSchema: any = where || {};
   const whereOB: any = {};
   Object.keys(whereSchema).forEach((whereKey: any) => {
@@ -409,6 +416,7 @@ function recurrsive_BusinessEntityWhere(dbName: any, schema: any, where: any) {
  * @returns
  */
 function prepareBusinessEntityWhere(db: string, schema: GenericObject) {
+  WrappidLogger.logFunctionStart("prepareBusinessEntityWhere");
   const whereSchema = schema?.where || {};
   let whereOB = {};
   const rootModel = schema?.model;
@@ -439,6 +447,7 @@ function prepareGeneralSearchWhereOB(
   attributeSuffix: string,
   _searchValue: any
 ) {
+  WrappidLogger.logFunctionStart("prepareGeneralSearchWhereOB");
   const whereOB: GenericObject = {};
   _searchValue = decodeURIComponent(_searchValue).toString();
   if (_searchValue) {
@@ -491,6 +500,7 @@ function nestedSearchWhereOB(
   attributeSuffix: any,
   _searchValue: any
 ) {
+  WrappidLogger.logFunctionStart("nestedSearchWhereOB");
   let whereOB = {};
   if (incSchemas && Array.isArray(incSchemas) && incSchemas?.length > 0) {
     incSchemas.forEach((incSchema) => {
@@ -542,6 +552,7 @@ function nestedSearchWhereOB(
  * @returns
  */
 function prepareSearchWhereOB(db: string, _schema: GenericObject, _searchValue: any) {
+  WrappidLogger.logFunctionStart("prepareSearchWhereOB");
   let whereOB = {};
   if (_searchValue) {
     // for root model
@@ -583,6 +594,7 @@ function prepareSearchWhereOB(db: string, _schema: GenericObject, _searchValue: 
  */
 // eslint-disable-next-line no-unused-vars
 function prepareWhereOB(db: string, _schema: GenericObject, _filterQuery: any) {
+  WrappidLogger.logFunctionStart("prepareWhereOB");
   let whereOB = _schema?.where || {};
   if (_filterQuery) {
     const modelAttr = Object.keys(
@@ -590,9 +602,9 @@ function prepareWhereOB(db: string, _schema: GenericObject, _filterQuery: any) {
     );
     const filterQuery = JSON.parse(_filterQuery);
     if (filterQuery) {
-      console.log("---------------filterQuery---------------");
-      console.log(filterQuery);
-      console.log("-----------------------------------------");
+      WrappidLogger.info("---------------filterQuery---------------");
+      WrappidLogger.info(filterQuery);
+      WrappidLogger.info("-----------------------------------------");
 
       Object.keys(filterQuery?.query).forEach((_eachFilter) => {
         if (
@@ -629,6 +641,7 @@ function processNestedModelOrder(
   _incSchema: GenericObject,
   orderQuery: any
 ) {
+  WrappidLogger.logFunctionStart("processNestedModelOrder");
   Object.keys(orderQuery).forEach((_eachOrder) => {
     if (_eachOrder.includes(".")) {
       // if included model attribute
@@ -650,6 +663,7 @@ function processNestedModelOrder(
  */
 const prepareOrderOB = (db: string, schema: GenericObject, orderQuery: any) => {
   try {
+    WrappidLogger.logFunctionStart("prepareOrderOB");
     const orderOB: any = [];
 
     /**
@@ -666,9 +680,9 @@ const prepareOrderOB = (db: string, schema: GenericObject, orderQuery: any) => {
     if (orderQuery) {
       orderQuery = JSON.parse(orderQuery);
       if (orderQuery) {
-        console.log("---------------orderQuery---------------");
-        console.log(orderQuery);
-        console.log("-----------------------------------------");
+        WrappidLogger.info("---------------orderQuery---------------");
+        WrappidLogger.info(orderQuery);
+        WrappidLogger.info("-----------------------------------------");
         /**
          * proceess loop on requested order cause it's less
          */
@@ -696,11 +710,11 @@ const prepareOrderOB = (db: string, schema: GenericObject, orderQuery: any) => {
       }
     }
     return orderOB;
-  } catch (error) {
-    console.error("-------------------------------------");
-    console.error("getBusinessEntity.helper>prepareOrderOB");
-    console.error(error);
-    console.error("-------------------------------------");
+  } catch (error:any) {
+    WrappidLogger.error("-------------------------------------");
+    WrappidLogger.error("getBusinessEntity.helper>prepareOrderOB");
+    WrappidLogger.error(error);
+    WrappidLogger.error("-------------------------------------");
     throw error;
   }
 };
@@ -714,11 +728,14 @@ const prepareOrderOB = (db: string, schema: GenericObject, orderQuery: any) => {
  */
 const getEntityOption = (databaseName: string, schema: GenericObject, query: any) => {
   try {
+    WrappidLogger.logFunctionStart("getEntityOption");
     const model = schema?.model;
     if (!schema?.model) {
+      WrappidLogger.info("Schema invalid model string");
       throw new Error("Schema invalid model string");
     }
     if (!databaseProvider.application.models[model]) {
+      WrappidLogger.error("Schema invalid model");
       throw new Error("Schema invalid model");
     }
     const includeOB: any = [];
@@ -768,11 +785,11 @@ const getEntityOption = (databaseName: string, schema: GenericObject, query: any
     }
 
     return options;
-  } catch (error) {
-    console.error("-------------------------------------");
-    console.error("getBusinessEntity.helper>getEntityOption");
-    console.error(error);
-    console.error("-------------------------------------");
+  } catch (error:any) {
+    WrappidLogger.error("-------------------------------------");
+    WrappidLogger.error("getBusinessEntity.helper>getEntityOption");
+    WrappidLogger.error(error);
+    WrappidLogger.error("-------------------------------------");
     throw error;
   }
 };
@@ -793,6 +810,7 @@ const getFinalWhereClause = (
   defaultFilterQuery: any,
   searchValue: any
 ) => {
+  WrappidLogger.logFunctionStart("getFinalWhereClause");
   let finalWhereOB: any = {};
 
   const defaultFilterOB = defaultFilterQuery

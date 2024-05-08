@@ -1,4 +1,5 @@
 import {Request, Response} from "express";
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 import { getMasterDataFunc, getSettingMetaFunc, postTestCommunicationFunc } from "../functions/_system.function";
 
 export const getVersion = async (req: Request, res: Response) => {
@@ -16,12 +17,13 @@ export const getVersion = async (req: Request, res: Response) => {
 
 export const getSettingMeta = async (req:Request, res:Response) => {
   try{
+    WrappidLogger.logFunctionStart("getSettingMeta");
     const {status, ...restData} = await getSettingMetaFunc();
     res.status(status).json({
       ...restData
     });
-  }catch(err){
-    console.log(err);
+  }catch(err:any){
+    WrappidLogger.error(err);
     res.status(500).json({ message: "Error in User Setting  fetch" });
   }
 
@@ -30,12 +32,13 @@ export const getSettingMeta = async (req:Request, res:Response) => {
 
 export const postTestCommunication = async (req:Request, res:Response) => {
   try {
+    WrappidLogger.logFunctionStart("postTestCommunication");
     const {status, ...restData} = await postTestCommunicationFunc(req, res);
     res.status(status).json({
       ...restData
     });
   } catch (error:any) {
-    console.log(error);
+    WrappidLogger.error(error);
     res.status(500).json({ message: "Error ::" +error.message  });
   }
 };
@@ -49,11 +52,13 @@ export const postTestCommunication = async (req:Request, res:Response) => {
 
 export const masterData = async (req: Request, res: Response) => {
   try{
+    WrappidLogger.logFunctionStart("masterData");
     const data = await getMasterDataFunc(req);
     const { status, ...restData } = data;
     res.status(status).json(restData);
   }catch(error:any){
-    console.error("Error:: ", error);
+    // console.error("Error:: ", error);
+    WrappidLogger.error(error);
     res.status(500).json({ message: error.message });
   }         
                   

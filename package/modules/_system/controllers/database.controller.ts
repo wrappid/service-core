@@ -1,4 +1,5 @@
 import { databaseProvider } from "../../../database/setup.database";
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 import { getEntityColumns } from "../functions/businessEntity.get.helper";
 import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
 
@@ -11,6 +12,7 @@ import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
  */
 const getDatabaseTables = (req: any, res: any) => {
   try {
+    WrappidLogger.logFunctionStart("getDatabaseTables");
     // eslint-disable-next-line no-unused-vars
     const database = req.params.database;
     const requestedDBTables = databaseProvider[database].models;
@@ -38,7 +40,8 @@ const getDatabaseTables = (req: any, res: any) => {
       message: "Tables fetched successfully",
     });
   } catch (error: any) {
-    console.error(error);
+    // console.error("Error:: ",error);
+    WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch tables" });
   }
 };
@@ -52,6 +55,7 @@ const getDatabaseTables = (req: any, res: any) => {
  */
 const getAttributes = async (req: any, res: any) => {
   try {
+    WrappidLogger.logFunctionStart("getAttributes");
     const database = req.params.database;
     const table = req.params.table;
     // eslint-disable-next-line no-unused-vars
@@ -79,7 +83,8 @@ const getAttributes = async (req: any, res: any) => {
       message: "Attributes fetched successfully",
     });
   } catch (error: any) {
-    console.error(error);
+    // console.error("Error:: "error);
+    WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch attributes" });
   }
 };
@@ -92,9 +97,11 @@ const getAttributes = async (req: any, res: any) => {
  * @returns
  */
 const getBusinessEntityColumns = async (req: any, res: any) => {
+  WrappidLogger.logFunctionStart("getBusinessEntityColumns");
   const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
+  WrappidLogger.info(`entity=${entity}`);
   try {
     if (!entity) {
       res.status(204).json({ data: 0, message: "No entity found" });
@@ -109,7 +116,8 @@ const getBusinessEntityColumns = async (req: any, res: any) => {
       message: "Business entity columns found successfully",
     });
   } catch (error: any) {
-    console.error(error);
+    // console.error("Error:: ",error);
+    WrappidLogger.error(error);
     res.status(500).json({
       error: error?.message || error,
       message: "Something went wrong",

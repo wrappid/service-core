@@ -1,4 +1,5 @@
 import { databaseActions } from "../../../database/actions.database";
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 import {
   getEntityDataCount,
   getEntityDataName,
@@ -14,6 +15,7 @@ import {
  */
 const getBusinessEntities = async (req: any, res: any) => {
   try {
+    WrappidLogger.logFunctionStart("getBusinessEntities");
     const data: any = await databaseActions.findAll(
       "application",
       "BusinessEntitySchemas",
@@ -35,7 +37,8 @@ const getBusinessEntities = async (req: any, res: any) => {
       message: "Business entities found successfully",
     });
   } catch (error: any) {
-    console.error(error);
+    // console.error(error);
+    WrappidLogger.error(error);
     res.status(500).json({
       error: error?.message || error,
       message: "Something went wrong",
@@ -51,6 +54,7 @@ const getBusinessEntities = async (req: any, res: any) => {
  * @returns
  */
 const getEntityData = async (req: any, res: any) => {
+  WrappidLogger.logFunctionStart("getEntityData");
   const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
@@ -75,7 +79,8 @@ const getEntityData = async (req: any, res: any) => {
       message: "Entity data found successfully",
     });
   } catch (error: any) {
-    console.error(error);
+    WrappidLogger.error(error);
+    // console.error(error);
     res.status(500).json({
       error: error?.message || error,
       message: "Something went wrong",
@@ -91,6 +96,7 @@ const getEntityData = async (req: any, res: any) => {
  * @returns
  */
 const getIndividualEntityData = async (req: any, res: any) => {
+  WrappidLogger.logFunctionStart("getIndividualEntityData");
   const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
@@ -117,7 +123,8 @@ const getIndividualEntityData = async (req: any, res: any) => {
       },
     });
   } catch (error: any) {
-    console.error(error);
+    // console.error(error);
+    WrappidLogger.error(error);
     res.status(500).json({
       error: error?.message || error,
       message: "Something went wrong",
@@ -133,6 +140,7 @@ const getIndividualEntityData = async (req: any, res: any) => {
  * @returns
  */
 const getAllEntityData = async (req: any, res: any) => {
+  WrappidLogger.logFunctionStart("getAllEntityData");
   const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
@@ -159,7 +167,8 @@ const getAllEntityData = async (req: any, res: any) => {
       },
     });
   } catch (error: any) {
-    console.error(error);
+    WrappidLogger.error(error);
+    // console.error(error);
     res.status(500).json({
       error: error?.message || error,
       message: "Something went wrong",
@@ -175,9 +184,11 @@ const getAllEntityData = async (req: any, res: any) => {
  * @returns
  */
 const noAuthGetAllEntityData = async (req: any, res: any) => {
+  WrappidLogger.logFunctionStart("noAuthGetAllEntityData");
   const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
+  WrappidLogger.info(`entity=${entity}`);
 
   try {
 
@@ -196,7 +207,8 @@ const noAuthGetAllEntityData = async (req: any, res: any) => {
       },
     });
   } catch (error: any) {
-    console.error(error);
+    // console.error(error);
+    WrappidLogger.error(error);
     res.status(500).json({
       error: error?.message || error,
       message: "Something went wrong",

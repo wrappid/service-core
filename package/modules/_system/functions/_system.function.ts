@@ -1,25 +1,28 @@
 import otpGenerator from "otp-generator";
 
-
 import { communicate } from "../../../communication/communicate.communicator";
 import { constant } from "../../../constants/server.constant";
 import { ApplicationContext } from "../../../context/application.context";
 import { databaseActions } from "../../../database/actions.database";
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 import { clearValidatePhoneEmail } from "../utils/_system.utils";
 
 export const getSettingMetaFunc = async () => {
   try {
+    WrappidLogger.logFunctionStart("getSettingMetaFunc");
     const data = await databaseActions.findAll("application", "SettingMeta", {});
     console.log("SettingMeta fetched successfully");
     return { status: 200, message: "SettingMeta fetched successfully", data };
-  } catch (err) {
-    console.log(err);
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    // console.log(error);
     return {status:500,  message: "SettingMeta fetched error"};
   }
 };
   
 export const postTestCommunicationFunc = async (req: any, res: any) => {
   try {
+    WrappidLogger.logFunctionStart("postTestCommunicationFunc");
     console.log(res);
     const commData: any = {};
     let userId = req?.user?.userId;
@@ -57,6 +60,7 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
       }
     );
     if (personContact == null) {
+      WrappidLogger.error("Email or phone not exist");
       throw new Error("Email or phone not exist");
     }
 
@@ -110,14 +114,17 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
         _status: constant.entityStatus.ACTIVE,
         userId: userId,
       });
-      console.log(`OTP ${commType} sent successfully.`);
+      // console.log(`OTP ${commType} sent successfully.`);
+      WrappidLogger.info(`OTP ${commType} sent successfully.`);
       return { status: 200, message: `OTP ${commType} sent successfully.` };
     } else {
+      WrappidLogger.error(`OTP ${commType} sent failed.`);
       throw new Error(`OTP ${commType} sent failed.`);
     }
-  } catch (err: any) {
-    console.error(err);
-    throw err;
+  } catch (error: any) {
+    WrappidLogger.error(error);
+    // console.error(error);
+    throw error;
   }
 };
 
@@ -133,36 +140,42 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
  * @returns processedData
  */
 async function masterDataProcessing(data:any, level:any, model:any, status:any) {
-  if (level === 0 || data.length === 0) {
-    return [];
-  }
-
-  const currentLevelData = data;
-
-  const finalData:any = [];
-  for (let i = 0; i < currentLevelData.length; i++) {
-    const whereOb:any = {
-      parentId: currentLevelData[i].id,
-    };
-    if (status) {
-      whereOb["_status"] = status;
+  try {
+  
+    if (level === 0 || data.length === 0) {
+      return [];
     }
 
-    const nextLevelData = await databaseActions.findAll("application", model, {
-      where: whereOb,
-      order: [["order", "asc"]],
-    });
+    const currentLevelData = data;
+    const finalData:any = [];
+    for (let i = 0; i < currentLevelData.length; i++) {
+      const whereOb:any = {
+        parentId: currentLevelData[i].id,
+      };
+      if (status) {
+        whereOb["_status"] = status;
+      }
 
-    currentLevelData[i].dataValues["Children"] = await masterDataProcessing(
-      nextLevelData,
-      level - 1,
-      model, status
-    );
+      const nextLevelData = await databaseActions.findAll("application", model, {
+        where: whereOb,
+        order: [["order", "asc"]],
+      });
 
-    finalData.push(currentLevelData[i]);
+      currentLevelData[i].dataValues["Children"] = await masterDataProcessing(
+        nextLevelData,
+        level - 1,
+        model, status
+      );
+
+      finalData.push(currentLevelData[i]);
+    }
+
+    return finalData;
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    // console.error(error);
+    throw error;
   }
-
-  return finalData;
 }
 
 export const getMasterDataFunc = async (req:any) => {
@@ -198,7 +211,7 @@ export const getMasterDataFunc = async (req:any) => {
     } else {
       return { status: 500, message: "master data not found", data: data };
     }
-  } catch (error) {
+  } catch (error:any) {
     console.log(error);
     throw error;
   }
