@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import Razorpay from "razorpay";
+import { WrappidLogger } from "../../logging/wrappid.logger";
 import { PaymentGateway } from "./../../config/types.config";
 
 type Config = {
@@ -15,14 +16,18 @@ type Config = {
  * @returns instance
  */
 async function createInstance(config: Config) {
+  WrappidLogger.logFunctionStart("createInstance");
   try {
     const instance = new Razorpay({
       ...config
     });
     return instance;
-  } catch (error) {
-    console.log(error);
+  } catch (error:any) {
+    // console.log(error);
+    WrappidLogger.error(error);
     throw error;
+  } finally {
+    WrappidLogger.logFunctionEnd("createInstance");
   }
 }
 
@@ -58,22 +63,29 @@ type RazorpayOrderOptions = {
 
 export const razorpayPaymentActions = {
   createOrder: async (gatewayConfig:PaymentGateway,  amount: string, notes?: string) => {
-    const config: Config = {
-      key_id: gatewayConfig.key,
-      key_secret: gatewayConfig.secret
-    };
-    const instance = await createInstance(config);
-    const options:RazorpayOrderOptions = {
-      amount: Number(amount),
-      currency: "INR",
-      notes: { key: notes }
-    };
-    const order = await instance.orders.create(options);
-    return order;
+    try{ 
+      WrappidLogger.logFunctionStart("razorpayPaymentActions.createOrder");
+      const config: Config = {
+        key_id: gatewayConfig.key,
+        key_secret: gatewayConfig.secret
+      };
+      const instance = await createInstance(config);
+      const options:RazorpayOrderOptions = {
+        amount: Number(amount),
+        currency: "INR",
+        notes: { key: notes }
+      };
+      const order = await instance.orders.create(options);
+      return order;
+    }catch(error:any){
+      WrappidLogger.error(error);
+      throw error;
+    }
   },
 
   verifyPayment: async (secretKey: string, orderId: string, paymentId: string) => {
     try {
+      WrappidLogger.logFunctionStart("razorpayPaymentActions.verifyPayment");
       const keySecret = secretKey;      
  
       // Creating hmac object  
@@ -85,8 +97,8 @@ export const razorpayPaymentActions = {
       // Creating the hmac in the required format 
       const generatedSignature = hmac.digest("hex"); 
       return generatedSignature;
-    } catch (error) {
-      console.log(error);
+    } catch (error:any) {
+      WrappidLogger.error(error);
       throw error;
     }
   }

@@ -1,7 +1,9 @@
 import swaggerUi from "swagger-ui-express";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { GenericObject } from "types/generic.types";
 
 const setupSwagger = async (wrappidApp: any, swaggerJsonFile: GenericObject) => {
+  WrappidLogger.logFunctionStart("setupSwagger");
   try {
     /**
      * @todo
@@ -12,9 +14,11 @@ const setupSwagger = async (wrappidApp: any, swaggerJsonFile: GenericObject) => 
       swaggerUi.serve,
       swaggerUi.setup(swaggerJsonFile)
     );
-  } catch (error) {
-    console.log(error);
+  } catch (error:any) {
+    WrappidLogger.error(error);
     throw error;
+  } finally {
+    WrappidLogger.logFunctionEnd("setupSwagger");
   }
 };
 

@@ -1,4 +1,5 @@
 import { coreConstant, databaseActions, databaseProvider } from "../../../index";
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 
 // const { httpMethod, entityStatus } = coreConstant;
 import { getColumnsFromSchema, getEntitySchema } from "./businessEntity.helper";
@@ -37,11 +38,11 @@ function getFieldType(attributeType: string) {
         break;
     }
     return type;
-  } catch (error) {
-    console.error("----------------------------------------");
-    console.error("formSchema.helper>getFieldType");
-    console.error(error);
-    console.error("----------------------------------------");
+  } catch (error:any) {
+    WrappidLogger.error("----------------------------------------");
+    WrappidLogger.error("formSchema.helper>getFieldType");
+    WrappidLogger.error(error);
+    WrappidLogger.error("----------------------------------------");
     throw error;
   }
 }
@@ -129,11 +130,11 @@ async function generateFormSchema(modelName: string) {
       actions,
     };
     return { formID: modelName, schema: formSchema };
-  } catch (error) {
-    console.error("----------------------------------------");
-    console.error("formSchema.helper>generateFormSchemaFromTableAttributes");
-    console.error(error);
-    console.error("----------------------------------------");
+  } catch (error:any) {
+    WrappidLogger.error("----------------------------------------");
+    WrappidLogger.error("formSchema.helper>generateFormSchemaFromTableAttributes");
+    WrappidLogger.error(error);
+    WrappidLogger.error("----------------------------------------");
     throw error;
   }
 }
@@ -168,11 +169,11 @@ async function getFormSchemaFromDB(formID: string, auth: boolean) {
       where: whereClause,
     });
     return formSchema;
-  } catch (error) {
-    console.error("----------------------------------------");
-    console.error("formSchema.helper>getFormSchema");
-    console.error(error);
-    console.error("----------------------------------------");
+  } catch (error:any) {
+    WrappidLogger.error("----------------------------------------");
+    WrappidLogger.error("formSchema.helper>getFormSchema");
+    WrappidLogger.error(error);
+    WrappidLogger.error("----------------------------------------");
     throw error;
   }
 }
@@ -191,11 +192,11 @@ export const getFormSchema = async (formID: string, auth = true) => {
       formSchema = generateFormSchema(formID);
     }
     return formSchema;
-  } catch (error) {
-    console.error("----------------------------------------");
-    console.error("formSchema.helper>getFormSchema");
-    console.error(error);
-    console.error("----------------------------------------");
+  } catch (error:any) {
+    WrappidLogger.error("----------------------------------------");
+    WrappidLogger.error("formSchema.helper>getFormSchema");
+    WrappidLogger.error(error);
+    WrappidLogger.error("----------------------------------------");
     throw error;
   }
 };
@@ -236,9 +237,9 @@ const updateStringValue = async (databaseProvider: any, req: any) => {
         },
         { transaction: t }
       );
-      console.log(`nrows=${nrows}`);
-      console.log(`rows=${rows}`);
-      console.log("Old data deactivated");
+      WrappidLogger.info(`nrows=${nrows}`);
+      WrappidLogger.info(`rows=${rows}`);
+      WrappidLogger.info("Old data deactivated");
 
       const freshData = {
         // key: req.body.key,
@@ -246,7 +247,7 @@ const updateStringValue = async (databaseProvider: any, req: any) => {
         value: req.body.value,
         locale: req.body.locale,
       };
-      console.log("BODY", freshData);
+      WrappidLogger.info(`BODY ${freshData}`);
 
       const data = await databaseActions.create(
         "application",
@@ -261,11 +262,11 @@ const updateStringValue = async (databaseProvider: any, req: any) => {
           transaction: t,
         }
       );
-      console.log("New Data created");
+      WrappidLogger.info("New Data created");
       return data.id;
     }
   );
-  console.log("Transaction commited");
+  WrappidLogger.info("Transaction commited");
   return result;
 };
 

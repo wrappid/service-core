@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize";
 import { DatabaseConfig } from "../config/types.config";
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
+import { WrappidLogger } from "../logging/wrappid.logger";
 
 export const databaseProvider: any = {};
 
@@ -10,6 +11,7 @@ export const databaseProvider: any = {};
  */
 export function setupDatabase() {
   try {
+    WrappidLogger.logFunctionStart("setupDatabase");
     const { databases } = ApplicationContext.getContext(constant.CONFIG_KEY);
     
     databases?.forEach(async (database: DatabaseConfig) => {
@@ -30,13 +32,15 @@ export function setupDatabase() {
       databaseProvider[database.name]["Sequelize"] = Sequelize;
   
       await databaseProvider[database.name].sequelize.authenticate();
+      WrappidLogger.info(`Connection to ${database.name} database has been established successfully.`);
       console.log(
         `Connection to ${database.name} database has been established successfully.`
       );
     });
+    WrappidLogger.logFunctionEnd("setupDatabase");
   } catch (error: any) {
-    console.error(`Error: ${error.message}`);
-    console.error(error);
+    WrappidLogger.error(error);
+    // console.error(error);
   }
 }
 

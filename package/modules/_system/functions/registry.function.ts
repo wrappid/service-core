@@ -1,3 +1,4 @@
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 import { constant } from "./../../../constants/server.constant";
 import { ApplicationContext } from "./../../../context/application.context";
 
@@ -9,6 +10,7 @@ import { ApplicationContext } from "./../../../context/application.context";
  */
 export const getRegistryFunc =  async (req:any) => {
   try {
+    WrappidLogger.logFunctionStart("getRegistryFunc");
     const name = req.params.name;
     let registry: any = {};
     switch (name) {
@@ -44,8 +46,8 @@ export const getRegistryFunc =  async (req:any) => {
       : [];
     const totalRecords = Object.keys(options).length;
     return {status:200, data: options, totalRecords: totalRecords,  message: `${name} fetched successfully`};   
-  } catch (error) {
-    console.log(error);
+  } catch (error:any) {
+    WrappidLogger.error(error);
     throw error;
   }
 };
@@ -55,8 +57,8 @@ export const getRegistryListFunc = async () => {
    
     return {status: 200, message: "API Call Success"};
   }
-  catch (error) {
-    console.log(error);
+  catch (error:any) {
+    WrappidLogger.error(error);
     throw error;
   }
 };  

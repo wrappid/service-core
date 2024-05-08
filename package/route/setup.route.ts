@@ -1,5 +1,6 @@
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { apiLogger } from "../middlewares/apiLogger.middleware";
 import { handleError } from "../middlewares/handleError.middleware";
 import MiddlewaresRegistry from "../registry/MiddlewaresRegistry";
@@ -10,6 +11,7 @@ export const setupRoutes = async (
   app: any
 ) => {
   try {
+    WrappidLogger.logFunctionStart("setupRoutes");
     /**
      * Get Controllers and Routes from Context
      */
@@ -26,14 +28,18 @@ export const setupRoutes = async (
     app.use(handleError);
 
    
-    console.log("----------------------------------");
-    console.log("Setting up routes...");
+    // console.log("----------------------------------");
+    WrappidLogger.info("----------------------------------");
+    WrappidLogger.info("Setting up routes...");
+    // console.log("Setting up routes...");
     Object.values(AppRoutesRegistry)?.forEach((apiRoute: any) => {
       if (
         typeof AppControllersRegistry[apiRoute?.controllerRef] === "function" ||
         typeof AppControllersRegistry[apiRoute?.controllerRef] === "object"
       ) {
-        console.log(`Adding ${apiRoute?.name} route...`);
+        // console.log(`Adding ${apiRoute?.name} route...`);
+        WrappidLogger.info(`Adding ${apiRoute?.name} route...`);
+
         let funcArray = [];
         if (
           typeof AppControllersRegistry[apiRoute?.controllerRef] === "function"
@@ -62,24 +68,29 @@ export const setupRoutes = async (
             app.patch(`/${apiRoute?.url}`, funcArray);
             break;
           default:
-            console.log(
-              `${apiRoute.name} is not set because request method is missing.`
-            );
+            WrappidLogger.info( `${apiRoute.name} is not set because request method is missing.`);
+            // console.log(
+            //   `${apiRoute.name} is not set because request method is missing.`
+            // );
             break;
         }
       } else {
-        console.log(`CANNOT ADD ${apiRoute?.name} ROUTE...`);
+        WrappidLogger.info(`CANNOT ADD ${apiRoute?.name} ROUTE...`);
+        // console.log(`CANNOT ADD ${apiRoute?.name} ROUTE...`);
       }
     });
-    console.log("Routes setup successfully.");
-    console.log("----------------------------------");
+    // console.log("Routes setup successfully.");
+    WrappidLogger.info("Routes setup successfully.");
+    WrappidLogger.info("----------------------------------");
+    // console.log("----------------------------------");
     /**
      * Setup landing route
      */
     setupLandingRoute(app);
-
-  } catch (error) {
-    console.log(error);
+    WrappidLogger.logFunctionEnd("setupRoutes");
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    // console.log(error);
     throw error;
   }
 };

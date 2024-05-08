@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { Request, Response } from "express";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { extractUrl } from "../utils/routes.utils";
 
 // const RouteContentType = {
@@ -37,29 +38,40 @@ const placeHolderKeyMap: { [key: string]: string } = {
  * @returns 
  */
 function getDataValue(data: WrappidConfigObjectType, dataKey: string): string {
-  const keysArray: string[] = dataKey.split(".");
-  let tempData: WrappidConfigObjectType = data;
-  let value = "";
+  try {
+    WrappidLogger.logFunctionStart("getDataValue");
+    const keysArray: string[] = dataKey.split(".");
+    let tempData: WrappidConfigObjectType = data;
+    let value = "";
 
-  keysArray.forEach((key: string) => {
-    if(tempData && typeof tempData === "object" 
+    keysArray.forEach((key: string) => {
+      if(tempData && typeof tempData === "object" 
     && Object.prototype.hasOwnProperty.call(tempData, key)){
-      if(tempData[key] && (typeof tempData[key] === "string" 
+        if(tempData[key] && (typeof tempData[key] === "string" 
       || typeof tempData[key] === "number" 
       || typeof tempData[key] === "boolean")){
-        value = extractUrl(tempData[key].toString());
-      } else if(tempData[key] && typeof tempData[key] === "object"){
-        tempData = <WrappidConfigObjectType>tempData[key];
+          value = extractUrl(tempData[key].toString());
+        } else if(tempData[key] && typeof tempData[key] === "object"){
+          tempData = <WrappidConfigObjectType>tempData[key];
         
+        } else {
+          WrappidLogger.error(`${key} is not a valid datatype`);
+          // console.error(`${key} is not a valid datatype`);
+        }
       } else {
-        console.error(`${key} is not a valid datatype`);
+        WrappidLogger.warn(`${key} is not an object`);
+        // console.warn(`${key} is not an object`);
       }
-    } else {
-      console.warn(`${key} is not an object`);
-    }
-  });
+    });
 
-  return value;
+    return value;
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    throw error;
+  } finally {
+    WrappidLogger.logFunctionEnd("getDataValue");
+  }
+  
 }
 
 /**

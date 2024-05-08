@@ -5,11 +5,13 @@ import {
   databaseActions,
   databaseProvider,
 } from "../../../index";
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 
 // eslint-disable-next-line no-unused-vars
 const putFormSchemaFunc = async (req: any, res: any) => {
-  const model = req?.params?.model;
   try {
+    WrappidLogger.logFunctionStart("putFormSchemaFunc");
+    const model = req?.params?.model;
     console.log("model=" + model);
     const modelID = req.params.id;
     console.log("modelID=" + modelID);
@@ -18,9 +20,11 @@ const putFormSchemaFunc = async (req: any, res: any) => {
     console.log(body);
 
     if (!model) {
+      WrappidLogger.error("model missing in path parameter");
       throw new Error("model missing in path parameter");
     }
     if (!databaseProvider.application.models[model]) {
+      WrappidLogger.error("model[" + model + "] not defined in database");
       throw new Error("model[" + model + "] not defined in database");
     }
 
@@ -84,7 +88,8 @@ const putFormSchemaFunc = async (req: any, res: any) => {
         commitId: uuidv4(),
       });
 
-      console.log("New entry created as draft");
+      WrappidLogger.info("New entry created as draft");
+      // console.log("New entry created as draft");
       return { status: 200, message: "New entry created as draft" };
       // res.status(200).json({ message: "New entry created as draft" });
     } else {
@@ -108,15 +113,18 @@ const putFormSchemaFunc = async (req: any, res: any) => {
       //   entity: model,
       //   message: model + " updated successfully",
       // });
-      else throw new Error("Something went wrong");
+      else {
+        WrappidLogger.error("Something went wrong");
+        throw new Error("Something went wrong");
+      }
     }
-  } catch (error) {
-    console.error(error);
+  } catch (error:any) {
+    // console.error(error);
+    WrappidLogger.error(error);
     return {
       status: 200,
-      entity: model,
       error: error,
-      message: "Error to update " + model,
+      message: "Error to update",
     };
     // res.status(500).json({
     //   entity: model,

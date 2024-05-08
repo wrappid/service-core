@@ -1,13 +1,17 @@
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { cacheProvider } from "./cache.provider";
 
 const clientConnect = async (clientName: string) => {
   try {
+    WrappidLogger.logFunctionStart("clientConnect");
     cacheProvider[clientName].client.on("error", (err: any) =>
-      console.log("Redis Client Error", err)
+      WrappidLogger.info(`Redis Client Error ${err}`)
+      // console.log("Redis Client Error", err)
     );
     await cacheProvider[clientName].client.connect();
-  } catch (error) {
-    console.log(error);
+    WrappidLogger.logFunctionEnd("clientConnect");
+  } catch (error:any) {
+    WrappidLogger.error(error);
   }
 };
 
@@ -20,6 +24,7 @@ export const cacheActions = {
    * @returns
    */
   read: async (clientName: string, cacheKey: string) => {
+    WrappidLogger.logFunctionStart("cacheActions.read");
     await clientConnect(clientName);
     const value = await cacheProvider[clientName].client.get(cacheKey);
     await cacheProvider[clientName].client.disconnect();
@@ -33,9 +38,11 @@ export const cacheActions = {
    * @param data : data value
    */
   update: async (clientName: string, cacheKey: string, data: string) => {
+    WrappidLogger.logFunctionStart("cacheActions.update");
     await clientConnect(clientName);
     await cacheProvider[clientName].client.set(cacheKey, data);
     await cacheProvider[clientName].client.disconnect();
+    WrappidLogger.logFunctionEnd("cacheActions.update");
   },
 
   /**
@@ -45,13 +52,16 @@ export const cacheActions = {
    * @param cacheKey : cacheKey value
    */
   delete: async (clientName: string, cacheKey: string) => {
+    WrappidLogger.logFunctionStart("cacheActions.delete");
     await clientConnect(clientName);
     const d = await cacheProvider[clientName].client.exists(cacheKey);
     if (d == 1) {
       await cacheProvider[clientName].client.del(cacheKey);
     } else {
-      console.log("Key Not Present");
+      WrappidLogger.info("Key Not Present");
+      // console.log("Key Not Present");
     }
     await cacheProvider[clientName].client.disconnect();
+    WrappidLogger.logFunctionEnd("cacheActions.delete");
   },
 };

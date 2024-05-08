@@ -1,4 +1,5 @@
 import { coreConstant } from "../../../index";
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 
 /**
  * This function helps to validate Phone or Email
@@ -7,6 +8,7 @@ import { coreConstant } from "../../../index";
  * @returns valid { valid: boolean, type: string } | [boolean, string]
  */
 export function clearValidatePhoneEmail(identifier: string) {
+  WrappidLogger.logFunctionStart("clearValidatePhoneEmail");
   if (identifier[0] == "'") {
     identifier = identifier.slice(1);
     identifier = identifier.toLowerCase();

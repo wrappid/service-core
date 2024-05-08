@@ -1,4 +1,5 @@
 import { databaseActions, databaseProvider } from "../../../index";
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 
 import { GenericObject } from "../../../types/generic.types";
 import {
@@ -25,8 +26,10 @@ const getEntityDataCount = async (
   query: any
 ) => {
   try {
+    WrappidLogger.logFunctionEnd("getEntityDataCount");
     const schema = await getEntitySchema(entityName);
     if (!schema) {
+      WrappidLogger.error("Entity is missing");
       throw new Error("Entity is missing");
     }
 
@@ -95,27 +98,29 @@ const getEntityDataCount = async (
 
     return count;
   } catch (error: any) {
-    console.error("-------------------------------------");
-    console.error("getBusinessEntity.helper>getEntityData");
-    console.error(error);
-    console.error("-------------------------------------");
+    WrappidLogger.error("-------------------------------------");
+    WrappidLogger.error("getBusinessEntity.helper>getEntityData");
+    WrappidLogger.error(error);
+    WrappidLogger.error("-------------------------------------");
     throw error;
   }
 };
 
 const getEntityColumns = async (db: any, entityName: any) => {
   try {
+    WrappidLogger.logFunctionStart("getEntityColumns");
     const schema: any = await getEntitySchema(entityName);
     if (!schema) {
+      WrappidLogger.error("Entity is missing");
       throw new Error("Entity is missing");
     }
 
     return getColumnsFromSchema(db, schema);
   } catch (error: any) {
-    console.error("-------------------------------------");
-    console.error("getBusinessEntity.helper>getEntityData");
-    console.error(error);
-    console.error("-------------------------------------");
+    WrappidLogger.error("-------------------------------------");
+    WrappidLogger.error("getBusinessEntity.helper>getEntityData");
+    WrappidLogger.error(error);
+    WrappidLogger.error("-------------------------------------");
     throw error;
   }
 };
@@ -130,9 +135,11 @@ const getEntityColumns = async (db: any, entityName: any) => {
  */
 const getEntityDataName = async (entityName: string, query: GenericObject) => {
   try {
+    WrappidLogger.logFunctionStart("getEntityDataName");
     const db = "application";
     const schema = await getEntitySchema(entityName);
     if (!schema) {
+      WrappidLogger.error("Entity is missing");
       throw new Error("Entity is missing");
     }
 
@@ -210,10 +217,10 @@ const getEntityDataName = async (entityName: string, query: GenericObject) => {
 
     return { columns: columns, rows: rows, totalRecords: count };
   } catch (error: any) {
-    console.error("-------------------------------------");
-    console.error("getBusinessEntity.helper>getEntityData");
-    console.error(error);
-    console.error("-------------------------------------");
+    WrappidLogger.error("-------------------------------------");
+    WrappidLogger.error("getBusinessEntity.helper>getEntityData");
+    WrappidLogger.error(error);
+    WrappidLogger.error("-------------------------------------");
     throw error;
   }
 };
@@ -232,8 +239,10 @@ const getIndivEntityData = async (
   entityName: string,
   query: GenericObject
 ) => {
+  WrappidLogger.logFunctionStart("getIndivEntityData");
   const schema = await getEntitySchema(entityName);
   if (!schema) {
+    WrappidLogger.error("Entity is missing");
     throw new Error("Entity is missing");
   }
 

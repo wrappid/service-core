@@ -1,3 +1,4 @@
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 import { putFormSchemaFunc } from "../functions/appbuilder.functions";
 import * as formsController from "../functions/formSchema.helper";
 
@@ -9,6 +10,7 @@ import * as formsController from "../functions/formSchema.helper";
  */
 const getNoAuthFormSchema = async (req: any, res: any) => {
   try {
+    WrappidLogger.logFunctionStart("getNoAuthFormSchema");
     const formID = req.params.formID;
 
     if (!formID) {
@@ -29,7 +31,8 @@ const getNoAuthFormSchema = async (req: any, res: any) => {
       res.status(204).send();
     }
   } catch (error: any) {
-    console.error(error);
+    console.error("Error:: ",error);
+    WrappidLogger.error(error);
     res.status(500).json({
       error: error?.message || error,
       message: "Something went wrong",
@@ -46,6 +49,7 @@ const getNoAuthFormSchema = async (req: any, res: any) => {
  */
 const getFormSchema = async (req: any, res: any) => {
   try {
+    WrappidLogger.logFunctionStart("getFormSchema");
     const formID: any = req.params.formID;
 
     if (!formID) {
@@ -66,7 +70,8 @@ const getFormSchema = async (req: any, res: any) => {
       res.status(204);
     }
   } catch (error: any) {
-    console.error(error);
+    // console.error("Error:: ",error);
+    WrappidLogger.error(error);
     res.status(500).json({
       error: error?.message || error,
       message: "Something went wrong",
@@ -76,12 +81,15 @@ const getFormSchema = async (req: any, res: any) => {
 
 const putFormSchema = async (req: any, res: any) => {
   try {
+    WrappidLogger.logFunctionStart("putFormSchema");
     // res.status(200).json({message: "API call succecfully!!"});
     const result = await putFormSchemaFunc(req, res);
     const { status, ...resdata } = result;
     res.status(status).json({ ...resdata });
-  } catch (err: any) {
-    res.status(500).json({ message: err });
+  } catch (error: any) {
+    // console.log("Error:: ", error);
+    WrappidLogger.error(error);
+    res.status(500).json({ message: error });
   }
 };
 

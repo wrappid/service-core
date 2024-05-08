@@ -1,5 +1,6 @@
 import { constant } from "../constants/server.constant";
 import { databaseActions } from "../database/actions.database";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import * as communicationUtils from "../utils/communication.utils";
 import { checkIfCommunicationEnabled } from "../utils/communication.utils";
 import communicateEmail from "./email/email.communication";
@@ -26,6 +27,7 @@ export const communicate = async ({
   directFlag,
   errorFlag,
 }: any) => {
+  WrappidLogger.logFunctionStart("whatsapp.communicate");
   try {
     //check communication type enabled or not
     if(await checkIfCommunicationEnabled(commType)){
@@ -41,6 +43,7 @@ export const communicate = async ({
         }
       );
       if (!communicationTemplate) {
+        WrappidLogger.error(`Template not found: ${commTemplateID}`);
         throw new Error(`Template not found: ${commTemplateID}`);
       }
 
@@ -66,6 +69,7 @@ export const communicate = async ({
               messageObject,
             });
           default:
+            WrappidLogger.error("Communication type is invalid.");
             throw new Error("Communication type is invalid.");
         }
       //check communcation status
@@ -74,12 +78,16 @@ export const communicate = async ({
       // db entry
       }
     }else{
+      WrappidLogger.error("Communcation Disabled!!");
       throw new Error("Communcation Disabled!!");
     }
-  } catch (error) {
-    console.error(error);
+  } catch (error:any) {
+    // console.error(error);
+    WrappidLogger.error(error);
     if (errorFlag) {
       throw error;
     }
+  } finally {
+    WrappidLogger.logFunctionEnd("whatsapp.communicate");
   }
 };

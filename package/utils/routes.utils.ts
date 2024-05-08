@@ -1,4 +1,7 @@
+import { WrappidLogger } from "../logging/wrappid.logger";
+
 export const  extractUrl = (str: string) => {
+  WrappidLogger.logFunctionStart("extractUrl");
   // Regular expression to match "https://" or "http://", optionally preceded by anything
   const urlRegex = /(?:.*)(https?:\/\/)(.+)/;
 

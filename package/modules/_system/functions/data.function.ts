@@ -5,10 +5,12 @@ import { APP_BUILDER_MODELS, constant } from "../../../constants/server.constant
 import { databaseActions } from "../../../database/actions.database";
 import { databaseProvider } from "../../../database/setup.database";
 import { coreConstant } from "../../../index";
+import { WrappidLogger } from "../../../logging/wrappid.logger";
 import { GenericObject } from "../../../types/generic.types";
 
 export const getModelsFunc = async (req:Request) => {
   try{
+    WrappidLogger.logFunctionStart("getModelsFunc");
     const database:string = <string>req.query?.database || "application";
     const _data:any = databaseProvider[database].models;
     const output = Object.entries(_data)
@@ -32,8 +34,8 @@ export const getModelsFunc = async (req:Request) => {
       data: output,
       totalRecords: output.length
     };
-  } catch (error) {
-    console.error(error);
+  } catch (error:any) {
+    WrappidLogger.error(error);
     return {
       status: 500,
       message: "Error to fetch models"
@@ -42,12 +44,13 @@ export const getModelsFunc = async (req:Request) => {
 };
 
 export const getDatabaseModelRowFunc = async (req: Request) => {
+  WrappidLogger.logFunctionStart("getDatabaseModelRowFunc");
   const database:string = <string>req.query?.database || "application";
-  console.log("database=" + database);
+  WrappidLogger.info("database=" + database);
   const model = req.params.model;
-  console.log("model=" + model);
+  WrappidLogger.info("model=" + model);
   const modelID = req.params.id;
-  console.log("modelID=" + modelID);
+  WrappidLogger.info("modelID=" + modelID);
   try {
     const modelData = await databaseActions.findOne(database,model,{ where: { id: modelID } });
 
@@ -60,8 +63,8 @@ export const getDatabaseModelRowFunc = async (req: Request) => {
     } else {
       return {status:204};
     }
-  } catch (error) {
-    console.error(error);
+  } catch (error:any) {
+    WrappidLogger.error(error);
     return{
       error: error,
       message:
@@ -72,6 +75,7 @@ export const getDatabaseModelRowFunc = async (req: Request) => {
 
 export const putUpdateStatusFunc = async (req:any) => {
   try {
+    WrappidLogger.logFunctionStart("putUpdateStatusFunc");
     const model = req.params.model;
     const database:string = <string>req.query?.database || "application";
     const currentEntry = await databaseActions.findByPk(database, model, Number(req.params.id));
@@ -91,6 +95,7 @@ export const putUpdateStatusFunc = async (req:any) => {
         { where: { entityRef: currentEntry.entityRef } }
       );
       if (!updated_result) {
+        WrappidLogger.error("Error to update old ref");
         throw new Error("Error to update old ref");
       }
     }
@@ -103,13 +108,15 @@ export const putUpdateStatusFunc = async (req:any) => {
       { where: { id: req.params.id } }
     );
     if (!updated_result) {
+      WrappidLogger.error("Error to update status");
       throw new Error("Error to update status");
     } else {
-      console.log("Status updated sucvcessfully");
+      WrappidLogger.info("Status updated sucvcessfully");
+      // WrappidLogger.info("Status updated sucvcessfully");
       return{status:200, message: "Status updated successfully" };
     }
   } catch (err:any) {
-    console.log(err);
+    WrappidLogger.error(err);
     return{
       status:500,
       error: err,
@@ -120,13 +127,14 @@ export const putUpdateStatusFunc = async (req:any) => {
 
 
 export const patchDatabaseModelFunc = async (req:any) => {
+  WrappidLogger.logFunctionStart("patchDatabaseModelFunc");
   const database:string = <string>req.query?.database || "application";
-  console.log("database=" + database);
+  WrappidLogger.info("database=" + database);
   const model = req.params.model;
-  console.log("model=" + model);
+  WrappidLogger.info("model=" + model);
   try {
     const modelID = req.params.id;
-    console.log("modelID=" + modelID);
+    WrappidLogger.info("modelID=" + modelID);
 
     // update model
     const result = await databaseActions.update(database, model,
@@ -138,15 +146,16 @@ export const patchDatabaseModelFunc = async (req:any) => {
       { where: { id: modelID } }
     );
 
-    console.log(result);
+    WrappidLogger.info(result);
 
     if (result) {
       return {status:200,  entity: model,message: model + " deleted successfully"};
     } else {
+      WrappidLogger.error("Something went wrong");
       throw new Error("Something went wrong");
     }
-  } catch (error) {
-    console.error(error);
+  } catch (error:any) {
+    WrappidLogger.error(error);
 
     return{
       status:500,
@@ -157,21 +166,24 @@ export const patchDatabaseModelFunc = async (req:any) => {
 };
 
 export const putDatabaseModelFunc = async (req:any) => {
+  WrappidLogger.logFunctionStart("putDatabaseModelFunc");
   const model = req.params.model;
   const database:string = <string>req.query?.database || "application";
-  console.log("model=" + model);
-  console.log("database=" + database);
+  WrappidLogger.info(`model= ${model}`);
+  WrappidLogger.info(`database= + ${database}`);
   try {
     const modelID = req.params.id;
-    console.log("modelID=" + modelID);
+    WrappidLogger.info(`modelID= ${modelID}`);
 
     const body = req.body;
-    console.log(body);
+    WrappidLogger.info(body);
 
     if (!model) {
+      WrappidLogger.error("model missing in path parameter");
       throw new Error("model missing in path parameter");
     }
     if (databaseProvider[database].models && !Object.prototype.hasOwnProperty.call(databaseProvider[database].models, model)) {
+      WrappidLogger.error("model[" + model + "] not defined in database");
       throw new Error("model[" + model + "] not defined in database");
     }
 
@@ -227,7 +239,7 @@ export const putDatabaseModelFunc = async (req:any) => {
         commitId: uuidv4(),
       });
 
-      console.log("New entry created as draft");
+      WrappidLogger.info("New entry created as draft");
       return { message: "New entry created as draft" };
     } else {
       // update model
@@ -236,17 +248,21 @@ export const putDatabaseModelFunc = async (req:any) => {
         { where: { id: modelID } }
       );
 
-      console.log(result);
+      WrappidLogger.info(result);
 
       if (result)
         return{status: 200,
           entity: model,
           message: model + " updated successfully",
         };
-      else throw new Error("Something went wrong");
+
+      else{
+        WrappidLogger.error("Something went wrong");
+        throw new Error("Something went wrong");
+      }
     }
-  } catch (error) {
-    console.error(error);
+  } catch (error:any) {
+    WrappidLogger.error(error);
     return{
       status:500,
       entity: model,
@@ -259,7 +275,7 @@ export const putDatabaseModelFunc = async (req:any) => {
 export const getDatabaseModelsFunc = async (req:any) => {
   try {
     // let model = req.params.model;
-    // console.log("model=" + model);
+    // WrappidLogger.info("model=" + model);
 
     // var baseQuery = {};
     // if (req.query.search) {
@@ -302,10 +318,10 @@ export const getDatabaseModelsFunc = async (req:any) => {
 
     // // Get Data From Model
     // // let _data = await db[model].findAll();
-    // console.log("___________________________________");
-    // //   console.log("data=" + Object.keys(_data[0].dataValues));
-    // console.log(Object.keys(db[model].rawAttributes));
-    // console.log("___________________________________");
+    // WrappidLogger.info("___________________________________");
+    // //   WrappidLogger.info("data=" + Object.keys(_data[0].dataValues));
+    // WrappidLogger.info(Object.keys(db[model].rawAttributes));
+    // WrappidLogger.info("___________________________________");
 
     // paginate(db[model], [], baseQuery, pageQuery)
     //   .then((_data) => {
@@ -315,33 +331,36 @@ export const getDatabaseModelsFunc = async (req:any) => {
     //     });
     //   })
     //   .catch((err) => {
-    //     console.log(err);
+    //     WrappidLogger.info(err);
     //     res.status(500).json({ message: "Error to fetch data from model" });
     //   });
-    console.log(req?.query);
+    WrappidLogger.info(req?.query);
     
     return {status:200, message: "API Call successfully!!"};
-  } catch (err) {
-    console.log(err);
+  } catch (err:any) {
+    WrappidLogger.error(err);
     return({status: 500, message: "Error to fetch data from model" });
   }
 };
 
 export const postDatabaseModelFunc = async (req:any) => {
+  WrappidLogger.logFunctionStart("postDatabaseModelFunc");
   const model = req.params.model;
   const database:string = <string>req.query?.database || "application";
-  console.log("model=" + model);
-  console.log("database=" + database);
+  WrappidLogger.info("model=" + model);
+  WrappidLogger.info("database=" + database);
   try {
     if (!model) {
+      WrappidLogger.error("Model is missing in path parameter");
       throw new Error("Model is missing in path parameter");
     }
     if (!databaseProvider[database].models[model]) {
+      WrappidLogger.error("Model[" + model + "] is not defined in database");
       throw new Error("Model[" + model + "] is not defined in database");
     }
 
     const body = req.body;
-    console.log(body);
+    WrappidLogger.info(body);
 
     // data preparation
     Object.keys(databaseProvider[database].models[model].rawAttributes).forEach((rawAttribute) => {
@@ -371,7 +390,7 @@ export const postDatabaseModelFunc = async (req:any) => {
       updatedBy: req.user.userId,
     });
 
-    console.log(result);
+    WrappidLogger.info(result);
 
     if (result)
       return{
@@ -379,21 +398,27 @@ export const postDatabaseModelFunc = async (req:any) => {
         entity: model,
         message: model + " created successfully",
       };
-    else throw new Error("Something went wrong");
-  } catch (error) {
-    console.error(error);
+    else {
+      WrappidLogger. error("Something went wrong");
+      throw new Error("Something went wrong");
+    }
+  } catch (error:any) {
+    WrappidLogger.error(error);
     throw error;
   }
 };
 
 const createModelData = async (database: string, model: string, data: GenericObject, additionalData?: GenericObject): Promise<boolean> => {
   try {
+    WrappidLogger.logFunctionStart("createModelData");
     const entityRef:string = <string>data?.entityRef || "";
     let dataExistFlag = false;
     if(!entityRef){
+      WrappidLogger.error("entityRef is missing!!");
       throw new Error("entityRef is missing!!");
     }
     if(!model){
+      WrappidLogger.error("Model is missing!!");
       throw new Error("Model is missing!!");
     }
     switch (model) {
@@ -410,6 +435,7 @@ const createModelData = async (database: string, model: string, data: GenericObj
     }
   
     if(dataExistFlag){
+      WrappidLogger.error("Data exist on database");
       throw new Error("Data exist on database");
     } else {
       let createOptions = {};
@@ -435,8 +461,8 @@ const createModelData = async (database: string, model: string, data: GenericObj
        */
       return true;
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error:any) {
+    WrappidLogger.info(error);
     throw error;
   }
 };
@@ -450,6 +476,7 @@ const createModelData = async (database: string, model: string, data: GenericObj
  */
 export const postDataModelSyncFunc = async (req: any) => {
   try {
+    WrappidLogger.logFunctionStart("postDataModelSyncFunc");
     const database:string = <string>req.query?.database || "application";
     const source:string = <string>req.query?.source || "server";
     const model:string = req.params?.model;
@@ -472,7 +499,6 @@ export const postDataModelSyncFunc = async (req: any) => {
       modifiedData.forEach((data: {entityRef: string, result: boolean}) =>{
         dataSyncReport[data?.entityRef] = data;
       });
-      console.log(dataSyncReport);
       return {
         status: 201, 
         message: "Data synced successfully", 
@@ -483,8 +509,8 @@ export const postDataModelSyncFunc = async (req: any) => {
       status: 500, 
       message: "Invalid Data", 
     }; 
-  } catch (error) {
-    console.log(error);
+  } catch (error:any) {
+    WrappidLogger.error(error);
     throw error;
   }
 };
@@ -503,7 +529,7 @@ const checkEntityRefExist = async (database:string, model:string, entityRef:stri
       return false;
     } 
   } catch (error:any) {
-    console.log(error);
+    WrappidLogger.info(error);
     throw error;
   }
 };
@@ -519,6 +545,7 @@ const checkEntityRefExist = async (database:string, model:string, entityRef:stri
  * @returns 
  */
 async function getDataFromDB(db: string, entityRef: string, model: string, auth=false) {
+  WrappidLogger.logFunctionStart("getDataFromDB");
   const dbSequelize = databaseProvider[db].Sequelize;
   const whereClause: GenericObject = {
     entityRef: entityRef,
@@ -548,6 +575,7 @@ async function getDataFromDB(db: string, entityRef: string, model: string, auth=
  */
 export const postCloneDataModelFunc = async (req: any) => {
   try {
+    WrappidLogger.logFunctionStart("postCloneDataModelFunc");
     const model = req.params.model;
     const entityRef = req.params.entityRef;
     let masterTableFlag = false;
@@ -597,8 +625,8 @@ export const postCloneDataModelFunc = async (req: any) => {
         status: 200
       };
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error:any) {
+    WrappidLogger.info(error);
     throw error;
   }
 };
