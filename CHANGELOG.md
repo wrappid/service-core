@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.81](https://github.com/wrappid/service-core/compare/v0.0.80...v0.0.81) (2024-05-08)
+
+
+### Features
+
+* **global:** :sparkles: wrappidlogger added for logging ([bee327b](https://github.com/wrappid/service-core/commit/bee327b5e92133a86903f74a4014b53cc05695cd)), closes [#107](https://github.com/wrappid/service-core/issues/107)
+* **global:** logger added in function ([50b71ac](https://github.com/wrappid/service-core/commit/50b71ac4fa1efec26d3277cbc9aae255249e6af9)), closes [#107](https://github.com/wrappid/service-core/issues/107)
+
 ### [0.0.80](https://github.com/wrappid/service-core/compare/v0.0.79...v0.0.80) (2024-05-06)
 
 ### [0.0.79](https://github.com/wrappid/service-core/compare/v0.0.78...v0.0.79) (2024-05-06)
