@@ -6,11 +6,11 @@ import { WrappidLogger } from "../logging/wrappid.logger";
 export const jwtVerify = (req: any, res: any, next: any) => {
   WrappidLogger.logFunctionStart("jwtVerify");
   const {
-    accessTokenSecret="",
+    accessTokenSecret,
     // refreshAccessTokenSecret="",
     // expTime="60m",
     // expTimeRefreshToken="1000m"
-  } = ApplicationContext.getContext(constant.CONFIG_KEY);
+  } = ApplicationContext.getContext(constant.CONFIG_KEY).jwt;
   const authHeader = req.headers.authorization;
   if (authHeader) {
     const token = authHeader.split(" ")[1];
