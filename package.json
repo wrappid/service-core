@@ -89,6 +89,7 @@
     "save": "~2.9.0",
     "sequelize": "~6.32.1",
     "standard-version": "~9.5.0",
+    "supertest": "^7.0.0",
     "swagger-ui-express": "~5.0.0",
     "typescript": "~5.3.3",
     "uuid": "~9.0.1",
