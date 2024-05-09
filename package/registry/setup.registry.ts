@@ -17,20 +17,20 @@ import CoreValidationsRegistry from "./ValidationsRegistry";
  * 
  * @returns serverRoutes
  */
-async function getDbRoutes(): Promise<GenericObject> {
+async function getDbRoutes(): Promise<GenericObject[]> {
   try {
     WrappidLogger.logFunctionStart("getDbRoutes");
     console.log("----------------------------------");
-    const authenticatedServerRoutes: GenericObject = await getServerRoutes(
+    const authenticatedServerRoutes: GenericObject[] = await getServerRoutes(
       "application",
       true
     );
-    const unauthenticatedServerRoutes: GenericObject = await getServerRoutes(
+    const unauthenticatedServerRoutes: GenericObject[] = await getServerRoutes(
       "application",
       false
     );
     console.log("----------------------------------");
-    return <GenericObject>{...authenticatedServerRoutes, ...unauthenticatedServerRoutes};
+    return [...authenticatedServerRoutes, ...unauthenticatedServerRoutes];
   } catch (error:any) {
     WrappidLogger.error(error);
     throw error;
