@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.82](https://github.com/wrappid/service-core/compare/v0.0.81...v0.0.82) (2024-05-09)
+
+
+### Bug Fixes
+
+* **global:** :bug: jwt validation fix ([f34e83e](https://github.com/wrappid/service-core/commit/f34e83e6dfc2897e01c01e93f0e31a0680ef887e)), closes [#150](https://github.com/wrappid/service-core/issues/150)
+
 ### [0.0.81](https://github.com/wrappid/service-core/compare/v0.0.80...v0.0.81) (2024-05-08)
 
 
