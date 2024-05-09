@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.83](https://github.com/wrappid/service-core/compare/v0.0.82...v0.0.83) (2024-05-09)
+
+
+### Bug Fixes
+
+* **global:** :bug: read from db routes destructuring  fix ([ed619bc](https://github.com/wrappid/service-core/commit/ed619bcc266a559b63406afd9b43674487b46556)), closes [#152](https://github.com/wrappid/service-core/issues/152)
+
 ### [0.0.82](https://github.com/wrappid/service-core/compare/v0.0.81...v0.0.82) (2024-05-09)
 
 
