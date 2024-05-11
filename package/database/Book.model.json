@@ -1,0 +1,36 @@
+{
+    "attributes": {
+      "id": {
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "name": {
+        "type": "STRING",
+        "defaultValue": ""
+      },
+      "price": {
+        "type": "INTEGER",
+        "defaultValue": "0"
+      },
+      "author": {
+        "type": "STRING",
+        "defaultValue": ""
+      }
+    },
+    "association": [
+      {
+        "model": "Users",
+        "data": [
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "userId",
+              "as": "Author",
+              "sourceKey": "id"
+            }
+          }
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,81 @@
+{
+    "database": "application",
+    "table": "ModelSchemas",
+    "attributes": {
+        "id": {
+            "type": "INTEGER",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          "name": {
+            "type": "STRING",
+            "defaultValue": null
+          },
+          "database": {
+            "type": "STRING",
+            "defaultValue": null
+          }, 
+          "schema": {
+            "type": "JSONB",
+            "defaultValue": {}
+          },
+          "extraInfo": {
+            "type": "JSONB",
+            "defaultValue": {}
+          },
+          "_status": {
+            "type": "STRING",
+            "defaultValue": "new"
+          },
+          "entityRef": {
+            "type": "STRING",
+            "defaultValue": null
+          },
+          "deletedAt": {
+            "type": "TIMESTAMP",
+            "allowNull": true
+          },
+          "createdAt": {
+            "type": "TIMESTAMP",
+            "allowNull": true
+          },
+          "updatedAt": {
+            "type": "TIMESTAMP",
+            "allowNull": true
+          },
+          "commitId": {
+            "type": "UUID",
+            "defaultValue": "UUIDV4",
+            "unique": true,
+            "allowNull": false
+          },
+          "comments": {
+            "type": "JSONB",
+            "defaultValue": []
+          }
+    },
+    "associations": [{
+        "model": "Users",
+        "data": [
+            {
+                "type": "belongsTo",
+                "data": [
+                    {
+                        "foreignKey": "createdBy",
+                        "as": "Owner",
+                        "sourceKey": "id"
+                    },{
+                        "foreignKey": "updatedBy",
+                        "as": "Updater",
+                        "sourceKey": "id"
+                    },{
+                        "foreignKey": "deletedBy",
+                        "as": "Destroyer",
+                        "sourceKey": "id"
+                     }
+                ]
+            }
+        ]
+    }
+    ]
+}
