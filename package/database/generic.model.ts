@@ -1,4 +1,3 @@
-// import fs from "fs";
 type GenericObject = { [key: string]: any };
 
 const processAttributes = (attributesSchema:GenericObject, dataTypes:any) => {
@@ -13,12 +12,18 @@ const processAttributes = (attributesSchema:GenericObject, dataTypes:any) => {
   return outputJson;
 };
 
-const processRelationData = (relationData:GenericObject) => {
+const processRelationData = (relationData:GenericObject, dataTypes:any) => {
+  if(typeof relationData.foreignKey == "object" ){
+    relationData.foreignKey = {
+      ...relationData.foreignKey,
+      type: dataTypes[relationData.foreignKey.type]
+    };
+  }
   return relationData;
 };
 
 
-const processAssociation = (genericModel:any, models:any, associationSchema:any) => {
+const processAssociation = (genericModel:any, models:any, associationSchema:any, dataTypes:any) => {
   associationSchema.forEach((element: any) => {
     const { model, data } = element;
 
@@ -31,7 +36,7 @@ const processAssociation = (genericModel:any, models:any, associationSchema:any)
         const { type, data: relationData } = assSchema;
         genericModel[type](
           models[model],
-          processRelationData(relationData)
+          processRelationData(relationData, dataTypes)
         );
       });
     }
@@ -48,7 +53,7 @@ export const GenericModel = (name:string, schema: GenericObject, sequelize: any,
   
   GenericModel.associate = (models: any) => {
     // Process association
-    processAssociation(GenericModel, models, schema.associations);
+    processAssociation(GenericModel, models, schema.associations, DataTypes);
   };
   return GenericModel;
 };

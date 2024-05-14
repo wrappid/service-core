@@ -1,0 +1,92 @@
+{
+    "database": "application",
+    "table": "Otps",
+    "attributes": {
+        "id": {
+            "type": "INTEGER",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          "otp": {
+            "type": "STRING",
+            "defaultValue": null
+          },
+          "type": {
+            "type": "STRING",
+            "defaultValue": "sms"
+          },
+          "extraInfo": {
+            "type": "JSONB",
+            "defaultValue": null
+          },
+          "isActive": {
+            "type": "BOOLEAN",
+            "defaultValue": true
+          },
+          "_status": {
+            "type": "STRING"
+          },
+          "deletedAt": {
+            "type": "DATE",
+            "allowNull": true
+          }
+    },
+    "associations": [
+      {
+        "model": "Users",
+        "data": [
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "createdBy",
+              "as": "Owner",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "updatedBy",
+              "as": "Updater",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+                "foreignKey": "userId",
+                "as": "User",
+                "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "deletedBy",
+              "as": "Destroyer",
+              "sourceKey": "id"
+            }
+          }
+        ]
+      },
+      {
+        "model": "CommunicationHistories",
+        "data": [
+            {
+                "type": "belongsTo",
+                "data": {
+                    "foreignKey": "smsCommId",
+                    "sourceKey": "id"
+                }
+            },
+            {
+             "type": "belongsTo",
+             "data": {
+                "foreignKey": "mailCommId",
+                "sourceKey": "id"
+             }
+            }
+        ]
+      }
+    ]
+  }

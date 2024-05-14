@@ -51,10 +51,6 @@ export const Pages = (sequelize: any, DataTypes: any) => {
     layout: {
       type: DataTypes.STRING,
       allowNull: true,
-    },
-    theme:{
-      type: DataTypes.STRING,
-      allowNull: true,
     }
   });
 

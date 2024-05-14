@@ -1,0 +1,105 @@
+{
+    "database": "application",
+    "table": "Pages",
+    "attributes": {
+        "id": {
+            "type": "INTEGER",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          "name": {
+            "type": "STRING",
+            "defaultValue": null
+          },
+          "entityRef": {
+            "type": "STRING",
+            "unique": true
+          },
+          "noScroll": {
+            "type": "BOOLEAN",
+            "defaultValue": false
+          },
+          "appComponent": {
+            "type": "STRING",
+            "defaultValue": null,
+            "allowNull": true
+          },
+          "schema": {
+            "type": "JSONB",
+            "defaultValue": {}
+          },
+          "extraInfo": {
+            "type": "JSONB",
+            "defaultValue": {}
+          },
+          "commitId": {
+            "type": "UUID",
+            "defaultValue": "UUIDV4",
+            "unique": true,
+            "allowNull": false
+          },
+          "_status": {
+            "type": "STRING",
+            "defaultValue": "new"
+          },
+          "comments": {
+            "type": "JSONB",
+            "defaultValue": []
+          },
+          "deletedAt": {
+            "type": "TIMESTAMP",
+            "allowNull": true
+          },
+          "layout": {
+            "type": "STRING",
+            "allowNull": true
+          },
+          "theme":{
+            "type": "STRING",
+            "allowNull": true
+          }
+    },
+    "associations": [
+      {
+        "model": "Users",
+        "data": [
+          {
+            "type": "belongsTo",
+            "data": {
+                "foreignKey": "createdBy",
+                "as": "Owner",
+                "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "updatedBy",
+              "as": "Updater",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "deletedBy",
+              "as": "Destroyer",
+              "sourceKey": "id"
+            }
+          }
+        ]
+      },
+      {
+        "model": "Routes",
+        "data": [
+          {
+            "type": "hasMany",
+            "data": {
+                "foreignKey": "pageRef",
+                "sourceKey": "entityRef"
+            }
+          }
+        ]
+      }
+    ]
+  }

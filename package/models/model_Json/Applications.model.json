@@ -1,0 +1,73 @@
+{
+  "database": "application",
+  "table": "Applications",
+  "attributes": {
+    "id": {
+      "type": "INTEGER",
+      "primaryKey": true,
+      "autoIncrement": true
+    },
+    "code": {
+      "type": "STRING",
+      "defaultValue": ""
+    },
+    "name": {
+      "type": "STRING",
+      "defaultValue": ""
+    },
+    "extraInfo": {
+      "type": "JSONB",
+      "defaultValue": null
+    },
+    "isActive": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "_status": {
+      "type": "STRING"
+    },
+    "deletedAt": {
+      "type": "DATE",
+      "allowNull": true
+    }
+  },
+  "associations": [
+    {
+      "model": "Users",
+      "data": [
+        {
+          "type": "belongsTo",
+          "data": {
+            "foreignKey": "userId",
+            "as": "User",
+            "sourceKey": "id"
+          }
+        },
+        {
+          "type": "belongsTo",
+          "data": {
+            "foreignKey": "createdBy",
+            "as": "Owner",
+            "sourceKey": "id"
+          }
+        },
+        {
+          "type": "belongsTo",
+          "data": {
+            "foreignKey": "updatedBy",
+            "as": "Updater",
+            "sourceKey": "id"
+          }
+        },
+        {
+          "type": "belongsTo",
+          "data": {
+            "foreignKey": "deletedBy",
+            "as": "Destroyer",
+            "sourceKey": "id"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+    "database": "application",
+    "table": "DataTableOptions",
+    "attributes": {
+        "id": {
+            "type": "INTEGER",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          "name": {
+            "type": "STRING",
+            "defaultValue": null
+          },
+          "tableID": {
+            "type": "STRING",
+            "allowNull": false,
+            "unique": true
+          },
+          "options": {
+            "type": "JSONB",
+            "defaultValue": {}
+          },
+          "extraInfo": {
+            "type": "JSONB",
+            "defaultValue": {}
+          },
+          "authRequired": {
+            "type": "BOOLEAN",
+            "defaultValue": true
+          },
+          "_status": {
+            "type": "STRING",
+            "defaultValue": "new"
+          },
+          "deletedAt": {
+            "type": "TIMESTAMP",
+            "allowNull": true
+          }
+    },
+    "associations": [
+      {
+        "model": "Users",
+        "data": [
+          {
+            "type": "belongsTo",
+            "data": {
+                "foreignKey": "createdBy",
+                "as": "Owner",
+                "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "updatedBy",
+              "as": "Updater",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "deletedBy",
+              "as": "Destroyer",
+              "sourceKey": "id"
+            }
+          }
+        ]
+      }
+    ]
+  }

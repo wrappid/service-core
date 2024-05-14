@@ -1,4 +1,4 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { Sequelize } from "sequelize";
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
 import { WrappidLogger } from "../logging/wrappid.logger";
@@ -18,7 +18,7 @@ import { databaseProvider } from "./setup.database";
 const setupFromExistingModelRegistry = (databaseName: string, modelsRegistry: GenericObject, models: string[]) => {
   
   WrappidLogger.info(`Adding models to ${databaseName} database...`);
-  databaseProvider[databaseName].models = {};
+  // databaseProvider[databaseName].models = {};
   models.forEach((model) => {
     WrappidLogger.info(`Adding ~${model}~ model...`);
     try {
@@ -62,7 +62,7 @@ export const setupModels = () => {
       /**
        * @todo
        * 1. Get all the models schema from the database where database = databaseName
-       * 2. Add to database provider using genericmodel.ts
+       * 2. Add modelInstance to database provider using genericmodel.ts
        */
       const allModelJson = await databaseActions.findAll(databaseName, "ModelSchemas", {
         where: {
@@ -70,12 +70,10 @@ export const setupModels = () => {
         }
       });
       allModelJson.forEach((data: GenericObject) => {
-        const model = GenericModel(data.name, data.schema, Sequelize, DataTypes);
-        const modelInstance = model(
+        const modelInstance = GenericModel(data.name, data.schema, 
           databaseProvider[databaseName].sequelize,
-          Sequelize
-        );
-        databaseProvider[databaseName].models[model] = modelInstance;
+          Sequelize);
+        databaseProvider[databaseName].models[data.name] = modelInstance;
       });
       /**
    * Run sequelize association
@@ -92,6 +90,19 @@ export const setupModels = () => {
           }
         }
       });
+
+      //New structure from table
+      allModelJson.forEach((model:GenericObject) => {
+        if (databaseProvider[databaseName].models[model.name].associate) {
+          try {
+            databaseProvider[databaseName].models[model.name].associate(
+              databaseProvider[databaseName].models
+            );
+          } catch (error: any) {
+            WrappidLogger.error(`${model.name} not associated due to the following error:`);
+            WrappidLogger.error(error);
+          }
+        }});
     });
   } catch (error:any) {
     WrappidLogger.error(error);

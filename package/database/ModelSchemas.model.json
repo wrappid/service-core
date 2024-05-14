@@ -32,15 +32,15 @@
             "defaultValue": null
           },
           "deletedAt": {
-            "type": "TIMESTAMP",
+            "type": "DATE",
             "allowNull": true
           },
           "createdAt": {
-            "type": "TIMESTAMP",
+            "type": "DATE",
             "allowNull": true
           },
           "updatedAt": {
-            "type": "TIMESTAMP",
+            "type": "DATE",
             "allowNull": true
           },
           "commitId": {
@@ -72,7 +72,7 @@
                         "foreignKey": "deletedBy",
                         "as": "Destroyer",
                         "sourceKey": "id"
-                     }
+                    }
                 ]
             }
         ]

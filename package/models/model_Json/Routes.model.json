@@ -1,0 +1,113 @@
+{
+  "table": "Routes",
+  "database": "application",
+  "attributes": {
+    "id": {
+      "type": "INTEGER",
+      "primaryKey": true,
+      "autoIncrement": true
+    },
+    "url": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "name": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "title": {
+      "type": "STRING",
+      "allowNull": true,
+      "defaultValue": null
+    },
+    "source": {
+      "type": "STRING",
+      "defaultValue": "server-side"
+    },
+    "_status": {
+      "type": "STRING",
+      "defaultValue": "new"
+    },
+    "comments": {
+      "type": "JSONB",
+      "defaultValue": []
+    },
+    "keywords": {
+      "type": "JSONB",
+      "defaultValue": []
+    },
+    "deletedAt": {
+      "type": "DATE",
+      "allowNull": true
+    },
+    "entityRef": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "extraInfo": {
+      "type": "JSONB",
+      "defaultValue": {}
+    },
+    "reqMethod": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "description": {
+      "type": "STRING",
+      "allowNull": true,
+      "defaultValue": null
+    },
+    "authRequired": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "controllerRef": {
+      "type": "STRING",
+      "defaultValue": null
+    }
+  },
+  "associations": [
+    {
+      "data": [
+        {
+          "data": [
+            {
+              "as": "Owner",
+              "sourceKey": "id",
+              "foreignKey": "createdBy"
+            },
+            {
+              "as": "Updater",
+              "sourceKey": "id",
+              "foreignKey": "updatedBy"
+            },
+            {
+              "as": "Destroyer",
+              "sourceKey": "id",
+              "foreignKey": "deletedBy"
+            }
+          ],
+          "type": "belongsTo"
+        }
+      ],
+      "model": "Users"
+    },
+    {
+      "data": [
+        {
+          "data": [
+            {
+              "targetKey": "entityRef",
+              "foreignKey": {
+                "name": "pageRef",
+                "type": "STRING"
+              }
+            }
+          ],
+          "type": "belongsTo"
+        }
+      ],
+      "model": "Pages"
+    }
+  ]
+}

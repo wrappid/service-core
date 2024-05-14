@@ -1,0 +1,118 @@
+{
+    "database": "application",
+    "table": "MasterData",
+    "attributes": {
+        "id": {
+            "type": "INTEGER",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          "name": {
+            "type": "STRING",
+            "defaultValue": ""
+          },
+          "label": {
+            "type": "STRING",
+            "defaultValue": ""
+          },
+          "isInput": {
+            "type": "BOOLEAN",
+            "defaultValue": false
+          },
+          "inputType": {
+            "type": "STRING",
+            "defaultValue": ""
+          },
+          "order": {
+            "type": "INTEGER",
+            "defaultValue": 0
+          },
+          "isVisible": {
+            "type": "BOOLEAN",
+            "defaultValue": false
+          },
+          "extraInfo": {
+            "type": "JSONB",
+            "defaultValue": null
+          },
+          "isActive": {
+            "type": "BOOLEAN",
+            "defaultValue": true
+          },
+          "icon": {
+            "type": "STRING",
+            "defaultValue": ""
+          },
+          "stringValue": {
+            "type": "STRING",
+            "defaultValue": ""
+          },
+          "crowdSource": {
+            "type": "BOOLEAN",
+            "defaultValue": false
+          },
+          "getValue": {
+            "type": "STRING",
+            "defaultValue": ""
+          },
+          "_status": {
+            "type": "STRING"
+          },
+          "deletedAt": {
+            "type": "TIMESTAMP",
+            "allowNull": true
+          }
+    },
+    "associations": [
+      {
+        "model": "Users",
+        "data": [
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "createdBy",
+              "as": "Owner",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "updatedBy",
+              "as": "Updater",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "deletedBy",
+              "as": "Destroyer",
+              "sourceKey": "id"
+            }
+          }
+        ]
+      },
+      {
+        "model": "MasterData",
+        "data": [
+          {
+            "type": "hasMany",
+            "data": {
+                "foreignKey": "parentId",
+                "sourceKey": "id",
+                "as": "Children"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+                "foreignKey": "parentId",
+                "sourceKey": "id",
+                "as": "Parent"
+            }
+          }
+        ]
+      }
+    ]
+  }
