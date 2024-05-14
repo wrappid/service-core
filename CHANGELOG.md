@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.87](https://github.com/wrappid/service-core/compare/v0.0.86...v0.0.87) (2024-05-14)
+
+
+### Features
+
+* **global:** :sparkles: add generic model for create model ([a3b5d66](https://github.com/wrappid/service-core/commit/a3b5d66c69389d1395909357f963bf952d49ba96)), closes [#154](https://github.com/wrappid/service-core/issues/154)
+* **global:** :zap: model json added ([8e11ca6](https://github.com/wrappid/service-core/commit/8e11ca6f30953cb38bd16798a493e86a390842eb)), closes [#154](https://github.com/wrappid/service-core/issues/154)
+
+
+### Bug Fixes
+
+* **global:** :bug: routes and communicationTemplates model json fix ([a942df2](https://github.com/wrappid/service-core/commit/a942df2901f010a6134ebe1aa09fa4c8ee966ca3)), closes [#154](https://github.com/wrappid/service-core/issues/154)
+
 ### [0.0.86](https://github.com/wrappid/service-core/compare/v0.0.85...v0.0.86) (2024-05-13)
 
 ### [0.0.85](https://github.com/wrappid/service-core/compare/v0.0.84...v0.0.85) (2024-05-13)
