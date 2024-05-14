@@ -1,0 +1,145 @@
+{
+  "database": "application",
+  "table": "CommunicationTemplates",
+  "attributes": {
+    "id": {
+      "type": "INTEGER",
+      "primaryKey": true,
+      "autoIncrement": true
+    },
+    "name": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "type": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "subject": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "header": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "contentType": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "message": {
+      "type": "TEXT",
+      "defaultValue": null
+    },
+    "footer": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "sampleSubject": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "sampleMessage": {
+      "type": "TEXT",
+      "defaultValue": null
+    },
+    "config": {
+      "type": "JSONB",
+      "defaultValue": null
+    },
+    "externalTemplateId": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "externalStatus": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "externalReason": {
+      "type": "STRING",
+      "defaultValue": null
+    },
+    "_status": {
+      "type": "STRING"
+    },
+    "extraInfo": {
+      "type": "JSONB",
+      "defaultValue": null
+    },
+    "isActive": {
+      "type": "BOOLEAN",
+      "defaultValue": true
+    },
+    "deletedAt": {
+      "type": "DATE",
+      "allowNull": true
+    }
+  },
+  "associations": [
+    {
+      "model": "Users",
+      "data": [
+        {
+          "type": "belongsTo",
+          "data": {
+            "foreignKey": "createdBy",
+            "as": "Owner",
+            "sourceKey": "id"
+          }
+        },
+        {
+          "type": "belongsTo",
+          "data": {
+            "foreignKey": "updatedBy",
+            "as": "Updater",
+            "sourceKey": "id"
+          }
+        },
+        {
+          "type": "belongsTo",
+          "data": {
+            "foreignKey": "deletedBy",
+            "as": "Destroyer",
+            "sourceKey": "id"
+          }
+        }
+      ]
+    },
+    {
+      "model": "MailComms",
+      "data": [
+        {
+          "type": "hasMany",
+          "data": {
+            "foreignKey": "mailCommId",
+            "sourceKey": "id"
+          }
+        }
+      ]
+    },
+    {
+      "model": "SmsComms",
+      "data": [
+        {
+          "type": "hasMany",
+          "data": {
+            "foreignKey": "smsCommId",
+            "sourceKey": "id"
+          }
+        }
+      ]
+    },
+    {
+      "model": "WhatsAppComms",
+      "data": [
+        {
+          "type": "hasMany",
+          "data": {
+            "foreignKey": "smsCommId",
+            "sourceKey": "id"
+          }
+        }
+      ]
+    }
+  ]
+}

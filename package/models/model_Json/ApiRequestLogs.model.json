@@ -1,0 +1,66 @@
+{
+  "database": "application",
+  "table": "ApiRequestLogs",
+  "attributes": {
+    "id": {
+      "type": "INTEGER",
+      "primaryKey": true,
+      "autoIncrement": true
+    },
+    "ip": {
+      "type": "TEXT",
+      "defaultValue": ""
+    },
+    "access_key": {
+      "type": "TEXT",
+      "defaultValue": ""
+    },
+    "endpoint": {
+      "type": "TEXT",
+      "defaultValue": ""
+    },
+    "request": {
+      "type": "TEXT",
+      "defaultValue": ""
+    },
+    "req_body": {
+      "type": "JSONB",
+      "defaultValue": []
+    },
+    "response": {
+      "type": "JSONB",
+      "defaultValue": []
+    },
+    "response_status": {
+      "type": "TEXT",
+      "defaultValue": ""
+    },
+    "response_header": {
+      "type": "JSONB",
+      "defaultValue": []
+    },
+    "header_stack": {
+      "type": "JSONB",
+      "defaultValue": []
+    },
+    "start_ts": {
+      "type": "DATE",
+      "allowNull": true
+    },
+    "end_ts": {
+      "type": "DATE",
+      "allowNull": true
+    },
+    "createdAt": {
+      "field": "created_ts",
+      "type": "DATE",
+      "allowNull": true
+    },
+    "updatedAt": {
+      "field": "updated_ts",
+      "type": "DATE",
+      "allowNull": true
+    }
+  },
+  "associations": []
+}

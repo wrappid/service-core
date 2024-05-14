@@ -10,6 +10,7 @@ import {
   getTables,
 } from "./database/helper.database";
 import { databaseProvider } from "./database/setup.database";
+import { WrappidLogger } from "./logging/wrappid.logger";
 import { paymentActions } from "./payment/payment.action";
 import {
   ControllersRegistry,
@@ -52,6 +53,6 @@ export {
    *  Database
    */
   databaseProvider, getColumns, getDatabases,
-  getTables, paymentActions
+  getTables, paymentActions, WrappidLogger
 };
 

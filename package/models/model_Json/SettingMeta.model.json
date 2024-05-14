@@ -1,0 +1,69 @@
+{
+    "database": "application",
+    "table": "SettingMeta",
+    "attributes": {
+        "id": {
+            "type": "INTEGER",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          "name": {
+            "type": "STRING",
+            "unique": true
+          },
+          "label": {
+            "type": "STRING",
+            "defaultValue": ""
+          },
+          "status": {
+            "type": "STRING",
+            "defaultValue": "Active"
+          },
+          "isActive": {
+            "type": "BOOLEAN",
+            "defaultValue": true
+          },
+          "value": {
+            "type": "JSON",
+            "defaultValue": {}
+          },
+          "_status": {
+            "type": "STRING"
+          },
+          "deletedAt": {
+            "type": "DATE",
+            "allowNull": true
+          }
+    },
+    "associations": [
+      {
+        "model": "Users",
+        "data": [
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "createdBy",
+              "as": "Owner",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "updatedBy",
+              "as": "Updater",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "deletedBy",
+              "as": "Destroyer",
+              "sourceKey": "id"
+            }
+          }
+        ]
+      }
+    ]
+  }

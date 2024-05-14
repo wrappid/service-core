@@ -34,7 +34,7 @@ const getEntitySchema = async (entityStr: string) => {
     "BusinessEntitySchemas",
     {
       where: {
-        name: entityStr,
+        entityRef: entityStr,
         _status: coreConstant.entityStatus.PUBLISHED,
       },
     }

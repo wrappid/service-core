@@ -1,0 +1,76 @@
+{
+    "database": "application",
+    "table": "ThemeSchemas",
+    "attributes": {
+        "id": {
+            "type": "INTEGER",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          "entityRef": {
+            "type": "STRING",
+            "defaultValue": null
+          },
+          "name": {
+            "type": "STRING",
+            "defaultValue": null
+          },
+          "schema": {
+            "type": "JSONB",
+            "defaultValue": {}
+          },
+          "extraInfo": {
+            "type": "JSONB",
+            "defaultValue": {}
+          },
+          "commitId": {
+            "type": "UUID",
+            "defaultValue": "UUIDV4",
+            "unique": true,
+            "allowNull": false
+          },
+          "_status": {
+            "type": "STRING",
+            "defaultValue": "new"
+          },
+          "comments": {
+            "type": "JSONB",
+            "defaultValue": []
+          },
+          "deletedAt": {
+            "type": "DATE",
+            "allowNull": true
+          }
+    },
+    "associations": [
+      {
+        "model": "Users",
+        "data": [
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "createdBy",
+              "as": "Owner",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "updatedBy",
+              "as": "Updater",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "deletedBy",
+              "as": "Destroyer",
+              "sourceKey": "id"
+            }
+          }
+        ]
+      }
+    ]
+  }

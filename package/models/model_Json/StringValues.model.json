@@ -1,0 +1,72 @@
+{
+    "database": "application",
+    "table": "StringValues",
+    "attributes": {
+        "_status": {
+            "allowNull": false,
+            "defaultValue": "new",
+            "type": "STRING"
+          },
+          "deletedAt": {
+            "allowNull": true,
+            "type": "DATE"
+          },
+          "id": {
+            "autoIncrement": true,
+            "primaryKey": true,
+            "type": "INTEGER"
+          },
+          "key": {
+            "allowNull": false,
+            "type": "STRING"
+          },
+          "value": {
+            "allowNull": false,
+            "defaultValue": "",
+            "type": "STRING"
+          }
+    },
+    "associations": [
+      {
+        "model": "Users",
+        "data": [
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "createdBy",
+              "as": "Owner",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "updatedBy",
+              "as": "Updater",
+              "sourceKey": "id"
+            }
+          },
+          {
+            "type": "belongsTo",
+            "data": {
+              "foreignKey": "deletedBy",
+              "as": "Destroyer",
+              "sourceKey": "id"
+            }
+          }
+        ]
+      },
+      {
+        "model": "SupportedLanguages",
+        "data": [
+          {
+            "type": "belongsTo",
+            "data": {
+                "foreignKey": "locale",
+                "sourceKey": "locale"
+            }
+          }
+        ]
+      }
+    ]
+  }
