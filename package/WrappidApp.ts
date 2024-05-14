@@ -23,6 +23,7 @@ export type WrappidAppConfigType = {
   registry: WrappidRegistryType;
   swagger: GenericObject;
   config: GenericObject;
+  package: GenericObject;
 };
 
 export type WrappidRegistryType = {
@@ -64,7 +65,8 @@ export default class WrappidApp {
       ValidationsRegistry: {}
     },
     swagger: {},
-    config: {}
+    config: {},
+    package: {}
   }) {
     /**
      * Setting up logging in wrappid service application
@@ -91,7 +93,7 @@ export default class WrappidApp {
     /**
      *  Setup swagger API Docs
      */
-    setupSwagger(this.wrappidApp, wrappidAppConfig.swagger);
+    setupSwagger(this.wrappidApp, wrappidAppConfig.swagger, wrappidAppConfig.package);
   }
 
   async init() {
