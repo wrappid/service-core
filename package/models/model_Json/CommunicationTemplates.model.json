@@ -80,32 +80,28 @@
       "model": "Users",
       "data": [
         {
-          "data": [
-            {
-              "type": "belongsTo",
-              "data": {
-                "foreignKey": "createdBy",
-                "as": "Owner",
-                "sourceKey": "id"
-              }
-            },
-            {
-              "type": "belongsTo",
-              "data": {
-                "foreignKey": "updatedBy",
-              "as": "Updater",
-              "sourceKey": "id"
-              }
-            },
-            {
-              "type": "belongsTo",
-              "data": {
-                "foreignKey": "deletedBy",
-                "as": "Destroyer",
-                "sourceKey": "id"
-              }
-            }
-          ]
+          "type": "belongsTo",
+          "data": {
+            "foreignKey": "createdBy",
+            "as": "Owner",
+            "sourceKey": "id"
+          }
+        },
+        {
+          "type": "belongsTo",
+          "data": {
+            "foreignKey": "updatedBy",
+            "as": "Updater",
+            "sourceKey": "id"
+          }
+        },
+        {
+          "type": "belongsTo",
+          "data": {
+            "foreignKey": "deletedBy",
+            "as": "Destroyer",
+            "sourceKey": "id"
+          }
         }
       ]
     },
@@ -114,12 +110,10 @@
       "data": [
         {
           "type": "hasMany",
-          "data": [
-            {
-              "foreignKey": "mailCommId",
-              "sourceKey": "id"
-            }
-          ]
+          "data": {
+            "foreignKey": "mailCommId",
+            "sourceKey": "id"
+          }
         }
       ]
     },
@@ -128,12 +122,10 @@
       "data": [
         {
           "type": "hasMany",
-          "data": [
-            {
-              "foreignKey": "smsCommId",
-              "sourceKey": "id"
-            }
-          ]
+          "data": {
+            "foreignKey": "smsCommId",
+            "sourceKey": "id"
+          }
         }
       ]
     },
@@ -142,12 +134,10 @@
       "data": [
         {
           "type": "hasMany",
-          "data": [
-            {
-              "foreignKey": "smsCommId",
-              "sourceKey": "id"
-            }
-          ]
+          "data": {
+            "foreignKey": "smsCommId",
+            "sourceKey": "id"
+          }
         }
       ]
     }

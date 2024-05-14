@@ -95,15 +95,13 @@
     {
       "data": [
         {
-          "data": [
-            {
-              "targetKey": "entityRef",
-              "foreignKey": {
-                "name": "pageRef",
-                "type": "STRING"
-              }
+          "data": {
+            "targetKey": "entityRef",
+            "foreignKey": {
+              "name": "pageRef",
+              "type": "STRING"
             }
-          ],
+          },
           "type": "belongsTo"
         }
       ],
