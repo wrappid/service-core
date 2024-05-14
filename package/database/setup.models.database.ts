@@ -4,6 +4,7 @@ import { ApplicationContext } from "../context/application.context";
 import { WrappidLogger } from "../logging/wrappid.logger";
 import ModelsRegistry from "../registry/ModelsRegistry";
 import { GenericObject } from "../types/generic.types";
+import { coreConstant } from "./../index";
 import { databaseActions } from "./actions.database";
 import { GenericModel } from "./generic.model";
 import { databaseProvider } from "./setup.database";
@@ -66,7 +67,8 @@ export const setupModels = () => {
        */
       const allModelJson = await databaseActions.findAll(databaseName, "ModelSchemas", {
         where: {
-          database: databaseName
+          database: databaseName,
+          _status: coreConstant.entityStatus.PUBLISHED
         }
       });
       allModelJson.forEach((data: GenericObject) => {

@@ -47,14 +47,10 @@
             "defaultValue": []
           },
           "deletedAt": {
-            "type": "TIMESTAMP",
+            "type": "DATE",
             "allowNull": true
           },
           "layout": {
-            "type": "STRING",
-            "allowNull": true
-          },
-          "theme":{
             "type": "STRING",
             "allowNull": true
           }

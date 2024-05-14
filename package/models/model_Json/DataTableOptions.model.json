@@ -33,7 +33,7 @@
             "defaultValue": "new"
           },
           "deletedAt": {
-            "type": "TIMESTAMP",
+            "type": "DATE",
             "allowNull": true
           }
     },
