@@ -614,7 +614,6 @@ export const postCloneDataModelFunc = async (req: any) => {
     const cloneSchema = {
       formID: dbData?.formID + "-" + new Date().getTime(),
       name: `Custom ${dbData.name}-${new Date().getTime()}`,
-      authRequired: true,
       _status: constant.entityStatus.DRAFT,
       schema: dbData.schema,
       extraInfo: dbData.extraInfo,
@@ -624,6 +623,7 @@ export const postCloneDataModelFunc = async (req: any) => {
     if (dbData) {
       const clonedSchema = await databaseActions.create("application", model,{
         ...cloneSchema,
+        commitId: uuidv4(),
         createdBy: req.user.userId,
         updatedBy: req.user.userId
       });
