@@ -17,7 +17,6 @@ import { databaseProvider } from "./setup.database";
  * @param models : All Models
  */
 const setupFromExistingModelRegistry = (databaseName: string, modelsRegistry: GenericObject, models: string[]) => {
-  
   WrappidLogger.info(`Adding models to ${databaseName} database...`);
   // databaseProvider[databaseName].models = {};
   models.forEach((model) => {
@@ -33,20 +32,14 @@ const setupFromExistingModelRegistry = (databaseName: string, modelsRegistry: Ge
       WrappidLogger.error(error);
     }
   });
-  
   WrappidLogger.info(`Setup models to ${databaseName} database successfully.`);
-  
 };
-
 
 export const setupModels = async () => {
   WrappidLogger.logFunctionStart("setupModels");
-  
   const promises: Promise<boolean>[] = [];
-  
   const AppModelsRegistry: GenericObject = ApplicationContext.getContext(constant.registry.MODELS__REGISTRY);
   const modelsRegistry:GenericObject = { ...ModelsRegistry, ...AppModelsRegistry };
-
   try {
     Object.keys(databaseProvider).forEach(async (databaseName) => {
       // eslint-disable-next-line no-async-promise-executor
@@ -98,7 +91,6 @@ export const setupModels = async () => {
               }
             }
           });
-
           //New structure from table
           allModelJson.forEach((model:GenericObject) => {
             if (databaseProvider[databaseName].models[model.name].associate) {
@@ -112,7 +104,6 @@ export const setupModels = async () => {
               }
             }
           });
-
           resolve(true);
         } catch(error) {
           reject(error);
