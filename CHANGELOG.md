@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.91](https://github.com/wrappid/service-core/compare/v0.0.90...v0.0.91) (2024-05-15)
+
+
+### Bug Fixes
+
+* **global:** :ambulance: data clone fix ([b6dd1cc](https://github.com/wrappid/service-core/commit/b6dd1cc61d913a01e3fcfbfa701a14b46becbe51)), closes [#158](https://github.com/wrappid/service-core/issues/158)
+
 ### [0.0.90](https://github.com/wrappid/service-core/compare/v0.0.89...v0.0.90) (2024-05-15)
 
 ### [0.0.89](https://github.com/wrappid/service-core/compare/v0.0.88...v0.0.89) (2024-05-15)
