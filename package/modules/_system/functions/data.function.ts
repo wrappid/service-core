@@ -344,12 +344,22 @@ export const getDatabaseModelsFunc = async (req:any) => {
 };
 
 export const postDatabaseModelFunc = async (req:any) => {
-  WrappidLogger.logFunctionStart("postDatabaseModelFunc");
-  const model = req.params.model;
-  const database:string = <string>req.query?.database || "application";
-  WrappidLogger.info("model=" + model);
-  WrappidLogger.info("database=" + database);
   try {
+    WrappidLogger.logFunctionStart("postDatabaseModelFunc");
+    const appBuilderModels = await databaseActions.findOne("application", "SettingMeta", {
+      where: {
+        name: "appBuilderModels",
+        status: constant.entityStatus.ACTIVE
+      }
+    });
+    const hasRoutes = appBuilderModels?.value?.includes(req.params.model);
+    if(!hasRoutes){
+      throw new Error("Not valid app builder model!");
+    }
+    const model = req.params.model;
+    const database:string = <string>req.query?.database || "application";
+    WrappidLogger.info("model=" + model);
+    WrappidLogger.info("database=" + database);
     if (!model) {
       WrappidLogger.error("Model is missing in path parameter");
       throw new Error("Model is missing in path parameter");
@@ -359,7 +369,7 @@ export const postDatabaseModelFunc = async (req:any) => {
       throw new Error("Model[" + model + "] is not defined in database");
     }
 
-    const body = req.body;
+    let body = req.body;
     WrappidLogger.info(body);
 
     // data preparation
@@ -382,12 +392,14 @@ export const postDatabaseModelFunc = async (req:any) => {
         body[_bodyKey] = null;
       }
     });
-
+    body = {...body, _status: constant.entityStatus.DRAFT};
     // update model
+    
     const result = await databaseActions.create(database, model,{
       ...body,
       createdBy: req.user.userId,
       updatedBy: req.user.userId,
+      commitId: uuidv4()
     });
 
     WrappidLogger.info(result);
