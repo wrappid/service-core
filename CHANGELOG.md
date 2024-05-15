@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.89](https://github.com/wrappid/service-core/compare/v0.0.88...v0.0.89) (2024-05-15)
+
+
+### Bug Fixes
+
+* **global:** :bug: fix setupmodel from database ([6ad870a](https://github.com/wrappid/service-core/commit/6ad870af39622e6472bbad7f04a50abd3dd313db)), closes [#158](https://github.com/wrappid/service-core/issues/158)
+
 ### [0.0.88](https://github.com/wrappid/service-core/compare/v0.0.87...v0.0.88) (2024-05-14)
 
 ### [0.0.87](https://github.com/wrappid/service-core/compare/v0.0.86...v0.0.87) (2024-05-14)
