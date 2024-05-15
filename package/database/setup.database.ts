@@ -11,7 +11,7 @@ export const databaseProvider: any = {};
 /**
  * This function will helps you to setup databases
  */
-export function setupDatabase() {
+export async function  setupDatabase() {
   try {
     WrappidLogger.logFunctionStart("setupDatabase");
     const { databases } = ApplicationContext.getContext(constant.CONFIG_KEY);

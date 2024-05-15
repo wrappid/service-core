@@ -101,7 +101,7 @@ export default class WrappidApp {
     /**
      * Setup Databases
      */
-    setupDatabase();
+    await setupDatabase();
     
 
     /**
@@ -112,7 +112,7 @@ export default class WrappidApp {
     /**
      * Setup Models
      */
-    setupModels();
+    await setupModels();
 
     /**
      * update database registry to context
