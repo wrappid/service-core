@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.95](https://github.com/wrappid/service-core/compare/v0.0.94...v0.0.95) (2024-05-18)
+
+
+### Features
+
+* **global:** :sparkles: new API to get all databases ([7b60cd9](https://github.com/wrappid/service-core/commit/7b60cd93c9578dc27505fdff53aa1047d1b3ca63)), closes [#163](https://github.com/wrappid/service-core/issues/163)
+
 ### [0.0.94](https://github.com/wrappid/service-core/compare/v0.0.93...v0.0.94) (2024-05-18)
 
 ### [0.0.93](https://github.com/wrappid/service-core/compare/v0.0.92...v0.0.93) (2024-05-18)
