@@ -6,6 +6,7 @@ const _systemRoutesRegistry = {
     entityRef: "getVersion",
     reqMethod: "get",
     controllerRef: "getVersion",
+    system: true
   },
   getDatabaseTables: {
     name: "Get Database Tables",
@@ -14,6 +15,7 @@ const _systemRoutesRegistry = {
     entityRef: "getDatabaseTables",
     reqMethod: "get",
     controllerRef: "getDatabaseTables",
+    system: true
   },
   getAttributes: {
     name: "Get Table Attributes",
@@ -22,6 +24,7 @@ const _systemRoutesRegistry = {
     entityRef: "getAttributes",
     reqMethod: "get",
     controllerRef: "getAttributes",
+    system: true
   },
   getBusinessEntityColumns: {
     name: "Get Entity",
@@ -30,6 +33,7 @@ const _systemRoutesRegistry = {
     entityRef: "getBusinessEntityColumns",
     reqMethod: "get",
     controllerRef: "getBusinessEntityColumns",
+    system: true
   },
   getBusinessEntities: {
     name: "Get Business Entities",
@@ -38,6 +42,7 @@ const _systemRoutesRegistry = {
     entityRef: "getBusinessEntities",
     reqMethod: "get",
     controllerRef: "getBusinessEntities",
+    system: true
   },
   getEntityData: {
     name: "Get Entity Count",
@@ -46,6 +51,7 @@ const _systemRoutesRegistry = {
     entityRef: "getEntityData",
     reqMethod: "get",
     controllerRef: "getEntityData",
+    system: true
   },
   getIndividualEntityData: {
     name: "Get Individual EntityData",
@@ -54,6 +60,7 @@ const _systemRoutesRegistry = {
     entityRef: "getIndividualEntityData",
     reqMethod: "get",
     controllerRef: "getIndividualEntityData",
+    system: true
   },
   getAllEntityData: {
     name: "Get All Entity Data",
@@ -62,6 +69,7 @@ const _systemRoutesRegistry = {
     entityRef: "getAllEntityData",
     reqMethod: "get",
     controllerRef: "getAllEntityData",
+    system: true
   },
   noAuthGetAllEntityData: {
     name: "No Auth Get All Entity Data",
@@ -70,6 +78,7 @@ const _systemRoutesRegistry = {
     entityRef: "noAuthGetAllEntityData",
     reqMethod: "get",
     controllerRef: "noAuthGetAllEntityData",
+    system: true
   },
   getNoAuthFormSchema: {
     name: "Get No Auth Form Schema",
@@ -78,6 +87,7 @@ const _systemRoutesRegistry = {
     entityRef: "getNoAuthFormSchema",
     reqMethod: "get",
     controllerRef: "getNoAuthFormSchema",
+    system: true
   },
   getFormSchema: {
     name: "Form Schema",
@@ -86,6 +96,7 @@ const _systemRoutesRegistry = {
     entityRef: "formSchema",
     reqMethod: "get",
     controllerRef: "getFormSchema",
+    system: true
   },
   getSettingMeta:{
     name: "Setting Meta",
@@ -93,7 +104,8 @@ const _systemRoutesRegistry = {
     authRequired: true,
     entityRef: "settingMeta",
     reqMethod: "get",
-    controllerRef: "getSettingMeta"
+    controllerRef: "getSettingMeta",
+    system: true
   },
   getModels: {
     name: "Get Database Models",
@@ -101,7 +113,8 @@ const _systemRoutesRegistry = {
     authRequired: true,
     entityRef: "getModels",
     reqMethod: "get",
-    controllerRef: "getModels"
+    controllerRef: "getModels",
+    system: true
   },
   getDatabaseModels: {
     name: "Get database Models",
@@ -109,7 +122,8 @@ const _systemRoutesRegistry = {
     authRequired: true,
     entityRef: "getDatabaseModels",
     reqMethod: "get",
-    controllerRef: "getDatabaseModels"
+    controllerRef: "getDatabaseModels",
+    system: true
   },
   getDatabaseModelRow: {
     name: "Get Database Model Row by id ",
@@ -117,7 +131,8 @@ const _systemRoutesRegistry = {
     authRequired: true,
     entityRef: "getDatabaseModelRow",
     reqMethod: "get",
-    controllerRef: "getDatabaseModelRow"
+    controllerRef: "getDatabaseModelRow",
+    system: true
   },
   postDatabaseModel: {
     name: "Create row in model",
@@ -125,7 +140,8 @@ const _systemRoutesRegistry = {
     authRequired: true,
     entityRef: "postDatabaseModel",
     reqMethod: "post",
-    controllerRef: "postDatabaseModel"
+    controllerRef: "postDatabaseModel",
+    system: true
   },
   putDatabaseModel: {
     name: "Update model",
@@ -133,7 +149,8 @@ const _systemRoutesRegistry = {
     authRequired: true,
     entityRef: "putDatabaseModel",
     reqMethod: "put",
-    controllerRef: "putDatabaseModel"
+    controllerRef: "putDatabaseModel",
+    system: true
   },
   putUpdateStatus: {
     name: "Update Status",
@@ -141,15 +158,17 @@ const _systemRoutesRegistry = {
     authRequired: true,
     entityRef: "putUpdateStatus",
     reqMethod: "put",
-    controllerRef: "putUpdateStatus"
+    controllerRef: "putUpdateStatus",
+    system: true
   },
   patchDatabaseModel: {
     name: "Delete Database Model",
     url: "data/:model/:id",
     authRequired: true,
     entityRef: "patchDatabaseModel",
-    reqMethod: "patch",
-    controllerRef: "patchDatabaseModel"
+    reqMethod: "PATCH",
+    controllerRef: "patchDatabaseModel",
+    system: true
   },
   postTestCommunication: {
     name: "Test communication",
@@ -157,7 +176,8 @@ const _systemRoutesRegistry = {
     authRequired: false,
     entityRef: "postTestCommunication",
     reqMethod: "post",
-    controllerRef: "postTestCommunication"
+    controllerRef: "postTestCommunication",
+    system: true
   },
   //Get Registry data
   getRegistry: {
@@ -166,7 +186,8 @@ const _systemRoutesRegistry = {
     authRequired: false,
     entityRef: "getRegistry",
     reqMethod: "get",
-    controllerRef: "getRegistry"
+    controllerRef: "getRegistry",
+    system: true
   },
   getRegistryList: {
     name: "Get Registry list",
@@ -174,7 +195,8 @@ const _systemRoutesRegistry = {
     authRequired: false,
     entityRef: "getRegistryList",
     reqMethod: "get",
-    controllerRef: "getRegistryList"
+    controllerRef: "getRegistryList",
+    system: true
   },
   //clone 
   postCloneDataModel: {
@@ -183,7 +205,8 @@ const _systemRoutesRegistry = {
     authRequired: true,
     entityRef: "postCloneDataModel",
     reqMethod: "post",
-    controllerRef: "postCloneDataModel"
+    controllerRef: "postCloneDataModel",
+    system: true
   },
   postDataModelSync: {
     name: "Post data model sync",
@@ -191,7 +214,8 @@ const _systemRoutesRegistry = {
     authRequired: false,
     entityRef: "postDataModelSync",
     reqMethod: "post",
-    controllerRef: "postDataModelSync"
+    controllerRef: "postDataModelSync",
+    system: true
   }
 };
 export default _systemRoutesRegistry;
