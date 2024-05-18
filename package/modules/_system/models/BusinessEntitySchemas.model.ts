@@ -44,6 +44,10 @@ export const BusinessEntitySchemas = (sequelize: any, DataTypes: any) => {
       type: "TIMESTAMP",
       allowNull: true,
     },
+    system: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   });
 
   businessEntitySchemas.associate = (models: any) => {

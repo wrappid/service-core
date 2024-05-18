@@ -53,6 +53,10 @@
           "layout": {
             "type": "STRING",
             "allowNull": true
+          },
+          "system": {
+            "type": "BOOLEAN",
+            "defaultValue": false
           }
     },
     "associations": [

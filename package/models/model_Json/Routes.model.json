@@ -64,6 +64,10 @@
     "controllerRef": {
       "type": "STRING",
       "defaultValue": null
+    },
+    "system": {
+      "type": "BOOLEAN",
+      "defaultValue": false
     }
   },
   "associations": [

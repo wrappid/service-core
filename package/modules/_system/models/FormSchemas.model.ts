@@ -56,6 +56,10 @@ export const FormSchemas = (sequelize: any, DataTypes: any) => {
       type: "TIMESTAMP",
       allowNull: true,
     },
+    system: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   });
 
   formSchema.associate = (models: any) => {

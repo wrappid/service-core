@@ -8,6 +8,15 @@ const _systemRoutesRegistry = {
     controllerRef: "getVersion",
     system: true
   },
+  getDatabases:{
+    name: "Get Databases",
+    url: "business/databases",
+    authRequired: true,
+    entityRef: "getDatabases",
+    reqMethod: "get",
+    controllerRef: "getDatabases",
+    system: true
+  },
   getDatabaseTables: {
     name: "Get Database Tables",
     url: "business/tables/:database",
