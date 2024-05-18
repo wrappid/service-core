@@ -80,6 +80,9 @@ export const putUpdateStatusFunc = async (req:any) => {
     const database:string = <string>req.query?.database || "application";
     const currentEntry = await databaseActions.findByPk(database, model, Number(req.params.id));
     const comments = currentEntry?.dataValues?.comments;
+    if (currentEntry?.dataValues?._status === req.body.nextStatus){
+      throw new Error("Status update error");
+    }
     const comment = {
       comment: req.body.comment,
       currentStatus: currentEntry._status,
