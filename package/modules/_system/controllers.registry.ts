@@ -9,6 +9,7 @@ import { getSettingMeta, sentOtp, getMasterData } from "./validations/_system.va
 
 const AppBuilderControllersRegistry = {
   //database
+  getDatabases: databaseController.getDatabases,
   getDatabaseTables: databaseController.getDatabaseTables,
   getAttributes: databaseController.getAttributes,
   getBusinessEntityColumns: databaseController.getBusinessEntityColumns,

@@ -3,6 +3,42 @@ import { WrappidLogger } from "../../../logging/wrappid.logger";
 import { getEntityColumns } from "../functions/businessEntity.get.helper";
 import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
 
+
+/**
+ * This function helps to get databases
+ *
+ * @param req : req value
+ * @param res : res value
+ * @returns
+ */
+export const getDatabases =  (req: any, res: any) => {
+  try {
+    WrappidLogger.logFunctionStart("getDatabases");
+    const databases = Object.keys(databaseProvider);
+    const searchValue = req.query._searchValue;
+    const searchedDatabases = databases.filter(
+      (database) => database.toLowerCase().startsWith(searchValue)
+    );
+
+    const _data = {
+      rows: searchedDatabases.map((key) => {
+        return { id: key, label: key };
+      }),
+      totalRecords: Object.keys(searchedDatabases).length,
+    };
+
+    res.status(200).json({
+      data: _data,
+      message: "Databases fetched successfully",
+    });
+  } catch (error: any) {
+    WrappidLogger.error(error);
+    res.status(500).json({ message: "Error to fetch databases" });
+  } finally {
+    WrappidLogger.logFunctionEnd("getDatabases");
+  }
+};
+
 /**
  * This function helps to get database tables
  *
@@ -13,7 +49,6 @@ import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
 const getDatabaseTables = (req: any, res: any) => {
   try {
     WrappidLogger.logFunctionStart("getDatabaseTables");
-    // eslint-disable-next-line no-unused-vars
     const database = req.params.database;
     const requestedDBTables = databaseProvider[database].models;
     const searchValue = req.query._searchValue;
@@ -40,9 +75,10 @@ const getDatabaseTables = (req: any, res: any) => {
       message: "Tables fetched successfully",
     });
   } catch (error: any) {
-    // console.error("Error:: ",error);
     WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch tables" });
+  } finally {
+    WrappidLogger.logFunctionEnd("getDatabaseTables");
   }
 };
 
@@ -72,7 +108,6 @@ const getAttributes = async (req: any, res: any) => {
             .includes(_searchValue?.toLocaleLowerCase());
         })
         .map((key) => {
-          // eslint-disable-next-line no-undef
           return { id: key, name: getNormalCaseFromCamelCase(key) };
         }),
       totalRecords: Object.keys(rawAttributes).length,
@@ -83,9 +118,10 @@ const getAttributes = async (req: any, res: any) => {
       message: "Attributes fetched successfully",
     });
   } catch (error: any) {
-    // console.error("Error:: "error);
     WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch attributes" });
+  } finally {
+    WrappidLogger.logFunctionEnd("getAttributes");
   }
 };
 
@@ -116,14 +152,14 @@ const getBusinessEntityColumns = async (req: any, res: any) => {
       message: "Business entity columns found successfully",
     });
   } catch (error: any) {
-    // console.error("Error:: ",error);
     WrappidLogger.error(error);
     res.status(500).json({
       error: error?.message || error,
       message: "Something went wrong",
     });
+  } finally {
+    WrappidLogger.logFunctionEnd("getBusinessEntityColumns");
   }
 };
 
 export { getAttributes, getBusinessEntityColumns, getDatabaseTables };
-

@@ -48,6 +48,10 @@
           "deletedAt": {
             "type": "DATE",
             "allowNull": true
+          },
+          "system": {
+            "type": "BOOLEAN",
+            "defaultValue": false
           }
     },
     "associations": [

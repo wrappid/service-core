@@ -40,6 +40,10 @@ export const ThemeSchemas = (sequelize: any, DataTypes: any) => {
       type: "TIMESTAMP",
       allowNull: true,
     },
+    system: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   });
   
   themeSchemas.associate = (models: any) => {

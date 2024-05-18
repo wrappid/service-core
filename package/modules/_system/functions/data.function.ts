@@ -556,26 +556,26 @@ const checkEntityRefExist = async (database:string, model:string, entityRef:stri
  * @param db : database value 
  * @param entityRef : entityRef value 
  * @param model : model value 
- * @param auth : auth value 
+ * @param _auth : auth value 
  * @returns 
  */
-async function getDataFromDB(db: string, entityRef: string, model: string, auth=false) {
+async function getDataFromDB(db: string, entityRef: string, model: string) {
   WrappidLogger.logFunctionStart("getDataFromDB");
-  const dbSequelize = databaseProvider[db].Sequelize;
+  // const dbSequelize = databaseProvider[db].Sequelize;
   const whereClause: GenericObject = {
     entityRef: entityRef,
     _status: constant.entityStatus.PUBLISHED,
   };
-  if (auth) {
-    whereClause["authRequired"] = true;
-  } else {
-    whereClause["authRequired"] = {
-      [dbSequelize.Op.or]: {
-        [dbSequelize.Op.eq]: false,
-        [dbSequelize.Op.is]: null,
-      },
-    };
-  }
+  // if (auth) {
+  //   whereClause["authRequired"] = true;
+  // } else {
+  //   whereClause["authRequired"] = {
+  //     [dbSequelize.Op.or]: {
+  //       [dbSequelize.Op.eq]: false,
+  //       [dbSequelize.Op.is]: null,
+  //     },
+  //   };
+  // }
   const formSchema = await databaseActions.findOne(db, model, {
     where: whereClause,
   });
