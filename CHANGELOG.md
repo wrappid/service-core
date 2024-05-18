@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.93](https://github.com/wrappid/service-core/compare/v0.0.92...v0.0.93) (2024-05-18)
+
+
+### Features
+
+* **global:** :sparkles: routes registry a system field add ([3431458](https://github.com/wrappid/service-core/commit/3431458bd0e8004f6b759d89a329e6b4c1bf9319)), closes [#161](https://github.com/wrappid/service-core/issues/161)
+
 ### [0.0.92](https://github.com/wrappid/service-core/compare/v0.0.91...v0.0.92) (2024-05-15)
 
 ### [0.0.91](https://github.com/wrappid/service-core/compare/v0.0.90...v0.0.91) (2024-05-15)
