@@ -170,7 +170,7 @@ export const patchDatabaseModelFunc = async (req:any) => {
 
 export const putDatabaseModelFunc = async (req:any) => {
   WrappidLogger.logFunctionStart("putDatabaseModelFunc");
-  const model = req.params.model;
+  const model:string = req.params.model;
   const database:string = <string>req.query?.database || "application";
   WrappidLogger.info(`model= ${model}`);
   WrappidLogger.info(`database= + ${database}`);
@@ -190,79 +190,77 @@ export const putDatabaseModelFunc = async (req:any) => {
       throw new Error("model[" + model + "] not defined in database");
     }
 
-    // data preparation
-    Object.keys(databaseProvider[database].models[model].rawAttributes).forEach((rawAttribute) => {
+    const appBuilderModels = await databaseActions.findOne("application", "SettingMeta", {
+      where: {
+        name: "appBuilderModels",
+        status: constant.entityStatus.ACTIVE
+      }
+    });
+    const isBuilderModel = appBuilderModels?.value?.includes(model);
+    let result = null;
+    if(isBuilderModel){
+      // data preparation
+      Object.keys(databaseProvider[database].models[model].rawAttributes).forEach((rawAttribute) => {
       // if json save object in db
-      if (
-        databaseProvider[database].models[model].rawAttributes[rawAttribute].type
-          .toString()
-          .startsWith("JSON") &&
+        if (
+          databaseProvider[database].models[model].rawAttributes[rawAttribute].type
+            .toString()
+            .startsWith("JSON") &&
           // body.hasOwnProperty(rawAttribute) &&
           Object.prototype.hasOwnProperty.call(body, rawAttribute) &&
           typeof body[rawAttribute] === "string" &&
           body[rawAttribute] !== ""
-      ) {
-        body[rawAttribute] = JSON.parse(body[rawAttribute]);
-      }
-    });
-
-    // null if attribute value is empty
-    Object.keys(body).forEach((_bodyKey) => {
-      if (!Object.prototype.hasOwnProperty.call(body, _bodyKey) || body[_bodyKey] === "") {
-      // if (!body.hasOwnProperty(_bodyKey) || body[_bodyKey] === "") {
-        body[_bodyKey] = null;
-      }
-    });
-
-    let result = null;
-
-    const models = [
-      // { model: "FormSchemas" },
-      { model: "BusinessEntitySchemas" },
-      { model: "Routes" },
-      { model: "Pages" },
-      { model: "ThemeSchemas" },
-    ];
-
-    const currentEntry = await databaseActions.findByPk(database,model,body.id);
-
-    if (
-      models.findIndex((f) => f.model === model) !== -1 &&
-        currentEntry._status !== coreConstant.entityStatus.DRAFT &&
-        currentEntry._status !== coreConstant.entityStatus.CHANGE_REQUESTED
-    ) {
-      // create new entry as draft
-      const createData = { ...body };
-      delete createData["id"];
-
-      await databaseActions.create(database,model,{
-        ...createData,
-        _status: coreConstant.entityStatus.DRAFT,
-        updatedBy: req.user.userId,
-        commitId: uuidv4(),
+        ) {
+          body[rawAttribute] = JSON.parse(body[rawAttribute]);
+        }
       });
 
-      WrappidLogger.info("New entry created as draft");
-      return { message: "New entry created as draft" };
-    } else {
-      // update model
-      result = await databaseActions.update(database, model,
-        { ...body, updatedBy: req.user.userId },
-        { where: { id: modelID } }
-      );
+      // null if attribute value is empty
+      Object.keys(body).forEach((_bodyKey) => {
+        if (!Object.prototype.hasOwnProperty.call(body, _bodyKey) || body[_bodyKey] === "") {
+          // if (!body.hasOwnProperty(_bodyKey) || body[_bodyKey] === "") {
+          body[_bodyKey] = null;
+        }
+      });
+      const currentEntry = await databaseActions.findByPk(database,model,modelID);
 
-      WrappidLogger.info(result);
-
-      if (result)
-        return{status: 200,
-          entity: model,
-          message: model + " updated successfully",
-        };
-
-      else{
-        WrappidLogger.error("Something went wrong");
-        throw new Error("Something went wrong");
+      if (
+        currentEntry._status !== coreConstant.entityStatus.DRAFT &&
+      currentEntry._status !== coreConstant.entityStatus.CHANGE_REQUESTED
+      ) {
+      // create new entry as draft
+        delete body["id"];
+        const created = await databaseActions.create(database,model,{
+          ...body,
+          _status: coreConstant.entityStatus.DRAFT,
+          updatedBy: req.user.userId,
+          commitId: uuidv4(),
+        });
+        if(created){
+          WrappidLogger.info("New entry created as draft");
+          return { message: "New entry created as draft" };
+        }else{
+          WrappidLogger.error("Can not update or create draft");
+          throw new Error("Can not update or create draft");
+        }
       }
+    } 
+    // update model
+    result = await databaseActions.update(database, model,
+      { ...body, updatedBy: req.user.userId },
+      { where: { id: modelID } }
+    );
+    
+    WrappidLogger.info(result);
+
+    if (result){
+      return{status: 200,
+        entity: model,
+        message: model + " updated successfully",
+      };
+    } else {
+      WrappidLogger.error("Something went wrong");
+      throw new Error("Something went wrong");
     }
   } catch (error:any) {
     WrappidLogger.error(error);
@@ -349,16 +347,6 @@ export const getDatabaseModelsFunc = async (req:any) => {
 export const postDatabaseModelFunc = async (req:any) => {
   try {
     WrappidLogger.logFunctionStart("postDatabaseModelFunc");
-    const appBuilderModels = await databaseActions.findOne("application", "SettingMeta", {
-      where: {
-        name: "appBuilderModels",
-        status: constant.entityStatus.ACTIVE
-      }
-    });
-    const hasRoutes = appBuilderModels?.value?.includes(req.params.model);
-    if(!hasRoutes){
-      throw new Error("Not valid app builder model!");
-    }
     const model = req.params.model;
     const database:string = <string>req.query?.database || "application";
     WrappidLogger.info("model=" + model);
@@ -375,34 +363,46 @@ export const postDatabaseModelFunc = async (req:any) => {
     let body = req.body;
     WrappidLogger.info(body);
 
-    // data preparation
-    Object.keys(databaseProvider[database].models[model].rawAttributes).forEach((rawAttribute) => {
+    const appBuilderModels = await databaseActions.findOne("application", "SettingMeta", {
+      where: {
+        name: "appBuilderModels",
+        status: constant.entityStatus.ACTIVE
+      }
+    });
+    const isBuilderModel = appBuilderModels?.value?.includes(req.params.model);
+    if(isBuilderModel){
+    
+    
+      // data preparation
+      Object.keys(databaseProvider[database].models[model].rawAttributes).forEach((rawAttribute) => {
       // if json save object in db
-      if (
-        databaseProvider[database].models[model].rawAttributes[rawAttribute].type
-          .toString()
-          .startsWith("JSON") &&
+        if (
+          databaseProvider[database].models[model].rawAttributes[rawAttribute].type
+            .toString()
+            .startsWith("JSON") &&
           Object.prototype.hasOwnProperty.call(body, rawAttribute) &&
           body[rawAttribute] !== ""
-      ) {
-        body[rawAttribute] = JSON.parse(body[rawAttribute]);
-      }
-    });
+        ) {
+          body[rawAttribute] = JSON.parse(body[rawAttribute]);
+        }
+      });
 
-    // null if attribute value is empty
-    Object.keys(body).forEach((_bodyKey) => {
-      if (!Object.prototype.hasOwnProperty.call(body, _bodyKey) || body[_bodyKey] === "") {
-        body[_bodyKey] = null;
-      }
-    });
-    body = {...body, _status: constant.entityStatus.DRAFT};
-    // update model
-    
+      // null if attribute value is empty
+      Object.keys(body).forEach((_bodyKey) => {
+        if (!Object.prototype.hasOwnProperty.call(body, _bodyKey) || body[_bodyKey] === "") {
+          body[_bodyKey] = null;
+        }
+      });
+      body = {
+        ...body, 
+        _status: constant.entityStatus.DRAFT,
+        commitId: uuidv4()
+      };
+    }
     const result = await databaseActions.create(database, model,{
       ...body,
       createdBy: req.user.userId,
-      updatedBy: req.user.userId,
-      commitId: uuidv4()
+      updatedBy: req.user.userId
     });
 
     WrappidLogger.info(result);
