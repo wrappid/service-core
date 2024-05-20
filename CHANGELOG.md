@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.97](https://github.com/wrappid/service-core/compare/v0.0.96...v0.0.97) (2024-05-20)
+
+
+### Bug Fixes
+
+* **global:** :bug: putDatabaseModel fix ([89d4dce](https://github.com/wrappid/service-core/commit/89d4dcee90a8f1c6200fe550169b33da740f9764)), closes [#163](https://github.com/wrappid/service-core/issues/163)
+
 ### [0.0.96](https://github.com/wrappid/service-core/compare/v0.0.95...v0.0.96) (2024-05-18)
 
 ### [0.0.95](https://github.com/wrappid/service-core/compare/v0.0.94...v0.0.95) (2024-05-18)
