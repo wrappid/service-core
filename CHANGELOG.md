@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.99](https://github.com/wrappid/service-core/compare/v0.0.98...v0.0.99) (2024-05-21)
+
+
+### Bug Fixes
+
+* **global:** :bug: multiple database connectivity fix ([bb0b817](https://github.com/wrappid/service-core/commit/bb0b817d9932768178ca558d25a5411f72c38209)), closes [#163](https://github.com/wrappid/service-core/issues/163)
+
 ### [0.0.98](https://github.com/wrappid/service-core/compare/v0.0.97...v0.0.98) (2024-05-20)
 
 ### [0.0.97](https://github.com/wrappid/service-core/compare/v0.0.96...v0.0.97) (2024-05-20)
