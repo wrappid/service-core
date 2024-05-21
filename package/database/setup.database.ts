@@ -26,11 +26,12 @@ export async function  setupDatabase() {
           port: Number(database.port),
           dialect: database.dialect,
           logging: database.logging,
+          dialectOptions: database?.dialectOptions
         }
       );
   
-      (databaseProvider[database.name] = {}),
-      (databaseProvider[database.name]["sequelize"] = sequelize);
+      databaseProvider[database.name] = {},
+      databaseProvider[database.name]["sequelize"] = sequelize;
       databaseProvider[database.name]["Sequelize"] = Sequelize;
   
       await databaseProvider[database.name].sequelize.authenticate();
@@ -43,7 +44,6 @@ export async function  setupDatabase() {
      * Setting up ModelSchemas to database Provider
      */
     try {
-      
       const modelInstance = GenericModel(modelSchemaJson.table, modelSchemaJson,
         databaseProvider[modelSchemaJson.database].sequelize,
         Sequelize

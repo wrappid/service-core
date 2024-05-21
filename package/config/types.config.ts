@@ -1,4 +1,5 @@
 import { Dialect } from "sequelize";
+import { GenericObject } from "../types/generic.types";
 
 /**
  *
@@ -23,6 +24,7 @@ export interface DatabaseConfig {
   username: string;
   password: string;
   logging?: boolean;
+  dialectOptions?: GenericObject
 }
 
 /**
