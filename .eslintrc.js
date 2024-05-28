@@ -20,7 +20,7 @@ module.exports = {
     "promise",
     "unused-imports",
     "@typescript-eslint",
-    "jsdoc" // Add the jsdoc plugin
+    "jsdoc"
   ],
   rules: {
     indent: ["error", 2, { MemberExpression: 1, SwitchCase: 1 }],
@@ -37,7 +37,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "warn",
 
     // JSDoc rules for TypeScript files
-    "jsdoc/require-jsdoc": ["warn", {
+    "jsdoc/require-jsdoc": ["error", {
       "contexts": [
         "TSInterfaceDeclaration",
         "TSMethodSignature",
