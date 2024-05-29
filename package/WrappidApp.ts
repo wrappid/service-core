@@ -21,7 +21,7 @@ export type WrappidAppConfigType = {
   bodyPerser?: GenericObject;
   cors?: GenericObject;
   registry: WrappidRegistryType;
-  swagger: GenericObject;
+  // swagger: GenericObject;
   config: GenericObject;
   package: GenericObject;
 };
@@ -42,6 +42,7 @@ export type WrappidRegistryType = {
 export default class WrappidApp {
   private port: string | number = 8080;
   wrappidApp = express();
+  packageInfo:GenericObject;
 
   constructor(wrappidAppConfig: WrappidAppConfigType = {
     port: 8080,
@@ -64,7 +65,7 @@ export default class WrappidApp {
       MiddlewaresRegistry: {}, 
       ValidationsRegistry: {}
     },
-    swagger: {},
+    // swagger: {},
     config: {},
     package: {}
   }) {
@@ -79,7 +80,7 @@ export default class WrappidApp {
     this.wrappidApp.use(bodyParser.json(wrappidAppConfig.bodyPerser.json));
     this.wrappidApp.use(bodyParser.raw(wrappidAppConfig.bodyPerser.raw));
     this.wrappidApp.use(bodyParser.urlencoded(wrappidAppConfig.bodyPerser.urlencoded));
-    
+    this.packageInfo=wrappidAppConfig.package;
     /**
      * setup config to context
      */
@@ -90,12 +91,9 @@ export default class WrappidApp {
      */
     setupLocalRegistryContext(wrappidAppConfig.registry);
     
-    /**
-     *  Setup swagger API Docs
-     */
-    setupSwagger(this.wrappidApp, wrappidAppConfig.swagger, wrappidAppConfig.package);
+    
   }
-
+  
   async init() {
     WrappidLogger.logFunctionStart("WrappidApp.init");
     /**
@@ -155,5 +153,12 @@ export default class WrappidApp {
   
     this.wrappidApp.listen(this.port, serverInit);
     WrappidLogger.logFunctionEnd("WrappidApp.init");
+  }
+  async setupSwagger(){
+
+    /**
+     *  Setup swagger API Docs
+     */
+    setupSwagger(this.wrappidApp, this.packageInfo);
   }
 }
