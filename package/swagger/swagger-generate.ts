@@ -1,56 +1,59 @@
-import swaggerJson from "../../../test-wrappid-service/src/swagger-output.json";
-import {databaseActions} from "../database/actions.database";
+import { constant } from "../constants/server.constant";
+import { ApplicationContext } from "../context/application.context";
+import { databaseActions } from "../database/actions.database";
+import { GenericObject } from "../types/generic.types";
+
 
 /**
  *
  */
 interface Attribute {
-    type: string;
-    primaryKey?: boolean;
-    autoIncrement?: boolean;
-    defaultValue?: any;
-    allowNull?: boolean;
-  }
-  
-  /**
-   *
-   */
-  interface Schema {
-    table: string;
+  type: string;
+  primaryKey?: boolean;
+  autoIncrement?: boolean;
+  defaultValue?: any;
+  allowNull?: boolean;
+}
+
+/**
+ *
+ */
+interface Schema {
+  table: string;
+  database: string;
+  attributes: { [key: string]: Attribute };
+  associations: any[];
+}
+
+/**
+ *
+ */
+interface ModelSchema {
+  dataValues: {
+    id: number;
+    name: string;
     database: string;
-    attributes: { [key: string]: Attribute };
-    associations: any[];
-  }
-  
-  /**
-   *
-   */
-  interface ModelSchema {
-    dataValues: {
-      id: number;
-      name: string;
-      database: string;
-      schema: Schema;
-      [key: string]: any;
-    };
-  }
-  
-  type Property = {
-    type: string;
-    format?: string;
-    example?: any;
-    description?: string;
-    enum?: string[];
+    schema: Schema;
+    [key: string]: any;
   };
-  
-  type Schemas = {
-    type: string;
-    properties: {
-      [key: string]: Property;
-    };
+}
+
+type Property = {
+  type: string;
+  format?: string;
+  example?: any;
+  description?: string;
+  enum?: string[];
+};
+
+type Schemas = {
+  type: string;
+  properties: {
+    [key: string]: Property;
   };
-  
-const convertType = (type: string): { type: string; format?: string; example?: any } => {
+};
+
+const convertColumnType = (type: string): { type: string; format?: string; example?: any } => {
   switch (type.toUpperCase()) {
     case "INTEGER":
       return { type: "integer", format: "int64", example: 10 };
@@ -66,88 +69,70 @@ const convertType = (type: string): { type: string; format?: string; example?: a
       return { type: "string", example: null };
   }
 };
-  
-const mapSchemaToFormat = (schema: Schema) => {
+
+const convertModeltoSwaggerSchema = (schema: Schema) => {
   const properties: { [key: string]: any } = {};
-  
   for (const [key, attribute] of Object.entries(schema.attributes)) {
-    properties[key] = convertType(attribute.type);
+    properties[key] = convertColumnType(attribute.type);
     if (attribute.primaryKey) {
       properties[key].example = 1;
     }
   }
-  
   return {
     type: "object",
     properties,
   };
 };
-  
-const generateFormattedSchemas = (modelSchemas: ModelSchema[]) => {
-  return modelSchemas.map((model) => {
-    return {
-      [model.dataValues.name]: mapSchemaToFormat(model.dataValues.schema),
-    };
-  });
-};
-  
 
-  
-export const getSwaggerJson= async()=>{
-  const data=await databaseActions.findAll("application","Routes",{
-    where:{
-      source:"server-side",
-      _status:"published",
-           
-    }
-  });
-  const modelData=await databaseActions.findAll("application","ModelSchemas",{
-    where:{
-      _status:"published"
-    }
-  });
-  const modelSchemaData=generateFormattedSchemas(modelData);
-    
+const generateSwaggerSchemas = (modelSchemas: ModelSchema[]): { [key: string]: Schemas } => {
   const schemas: { [key: string]: Schemas } = {};
-  
-  modelSchemaData.forEach(item => {
-    const [key, value] = Object.entries(item)[0];
-    schemas[key] = {
-      type: value["type"],
-      properties: value["properties"]
-    };
+  modelSchemas.forEach((model) => {
+    schemas[model.dataValues.name] = convertModeltoSwaggerSchema(model.dataValues.schema);
   });
-  // console.log(schemas)
-  swaggerJson.components.schemas=schemas;
+  return schemas;
+};
+
+export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
+  const data = await databaseActions.findAll("application", "Routes", {
+    where: {
+      source: "server-side",
+      _status: "published",
+
+    }
+  });
+  // const models = await databaseActions.findAll("application", "ModelSchemas", {
+  //   where: {
+  //     _status: "published"
+  //   }
+  // });
+  const models=ApplicationContext.getContext(constant.registry.MODELS__REGISTRY);
+  swaggerJson.components.schemas = generateSwaggerSchemas(models);
   // console.log(data)
-  const newSwaggerJson:{[key:string]:any}={};
-  data.forEach((element:any) => {
-        
+  const newSwaggerJson: { [key: string]: any } = {};
+  data.forEach((element: any) => {
+
     console.log(element.dataValues.extraInfo);
-    
-    const path:string=element.dataValues.url;
-    const method:string=element.dataValues.reqMethod;
-    const pathValue:any={
-      [method]:{
+
+    const path: string = element.dataValues.url;
+    const method: string = element.dataValues.reqMethod;
+    const pathValue: any = {
+      [method]: {
         "tags": [
           element.dataValues.extraInfo.tags,
         ],
-        "summary":element.dataValues.title,
-        "description":element.dataValues.description,
-        "requestBody":element.dataValues.extraInfo.requestBody,
-        "responses":element.dataValues.extraInfo.responses,
+        "summary": element.dataValues.title,
+        "description": element.dataValues.description,
+        "requestBody": element.dataValues.extraInfo.requestBody,
+        "responses": element.dataValues.extraInfo.responses,
       }
-            
+
     };
-    newSwaggerJson[path]=pathValue;
-       
+    newSwaggerJson[path] = pathValue;
+
   });
   // console.log(newSwaggerJson)
-  swaggerJson.paths=newSwaggerJson;
-  // swaggerJson.components.schemas={...modelSchemaData};
-  // console.log(swaggerJson)
+  swaggerJson.paths = newSwaggerJson;
+  // swaggerBasicInfo.components.schemas={...modelSchemaData};
+  // console.log(swaggerBasicInfo)
   return swaggerJson;
 };
-export default swaggerJson;
-
-// export default swaggerJson

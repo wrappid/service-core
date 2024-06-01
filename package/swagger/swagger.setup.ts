@@ -1,9 +1,9 @@
 import swaggerUi from "swagger-ui-express";
 import { WrappidLogger } from "../logging/wrappid.logger";
-import { getSwaggerJson } from "./swagger-generate";
+import { generateSwaggerJson } from "./swagger-generate";
 import { GenericObject } from "types/generic.types";
 
-const setupSwagger = async (wrappidApp: any, packageInfo: GenericObject) => {
+const setupSwagger = async (wrappidApp: any, packageInfo: GenericObject, swagger:GenericObject) => {
   WrappidLogger.logFunctionStart("setupSwagger");
   try {
     /**
@@ -11,7 +11,7 @@ const setupSwagger = async (wrappidApp: any, packageInfo: GenericObject) => {
      * Generate swaggerJson File
      * 
      */
-    const swaggerJsonFile:GenericObject=await getSwaggerJson();
+    const swaggerJsonFile:GenericObject=await generateSwaggerJson(swagger);
     wrappidApp.use(
       "/apiDocs",
       swaggerUi.serve,

@@ -21,7 +21,7 @@ export type WrappidAppConfigType = {
   bodyPerser?: GenericObject;
   cors?: GenericObject;
   registry: WrappidRegistryType;
-  // swagger: GenericObject;
+  swagger: GenericObject;
   config: GenericObject;
   package: GenericObject;
 };
@@ -43,6 +43,7 @@ export default class WrappidApp {
   private port: string | number = 8080;
   wrappidApp = express();
   packageInfo:GenericObject;
+  swagger:GenericObject;
 
   constructor(wrappidAppConfig: WrappidAppConfigType = {
     port: 8080,
@@ -65,9 +66,9 @@ export default class WrappidApp {
       MiddlewaresRegistry: {}, 
       ValidationsRegistry: {}
     },
-    // swagger: {},
+    swagger: {},
     config: {},
-    package: {}
+    package: {},
   }) {
     /**
      * Setting up logging in wrappid service application
@@ -81,6 +82,8 @@ export default class WrappidApp {
     this.wrappidApp.use(bodyParser.raw(wrappidAppConfig.bodyPerser.raw));
     this.wrappidApp.use(bodyParser.urlencoded(wrappidAppConfig.bodyPerser.urlencoded));
     this.packageInfo=wrappidAppConfig.package;
+    this.swagger=wrappidAppConfig.swagger;
+
     /**
      * setup config to context
      */
@@ -141,6 +144,11 @@ export default class WrappidApp {
      * Setup Logging
      */
     setupLogging(this.wrappidApp);
+    
+    /**
+     * Setup Swagger
+     */
+    setupSwagger(this.wrappidApp,this.packageInfo,this.swagger);
 
     const serverInit = () => {
       // console.log("###########################################");
@@ -154,11 +162,5 @@ export default class WrappidApp {
     this.wrappidApp.listen(this.port, serverInit);
     WrappidLogger.logFunctionEnd("WrappidApp.init");
   }
-  async setupSwagger(){
-
-    /**
-     *  Setup swagger API Docs
-     */
-    setupSwagger(this.wrappidApp, this.packageInfo);
-  }
+  
 }
