@@ -100,14 +100,11 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
 
     }
   });
-  // const models = await databaseActions.findAll("application", "ModelSchemas", {
-  //   where: {
-  //     _status: "published"
-  //   }
-  // });
-  const models=ApplicationContext.getContext(constant.registry.MODELS__REGISTRY);
-  swaggerJson.components.schemas = generateSwaggerSchemas(models);
-  // console.log(data)
+  const models = ApplicationContext.getContext(constant.registry.MODELS__REGISTRY);
+  const modelsSchema = generateSwaggerSchemas(models);
+  // if (swaggerJson.components["schemas"] === undefined) {
+  swaggerJson.components["schemas"] = modelsSchema;
+  // }
   const newSwaggerJson: { [key: string]: any } = {};
   data.forEach((element: any) => {
 
@@ -124,15 +121,19 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
         "description": element.dataValues.description,
         "requestBody": element.dataValues.extraInfo.requestBody,
         "responses": element.dataValues.extraInfo.responses,
+        "security": element.dataValues.extraInfo.security
       }
 
     };
     newSwaggerJson[path] = pathValue;
 
   });
-  // console.log(newSwaggerJson)
-  swaggerJson.paths = newSwaggerJson;
-  // swaggerBasicInfo.components.schemas={...modelSchemaData};
-  // console.log(swaggerBasicInfo)
+
+  if (swaggerJson["paths"] === undefined) {
+    swaggerJson["paths"] = newSwaggerJson;
+  }
+  else {
+    swaggerJson.paths = newSwaggerJson;
+  }
   return swaggerJson;
 };
