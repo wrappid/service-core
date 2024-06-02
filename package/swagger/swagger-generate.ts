@@ -100,7 +100,7 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
 
     }
   });
-  const models = ApplicationContext.getContext(constant.registry.MODELS__REGISTRY);
+  const models:any = ApplicationContext.getContext(constant.registry.MODELS__REGISTRY);
   const modelsSchema = generateSwaggerSchemas(models);
   // if (swaggerJson.components["schemas"] === undefined) {
   swaggerJson.components["schemas"] = modelsSchema;

@@ -68,7 +68,7 @@ export default class WrappidApp {
     },
     swagger: {},
     config: {},
-    package: {},
+    package: {}
   }) {
     /**
      * Setting up logging in wrappid service application
