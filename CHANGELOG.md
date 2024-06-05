@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.101](https://github.com/wrappid/service-core/compare/v0.0.100...v0.0.101) (2024-06-05)
+
+
+### Features
+
+* **core:** generic swagger implementation ([bb90fa7](https://github.com/wrappid/service-core/commit/bb90fa76d994239fa56844f99bbbbf0248d765ec)), closes [#169](https://github.com/wrappid/service-core/issues/169)
+* **core:** gneric swagger ([6293d34](https://github.com/wrappid/service-core/commit/6293d34de41e425610168c298088dac0e65aa9b1)), closes [#169](https://github.com/wrappid/service-core/issues/169)
+* **core:** swagger-generate ([e77679c](https://github.com/wrappid/service-core/commit/e77679c52565447a7e94f76be9722efca3c07b37)), closes [#169](https://github.com/wrappid/service-core/issues/169)
+* fixes ([8507a22](https://github.com/wrappid/service-core/commit/8507a220db08dce6c26547fbd65934d23a88b0ce)), closes [#169](https://github.com/wrappid/service-core/issues/169)
+
 ### [0.0.100](https://github.com/wrappid/service-core/compare/v0.0.99...v0.0.100) (2024-05-28)
 
 ### [0.0.99](https://github.com/wrappid/service-core/compare/v0.0.98...v0.0.99) (2024-05-21)
