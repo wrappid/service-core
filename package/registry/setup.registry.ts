@@ -81,6 +81,7 @@ export async function updateDatabaseRegistryContext() {
       allDbRoutes = {...allDbRoutes, ...restructuredData};
     });
     ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...ApplicationContext.getContext(constant.registry.ROUTES_REGISTRY), ...allDbRoutes}); 
+    
     WrappidLogger.logFunctionEnd("updateDatabaseRegistryContext");
   } catch (error:any) {
     WrappidLogger.error(error);

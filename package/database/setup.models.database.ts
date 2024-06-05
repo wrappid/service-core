@@ -70,6 +70,7 @@ export const setupModels = async () => {
               _status: coreConstant.entityStatus.PUBLISHED
             }
           });
+          ApplicationContext.setContext(constant.registry.MODELS__REGISTRY, allModelJson); 
           allModelJson.forEach((data: GenericObject) => {
             const modelInstance = GenericModel(data.name, data.schema, 
               databaseProvider[databaseName].sequelize,

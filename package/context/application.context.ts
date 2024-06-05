@@ -7,7 +7,7 @@ type GenericObject = {
 export class ApplicationContext {
   private static context: GenericObject = {};
   
-  static getContext(key: string): GenericObject {
+  static getContext(key: string):any{
     WrappidLogger.logFunctionStart("ApplicationContext.getContext");
     return ApplicationContext.context[key];
   }
