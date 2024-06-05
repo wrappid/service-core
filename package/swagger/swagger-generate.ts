@@ -115,13 +115,13 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
     const pathValue: any = {
       [method]: {
         "tags": [
-          element.dataValues.extraInfo.tags,
+          element.dataValues.extraInfo?.tags,
         ],
         "summary": element.dataValues.title,
         "description": element.dataValues.description,
-        "requestBody": element.dataValues.extraInfo.requestBody,
-        "responses": element.dataValues.extraInfo.responses,
-        "security": element.dataValues.extraInfo.security
+        "requestBody": element.dataValues.extraInfo?.requestBody,
+        "responses": element.dataValues.extraInfo?.responses,
+        "security": element.dataValues.extraInfo?.security
       }
 
     };
