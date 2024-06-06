@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.104](https://github.com/wrappid/service-core/compare/v0.0.103...v0.0.104) (2024-06-06)
+
+
+### Bug Fixes
+
+* **core:** :bug: handle case of fileHandler middleware where no file input from request ([fe30bfc](https://github.com/wrappid/service-core/commit/fe30bfc164616de4bb5d97958051a30b8625c301)), closes [#174](https://github.com/wrappid/service-core/issues/174)
+
 ### [0.0.103](https://github.com/wrappid/service-core/compare/v0.0.102...v0.0.103) (2024-06-05)
 
 ### [0.0.102](https://github.com/wrappid/service-core/compare/v0.0.101...v0.0.102) (2024-06-05)
