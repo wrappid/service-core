@@ -11,7 +11,12 @@ type UploadOptions = {
   name: string;
   maxCount: number;
 }
-
+/**
+ * Function to filter file type
+ * @param req - Request object
+ * @param file - File object 
+ * @param cb - Callback function
+ */
 const fileFilter = (req: any, file: any, cb: any) => {
   WrappidLogger.logFunctionStart("fileFilter");
   try {
@@ -34,24 +39,34 @@ export const upload = multer({
     fileSize: 1024 * 1024 * 5, // we are allowing only 5 MB files
   },
 });
-
+/**
+ * Function to upload file to S3
+ * @param inputFile - Uploaded file
+ * @param options - Upload options
+ * @returns 
+ */
 export const uploadToS3 = async (inputFile: {[key: string]: Express.Multer.File[]}, options: UploadOptions) => {
-  WrappidLogger.logFunctionStart("uploadToS3");
-  const { storage } = ApplicationContext.getContext(constant.CONFIG_KEY);
-  const { bucket, region = "us-east-1", accessKeyId, secretAccessKey } = storage.s3;
-
-  // const file: Express.Multer.File = inputFile[options.name][0];
-  const file: any = inputFile[options.name][0];
-  const fileName = new Date().toISOString() + "-" + file.originalname; // Generate unique filename
-  const uploadParams: PutObjectCommandInput = {
-    Bucket: bucket,
-    Key: fileName,
-    Body: file.buffer,
-    ContentType: file.mimetype,
-    ACL: "public-read", // Make the uploaded file publicly accessible
-  };
-
   try {
+    WrappidLogger.logFunctionStart("uploadToS3");
+    const { storage } = ApplicationContext.getContext(constant.CONFIG_KEY);
+    const { bucket, region = "us-east-1", accessKeyId, secretAccessKey } = storage.s3;
+
+
+    // const file: Express.Multer.File = inputFile[options.name][0];
+
+    if (inputFile[options.name] === undefined) {
+      WrappidLogger.warn("No file uploaded");
+      return "";
+    }
+    const file: any = inputFile[options.name][0];
+    const fileName = new Date().toISOString() + "-" + file.originalname; // Generate unique filename
+    const uploadParams: PutObjectCommandInput = {
+      Bucket: bucket,
+      Key: fileName,
+      Body: file.buffer,
+      ContentType: file.mimetype,
+      ACL: "public-read", // Make the uploaded file publicly accessible
+    };
     // Replace with your AWS credentials and bucket configuration
     const s3Client = new S3Client({
       credentials: {
@@ -69,9 +84,9 @@ export const uploadToS3 = async (inputFile: {[key: string]: Express.Multer.File[
     
     return publicUrl; 
   } catch (error:any) {
-    WrappidLogger.error(error);
+    WrappidLogger.error(error.message);
     console.error("Error uploading file to S3:", error);
-    throw new Error("Failed to upload file to S3");
+    throw error;
   } finally {
     WrappidLogger.logFunctionEnd("uploadToS3");
   }
