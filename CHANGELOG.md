@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.106](https://github.com/wrappid/service-core/compare/v0.0.105...v0.0.106) (2024-06-11)
+
+
+### Bug Fixes
+
+* **core:** :bug: fixed update data API ([a75be0b](https://github.com/wrappid/service-core/commit/a75be0bb400bdc6fc9e79742f1aeec2aeaaf448d)), closes [#176](https://github.com/wrappid/service-core/issues/176)
+
 ### [0.0.105](https://github.com/wrappid/service-core/compare/v0.0.104...v0.0.105) (2024-06-06)
 
 ### [0.0.104](https://github.com/wrappid/service-core/compare/v0.0.103...v0.0.104) (2024-06-06)
