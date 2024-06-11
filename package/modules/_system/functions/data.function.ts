@@ -224,7 +224,7 @@ export const putDatabaseModelFunc = async (req:any) => {
       });
       const currentEntry = await databaseActions.findByPk(database,model,modelID);
 
-      if (
+      if (currentEntry._status !== coreConstant.entityStatus.PUBLISHED &&
         currentEntry._status !== coreConstant.entityStatus.DRAFT &&
       currentEntry._status !== coreConstant.entityStatus.CHANGE_REQUESTED
       ) {
@@ -245,9 +245,15 @@ export const putDatabaseModelFunc = async (req:any) => {
         }
       }
     } 
+    //Delete id columnn 
+    delete body["id"];
     // update model
     result = await databaseActions.update(database, model,
-      { ...body, updatedBy: req.user.userId },
+      {
+        ...body,
+        commitId: uuidv4(), 
+        updatedBy: req.user.userId 
+      },
       { where: { id: modelID } }
     );
     
