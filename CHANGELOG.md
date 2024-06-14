@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.107](https://github.com/wrappid/service-core/compare/v0.0.106...v0.0.107) (2024-06-14)
+
+
+### Bug Fixes
+
+* **global:** :bug: fix noauth formSchema ([7054459](https://github.com/wrappid/service-core/commit/7054459d7eff7e96c8608534c4f0e358c1c747c8)), closes [#178](https://github.com/wrappid/service-core/issues/178)
+
 ### [0.0.106](https://github.com/wrappid/service-core/compare/v0.0.105...v0.0.106) (2024-06-11)
 
 

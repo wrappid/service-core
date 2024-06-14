@@ -1,6 +1,6 @@
 {
   "name": "@wrappid/service-core",
-  "version": "0.0.106",
+  "version": "0.0.107",
   "description": "wrappid service-core",
   "main": "index.js",
   "repository": {
