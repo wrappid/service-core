@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.109](https://github.com/wrappid/service-core/compare/v0.0.108...v0.0.109) (2024-06-25)
+
+
+### Features
+
+* **core:** :sparkles: upload file type added doc and pdf ([98ec3b7](https://github.com/wrappid/service-core/commit/98ec3b76c63ae696c8328662faa218c1f8648aa1)), closes [#180](https://github.com/wrappid/service-core/issues/180)
+
 ### [0.0.108](https://github.com/wrappid/service-core/compare/v0.0.107...v0.0.108) (2024-06-14)
 
 ### [0.0.107](https://github.com/wrappid/service-core/compare/v0.0.106...v0.0.107) (2024-06-14)
