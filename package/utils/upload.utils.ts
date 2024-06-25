@@ -20,7 +20,7 @@ type UploadOptions = {
 const fileFilter = (req: any, file: any, cb: any) => {
   WrappidLogger.logFunctionStart("fileFilter");
   try {
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === "application/msword" || file.mimetype === "application/pdf") {
       cb(null, true);
     } else {
       cb(null, false);
