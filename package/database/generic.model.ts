@@ -1,3 +1,5 @@
+import { databaseActions } from "./actions.database";
+
 type GenericObject = { [key: string]: any };
 
 const processAttributes = (attributesSchema:GenericObject, dataTypes:any) => {
@@ -45,6 +47,7 @@ const processAssociation = (genericModel:any, models:any, associationSchema:any,
 
 
 export const GenericModel = (name:string, schema: GenericObject, sequelize: any, DataTypes: any) => {
+
   const GenericModel = sequelize.define(
     name, 
     processAttributes(schema.attributes, DataTypes)
@@ -55,5 +58,44 @@ export const GenericModel = (name:string, schema: GenericObject, sequelize: any,
     // Process association
     processAssociation(GenericModel, models, schema.associations, DataTypes);
   };
+
+  /**
+   * @todo 
+   * we need to move below two functionalites based on enableRoles and enablePermissions flag 
+   * To auth/ums module so that it is not going to be default functionalities
+   */
+  if(schema?.enableRoles){
+    GenericModel.assignRole = async (databaseName: string, roleIdentifier: string|number) => {
+      /**
+       * Give database entry to ModelRoles if not present
+       */
+      console.log("roleIdentifier = ", roleIdentifier);
+      await databaseActions.create(databaseName, "ModelRoles", {
+        model: "pritam",
+        modelId: roleIdentifier
+      });
+
+    };
+    GenericModel.revokeRole = async (databaseName: string, roleIdentifier: string|number) => {
+      console.log("roleIdentifier = ", roleIdentifier);
+      await databaseActions.create(databaseName, "ModelRoles", {
+        model: "pritam",
+        modelId: roleIdentifier
+      });
+
+    };
+  }
+  if(schema?.enablePermissions){
+    GenericModel.assignPermission = (databaseName: string, permissionIdentifier: string|number) => {
+      /**
+       * Give database entry to ModelPermissions if not present
+       */
+      console.log("permissionIdentifier = ", permissionIdentifier);
+    };
+    GenericModel.revokePermission = (databaseName: string, permissionIdentifier: string|number) => {
+      console.log("permissionIdentifier = ", permissionIdentifier);
+    };
+  }
+
   return GenericModel;
 };

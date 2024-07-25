@@ -43,20 +43,24 @@ export async function  setupDatabase() {
     /**
      * Setting up ModelSchemas to database Provider
      */
-    try {
-      const modelInstance = GenericModel(modelSchemaJson.table, modelSchemaJson,
-        databaseProvider[modelSchemaJson.database].sequelize,
-        Sequelize
-      );      
-      databaseProvider[modelSchemaJson.database].models = {};
-      databaseProvider[modelSchemaJson.database].models[modelSchemaJson.table] = modelInstance;
+    Object.keys(databaseProvider).forEach((databaseName:string) => {
+      
+      try {
+        const modelInstance = GenericModel(modelSchemaJson.table, modelSchemaJson,
+          databaseProvider[databaseName].sequelize,
+          Sequelize
+        );      
+        databaseProvider[databaseName].models = {};
+        databaseProvider[databaseName].models[modelSchemaJson.table] = modelInstance;
       /**
        * @todo need to review the below line where it should be placed
        */
-    } catch (error:any) {
-      console.error(error.message);
-      process.exit(1);
-    }
+      } catch (error:any) {
+        console.error(error.message);
+        process.exit(1);
+      }
+    });
+
     WrappidLogger.logFunctionEnd("setupDatabase");
   } catch (error: any) {
     WrappidLogger.error(error);

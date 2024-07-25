@@ -108,7 +108,7 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
   const newSwaggerJson: { [key: string]: any } = {};
   data.forEach((element: any) => {
 
-    console.log(element.dataValues.extraInfo);
+    // console.log(element.dataValues.extraInfo);
 
     const path: string = element.dataValues.url;
     const method: string = element.dataValues.reqMethod;
