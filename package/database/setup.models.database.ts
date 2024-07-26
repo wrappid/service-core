@@ -6,7 +6,7 @@ import ModelsRegistry from "../registry/ModelsRegistry";
 import { GenericObject } from "../types/generic.types";
 import { coreConstant } from "./../index";
 import { databaseActions } from "./actions.database";
-import { GenericModel } from "./generic.model";
+import { addCustomFunction, GenericModel } from "./generic.model";
 import { databaseProvider } from "./setup.database";
 
 /**
@@ -66,7 +66,7 @@ export const setupModels = async () => {
            */
           const allModelJson = await databaseActions.findAll(databaseName, "ModelSchemas", {
             where: {
-              // database: databaseName,
+              database: databaseName,
               _status: coreConstant.entityStatus.PUBLISHED
             }
           });
@@ -74,7 +74,8 @@ export const setupModels = async () => {
           allModelJson.forEach((data: GenericObject) => {
             const modelInstance = GenericModel(data.name, data.schema, 
               databaseProvider[databaseName].sequelize,
-              Sequelize);
+              Sequelize);  
+            addCustomFunction(modelInstance, data?.schema);      
             databaseProvider[databaseName].models[data.name] = modelInstance;
           });
           /**

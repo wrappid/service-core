@@ -1,3 +1,4 @@
+import { constant } from "../constants/server.constant";
 import { databaseActions } from "./actions.database";
 
 type GenericObject = { [key: string]: any };
@@ -59,24 +60,47 @@ export const GenericModel = (name:string, schema: GenericObject, sequelize: any,
     processAssociation(GenericModel, models, schema.associations, DataTypes);
   };
 
-  /**
+  
+  return GenericModel;
+
+
+};
+
+export const addCustomFunction = (modelInstance: any, schema:GenericObject) => {
+/**
    * @todo 
    * we need to move below two functionalites based on enableRoles and enablePermissions flag 
    * To auth/ums module so that it is not going to be default functionalities
    */
   if(schema?.enableRoles){
-    GenericModel.assignRole = async (databaseName: string, roleIdentifier: string|number) => {
-      /**
+    modelInstance.prototype.assignRole = async (modelID:number, roleIdentifier: string|number) => {
+    /**
        * Give database entry to ModelRoles if not present
        */
+      console.log(modelInstance);
+      console.log(this);
+      
       console.log("roleIdentifier = ", roleIdentifier);
-      await databaseActions.create(databaseName, "ModelRoles", {
-        model: "pritam",
-        modelId: roleIdentifier
+      /**
+       * Get role by roleIdentifier 
+       * Where roleIdentifier if string then find By slug 
+       * If number findBy number
+       */
+      let role: GenericObject;
+      if(typeof roleIdentifier === "number"){
+        role = await databaseActions.findByPk("ums", "Roles", roleIdentifier);
+      }else{
+        role = await databaseActions.findOne("ums", "Roles", {where: {slug: roleIdentifier}});
+      }
+      await databaseActions.create(schema?.database, "ModelRoles", {
+        model: schema?.table || "Unknown",
+        modelID: modelID, // 
+        roleID: role.id, // determine from database
+        status: constant.entityStatus.ACTIVE
       });
 
     };
-    GenericModel.revokeRole = async (databaseName: string, roleIdentifier: string|number) => {
+    modelInstance.prototype.revokeRole = async (databaseName: string, roleIdentifier: string|number) => {
       console.log("roleIdentifier = ", roleIdentifier);
       await databaseActions.create(databaseName, "ModelRoles", {
         model: "pritam",
@@ -86,16 +110,15 @@ export const GenericModel = (name:string, schema: GenericObject, sequelize: any,
     };
   }
   if(schema?.enablePermissions){
-    GenericModel.assignPermission = (databaseName: string, permissionIdentifier: string|number) => {
-      /**
-       * Give database entry to ModelPermissions if not present
-       */
+    modelInstance.prototype.assignPermission = (databaseName: string, permissionIdentifier: string|number) => {
+    /**
+     * Give database entry to ModelPermissions if not present
+     */
       console.log("permissionIdentifier = ", permissionIdentifier);
     };
-    GenericModel.revokePermission = (databaseName: string, permissionIdentifier: string|number) => {
+    modelInstance.prototype.revokePermission = (databaseName: string, permissionIdentifier: string|number) => {
       console.log("permissionIdentifier = ", permissionIdentifier);
     };
   }
 
-  return GenericModel;
 };
