@@ -1,3 +1,4 @@
+import * as path from "path";
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
@@ -15,6 +16,7 @@ import { setupRoutes } from "./route/setup.route";
 import setupSwagger from "./swagger/swagger.setup";
 import { setupTasks } from "./tasks/setup.tasks";
 import { GenericObject } from "./types/generic.types";
+
 
 export type WrappidAppConfigType = {
   port?: string | number;
@@ -81,8 +83,52 @@ export default class WrappidApp {
     this.wrappidApp.use(bodyParser.json(wrappidAppConfig.bodyPerser.json));
     this.wrappidApp.use(bodyParser.raw(wrappidAppConfig.bodyPerser.raw));
     this.wrappidApp.use(bodyParser.urlencoded(wrappidAppConfig.bodyPerser.urlencoded));
+    this.wrappidApp.set("views", path.join(__dirname, "views"));//
+    this.wrappidApp.set("view engine", "pug");//
+    this.wrappidApp.use(express.json());
+    this.wrappidApp.use(express.urlencoded({extended: false}));
     this.packageInfo=wrappidAppConfig.package;
     this.swagger=wrappidAppConfig.swagger;
+
+    // const oauth2Client = new google.auth.OAuth2(
+    //   "", //Client Id
+    //   "", //Secret ID
+    //   "" // Callback url
+    // );
+  
+    // const redirectUrl = oauth2Client.generateAuthUrl({
+    //   access_type: "offline",
+    //   prompt: "consent",
+    //   scope: ["email", "profile"]
+    // });
+  
+    // let auth = false;
+
+    // this.wrappidApp.get("/g", async function (req, res) {
+    //   const oauth2 = google.oauth2({version: "v2", auth: oauth2Client});
+    //   if (auth) {
+    //     const userInfo = await oauth2.userinfo.v2.me.get();
+    //     res.render("index", {buttonSpan: "Sign out", url: "http://localhost:8080/glogout", userInfo: userInfo.data});
+    //   } else {
+    //     res.render("index", {buttonSpan: "Sign in", url: redirectUrl, userInfo: {}});
+    //   }
+    // });
+  
+    // this.wrappidApp.get("/auth/google/callback", async function (req, res) {
+    //   const code = req.query.code as string;
+    //   if (code) {
+    //     const { tokens } = await oauth2Client.getToken(code);
+    //     oauth2Client.setCredentials(tokens);
+    //     auth = true;
+    //   }
+    //   res.redirect("/g");
+    // });
+  
+    // this.wrappidApp.get("/glogout", (req, res) => {
+    //   oauth2Client.revokeCredentials().then(r => console.log("revoke ", r));
+    //   auth = false;
+    //   res.redirect("/g");
+    // });
 
     /**
      * setup config to context

@@ -1,4 +1,4 @@
-import { constant } from "../constants/server.constant";
+import { constant } from "./../constants/server.constant";
 import { databaseActions } from "./actions.database";
 
 type GenericObject = { [key: string]: any };
@@ -77,10 +77,6 @@ export const addCustomFunction = (modelInstance: any, schema:GenericObject) => {
     /**
        * Give database entry to ModelRoles if not present
        */
-      console.log(modelInstance);
-      console.log(this);
-      
-      console.log("roleIdentifier = ", roleIdentifier);
       /**
        * Get role by roleIdentifier 
        * Where roleIdentifier if string then find By slug 
@@ -88,9 +84,9 @@ export const addCustomFunction = (modelInstance: any, schema:GenericObject) => {
        */
       let role: GenericObject;
       if(typeof roleIdentifier === "number"){
-        role = await databaseActions.findByPk("ums", "Roles", roleIdentifier);
+        role = await databaseActions.findByPk(schema?.database, "Roles", roleIdentifier);
       }else{
-        role = await databaseActions.findOne("ums", "Roles", {where: {slug: roleIdentifier}});
+        role = await databaseActions.findOne(schema?.database, "Roles", {where: {slug: roleIdentifier}});
       }
       await databaseActions.create(schema?.database, "ModelRoles", {
         model: schema?.table || "Unknown",
@@ -100,24 +96,49 @@ export const addCustomFunction = (modelInstance: any, schema:GenericObject) => {
       });
 
     };
-    modelInstance.prototype.revokeRole = async (databaseName: string, roleIdentifier: string|number) => {
-      console.log("roleIdentifier = ", roleIdentifier);
-      await databaseActions.create(databaseName, "ModelRoles", {
-        model: "pritam",
-        modelId: roleIdentifier
+    modelInstance.prototype.revokeRole = async (modelID:number, roleIdentifier: string|number) => {
+      let role: GenericObject;
+      if(typeof roleIdentifier === "number"){
+        role = await databaseActions.findByPk(schema?.database, "Roles", roleIdentifier);
+      }else{
+        role = await databaseActions.findOne(schema?.database, "Roles", {where: {slug: roleIdentifier}});
+      }
+      await databaseActions.update(schema?.database, "ModelRoles", {status: constant.entityStatus.DELETED}, {
+        where: {modelID: modelID, roleID: role.id}
       });
-
     };
   }
   if(schema?.enablePermissions){
-    modelInstance.prototype.assignPermission = (databaseName: string, permissionIdentifier: string|number) => {
+    modelInstance.prototype.assignPermission = async (modelID: number, permissionIdentifier: string|number) => {
     /**
      * Give database entry to ModelPermissions if not present
      */
       console.log("permissionIdentifier = ", permissionIdentifier);
+      let permission: GenericObject;
+      if(typeof permissionIdentifier === "number"){
+        permission = await databaseActions.findByPk(schema?.database, "Permissions", permissionIdentifier);
+      }else{
+        permission = await databaseActions.findOne(schema?.database, "Permissions", {where: {slug: permissionIdentifier}});
+      }
+
+      await databaseActions.create(schema?.database, "ModelPermissions", {
+        model: schema?.table || "Unknown",
+        modelID: modelID, // 
+        permissionID: permission.id, // determine from database
+        status: constant.entityStatus.ACTIVE
+      });
     };
-    modelInstance.prototype.revokePermission = (databaseName: string, permissionIdentifier: string|number) => {
-      console.log("permissionIdentifier = ", permissionIdentifier);
+    modelInstance.prototype.revokePermission = async(modelID: number, permissionIdentifier: string|number) => {
+      let permission: GenericObject;
+      if(typeof permissionIdentifier === "number"){
+        permission = await databaseActions.findByPk(schema?.database, "Permissions", permissionIdentifier);
+      }else{
+        permission = await databaseActions.findOne(schema?.database, "Permissions", {where: {slug: permissionIdentifier}});
+      }
+
+      await databaseActions.update(schema?.database, "ModelPermissions", { status: constant.entityStatus.DELETED }, {
+        where: {modelID: modelID, permissionID: permission.id }
+      });
     };
   }
 
