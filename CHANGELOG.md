@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.110](https://github.com/wrappid/service-core/compare/v0.0.109...v0.0.110) (2024-08-05)
+
 ### [0.0.109](https://github.com/wrappid/service-core/compare/v0.0.108...v0.0.109) (2024-06-25)
 
 
