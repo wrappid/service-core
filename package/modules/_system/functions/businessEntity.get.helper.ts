@@ -221,6 +221,7 @@ const getEntityDataName = async (entityName: string, query: GenericObject) => {
     WrappidLogger.error("getBusinessEntity.helper>getEntityData");
     WrappidLogger.error(error);
     WrappidLogger.error("-------------------------------------");
+    console.log(error);
     throw error;
   }
 };

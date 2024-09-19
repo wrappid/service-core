@@ -151,9 +151,9 @@ export default class WrappidApp {
     setupSwagger(this.wrappidApp,this.packageInfo,this.swagger);
 
     const serverInit = () => {
-      // console.log("###########################################");
-      // console.log(`Server is up and running on port ${this.port}...`);
-      // console.log("###########################################");
+      console.log("###########################################");
+      console.log(`Server is up and running on port ${this.port}...`);
+      console.log("###########################################");
       WrappidLogger.info("###########################################");
       WrappidLogger.info(`Server is up and running on port ${this.port}...`);
       WrappidLogger.info("###########################################");

@@ -66,7 +66,7 @@ export const setupModels = async () => {
            */
           const allModelJson = await databaseActions.findAll(databaseName, "ModelSchemas", {
             where: {
-              database: databaseName,
+              "schema.database": databaseName,
               _status: coreConstant.entityStatus.PUBLISHED
             }
           });

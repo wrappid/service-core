@@ -11,7 +11,7 @@ const setupFunctions = async () => {
 
   try {
     appFunctionsRegistry = AppFunctionsRegistry;
-    console.log(appFunctionsRegistry);
+    // console.log(appFunctionsRegistry);
   } catch (error:any) {
     WrappidLogger.error(error);
     throw error;
