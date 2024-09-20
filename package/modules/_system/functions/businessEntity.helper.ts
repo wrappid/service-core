@@ -376,13 +376,14 @@ function recurrsive_BusinessEntityWhere(dbName: any, schema: any, where: any) {
             };
           }
         } else {
-          if (whereKey.includes(".")) {
+          if (whereKey.includes(".") && /^[a-z]+\.[a-z]+$/.test(whereKey)==true) {
             whereOB["$" + whereKey + "$"] = whereVal;
           } else {
             whereOB[whereKey] = whereVal;
           }
         }
       }
+   
     }
   });
   return whereOB;
@@ -783,7 +784,7 @@ const getEntityOption = (databaseName: string, schema: GenericObject, query: any
         schema.where
       );
     }
-
+    options.logging = true;
     return options;
   } catch (error:any) {
     WrappidLogger.error("-------------------------------------");

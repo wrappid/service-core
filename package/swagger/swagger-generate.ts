@@ -95,7 +95,7 @@ const generateSwaggerSchemas = (modelSchemas: ModelSchema[]): { [key: string]: S
 export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
   const data = await databaseActions.findAll("application", "Routes", {
     where: {
-      source: "server-side",
+      "schema.source" : "server-side",
       _status: "published",
 
     }
@@ -107,11 +107,8 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
   // }
   const newSwaggerJson: { [key: string]: any } = {};
   data.forEach((element: any) => {
-
-    console.log(element.dataValues.extraInfo);
-
-    const path: string = element.dataValues.url;
-    const method: string = element.dataValues.reqMethod;
+    const path: string = element.dataValues.schema.url;
+    const method: string = element.dataValues.schema.reqMethod;
     const pathValue: any = {
       [method]: {
         "tags": [

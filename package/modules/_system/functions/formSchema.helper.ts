@@ -151,18 +151,18 @@ async function getFormSchemaFromDB(formID: string, auth: boolean) {
     const dbName = "application";
     const dbSequelize = databaseProvider[dbName].Sequelize;
     let whereClause: any = {
-      formID: formID,
+      name: formID,
       _status: coreConstant.entityStatus.PUBLISHED,
     };
     if (auth) {
-      whereClause["authRequired"] = true;
+      whereClause["extraInfo.authRequired"] = true;
     } else  {
       whereClause = {
         ...whereClause,
         [dbSequelize.Op.or]: [
-          { authRequired: true },
-          { authRequired: false },
-          { authRequired: null }
+          { "extraInfo.authRequired": true },
+          { "extraInfo.authRequired": false },
+          { "extraInfo.authRequired": null }
         ],
       };
     }

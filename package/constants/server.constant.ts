@@ -142,7 +142,7 @@ export const constant: constantType = {
     HTTP_GET: "get",
     HTTP_POST: "post",
     HTTP_PUT: "put",
-    HTTP_PATCH: "patch",
+    HTTP_PATCH: "PATCH",
   },
   contentType: {
     "TEXT_HTML":"text/html",

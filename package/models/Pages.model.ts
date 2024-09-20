@@ -61,7 +61,7 @@ export const Pages = (sequelize: any, DataTypes: any) => {
   pages.associate = (models: any) => {
     if (models.Users && models.Routes) {
       pages.hasMany(models.Routes, {
-        foreignKey: "pageRef",
+        foreignKey: "extraInfo.pageRef",
         sourceKey: "entityRef",
       });
       pages.belongsTo(models.Users, {

@@ -14,19 +14,22 @@ import { getNormalCaseFromCamelCase } from "../utils/strings.utils";
 export const getDatabases =  (req: any, res: any) => {
   try {
     WrappidLogger.logFunctionStart("getDatabases");
+    let _data;
     const databases = Object.keys(databaseProvider);
     const searchValue = req.query._searchValue;
-    const searchedDatabases = databases.filter(
-      (database) => database.toLowerCase().startsWith(searchValue)
-    );
-
-    const _data = {
-      rows: searchedDatabases.map((key) => {
-        return { id: key, label: key };
-      }),
-      totalRecords: Object.keys(searchedDatabases).length,
-    };
-
+    _data = databases;
+    if(searchValue){
+      const searchedDatabases = databases.filter(
+        (database) => database.toLowerCase().startsWith(searchValue)
+      );
+  
+      _data = {
+        rows: searchedDatabases.map((key) => {
+          return { id: key, label: key };
+        }),
+        totalRecords: Object.keys(searchedDatabases).length,
+      };
+    }
     res.status(200).json({
       data: _data,
       message: "Databases fetched successfully",

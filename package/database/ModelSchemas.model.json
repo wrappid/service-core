@@ -11,8 +11,12 @@
             "type": "STRING",
             "defaultValue": null
           },
-          "database": {
+          "desc": {
             "type": "STRING",
+            "defaultValue": null
+          }, 
+          "system": {
+            "type": "BOOLEAN",
             "defaultValue": null
           }, 
           "schema": {
