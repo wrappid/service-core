@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.112](https://github.com/wrappid/service-core/compare/v0.0.111...v0.0.112) (2024-10-10)
+
+
+### Bug Fixes
+
+* **global:** :bug: unable to read local routes ([d9686a4](https://github.com/wrappid/service-core/commit/d9686a4c764fc339854de52189902113c5b15e97)), closes [#185](https://github.com/wrappid/service-core/issues/185)
+
 ### [0.0.111](https://github.com/wrappid/service-core/compare/v0.0.110...v0.0.111) (2024-09-20)
 
 
