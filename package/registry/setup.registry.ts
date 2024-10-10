@@ -54,7 +54,7 @@ export function setupLocalRegistryContext(registry: WrappidRegistryType) {
     ApplicationContext.setContext(constant.registry.MODELS__REGISTRY,{...CoreModelsRegistry, ...registry.ModelsRegistry});
     ApplicationContext.setContext(constant.registry.TASKS_REGISTRY,{...CoreTasksRegistry, ...registry.TasksRegistry});
     ApplicationContext.setContext(constant.registry.VALIDATIONS_REGISTRY,{...CoreValidationsRegistry, ...registry.ValidationsRegistry});
-    ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...CoreRoutesRegistry, ...registry.RoutesRegistry.default});
+    ApplicationContext.setContext(constant.registry.ROUTES_REGISTRY,{...CoreRoutesRegistry, ...registry.RoutesRegistry});
   } catch (error:any) {
     WrappidLogger.error(error);
     throw error;
