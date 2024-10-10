@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.111](https://github.com/wrappid/service-core/compare/v0.0.110...v0.0.111) (2024-09-20)
+
+
+### Bug Fixes
+
+* **core:** :zap: impact handling app-builder model structure change ([c69179f](https://github.com/wrappid/service-core/commit/c69179ff725b5a18e8e10687f458192d25b89d8d)), closes [#185](https://github.com/wrappid/service-core/issues/185)
+
 ### [0.0.110](https://github.com/wrappid/service-core/compare/v0.0.109...v0.0.110) (2024-08-05)
 
 ### [0.0.109](https://github.com/wrappid/service-core/compare/v0.0.108...v0.0.109) (2024-06-25)
