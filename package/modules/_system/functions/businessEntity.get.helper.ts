@@ -131,9 +131,10 @@ const getEntityColumns = async (db: any, entityName: any) => {
  * @param db : db value
  * @param entityName : entityName value
  * @param query : query value
+ * @param user : user value
  * @returns
  */
-const getEntityDataName = async (entityName: string, query: GenericObject) => {
+const getEntityDataName = async (entityName: string, query: GenericObject, user?:GenericObject) => {
   try {
     WrappidLogger.logFunctionStart("getEntityDataName");
     const db = "application";
@@ -152,12 +153,18 @@ const getEntityDataName = async (entityName: string, query: GenericObject) => {
       query
     );
     let finalWhereOB = {};
+
+    const applicationsData = await databaseActions.findOne("application", "Applications", {
+      where: { appID: query?.appID }
+    });
+
     finalWhereOB = getFinalWhereClause(
       entityDatabaseName,
       schema,
       query?._defaultFilter,
       query?._searchValue
     );
+
 
     // order filter
     const orderOB = prepareOrderOB(entityDatabaseName, schema, query?._order);
@@ -201,14 +208,20 @@ const getEntityDataName = async (entityName: string, query: GenericObject) => {
       ];
     }
 
+    const columns = getColumnsFromSchema(entityDatabaseName, schema);
+
     if (query?.offset) {
       _options["offset"] = query?.offset;
     }
     if (query?.limit) {
       _options["limit"] = query?.limit;
     }
+    const appIDExists = columns?.filter(col=>col.id==="appID").length == 1 || false;
+    if(query?.appID && appIDExists===true && (user?.roleId !==1 || !user ) ){
+      _options.where.appID = applicationsData?.id;
+      // _options.where = //call function add appid clause sent appID and existing where clause
+    }
 
-    const columns = getColumnsFromSchema(entityDatabaseName, schema);
     const { count, rows } = await databaseActions.findAndCountAll(
       entityDatabaseName,
       schema?.model,

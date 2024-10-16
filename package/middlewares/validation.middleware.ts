@@ -1,9 +1,14 @@
+import * as Yup from "yup";
 import { WrappidLogger } from "../logging/wrappid.logger";
 
 export const validation =
   (schema: any) => async (req: any, res: any, next: any) => {
     WrappidLogger.logFunctionStart("validation");
     try {
+      // expecting appID in query
+      schema.query = Yup.object().shape({
+        appID: Yup.string().notRequired()
+      });
       if (schema.body) {
         await schema.body.validate(req.body);
       }

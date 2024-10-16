@@ -152,7 +152,7 @@ const getAllEntityData = async (req: any, res: any) => {
       return;
     }
 
-    const data: any = await getEntityDataName(entity, req.query);
+    const data: any = await getEntityDataName(entity, req.query, req?.user);
 
     if (!data || data.length === 0) {
       res.status(204).json({ message: "Entity is missing" });

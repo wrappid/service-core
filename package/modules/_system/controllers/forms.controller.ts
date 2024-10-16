@@ -19,7 +19,7 @@ const getNoAuthFormSchema = async (req: any, res: any) => {
         .json({ message: "formID is missing api path parameter" });
     }
 
-    const formSchema = await formsController.getFormSchema(formID, false);
+    const formSchema = await formsController.getFormSchema(formID, false);//sent appID from req query
 
     if (formSchema) {
       res.status(200).json({
@@ -58,7 +58,7 @@ const getFormSchema = async (req: any, res: any) => {
         .json({ message: "formID is missing api path parameter" });
     }
 
-    const formSchema = await formsController.getFormSchema(formID);
+    const formSchema = await formsController.getFormSchema(formID);//sent appID
 
     if (formSchema) {
       res.status(200).json({
