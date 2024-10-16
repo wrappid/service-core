@@ -62,7 +62,7 @@ async function generateFormSchema(modelName: string) {
     const schema = await getEntitySchema(modelName);
     let fieldsData: any = [];
     if (schema && schema?.model) {
-      const entityDB = "application" || schema?.database;
+      const entityDB = schema?.database || "application";
       fieldsData = getColumnsFromSchema(entityDB, schema)?.filter(
         (col: any) => {
           return !auditAttributes.includes(col.id);
@@ -151,7 +151,7 @@ async function getFormSchemaFromDB(formID: string, auth: boolean) {
     const dbName = "application";
     const dbSequelize = databaseProvider[dbName].Sequelize;
     let whereClause: any = {
-      name: formID,
+      entityRef: formID,
       _status: coreConstant.entityStatus.PUBLISHED,
     };
     if (auth) {
