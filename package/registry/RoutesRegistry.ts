@@ -34,7 +34,9 @@ const RoutesRegistry = {
       "tags": [
         "service-core"
       ]
-    }
+    },
+
+
   },
   ..._systemRoutesRegistry
 };
