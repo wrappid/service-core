@@ -1,3 +1,4 @@
+export {};
 // /**
 //  * @todo
 //  * must get it from application context
