@@ -52,6 +52,31 @@ type Schemas = {
   };
 };
 
+/**
+ *  Convert url pattern to swagger pattern
+ * @param input string
+ * @returns 
+ */
+function convertUrlPattern(input:string) {
+  // If input is empty or not a string, return as is
+  if (!input || typeof input !== "string") {
+    return input;
+  }
+
+  // Check if the input contains colon parameters
+  if (input.includes(":")) {
+    // Convert from :param to {param}
+    return "/"+input.replace(/:([^/]+)/g, "{$1}");
+  } 
+  // Check if the input contains curly brace parameters
+  else if (input.includes("{")) {
+    // Convert from {param} to :param
+    return "/"+input.replace(/\{([^}]+)\}/g, ":$1");
+  }
+  // If no parameters found, return as is
+  return "/"+input;
+}
+
 const convertColumnType = (type: string): { type: string; format?: string; example?: any } => {
   switch (type.toUpperCase()) {
     case "INTEGER":
@@ -106,7 +131,7 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
         return;
       }
     }
-    const path: string = "/" + route.url;
+    const path: string = convertUrlPattern( route.url);
     const method: string = route.reqMethod;
     const pathValue: any = {
       [method]: {
@@ -114,6 +139,7 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
           route?.swaggerJson?.tags,
         ],
         "summary": route?.title,
+        "parameters": route?.swaggerJson?.parameters,
         "description": route?.description,
         "requestBody": route?.swaggerJson?.requestBody,
         "responses": route?.swaggerJson?.responses,

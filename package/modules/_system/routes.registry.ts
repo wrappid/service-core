@@ -2436,7 +2436,7 @@ const _systemRoutesRegistry = {
   postDataModelSync: {
     title: "Post data model sync",
     url: "data/sync/:model",
-    authRequired: false,
+    authRequired: true,
     entityRef: "postDataModelSync",
     reqMethod: "post",
     controllerRef: "postDataModelSync",
@@ -2444,8 +2444,17 @@ const _systemRoutesRegistry = {
     swaggerJson: {
       "tags": [
         "service-core"
-      ]
+      ],
+      "security": [
+        {
+          "bearerAuth": [
+            "jwtbearer"
+          ]
+        }
+      ],
     }
   }
 };
 export default _systemRoutesRegistry;
+
+
