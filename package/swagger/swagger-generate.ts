@@ -1,6 +1,5 @@
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
-import { databaseActions } from "../database/actions.database";
 import { GenericObject } from "../types/generic.types";
 
 
@@ -53,6 +52,31 @@ type Schemas = {
   };
 };
 
+/**
+ *  Convert url pattern to swagger pattern
+ * @param input string
+ * @returns 
+ */
+function convertUrlPattern(input:string) {
+  // If input is empty or not a string, return as is
+  if (!input || typeof input !== "string") {
+    return input;
+  }
+
+  // Check if the input contains colon parameters
+  if (input.includes(":")) {
+    // Convert from :param to {param}
+    return "/"+input.replace(/:([^/]+)/g, "{$1}");
+  } 
+  // Check if the input contains curly brace parameters
+  else if (input.includes("{")) {
+    // Convert from {param} to :param
+    return "/"+input.replace(/\{([^}]+)\}/g, ":$1");
+  }
+  // If no parameters found, return as is
+  return "/"+input;
+}
+
 const convertColumnType = (type: string): { type: string; format?: string; example?: any } => {
   switch (type.toUpperCase()) {
     case "INTEGER":
@@ -93,37 +117,37 @@ const generateSwaggerSchemas = (modelSchemas: ModelSchema[]): { [key: string]: S
 };
 
 export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
-  const data = await databaseActions.findAll("application", "Routes", {
-    where: {
-      "schema.source" : "server-side",
-      _status: "published",
-
-    }
-  });
   const models:ModelSchema[] = ApplicationContext.getContext(constant.registry.MODELS__REGISTRY);
+  const allRoutes = ApplicationContext.getContext(constant.registry.ROUTES_REGISTRY);
   const modelsSchema = generateSwaggerSchemas(models);
   // if (swaggerJson.components["schemas"] === undefined) {
   swaggerJson.components["schemas"] = modelsSchema;
   // }
   const newSwaggerJson: { [key: string]: any } = {};
-  data.forEach((element: any) => {
-    const path: string = element.dataValues.schema.url;
-    const method: string = element.dataValues.schema.reqMethod;
+  Object.keys(allRoutes).forEach((key) => {
+    const route = allRoutes[key];
+    if(route?._status != undefined){
+      if(route?._status != "published"){
+        return;
+      }
+    }
+    const path: string = convertUrlPattern( route.url);
+    const method: string = route.reqMethod;
     const pathValue: any = {
       [method]: {
         "tags": [
-          element.dataValues.extraInfo?.tags,
+          route?.swaggerJson?.tags,
         ],
-        "summary": element.dataValues.title,
-        "description": element.dataValues.description,
-        "requestBody": element.dataValues.extraInfo?.requestBody,
-        "responses": element.dataValues.extraInfo?.responses,
-        "security": element.dataValues.extraInfo?.security
+        "summary": route?.title,
+        "parameters": route?.swaggerJson?.parameters,
+        "description": route?.description,
+        "requestBody": route?.swaggerJson?.requestBody,
+        "responses": route?.swaggerJson?.responses,
+        "security": route?.swaggerJson?.security
       }
 
     };
     newSwaggerJson[path] = pathValue;
-
   });
 
   if (swaggerJson["paths"] === undefined) {
