@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.118](https://github.com/wrappid/service-core/compare/v0.0.117...v0.0.118) (2024-10-22)
+
+
+### Bug Fixes
+
+* **core:** :bug: swagger api docs not generated fix ([282b948](https://github.com/wrappid/service-core/commit/282b948bc69e50012b05529d75929559302397c1)), closes [#191](https://github.com/wrappid/service-core/issues/191)
+
 ### [0.0.117](https://github.com/wrappid/service-core/compare/v0.0.116...v0.0.117) (2024-10-22)
 
 ### [0.0.116](https://github.com/wrappid/service-core/compare/v0.0.115...v0.0.116) (2024-10-22)
