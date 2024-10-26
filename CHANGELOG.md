@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.120](https://github.com/wrappid/service-core/compare/v0.0.119...v0.0.120) (2024-10-26)
+
+
+### Features
+
+* **core:** :sparkles: communication history store in database ([b30ece4](https://github.com/wrappid/service-core/commit/b30ece43b95a77eeefffabb9bcc51c06581dd90e)), closes [#191](https://github.com/wrappid/service-core/issues/191)
+
 ### [0.0.119](https://github.com/wrappid/service-core/compare/v0.0.118...v0.0.119) (2024-10-22)
 
 
