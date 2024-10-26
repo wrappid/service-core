@@ -45,7 +45,8 @@ const communicate = async (smsOptions: any) => {
             .then((data: any) => {
               console.log(data);
               if (data.includes("Sent.c")) {
-                return true;
+                return { status: true, data: data };
+                // return true;
               } else {
                 WrappidLogger.error("SMS sent failed");
                 throw new Error("SMS sent failed");
