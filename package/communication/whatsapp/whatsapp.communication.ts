@@ -58,9 +58,7 @@ async function communicate(whatsappOptions: any) {
             throw data.error;
           } else
             return {
-              status: 200,
-              success: true,
-              error: null,
+              status: true,
               data: data,
             };
         })

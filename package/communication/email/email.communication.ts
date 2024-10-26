@@ -44,7 +44,8 @@ const communicate = async (mailOptions: any) => {
             WrappidLogger.info("Email sent.................");
             WrappidLogger.info(<string>res);
             // console.log(res);
-            return true;
+            return {status: true, data:res};
+            // return true;
           })
           .catch((error) => {
             WrappidLogger.info("Email sent failed.................");
