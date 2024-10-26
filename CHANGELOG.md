@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.119](https://github.com/wrappid/service-core/compare/v0.0.118...v0.0.119) (2024-10-22)
+
+
+### Bug Fixes
+
+* **global:** :bug: empty file  error fix ([fc7dca8](https://github.com/wrappid/service-core/commit/fc7dca8e7554113de7543b1e809702cd8773b1d6)), closes [#191](https://github.com/wrappid/service-core/issues/191)
+
 ### [0.0.118](https://github.com/wrappid/service-core/compare/v0.0.117...v0.0.118) (2024-10-22)
 
 
