@@ -53,8 +53,8 @@ const getBusinessEntities = async (req: any, res: any) => {
  * @param res : res value
  * @returns
  */
-const getEntityData = async (req: any, res: any) => {
-  WrappidLogger.logFunctionStart("getEntityData");
+const getEntityCount = async (req: any, res: any) => {
+  WrappidLogger.logFunctionStart("getEntityCount");
   const entity = req.params.entity;
 
   console.log(`entity=${entity}`);
@@ -85,6 +85,8 @@ const getEntityData = async (req: any, res: any) => {
       error: error?.message || error,
       message: "Something went wrong",
     });
+  } finally {
+    WrappidLogger.logFunctionEnd("getEntityCount");
   }
 };
 
@@ -218,7 +220,7 @@ const noAuthGetAllEntityData = async (req: any, res: any) => {
 
 export {
   getAllEntityData, getBusinessEntities,
-  getEntityData,
+  getEntityCount,
   getIndividualEntityData, noAuthGetAllEntityData
 };
 

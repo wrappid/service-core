@@ -123,18 +123,19 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
   // if (swaggerJson.components["schemas"] === undefined) {
   swaggerJson.components["schemas"] = modelsSchema;
   // }
-  const newSwaggerJson: { [key: string]: any } = {};
+  const newSwaggerJson: GenericObject = {};
   Object.keys(allRoutes).forEach((key) => {
     const route = allRoutes[key];
+    let pathValue: any = {};
     if(route?._status != undefined){
       if(route?._status != "published"){
         return;
       }
     }
+    const method: string = (route.reqMethod).toLowerCase();
     const path: string = convertUrlPattern( route.url);
-    const method: string = route.reqMethod;
-    const pathValue: any = {
-      [method]: {
+    if (Object.hasOwnProperty.call(newSwaggerJson, path)) {
+      newSwaggerJson[path] ={...newSwaggerJson[path], [method]: {
         "tags": [
           route?.swaggerJson?.tags,
         ],
@@ -144,10 +145,25 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
         "requestBody": route?.swaggerJson?.requestBody,
         "responses": route?.swaggerJson?.responses,
         "security": route?.swaggerJson?.security
-      }
-
-    };
-    newSwaggerJson[path] = pathValue;
+      }};
+      console.log("The object has its own 'age' property.");
+    }else{
+      pathValue = {
+        [method]: {
+          "tags": [
+            route?.swaggerJson?.tags,
+          ],
+          "summary": route?.title,
+          "parameters": route?.swaggerJson?.parameters,
+          "description": route?.description,
+          "requestBody": route?.swaggerJson?.requestBody,
+          "responses": route?.swaggerJson?.responses,
+          "security": route?.swaggerJson?.security
+        }
+      };
+      newSwaggerJson[path] = pathValue;
+    }
+   
   });
 
   if (swaggerJson["paths"] === undefined) {

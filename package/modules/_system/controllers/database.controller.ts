@@ -92,9 +92,9 @@ const getDatabaseTables = (req: any, res: any) => {
  * @param res : res value
  * @returns
  */
-const getAttributes = async (req: any, res: any) => {
+const getTableAttributes = async (req: any, res: any) => {
   try {
-    WrappidLogger.logFunctionStart("getAttributes");
+    WrappidLogger.logFunctionStart("getTableAttributes");
     const database = req.params.database;
     const table = req.params.table;
     // eslint-disable-next-line no-unused-vars
@@ -124,7 +124,7 @@ const getAttributes = async (req: any, res: any) => {
     WrappidLogger.error(error);
     res.status(500).json({ message: "Error to fetch attributes" });
   } finally {
-    WrappidLogger.logFunctionEnd("getAttributes");
+    WrappidLogger.logFunctionEnd("getTableAttributes");
   }
 };
 
@@ -165,4 +165,4 @@ const getBusinessEntityColumns = async (req: any, res: any) => {
   }
 };
 
-export { getAttributes, getBusinessEntityColumns, getDatabaseTables };
+export { getTableAttributes, getBusinessEntityColumns, getDatabaseTables };

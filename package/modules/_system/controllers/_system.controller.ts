@@ -18,6 +18,10 @@ export const getVersion = async (req: Request, res: Response) => {
 export const getSettingMeta = async (req:Request, res:Response) => {
   try{
     WrappidLogger.logFunctionStart("getSettingMeta");
+    /**
+     * @todo
+     * Provide settingsmeta based on appID
+     */
     const {status, ...restData} = await getSettingMetaFunc();
     res.status(status).json({
       ...restData

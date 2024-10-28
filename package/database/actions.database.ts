@@ -12,12 +12,17 @@ export const databaseActions = {
    * @returns 
    */
   findAndCountAll: async (database: string, model: string, options?: any, transaction?: any ) => {
-    WrappidLogger.logFunctionStart("databaseActions.findAndCountAll");
-    if(databaseProvider && Object.keys(databaseProvider).length > 0){
-      return await databaseProvider[database].models[model].findAndCountAll(options, transaction);
-    } else {
-      WrappidLogger.error("WrappidError: databases not setup successfully.");
-      throw new Error("WrappidError: databases not setup successfully.");
+    try{
+      WrappidLogger.logFunctionStart("databaseActions.findAndCountAll");
+      if(databaseProvider && Object.keys(databaseProvider).length > 0){
+        return await databaseProvider[database].models[model].findAndCountAll(options, transaction);
+      } else {
+        WrappidLogger.error("WrappidError: databases not setup successfully.");
+        throw new Error("WrappidError: databases not setup successfully.");
+      }
+    } catch (error:any) {
+      WrappidLogger.error("Error: " + error);
+      throw error;
     }
   },
 
@@ -31,12 +36,17 @@ export const databaseActions = {
    * @returns 
    */
   findAll: async (database: string, model: string, options?: any, transaction?: any) => {
-    WrappidLogger.logFunctionStart("databaseActions.findAll");
-    if(databaseProvider && Object.keys(databaseProvider).length > 0){
-      return await databaseProvider[database].models[model].findAll(options, transaction);
-    } else {
-      WrappidLogger.error("WrappidError: databases not setup successfully.");
-      throw new Error("WrappidError: databases not setup successfully.");
+    try{
+      WrappidLogger.logFunctionStart("databaseActions.findAll");
+      if(databaseProvider && Object.keys(databaseProvider).length > 0){
+        return await databaseProvider[database].models[model].findAll(options, transaction);
+      } else {
+        WrappidLogger.error("WrappidError: databases not setup successfully.");
+        throw new Error("WrappidError: databases not setup successfully.");
+      }
+    } catch (error:any) {
+      WrappidLogger.error("Error: " + error);
+      throw error;
     }
   },
 
@@ -50,12 +60,17 @@ export const databaseActions = {
    * @returns 
    */
   delete: async (database: string, model: string, data: any, transaction?: any) => {
-    WrappidLogger.logFunctionStart("databaseActions.delete");
-    if(databaseProvider && Object.keys(databaseProvider).length > 0){
-      return await databaseProvider[database].models[model].destroy(data, transaction);
-    } else {
-      WrappidLogger.error("WrappidError: databases not setup successfully.");
-      throw new Error("WrappidError: databases not setup successfully.");
+    try{
+      WrappidLogger.logFunctionStart("databaseActions.delete");
+      if(databaseProvider && Object.keys(databaseProvider).length > 0){
+        return await databaseProvider[database].models[model].destroy(data, transaction);
+      } else {
+        WrappidLogger.error("WrappidError: databases not setup successfully.");
+        throw new Error("WrappidError: databases not setup successfully.");
+      }
+    } catch (error:any) {
+      WrappidLogger.error("Error: " + error);
+      throw error;
     }
   },
 
@@ -77,13 +92,18 @@ export const databaseActions = {
     transaction?: any
   ) => {
     WrappidLogger.logFunctionStart("databaseActions.update");
-    if(databaseProvider && Object.keys(databaseProvider).length > 0){
-      return await databaseProvider[database].models[model].update(
-        data, where, transaction
-      );
-    } else {
-      WrappidLogger.error("WrappidError: databases not setup successfully.");
-      throw new Error("WrappidError: databases not setup successfully.");
+    try {
+      if(databaseProvider && Object.keys(databaseProvider).length > 0){
+        return await databaseProvider[database].models[model].update(
+          data, where, transaction
+        );
+      } else {
+        WrappidLogger.error("WrappidError: databases not setup successfully.");
+        throw new Error("WrappidError: databases not setup successfully.");
+      }
+    } catch (error:any) {
+      WrappidLogger.error("Error: " + error);
+      throw error;
     }
   },
 
@@ -97,14 +117,19 @@ export const databaseActions = {
    * @returns 
    */
   findOne: async (database: string, model: string, data: any, transaction?: any) => {
-    WrappidLogger.logFunctionStart("databaseActions.findOne");
-    if(databaseProvider && Object.keys(databaseProvider).length > 0){
+    try{
+      WrappidLogger.logFunctionStart("databaseActions.findOne");
+      if(databaseProvider && Object.keys(databaseProvider).length > 0){
       // console.log("::---", data, "---::");
-      WrappidLogger.info(`::--- ${data} ---::`);
-      return await databaseProvider[database].models[model].findOne(data, transaction);
-    } else {
-      WrappidLogger.error("WrappidError: databases not setup successfully.");
-      throw new Error("WrappidError: databases not setup successfully.");
+        WrappidLogger.info(`::--- ${data} ---::`);
+        return await databaseProvider[database].models[model].findOne(data, transaction);
+      } else {
+        WrappidLogger.error("WrappidError: databases not setup successfully.");
+        throw new Error("WrappidError: databases not setup successfully.");
+      }
+    } catch (error:any) {
+      WrappidLogger.error("Error: " + error);
+      throw error;
     }
   },
 
@@ -123,12 +148,17 @@ export const databaseActions = {
     data: any,
     transaction?: any
   ) => {
-    WrappidLogger.logFunctionStart("databaseActions.create");
-    if(databaseProvider && Object.keys(databaseProvider).length > 0){
-      return await databaseProvider[database].models[model].create(data, transaction);
-    } else {
-      WrappidLogger.error("WrappidError: databases not setup successfully.");
-      throw new Error("WrappidError: databases not setup successfully.");
+    try{
+      WrappidLogger.logFunctionStart("databaseActions.create");
+      if(databaseProvider && Object.keys(databaseProvider).length > 0){
+        return await databaseProvider[database].models[model].create(data, transaction);
+      } else {
+        WrappidLogger.error("WrappidError: databases not setup successfully.");
+        throw new Error("WrappidError: databases not setup successfully.");
+      }
+    } catch (error:any) {
+      WrappidLogger.error("Error: " + error);
+      throw error;
     }
   },
 
@@ -143,12 +173,17 @@ export const databaseActions = {
    * @returns 
    */
   findByPk: async (database: string, model: string, primaryKey: number, options?: any,  transaction?: any) => {
-    WrappidLogger.logFunctionStart("databaseActions.findByPk");
-    if(databaseProvider && Object.keys(databaseProvider).length > 0){
-      return await databaseProvider[database].models[model].findByPk(primaryKey, options, transaction);
-    } else {
-      WrappidLogger.error("WrappidError: databases not setup successfully.");
-      throw new Error("WrappidError: databases not setup successfully.");
+    try{
+      WrappidLogger.logFunctionStart("databaseActions.findByPk");
+      if(databaseProvider && Object.keys(databaseProvider).length > 0){
+        return await databaseProvider[database].models[model].findByPk(primaryKey, options, transaction);
+      } else {
+        WrappidLogger.error("WrappidError: databases not setup successfully.");
+        throw new Error("WrappidError: databases not setup successfully.");
+      }
+    } catch (error:any) {
+      WrappidLogger.error("Error: " + error);
+      throw error;
     }
   },
 };

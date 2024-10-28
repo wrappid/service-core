@@ -79,9 +79,9 @@ export const patchDatabaseModel = async (req: any, res: Response) => {
   }
 };
 
-export const getDatabaseModels = async (req: Request, res: Response) => {
+export const getModelsData = async (req: Request, res: Response) => {
   try {
-    WrappidLogger.logFunctionStart("getDatabaseModels");
+    WrappidLogger.logFunctionStart("getModelsData");
     const result = await getDatabaseModelsFunc(req);
     const {status, ...resData} = result;
     res.status(status).json(resData);
@@ -89,6 +89,8 @@ export const getDatabaseModels = async (req: Request, res: Response) => {
     // console.log("Error:: " error);
     WrappidLogger.error(error);
     res.status(500).json({message: error.message});
+  }finally{
+    WrappidLogger.logFunctionEnd("getModelsData");
   }
 };
 

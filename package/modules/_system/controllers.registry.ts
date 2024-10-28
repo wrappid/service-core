@@ -11,12 +11,12 @@ const AppBuilderControllersRegistry = {
   //database
   getDatabases: databaseController.getDatabases,
   getDatabaseTables: databaseController.getDatabaseTables,
-  getAttributes: databaseController.getAttributes,
+  getTableAttributes: databaseController.getTableAttributes,
   getBusinessEntityColumns: databaseController.getBusinessEntityColumns,
 
   //business controller
   getBusinessEntities: businessController.getBusinessEntities,
-  getEntityData: businessController.getEntityData,
+  getEntityCount: businessController.getEntityCount,
   getIndividualEntityData: businessController.getIndividualEntityData,
   getAllEntityData: businessController.getAllEntityData,
   noAuthGetAllEntityData: businessController.noAuthGetAllEntityData,
@@ -39,7 +39,7 @@ const AppBuilderControllersRegistry = {
   masterData: [validation(getMasterData), _systemController.masterData],
 
   getModels: [dataController.getModels],
-  getDatabaseModels: [dataController.getDatabaseModels],
+  getModelsData: [dataController.getModelsData],
   getDatabaseModelRow: [dataController.getDatabaseModelRow],
   postDatabaseModel: [dataController.postDatabaseModel],
   putUpdateStatus: [dataController.putUpdateStatus],
