@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.121](https://github.com/wrappid/service-core/compare/v0.0.120...v0.0.121) (2024-10-28)
+
+
+### Features
+
+* **core:** :sparkles: swagger multiple  enpoint fix ([f4c6d44](https://github.com/wrappid/service-core/commit/f4c6d44527e631108b9fc6f96f31e2131fb4e049)), closes [#191](https://github.com/wrappid/service-core/issues/191)
+
 ### [0.0.120](https://github.com/wrappid/service-core/compare/v0.0.119...v0.0.120) (2024-10-26)
 
 
