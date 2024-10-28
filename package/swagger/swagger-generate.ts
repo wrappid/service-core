@@ -1,5 +1,6 @@
 import { constant } from "../constants/server.constant";
 import { ApplicationContext } from "../context/application.context";
+import { WrappidLogger } from "../logging/wrappid.logger";
 import { GenericObject } from "../types/generic.types";
 
 
@@ -117,6 +118,7 @@ const generateSwaggerSchemas = (modelSchemas: ModelSchema[]): { [key: string]: S
 };
 
 export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
+  WrappidLogger.info("Generating swagger json");
   const models:ModelSchema[] = ApplicationContext.getContext(constant.registry.MODELS__REGISTRY);
   const allRoutes = ApplicationContext.getContext(constant.registry.ROUTES_REGISTRY);
   const modelsSchema = generateSwaggerSchemas(models);
@@ -125,6 +127,7 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
   // }
   const newSwaggerJson: GenericObject = {};
   Object.keys(allRoutes).forEach((key) => {
+    WrappidLogger.info(`Generating swagger json for ${key}`);
     const route = allRoutes[key];
     let pathValue: any = {};
     if(route?._status != undefined){
@@ -135,6 +138,7 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
     const method: string = (route.reqMethod).toLowerCase();
     const path: string = convertUrlPattern( route.url);
     if (Object.hasOwnProperty.call(newSwaggerJson, path)) {
+      WrappidLogger.info(`Duplicate path ${path} exist`);
       newSwaggerJson[path] ={...newSwaggerJson[path], [method]: {
         "tags": [
           route?.swaggerJson?.tags,
@@ -146,7 +150,6 @@ export const generateSwaggerJson = async (swaggerJson: GenericObject) => {
         "responses": route?.swaggerJson?.responses,
         "security": route?.swaggerJson?.security
       }};
-      console.log("The object has its own 'age' property.");
     }else{
       pathValue = {
         [method]: {
