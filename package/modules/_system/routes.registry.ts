@@ -1,6 +1,6 @@
 const _systemRoutesRegistry = {
   getVersion: {
-    title: "Get Version API",
+    title: "Get Version API test",
     url: "version",
     authRequired: false,
     entityRef: "getVersion",
@@ -103,6 +103,11 @@ const _systemRoutesRegistry = {
           ]
         }
       ],
+      "responses":{
+        "404": {
+          "description": "Request API Not Found!!"
+        },
+      }
     }
   },
   getDatabaseTables: {
@@ -248,13 +253,13 @@ const _systemRoutesRegistry = {
       },
     }
   },
-  getAttributes: {
+  getTableAttributes: {
     title: "Get Table Attributes",
     url: "business/tables/attributes/:database/:table",
     authRequired: true,
-    entityRef: "getAttributes",
+    entityRef: "getTableAttributes",
     reqMethod: "get",
-    controllerRef: "getAttributes",
+    controllerRef: "getTableAttributes",
     system: true,
     swaggerJson: {
       "tags": [
@@ -404,172 +409,13 @@ const _systemRoutesRegistry = {
       },
     }
   },
-  getBusinessEntityColumns: {
-    title: "Get Entity",
-    url: "noauth/business/columns/:entity",
-    authRequired: false,
-    entityRef: "getBusinessEntityColumns",
-    reqMethod: "get",
-    controllerRef: "getBusinessEntityColumns",
-    system: true,
-    swaggerJson: {
-      "tags": [
-        "service-core"
-      ],
-      "summary": "No Auth Business Entity Columns",
-      "description": "No Auth Business Entity Columns",
-      "operationId": "NoAuthBusinessEntityColumns",
-      "parameters": [
-        {
-          "name": "entity",
-          "in": "path",
-          "description": "Entity name to return",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Successful operation",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "data": {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "array",
-                        "xml": {
-                          "wrapped": true
-                        },
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "label": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      },
-                      "totalRecords": {
-                        "type": "integer"
-                      }
-                    }
-                  },
-                  "message": {
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {
-                "GetTablesAttributes": {
-                  "value": {
-                    "data": [
-                      {
-                        "id": "****",
-                        "name": "****",
-                        "type": "***"
-                      }
-                    ],
-                    "message": "Business entity columns found successfully"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "404": {
-          "description": "Request API Not Found!!"
-        },
-        "403": {
-          "description": "Forbidden!!",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "message": {
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {
-                "GetDatabaseTables": {
-                  "value": {
-                    "message": "Invalid request"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "500": {
-          "description": "Internal Server Error",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "error": {
-                    "type": "string"
-                  },
-                  "message": {
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {
-                "GetDatabaseTables": {
-                  "value": {
-                    "error": "Error: Entity is missing",
-                    "message": "Something went wrong"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  getBusinessEntities: {
-    title: "Get Business Entities",
-    url: "business/entities",
-    authRequired: true,
-    entityRef: "getBusinessEntities",
-    reqMethod: "get",
-    controllerRef: "getBusinessEntities",
-    system: true,
-    swaggerJson: {
-      "tags": [
-        "service-core"
-      ],
-      "security": [
-        {
-          "bearerAuth": [
-            "jwtbearer"
-          ]
-        }
-      ],
-    }
-  },
-  getEntityData: {
+  getEntityCount: {
     title: "Get Entity Count",
     url: "business/count/:entity",
     authRequired: true,
-    entityRef: "getEntityData",
+    entityRef: "getEntityCount",
     reqMethod: "get",
-    controllerRef: "getEntityData",
+    controllerRef: "getEntityCount",
     system: true,
     swaggerJson: {
       "tags": [
@@ -703,7 +549,7 @@ const _systemRoutesRegistry = {
     }
   },
   getIndividualEntityData: {
-    title: "Get Individual EntityData",
+    title: "Get Individual Entity Data",
     url: "business/individual/:entity",
     authRequired: true,
     entityRef: "getIndividualEntityData",
@@ -1003,6 +849,12 @@ const _systemRoutesRegistry = {
       ],
     }
   },
+  /**
+   * @todo
+   * Required routes:
+   * 1. /noauth/business/count/{entity}
+   * 2. /noauth/business/individual/{entity}
+   */
   noAuthGetAllEntityData: {
     title: "No Auth Get All Entity Data",
     url: "noauth/business/all/:entity",
@@ -1263,10 +1115,10 @@ const _systemRoutesRegistry = {
     }
   },
   getFormSchema: {
-    title: "Form Schema",
+    title: "Get Form Schema",
     url: "formSchema/:formID",
     authRequired: true,
-    entityRef: "formSchema",
+    entityRef: "getFormSchema",
     reqMethod: "get",
     controllerRef: "getFormSchema",
     system: true,
@@ -1381,10 +1233,10 @@ const _systemRoutesRegistry = {
     }
   },
   getSettingMeta:{
-    title: "Setting Meta",
+    title: "Get Setting Meta",
     url: "settingMeta",
     authRequired: true,
-    entityRef: "settingMeta",
+    entityRef: "getSettingMeta",
     reqMethod: "get",
     controllerRef: "getSettingMeta",
     system: true,
@@ -1399,158 +1251,22 @@ const _systemRoutesRegistry = {
           ]
         }
       ],
+      "responses":{}
     }
   },
-  getModels: {
-    title: "Get Database Models",
-    url: "models/:database",
-    authRequired: true,
-    entityRef: "getModels",
-    reqMethod: "get",
-    controllerRef: "getModels",
-    system: true,
-    swaggerJson: {
-      "tags": [
-        "service-core"
-      ],
-      "summary": "Get Database Models",
-      "description": "Get Database Models",
-      "operationId": "GetModels",
-      "parameters": [
-        {
-          "name": "model",
-          "in": "path",
-          "description": "Databse name for show models",
-          "required": false,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Successful operation",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "message": {
-                    "type": "string"
-                  },
-                  "data": {
-                    "type": "array"
-                  },
-                  "totalRecords": {
-                    "type": "number"
-                  }
-                }
-              },
-              "examples": {
-                "GetModels": {
-                  "value": {
-                    "message": "Models fetched successfully",
-                    "data": [
-                      {
-                        "id": 1,
-                        "name": "ApiRequestLogs"
-                      },
-                      {
-                        "id": 2,
-                        "name": "CronSchemas"
-                      },
-                      {
-                        "id": 3,
-                        "name": "Routes"
-                      },
-                      {
-                        "id": 4,
-                        "name": "Pages"
-                      },
-                      {
-                        "id": 5,
-                        "name": "Applications"
-                      }
-                    ],
-                    "totalRecords": 5
-                  }
-                }
-              }
-            }
-          }
-        },
-        "404": {
-          "description": "Request API Not Found!!"
-        },
-        "403": {
-          "description": "Forbidden!!",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "message": {
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {
-                "GetFormSchema": {
-                  "value": {
-                    "message": "Invalid request"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "500": {
-          "description": "Internal Server Error",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "error": {
-                    "type": "string"
-                  },
-                  "message": {
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {
-                "GetSettingMeta": {
-                  "value": {
-                    "message": "Error to fetch models"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "security": [
-        {
-          "bearerAuth": [
-            "jwtbearer"
-          ]
-        }
-      ],
-    }
-  },
-  getDatabaseModels: {
-    title: "Get database Models",
+  getModelsData: {
+    title: "Get Models Data",
     url: "data/:model",
     authRequired: true,
-    entityRef: "getDatabaseModels",
+    entityRef: "getModelsData",
     reqMethod: "get",
-    controllerRef: "getDatabaseModels",
+    controllerRef: "getModelsData",
     system: true,
     swaggerJson: {
       "tags": [
         "service-core"
-      ], "summary": "Not in use!!",
+      ], 
+      "summary": "Not in use!!",
       "description": "Not in use!!",
       "operationId": "getModels",
       "security": [
@@ -1560,6 +1276,7 @@ const _systemRoutesRegistry = {
           ]
         }
       ],
+      "responses":{}
     }
   },
   getDatabaseModelRow: {
