@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { WrappidLogger } from "../../../logging/wrappid.logger";
-import { getDatabaseModelRowFunc, getDatabaseModelsFunc, getModelsFunc, patchDatabaseModelFunc, postCloneDataModelFunc, postDataModelSyncFunc, postDatabaseModelFunc, putDatabaseModelFunc, putUpdateStatusFunc } from "../functions/data.function";
+import { createBulkData, getDatabaseModelRowFunc, getDatabaseModelsFunc, getMetaDatas, getModelsFunc, patchDatabaseModelFunc, postCloneDataModelFunc, postDataModelSyncFunc, postDatabaseModelFunc, putDatabaseModelFunc, putUpdateStatusFunc, updateBulkData } from "../functions/data.function";
 
 
 export const getModels = async (req: Request, res: Response) => {
@@ -124,3 +124,68 @@ export const postCloneDataModel = async (req: Request, res: Response) => {
     res.status(500).json({message: error.message});
   }
 };
+
+
+/**
+ * This function helps to create bulk data in meta table
+ * @param req : Request
+ * @param res : Response
+ */
+export const createMeataController = async (req:any, res:any) => {
+  try {
+    WrappidLogger.logFunctionStart("createMeataController");
+    const tableName:string = req.params.tableName;
+    const parentID = Number(req.params.parentID);
+    const bodyData = req.body;
+    const {status, ...resData} = await createBulkData(tableName, parentID, bodyData);
+    res.status(status).json(resData);
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    res.status(500).json({ message: error.message });
+  }finally{
+    WrappidLogger.logFunctionEnd("createMeataController");
+  }
+};
+
+/**
+ * This function helps to get meta data
+ * @param req : Req
+ * @param res : Res
+ */
+export const getMeataController = async(req:any, res:any) => {
+  try {
+    WrappidLogger.logFunctionStart("getMeataController");
+    const tableName:string = req.params.tableName;
+    const parentID = Number(req.params.parentID);
+    const {status, ...resData} = await getMetaDatas(tableName, parentID);
+    res.status(status).json(resData);
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    throw error;
+  }finally{
+    WrappidLogger.logFunctionEnd("getMeataController");
+  }
+};
+
+/**
+ * This function helps to update meta data
+ * @param req :
+ * @param res :
+ */
+export const updateMeataController = async(req:any, res:any) => {
+  try {
+    WrappidLogger.logFunctionStart("updateMeataController");
+    
+    const tableName:string = req.params.tableName;
+    const parentID = Number(req.params.parentID);
+    const bodyData = req.body;
+    const {status, ...resData} = await updateBulkData(tableName, parentID, bodyData);
+    res.status(status).json(resData);
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    throw error;
+  }finally{
+    WrappidLogger.logFunctionEnd("updateMeataController");
+  }
+};
+
