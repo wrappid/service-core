@@ -761,7 +761,7 @@ export const updateBulkData = async (tableName: string, parentID: number, bodyDa
     processData.forEach(newItem => {
       const existingRecord = existingRecords.find((record:any) => record.key === newItem.key);
       
-      if (existingRecord && existingRecord.value === newItem.value) {
+      if ((existingRecord && existingRecord.value === newItem.value) || (newItem.value===null)) {
         // Record exists with same value - no update needed
         noUpdateNeeded.push(newItem.key);
       } else {
