@@ -679,8 +679,8 @@ export const getMetaDataJSON = async(tableName:string, parentID:number) => {
     WrappidLogger.logFunctionStart("getMetaDataJSON");
     const resultData = await databaseActions.findAll("application", tableName, {
       where: {
-        parentID: parentID,
-        _status: constant.entityStatus.ACTIVE
+        "parentID": parentID,
+        "_status": constant.entityStatus.ACTIVE
       }
     });
     const data = await transformRowDataToJSON(resultData);
