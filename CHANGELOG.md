@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.124](https://github.com/wrappid/service-core/compare/v0.0.123...v0.0.124) (2024-11-02)
+
+
+### Bug Fixes
+
+* **core:** :sparkles: export meta data api ([a685b39](https://github.com/wrappid/service-core/commit/a685b399cdc6c1fc603c48f011d529a0f71ffc95)), closes [#198](https://github.com/wrappid/service-core/issues/198)
+
 ### [0.0.123](https://github.com/wrappid/service-core/compare/v0.0.122...v0.0.123) (2024-11-02)
 
 
