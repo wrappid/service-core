@@ -652,8 +652,46 @@ export const postCloneDataModelFunc = async (req: any) => {
   }
 };
   
+/**
+ * This function will provide JSON Object
+ * 
+ * @param data Array<GenericObject>
+ * @returns JSON Object
+ */
+export function transformRowDataToJSON(data: Array<GenericObject>) {
+  WrappidLogger.logFunctionStart("transformRowDataToJSON");
+  const transformedData:GenericObject = {};
+  data.forEach((datum: GenericObject) => {
+    transformedData[datum.key] = datum.value;
+  });
+  return transformedData;
+}
 
-
+/**
+ * This function will provide meta field values in JSON Object
+ * 
+ * @param tableName Table name value
+ * @param parentID parentID value
+ * @returns JSON Object 
+ */
+export const getMetaDataJSON = async(tableName:string, parentID:number) => {
+  try {
+    WrappidLogger.logFunctionStart("getMetaDataJSON");
+    const resultData = await databaseActions.findAll("application", tableName, {
+      where: {
+        parentID: parentID,
+        _status: constant.entityStatus.ACTIVE
+      }
+    });
+    const data = await transformRowDataToJSON(resultData);
+    return {parentID: parentID, ...data};
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    throw error;
+  }finally{
+    WrappidLogger.logFunctionEnd("getMetaDataJSON");
+  }
+};
 
 /**
  *  This function is used to create bulk data
@@ -739,7 +777,7 @@ interface DataItem {
   _status?: string;
 }
 
-export const updateBulkData = async (tableName: string, parentID: number, bodyData: string) => {
+export const updateMetaData = async (tableName: string, parentID: number, bodyData: string) => {
   try {
     // 1. Process input data
     const processData: DataItem[] = await processInput(bodyData, parentID, "active");

@@ -22,10 +22,14 @@ import {
   ValidationsRegistry
 } from "./registry/index";
 import { APIService } from "./service/api.service";
+import { GenericObject } from "./types/generic.types";
 import WrappidApp from "./WrappidApp";
 
-
 export {
+  /**
+   * Types
+   */
+  type GenericObject,
   APIService,
   ApplicationContext,
   /**

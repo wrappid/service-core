@@ -317,7 +317,7 @@ const _systemRoutesRegistry = {
     swaggerJson: {
       "tags": ["service-core"],
       "description": "Updates multiple records in a table by setting existing records as inactive and creating new ones. Only updates records where values have changed.",
-      "operationId": "updateBulkData",
+      "operationId": "updateMetaData",
       "parameters": [
         {
           "name": "tableName",
