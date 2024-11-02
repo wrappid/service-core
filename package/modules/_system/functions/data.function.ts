@@ -652,3 +652,225 @@ export const postCloneDataModelFunc = async (req: any) => {
   }
 };
   
+
+
+
+/**
+ *  This function is used to create bulk data
+ * @param tableName : Table name value
+ * @param parentID : parentID value
+ * @param bodyData : bodyData value
+ * @returns
+ */
+export const createBulkData = async(tableName:string, parentID:number, bodyData:string) => {
+  try {
+    let returnData: {status:number, message:string};
+    const processData = await processInput(bodyData, parentID, "active");
+
+    // Use bulkCreate to insert multiple records
+    const result:any = await databaseProvider["application"].models[tableName].bulkCreate(processData);
+    if(result){
+      returnData =  {
+        status: 200,
+        message: "Data created successfully"
+      };
+    }
+    return returnData;
+  } catch (error:any) {
+    WrappidLogger.error("createBulkData");
+    throw error;
+  }finally{
+    WrappidLogger.logFunctionEnd("createBulkData");
+  }
+};
+
+/**
+ * This function is used to get meta data
+ * @param tableName : Table name value
+ * @param parentID : parentID value
+ * @returns 
+ */
+export const getMetaDatas = async(tableName:string, parentID:number)=> {
+  try {
+    WrappidLogger.logFunctionStart("getMetaDatas");
+    const resultData = await databaseActions.findAll("application", tableName, {
+      where: {
+        parentID: parentID,
+        _status: constant.entityStatus.ACTIVE
+      }
+    });
+    const _data = await transformDataWithValidation(resultData);
+    return {
+      status: 200,
+      data: _data
+    };  
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    throw error;
+  }finally{
+    WrappidLogger.logFunctionEnd("getMetaDatas");
+  }
+};
+
+
+/**
+ * This function is used to process input data
+ * @param input data
+ * @param parentID parentID 
+ * @param status status
+ * @returns 
+ */
+async function processInput(input:any, parentID:number, status:string) {
+  const result = [];
+  for (const key in input) {
+    result.push({ key: key, value: input[key], parentID:parentID, _status:status  });
+  }
+  return result;
+}
+
+
+/**
+ *
+ */
+interface DataItem {
+  key: string;
+  value: any;
+  parentID: number;
+  _status?: string;
+}
+
+export const updateBulkData = async (tableName: string, parentID: number, bodyData: string) => {
+  try {
+    // 1. Process input data
+    const processData: DataItem[] = await processInput(bodyData, parentID, "active");
+    
+    // 2. Get existing active records
+    const existingRecords = await databaseProvider["application"].models[tableName].findAll({
+      where: {
+        parentID,
+        _status: "active"
+      },
+      raw: true
+    });
+
+    // 3. Compare and categorize updates
+    const updateRequested = processData.map(item => item.key); // All requested keys
+    const recordsToUpdate: DataItem[] = [];
+    const noUpdateNeeded: string[] = [];
+
+    processData.forEach(newItem => {
+      const existingRecord = existingRecords.find((record:any) => record.key === newItem.key);
+      
+      if ((existingRecord && existingRecord.value === newItem.value) || (newItem.value===null)) {
+        // Record exists with same value - no update needed
+        noUpdateNeeded.push(newItem.key);
+      } else {
+        // Either record doesn't exist or value is different - needs update
+        recordsToUpdate.push(newItem);
+      }
+    });
+
+    // 4. Return early if no actual updates needed
+    if (recordsToUpdate.length === 0) {
+      return {
+        status: 200,
+        message: "No updates performed",
+        data: {
+          requested: updateRequested,
+          updated: [],
+          ignored: noUpdateNeeded,
+          reason: "Existing values are same as requested values"
+        }
+      };
+    }
+
+    // 5. Perform updates for records that need it
+
+    try {
+      // Set existing records to inactive
+      const keysToUpdate = recordsToUpdate.map(item => item.key);
+      await databaseProvider["application"].models[tableName].update(
+        { _status: "inactive" },
+        {
+          where: {
+            parentID,
+            key: keysToUpdate,
+            _status: "active"
+          },
+        }
+      );
+
+      // Insert new records
+      // eslint-disable-next-line no-unused-vars
+      const result = await databaseProvider["application"].models[tableName].bulkCreate(
+        recordsToUpdate,
+      );
+
+
+      return {
+        status: 200,
+        message: "Updates completed",
+        data: {
+          requested: updateRequested,
+          updated: keysToUpdate,
+          ignored: noUpdateNeeded,
+          reason: "Existing values matched requested values"
+        }
+      };
+
+    } catch (error:any) {
+      WrappidLogger.error(error);
+      throw error;
+    }
+
+  } catch (error: any) {
+    WrappidLogger.error(error);
+    throw error;
+  }
+};
+
+
+/**
+ * This 
+ * @param inputData :input
+ * @returns 
+ */
+async function transformDataWithValidation(inputData: Array<any>) {
+  try {
+    WrappidLogger.logFunctionStart("transformDataWithValidation");
+    if (!Array.isArray(inputData) || inputData.length === 0) {
+      throw new Error("Input must be a non-empty array");
+    }
+    
+    // Check if all parentIDs are the same
+    const firstParentID = inputData[0].parentID;
+    const allSameParentID = inputData.every(item => item.parentID === firstParentID);
+      
+    if (!allSameParentID) {
+      throw new Error("All items must have the same parentID");
+    }
+    
+    const result: { [key: string]: any } = {
+      parentID: firstParentID
+    };
+    
+    inputData.forEach(item => {
+      if (!item.key) {
+        throw new Error("Each item must have a key");
+      }
+      result[item.key] = item.value;
+    });
+    
+    return result;
+  } catch (error:any) {
+    WrappidLogger.error(error);
+    throw error;
+  }finally{
+    WrappidLogger.logFunctionEnd("transformDataWithValidation");
+  }
+ 
+}
+
+
+
+

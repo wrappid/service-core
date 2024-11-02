@@ -55,5 +55,10 @@ const AppBuilderControllersRegistry = {
   getRegistry: [registryController.getRegistry] ,
   getRegistryList: [registryController.getRegistryList],
   postCloneDataModel: [dataController.postCloneDataModel],
+
+  //meta
+  createMeata: [dataController.createMeataController],
+  getMeata: [dataController.getMeataController],
+  updateMeata: [dataController.updateMeataController]
 };
 export default AppBuilderControllersRegistry;

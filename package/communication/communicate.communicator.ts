@@ -123,7 +123,7 @@ export const communicate = async ({
       "application",
       "CommunicationHistories",
       { _status: "faild" },
-      { where: {  to: commRecipients[0],
+      { where: {  to: commRecipients.to[0],
         variable: {otp: commData?.otp},
         _status: "new", } }
     );

@@ -1,4 +1,472 @@
 const _systemRoutesRegistry = {
+  createMeata:{
+    title: "Create multiple records in bulk for a specific table",
+    url: "data/meta/:tableName/:parentID",
+    authRequired: false,
+    entityRef: "createMeata",
+    reqMethod: "post",
+    controllerRef: "createMeata",
+    system: true,
+    swaggerJson: {
+      "tags": ["service-core"],
+      "description": "Creates multiple records simultaneously in the specified table. All records will be created with 'active' status.",
+      "operationId": "createBulkData",
+      "parameters": [
+        {
+          "name": "tableName",
+          "in": "path",
+          "required": true,
+          "description": "Name of the table where records will be created",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "parentID",
+          "in": "query",
+          "required": true,
+          "description": "Parent ID for the records to be created",
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["key", "value"],
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Unique identifier for the record"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Value to be stored for the record"
+                  }
+                }
+              }
+            },
+            "example": [
+              {
+                "key": "setting1",
+                "value": "value1"
+              },
+              {
+                "key": "setting2",
+                "value": "value2"
+              }
+            ]
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Records created successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Data created successfully"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad request - Invalid input data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 400
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Invalid input data format"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "409": {
+          "description": "Conflict - Duplicate keys detected",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 409
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Duplicate keys detected in request"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal server error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }
+  },
+  getMeata:{
+    title: "Retrieve metadata for active records",
+    url: "data/meta/:tableName/:parentID",
+    authRequired: false,
+    entityRef: "getMeata",
+    reqMethod: "get",
+    controllerRef: "getMeata",
+    system: true,
+    swaggerJson: {
+      "tags": ["service-core"],
+      "description": "Fetches all active metadata records for a specific table and parent ID.",
+      "operationId": "getMetaDatas",
+      "parameters": [
+        {
+          "name": "tableName",
+          "in": "path",
+          "required": true,
+          "description": "Name of the table to query metadata from",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "parentID",
+          "in": "query",
+          "required": true,
+          "description": "Parent ID to filter the metadata records",
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Successful retrieval of metadata",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 200
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "description": "Unique identifier for the metadata record"
+                        },
+                        "value": {
+                          "type": "string",
+                          "description": "Value associated with the metadata key"
+                        },
+                        "parentID": {
+                          "type": "integer",
+                          "description": "Parent ID of the metadata record"
+                        },
+                        "_status": {
+                          "type": "string",
+                          "description": "Status of the record",
+                          "example": "active"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 200,
+                  "data": [
+                    {
+                      "key": "setting1",
+                      "value": "value1",
+                      "parentID": 1,
+                      "_status": "active"
+                    },
+                    {
+                      "key": "setting2",
+                      "value": "value2",
+                      "parentID": 1,
+                      "_status": "active"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad request - Invalid parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 400
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Invalid parameters provided"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "No metadata found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 404
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "No metadata records found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal server error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  updateMeata:{
+    title: "Update multiple records in bulk for a specific table",
+    url: "data/meta/:tableName/:parentID",
+    authRequired: false,
+    entityRef: "updateMeata",
+    reqMethod: "PATCH",
+    controllerRef: "updateMeata",
+    system: true,
+    swaggerJson: {
+      "tags": ["service-core"],
+      "description": "Updates multiple records in a table by setting existing records as inactive and creating new ones. Only updates records where values have changed.",
+      "operationId": "updateBulkData",
+      "parameters": [
+        {
+          "name": "tableName",
+          "in": "path",
+          "required": true,
+          "description": "Name of the table to update",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "parentID",
+          "in": "query",
+          "required": true,
+          "description": "Parent ID for the records to update",
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["key", "value"],
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Unique identifier for the record"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "New value for the record"
+                  }
+                }
+              }
+            },
+            "example": [
+              {
+                "key": "setting1",
+                "value": "newValue1"
+              },
+              {
+                "key": "setting2",
+                "value": "newValue2"
+              }
+            ]
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Successful update operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Updates completed"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "requested": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "All keys that were requested for update"
+                      },
+                      "updated": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Keys that were actually updated"
+                      },
+                      "ignored": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Keys that were not updated because values were unchanged"
+                      },
+                      "reason": {
+                        "type": "string",
+                        "description": "Explanation for why some records were not updated"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad request - Invalid input data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 400
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Invalid input data"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal server error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   getVersion: {
     title: "Get Version API test",
     url: "version",
