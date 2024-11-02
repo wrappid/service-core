@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.123](https://github.com/wrappid/service-core/compare/v0.0.122...v0.0.123) (2024-11-02)
+
+
+### Features
+
+* **global:** :sparkles: meta table update api added ([fceafd9](https://github.com/wrappid/service-core/commit/fceafd99fd75d6695c6c337a74f5e0b4f11955b6)), closes [#198](https://github.com/wrappid/service-core/issues/198)
+* **global:** :sparkles: null value update ignored ([3cf89fd](https://github.com/wrappid/service-core/commit/3cf89fdb50c64e289c8cb585315b8fdace9dce10)), closes [#198](https://github.com/wrappid/service-core/issues/198)
+
+
+### Bug Fixes
+
+* **global:** :bug: fix faild communication ([a3b80c4](https://github.com/wrappid/service-core/commit/a3b80c45c0ff350ca12db1ac9097675388e7210b)), closes [#198](https://github.com/wrappid/service-core/issues/198)
+
 ### [0.0.122](https://github.com/wrappid/service-core/compare/v0.0.121...v0.0.122) (2024-10-28)
 
 ### [0.0.121](https://github.com/wrappid/service-core/compare/v0.0.120...v0.0.121) (2024-10-28)
