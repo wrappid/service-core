@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { WrappidLogger } from "../../../logging/wrappid.logger";
-import { createBulkData, getDatabaseModelRowFunc, getDatabaseModelsFunc, getMetaDatas, getModelsFunc, patchDatabaseModelFunc, postCloneDataModelFunc, postDataModelSyncFunc, postDatabaseModelFunc, putDatabaseModelFunc, putUpdateStatusFunc, updateBulkData } from "../functions/data.function";
+import { createBulkData, getDatabaseModelRowFunc, getDatabaseModelsFunc, getMetaDatas, getModelsFunc, patchDatabaseModelFunc, postCloneDataModelFunc, postDataModelSyncFunc, postDatabaseModelFunc, putDatabaseModelFunc, putUpdateStatusFunc, updateMetaData } from "../functions/data.function";
 
 
 export const getModels = async (req: Request, res: Response) => {
@@ -179,7 +179,7 @@ export const updateMeataController = async(req:any, res:any) => {
     const tableName:string = req.params.tableName;
     const parentID = Number(req.params.parentID);
     const bodyData = req.body;
-    const {status, ...resData} = await updateBulkData(tableName, parentID, bodyData);
+    const {status, ...resData} = await updateMetaData(tableName, parentID, bodyData);
     res.status(status).json(resData);
   } catch (error:any) {
     WrappidLogger.error(error);
