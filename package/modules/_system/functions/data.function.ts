@@ -841,7 +841,7 @@ export const updateMetaData = async (tableName: string, parentID: number, bodyDa
       // Insert new records
       // eslint-disable-next-line no-unused-vars
       const result = await databaseProvider["application"].models[tableName].bulkCreate(
-        recordsToUpdate,
+        recordsToUpdate, { fields: ["key", "value", "_status", "parentID"] }
       );
 
 
