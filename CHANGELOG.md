@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.126](https://github.com/wrappid/service-core/compare/v0.0.125...v0.0.126) (2024-11-05)
+
+
+### Bug Fixes
+
+* **core:** :zap: update meta specific fields data ([431218e](https://github.com/wrappid/service-core/commit/431218eb41ec066e47e25799e1d9dc7093a9f5ae))
+
 ### [0.0.125](https://github.com/wrappid/service-core/compare/v0.0.124...v0.0.125) (2024-11-02)
 
 
