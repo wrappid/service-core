@@ -707,7 +707,7 @@ export const createBulkData = async(tableName:string, parentID:number, bodyData:
 
     // Use bulkCreate to insert multiple records
     const result:any = await databaseProvider["application"].models[tableName].bulkCreate(processData);
-    if(result){
+    if(result.length===0){
       returnData =  {
         status: 200,
         message: "Data created successfully"
