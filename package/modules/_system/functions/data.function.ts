@@ -737,6 +737,13 @@ export const getMetaDatas = async(tableName:string, parentID:number)=> {
         _status: constant.entityStatus.ACTIVE
       }
     });
+    if(!resultData){
+      WrappidLogger.error("No data found");
+      return {
+        status: 200,
+        messaage: "No data found!" 
+      };  
+    }
     const _data = await transformDataWithValidation(resultData);
     return {
       status: 200,
@@ -804,6 +811,8 @@ export const updateMetaData = async (tableName: string, parentID: number, bodyDa
         noUpdateNeeded.push(newItem.key);
       } else {
         // Either record doesn't exist or value is different - needs update
+        //convert newItem.value to json
+        newItem.value = JSON.stringify(newItem.value);
         recordsToUpdate.push(newItem);
       }
     });
@@ -841,7 +850,7 @@ export const updateMetaData = async (tableName: string, parentID: number, bodyDa
       // Insert new records
       // eslint-disable-next-line no-unused-vars
       const result = await databaseProvider["application"].models[tableName].bulkCreate(
-        recordsToUpdate, { fields: ["key", "value", "_status", "parentID"] }
+        recordsToUpdate,  { fields: ["key", "value", "_status", "parentID"] }
       );
 
 
