@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.127](https://github.com/wrappid/service-core/compare/v0.0.126...v0.0.127) (2024-11-06)
+
+
+### Bug Fixes
+
+* **core:** :bug: get person meta empty value handle ([7258995](https://github.com/wrappid/service-core/commit/72589959cd76fa64aa98278fe02ed9b3cb5c9032))
+* **global:** :fire: get person meta empty value handle ([195a425](https://github.com/wrappid/service-core/commit/195a4254f0202fc2fd47fd686a3eef7f62ac3af3))
+
 ### [0.0.126](https://github.com/wrappid/service-core/compare/v0.0.125...v0.0.126) (2024-11-05)
 
 
