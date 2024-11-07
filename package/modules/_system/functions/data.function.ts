@@ -811,8 +811,6 @@ export const updateMetaData = async (tableName: string, parentID: number, bodyDa
         noUpdateNeeded.push(newItem.key);
       } else {
         // Either record doesn't exist or value is different - needs update
-        //convert newItem.value to json
-        newItem.value = JSON.stringify(newItem.value);
         recordsToUpdate.push(newItem);
       }
     });
