@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.128](https://github.com/wrappid/service-core/compare/v0.0.127...v0.0.128) (2024-11-07)
+
+
+### Features
+
+* **core:** :zap: meta table update with out json stringify ([78b1b8f](https://github.com/wrappid/service-core/commit/78b1b8fc8fc1f6640e4853eab18397a92602807d))
+
 ### [0.0.127](https://github.com/wrappid/service-core/compare/v0.0.126...v0.0.127) (2024-11-06)
 
 
