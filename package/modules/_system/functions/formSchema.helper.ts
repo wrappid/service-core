@@ -70,6 +70,13 @@ async function generateFormSchema(modelName: string) {
       );
       fieldsData?.forEach((fieldData: any) => {
         fieldData.type = getFieldType(fieldData.type);
+        switch (fieldData?.type?.toLowerCase()) {
+          case "json":
+            fieldData.gridSize = 12;
+            break;        
+          default:
+            break;
+        }
       });
     }
 
@@ -90,14 +97,14 @@ async function generateFormSchema(modelName: string) {
         ],
         // reload: true,
       },
-      // read: {
-      //   endpoint: endpoint,
-      //   method: httpMethod.HTTP_GET,
-      //   authRequired: true,
-      //   successType: "READ_" + modelName.toLocaleUpperCase() + "_SUCCESS",
-      //   errorType: "READ_" + modelName.toLocaleUpperCase() + "_ERROR",
-      //   onSubmitRefine: "San_URL_ADD_PATH_PARAM_ID",
-      // },
+      read: {
+        endpoint: endpoint,
+        method: coreConstant.httpMethod.HTTP_GET,
+        authRequired: true,
+        successType: "READ_" + modelName.toLocaleUpperCase() + "_SUCCESS",
+        errorType: "READ_" + modelName.toLocaleUpperCase() + "_ERROR",
+        onSubmitRefine: "San_URL_ADD_PATH_PARAM_ID",
+      },
       edit: {
         endpoint: endpoint,
         method: coreConstant.httpMethod.HTTP_PUT,
