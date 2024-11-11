@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.129](https://github.com/wrappid/service-core/compare/v0.0.128...v0.0.129) (2024-11-11)
+
+
+### Bug Fixes
+
+* **core:** :zap: for json must be 12 ([8bac4b5](https://github.com/wrappid/service-core/commit/8bac4b5c4692e5f5028d623ae45f1272065b176b))
+
 ### [0.0.128](https://github.com/wrappid/service-core/compare/v0.0.127...v0.0.128) (2024-11-07)
 
 
