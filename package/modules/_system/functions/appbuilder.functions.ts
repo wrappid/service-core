@@ -84,7 +84,7 @@ const putFormSchemaFunc = async (req: any, res: any) => {
       /* let newEntry =  */ await databaseActions.create("application", model, {
         ...createData,
         _status: coreConstant.entityStatus.DRAFT,
-        updatedBy: req.user.userId,
+        updatedBy: req.user.userID,
         commitId: uuidv4(),
       });
 
@@ -97,7 +97,7 @@ const putFormSchemaFunc = async (req: any, res: any) => {
       result = await databaseActions.update(
         "application",
         model,
-        { ...body, updatedBy: req.user.userId },
+        { ...body, updatedBy: req.user.userID },
         { where: { id: modelID } }
       );
 

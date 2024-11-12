@@ -3,6 +3,7 @@ import { WrappidLogger } from "../../../logging/wrappid.logger";
 
 // const { httpMethod, entityStatus } = coreConstant;
 import { getColumnsFromSchema, getEntitySchema } from "./businessEntity.helper";
+import { constant } from "constants/server.constant";
 
 const auditAttributes = [
   "id",
@@ -237,7 +238,7 @@ const updateStringValue = async (databaseProvider: any, req: any) => {
         "StringValues",
         {
           _status: "inactive",
-          updatedBy: req.user.userId,
+          updatedBy: req.user.userID,
         },
         {
           where: {
@@ -263,9 +264,8 @@ const updateStringValue = async (databaseProvider: any, req: any) => {
         "StringValues",
         {
           ...freshData,
-          _status: "active",
-          createdBy: req.user.userId,
-          updatedBy: req.user.userId,
+          _status: constant.entityStatus.ACTIVE,
+          createdBy: req.user.userID,
         },
         {
           transaction: t,

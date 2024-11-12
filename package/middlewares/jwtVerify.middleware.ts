@@ -15,12 +15,12 @@ export const jwtVerify = (req: any, res: any, next: any) => {
   if (authHeader) {
     const token = authHeader.split(" ")[1];
 
-    jwt.verify(token, accessTokenSecret, (err: any, user: any) => {
+    jwt.verify(token, accessTokenSecret, (err: any, data: any) => {
       if (err) {
         return res.status(401).json({ message: "unauthorised access" });
       }
 
-      req.user = user;
+      req.user = data;
       next();
     });
   } else {

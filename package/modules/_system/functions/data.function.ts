@@ -87,7 +87,7 @@ export const putUpdateStatusFunc = async (req:any) => {
       comment: req.body.comment,
       currentStatus: currentEntry._status,
       nextStatus: req.body.nextStatus,
-      userId: req.user.userId,
+      userId: req.user.userID,
       requestTime: req.body.requestTime,
     };
     // if next status is published then update old ref as inactive
@@ -144,7 +144,7 @@ export const patchDatabaseModelFunc = async (req:any) => {
       {
         _status: coreConstant.entityStatus.DELETED,
         deletedAt: moment().format("YYYY-MM-DD"),
-        deletedBy: req.user.userId,
+        deletedBy: req.user.userID,
       },
       { where: { id: modelID } }
     );
@@ -233,7 +233,7 @@ export const putDatabaseModelFunc = async (req:any) => {
         const created = await databaseActions.create(database,model,{
           ...body,
           _status: coreConstant.entityStatus.DRAFT,
-          updatedBy: req.user.userId,
+          updatedBy: req.user.userID,
           commitId: uuidv4(),
         });
         if(created){
@@ -252,7 +252,7 @@ export const putDatabaseModelFunc = async (req:any) => {
       {
         ...body,
         commitId: uuidv4(), 
-        updatedBy: req.user.userId 
+        updatedBy: req.user.userID 
       },
       { where: { id: modelID } }
     );
@@ -407,8 +407,7 @@ export const postDatabaseModelFunc = async (req:any) => {
     }
     const result = await databaseActions.create(database, model,{
       ...body,
-      createdBy: req.user.userId,
-      updatedBy: req.user.userId
+      createdBy: req.user.userID
     });
 
     WrappidLogger.info(result);
@@ -633,8 +632,7 @@ export const postCloneDataModelFunc = async (req: any) => {
       const clonedSchema = await databaseActions.create("application", model,{
         ...cloneSchema,
         commitId: uuidv4(),
-        createdBy: req.user.userId,
-        updatedBy: req.user.userId
+        createdBy: req.user.userID
       });
       return {
         status: 200,
