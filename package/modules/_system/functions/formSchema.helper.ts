@@ -1,9 +1,9 @@
+import { constant } from "../../../constants/server.constant";
 import { coreConstant, databaseActions, databaseProvider } from "../../../index";
 import { WrappidLogger } from "../../../logging/wrappid.logger";
 
 // const { httpMethod, entityStatus } = coreConstant;
 import { getColumnsFromSchema, getEntitySchema } from "./businessEntity.helper";
-import { constant } from "constants/server.constant";
 
 const auditAttributes = [
   "id",
