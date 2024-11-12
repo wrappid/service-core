@@ -1,4 +1,5 @@
 import fetch from "node-fetch-commonjs";
+import { WrappidLogger } from "../../logging/wrappid.logger";
 import { getDefaultCommunicationConfig } from "../../utils/communication.utils";
 
 /**
@@ -75,8 +76,9 @@ async function communicate(whatsappOptions: any) {
       console.log("No Whatsapp provider with 'default': true found.");
       throw new Error("No Whatsapp provider with 'default': true found.");
     }
-  }catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    WrappidLogger.error(err.message);
+    WrappidLogger.error(err.stack);
     throw err;
   }
   return res;
