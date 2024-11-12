@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.130](https://github.com/wrappid/service-core/compare/v0.0.129...v0.0.130) (2024-11-12)
+
+
+### Bug Fixes
+
+* **core:** :fire: resolve logger issue ([07c6357](https://github.com/wrappid/service-core/commit/07c6357b95269931a8fb41c5eb7691344336d7d8))
+* **core:** :zap: auth token genration impact ([1d79609](https://github.com/wrappid/service-core/commit/1d79609bb3971a3dba3ccfe868b121cd292f0f3b))
+* **core:** :zap: import fix of constant ([f49d35c](https://github.com/wrappid/service-core/commit/f49d35cf8de9c2c9d3470a9ec1d6ad1e66a0a051))
+
 ### [0.0.129](https://github.com/wrappid/service-core/compare/v0.0.128...v0.0.129) (2024-11-11)
 
 
