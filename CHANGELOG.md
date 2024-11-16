@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.131](https://github.com/wrappid/service-core/compare/v0.0.130...v0.0.131) (2024-11-16)
+
+
+### Bug Fixes
+
+* **core:** :zap: version api fix ([633d125](https://github.com/wrappid/service-core/commit/633d125224e2e4ceda3b48d7ac2ab8c3a4add67e))
+
 ### [0.0.130](https://github.com/wrappid/service-core/compare/v0.0.129...v0.0.130) (2024-11-12)
 
 
