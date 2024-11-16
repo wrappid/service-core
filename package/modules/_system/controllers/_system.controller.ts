@@ -1,4 +1,6 @@
 import {Request, Response} from "express";
+import { constant } from "../../../constants/server.constant";
+import { ApplicationContext } from "../../../context/application.context";
 import { WrappidLogger } from "../../../logging/wrappid.logger";
 import { getMasterDataFunc, getSettingMetaFunc, postTestCommunicationFunc } from "../functions/_system.function";
 
@@ -7,8 +9,28 @@ export const getVersion = async (req: Request, res: Response) => {
     /**
      * @todo
      * get version logic
-     */
-    res.status(200).json({ message: "Get Version API call Sucessfully"});
+    */
+    const config = ApplicationContext.getContext(constant.CONFIG_KEY);
+    
+    if (!config) {
+      WrappidLogger.error("Config not found");
+      return res.status(500).json({ message: "Version not found" });
+    }
+
+    if (!config.package) {
+      WrappidLogger.error("Package info not found");
+      return res.status(500).json({ message: "Version not found" });
+    }
+
+    if (!config.package.version) {
+      WrappidLogger.error("Package version not found");
+      return res.status(500).json({ message: "Version not found" });
+    }
+
+    res.status(200).json({
+      data: config.package.version,
+      message: "Get Version API call Sucessfully"
+    });
   } catch (error: any) {
     console.error("Error :: ", error);
     res.status(500).json({ message: error.message });

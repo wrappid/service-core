@@ -87,7 +87,10 @@ export default class WrappidApp {
     /**
      * setup config to context
      */
-    ApplicationContext.setContext(constant.CONFIG_KEY, wrappidAppConfig.config);
+    ApplicationContext.setContext(constant.CONFIG_KEY, {
+      ...(wrappidAppConfig?.config || {}),
+      package: (wrappidAppConfig?.package || {})
+    });
 
     /**
      * set registrues in application context
