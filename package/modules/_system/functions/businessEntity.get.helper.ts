@@ -217,7 +217,7 @@ const getEntityDataName = async (entityName: string, query: GenericObject, user?
       _options["limit"] = query?.limit;
     }
     const appIDExists = columns?.filter(col=>col.id==="appID").length == 1 || false;
-    if(query?.appID && appIDExists===true && (user?.roleId !==1 || !user ) ){
+    if(query?.appID && appIDExists===true && (user?.roleID !==1 || !user ) ){
       _options.where.appID = applicationsData?.id;
       // _options.where = //call function add appid clause sent appID and existing where clause
     }

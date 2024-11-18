@@ -25,7 +25,7 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
     WrappidLogger.logFunctionStart("postTestCommunicationFunc");
     console.log(res);
     const commData: any = {};
-    let userId = req?.user?.userId;
+    let userID = req?.user?.userID;
     const emailOrPhone = req.body.data;
     let commType = req.params.commType;
     if (!commType) {
@@ -33,7 +33,7 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
       commType = type;
     }
     let templateID = req.body.templateID;
-    if (!userId) {
+    if (!userID) {
       const user = await databaseActions.findOne("application", "Users", {
         where:
           commType === constant.commType.EMAIL
@@ -44,7 +44,7 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
               phone: req.body.data,
             },
       });
-      userId = user?.id;
+      userID = user?.id;
       commData.id = user?.id;
     }
 
@@ -104,7 +104,7 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
         {
           where: {
             type: commType,
-            userId: userId,
+            userID: userID,
           },
         }
       );
@@ -112,7 +112,7 @@ export const postTestCommunicationFunc = async (req: any, res: any) => {
         otp: genetatedOTP,
         type: commType,
         _status: constant.entityStatus.ACTIVE,
-        userId: userId,
+        userID: userID,
       });
       // console.log(`OTP ${commType} sent successfully.`);
       WrappidLogger.info(`OTP ${commType} sent successfully.`);
