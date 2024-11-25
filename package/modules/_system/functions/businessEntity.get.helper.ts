@@ -222,13 +222,16 @@ const getEntityDataName = async (entityName: string, query: GenericObject, user?
       // _options.where = //call function add appid clause sent appID and existing where clause
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
     const { count, rows } = await databaseActions.findAndCountAll(
       entityDatabaseName,
       schema?.model,
       _options
     );
 
-    return { columns: columns, rows: rows, totalRecords: count };
+    const _count = Array.isArray(rows) ? rows.length : 0;
+
+    return { columns: columns, rows: rows, totalRecords: _count };
   } catch (error: any) {
     WrappidLogger.error("-------------------------------------");
     WrappidLogger.error("getBusinessEntity.helper>getEntityData");

@@ -7,6 +7,8 @@ import { getColumnsFromSchema, getEntitySchema } from "./businessEntity.helper";
 
 const auditAttributes = [
   "id",
+  "_status",
+  "commitId",
   "createdAt",
   "createdBy",
   "updatedAt",

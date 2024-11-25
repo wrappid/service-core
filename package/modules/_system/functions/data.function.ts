@@ -382,14 +382,19 @@ export const postDatabaseModelFunc = async (req:any) => {
       // data preparation
       Object.keys(databaseProvider[database].models[model].rawAttributes).forEach((rawAttribute) => {
       // if json save object in db
-        if (
-          databaseProvider[database].models[model].rawAttributes[rawAttribute].type
-            .toString()
-            .startsWith("JSON") &&
+        const dataType = databaseProvider[database].models[model].rawAttributes[rawAttribute]?.type?.toString()?.toLocaleLowerCase(); 
+        const data = body[rawAttribute];
+        if (dataType.startsWith("json") &&
           Object.prototype.hasOwnProperty.call(body, rawAttribute) &&
-          body[rawAttribute] !== ""
-        ) {
-          body[rawAttribute] = JSON.parse(body[rawAttribute]);
+          data !== "") {
+          if (typeof data === "object") {
+            body[rawAttribute] = data;
+          } else if (typeof data === "string") {
+            body[rawAttribute] = JSON.parse(data);
+          } else {
+            WrappidLogger.error("Invalid data type for JSON field");
+            throw new Error("Invalid data type for JSON field");
+          }
         }
       });
 
