@@ -66,7 +66,7 @@ const getEntityCount = async (req: any, res: any) => {
 
     const data = await getEntityDataCount("application", entity, req.query);
 
-    if (!data || data.length === 0) {
+    if (!data || data === 0) {
       res.status(204).json({ message: "Entity is missing" });
       return;
     }

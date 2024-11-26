@@ -784,6 +784,9 @@ const getEntityOption = (databaseName: string, schema: GenericObject, query: any
         schema.where
       );
     }
+
+    options.order = [...(options?.order || []),["updatedBy", "DESC"]];
+
     options.logging = true;
     return options;
   } catch (error:any) {

@@ -1,3 +1,4 @@
+import { literal } from "sequelize";
 import { databaseActions, databaseProvider } from "../../../index";
 import { WrappidLogger } from "../../../logging/wrappid.logger";
 
@@ -92,11 +93,19 @@ const getEntityDataCount = async (
       ];
     }
 
-    const count = await databaseProvider[entityDatabaseName].models[
+    /* const count = await databaseProvider[entityDatabaseName].models[
       schema.model
-    ].count(_options);
+    ].count(_options); */
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    const { count, rows } = await databaseActions.findAndCountAll(
+      entityDatabaseName,
+      schema?.model,
+      _options
+    );
 
-    return count;
+    const _count = Array.isArray(rows) ? rows.length : 0;
+
+    return _count;
   } catch (error: any) {
     WrappidLogger.error("-------------------------------------");
     WrappidLogger.error("getBusinessEntity.helper>getEntityData");
@@ -134,6 +143,7 @@ const getEntityColumns = async (db: any, entityName: any) => {
  * @param user : user value
  * @returns
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 const getEntityDataName = async (entityName: string, query: GenericObject, user?:GenericObject) => {
   try {
     WrappidLogger.logFunctionStart("getEntityDataName");
@@ -154,9 +164,9 @@ const getEntityDataName = async (entityName: string, query: GenericObject, user?
     );
     let finalWhereOB = {};
 
-    const applicationsData = await databaseActions.findOne("application", "Applications", {
-      where: { appID: query?.appID }
-    });
+    // const applicationsData = await databaseActions.findOne("application", "Applications", {
+    //   where: { appID: query?.appID }
+    // });
 
     finalWhereOB = getFinalWhereClause(
       entityDatabaseName,
@@ -189,6 +199,8 @@ const getEntityDataName = async (entityName: string, query: GenericObject, user?
       _options["order"] = orderOB;
     }
 
+    _options["order"] = [...(_options?.order || []),[literal(`DATE_TRUNC('second', "${schema?.model}"."updatedAt") DESC`)]];
+
     if (schema?.attributes && schema?.attributes?.length > 0) {
       const tempAuditAttributes = auditAttributes.filter((value) =>
         Object.keys(
@@ -216,11 +228,11 @@ const getEntityDataName = async (entityName: string, query: GenericObject, user?
     if (query?.limit) {
       _options["limit"] = query?.limit;
     }
-    const appIDExists = columns?.filter(col=>col.id==="appID").length == 1 || false;
-    if(query?.appID && appIDExists===true && (user?.roleID !==1 || !user ) ){
-      _options.where.appID = applicationsData?.id;
-      // _options.where = //call function add appid clause sent appID and existing where clause
-    }
+    // const appIDExists = columns?.filter(col=>col.id==="appID").length == 1 || false;
+    // if(query?.appID && appIDExists===true && (user?.roleID !==1 || !user ) ){
+    //   _options.where.appID = applicationsData?.id;
+    //   // _options.where = //call function add appid clause sent appID and existing where clause
+    // }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
     const { count, rows } = await databaseActions.findAndCountAll(
