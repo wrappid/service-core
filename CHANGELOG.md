@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.132](https://github.com/wrappid/service-core/compare/v0.0.131...v0.0.132) (2024-11-26)
+
+
+### Bug Fixes
+
+* **core:** :ambulance: fix business related issue resolve ([bef5e1c](https://github.com/wrappid/service-core/commit/bef5e1c0026fb31802a858d32e2792bc84d7106d))
+* **core:** :bug: auth impact handle ([b6b50d1](https://github.com/wrappid/service-core/commit/b6b50d1a4aa57d088efbda6e8ce1052c142d99f1))
+* **core:** :zap: business entity api count fix ([9a2f659](https://github.com/wrappid/service-core/commit/9a2f6599f6ea6494156c8151436d3b381dd3f388))
+
 ### [0.0.131](https://github.com/wrappid/service-core/compare/v0.0.130...v0.0.131) (2024-11-16)
 
 
