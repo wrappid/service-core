@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.133](https://github.com/wrappid/service-core/compare/v0.0.132...v0.0.133) (2024-12-09)
+
+
+### Bug Fixes
+
+* **core:** :ambulance: fix comm related issues ([7f9fb89](https://github.com/wrappid/service-core/commit/7f9fb89d8ca5cfa764b65d479fe4c2fb058ef6d8))
+
 ### [0.0.132](https://github.com/wrappid/service-core/compare/v0.0.131...v0.0.132) (2024-11-26)
 
 
