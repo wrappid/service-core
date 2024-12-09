@@ -162,6 +162,7 @@ export function getMessageObject(
           }
           break;
         case constant.commType.SMS:
+        case constant.commType.WHATSAPP:
           messageObj.message = messageObj.message.replace(
             regExpr,
             commData[commDataKey]
@@ -177,4 +178,28 @@ export function getMessageObject(
     console.error(error);
     throw error;
   }
+}
+
+/**
+ * This is a helper function to create message body for whatsapp
+ * 
+ * @param template Communication Template
+ * @param data Template Variable
+ * @returns message body
+ */
+function createWhatsappMessageBody(template: any, data: any): any {
+  //   console.log("TEMPLATE", template);
+  const keys = Object.keys(data);
+  let newBody =
+    template.type === constant.commType.WHATSAPP
+      ? JSON.stringify(template.config)
+      : template.message;
+  for (let i = 0; i < keys.length; i++) {
+    const k = keys[i];
+    const re = new RegExp("#" + k, "g");
+    newBody = newBody.replace(re, data[k]);
+    // console.log("HERE", k, re);
+  }
+  //   console.log("BODY", newBody);
+  return newBody;
 }

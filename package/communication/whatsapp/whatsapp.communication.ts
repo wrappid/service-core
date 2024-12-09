@@ -14,14 +14,14 @@ async function communicate(whatsappOptions: any) {
   try {
     const defaultProvider = await getDefaultCommunicationConfig("whatsapp");
     if (defaultProvider) {
-      const { api_url,  accessToken }: any = defaultProvider;
+      const { api_url,  accessToken, id: phoneID }: any = defaultProvider;
       const body = {
         messaging_product: "whatsapp",
         to: "91"+phone,
         type: "template", 
         template: JSON.parse(messageObject.message)
       };
-      res = await fetch(api_url, {
+      res = await fetch(api_url.replace(":id", phoneID), {
         method: "POST",
         headers: {
           Authorization: "Bearer " + accessToken,

@@ -77,7 +77,11 @@ export const communicate = async ({
       if (directFlag) {
         switch (commType) {
           case constant.commType.EMAIL:
-            resData = await communicateEmail({ ...commRecipients, ...messageObject });
+            resData = await communicateEmail({
+              ...commRecipients,
+              ...messageObject,
+              ...(commData?.attachments && { attachments: commData.attachments })
+            });
             break;
           case constant.commType.SMS:
             resData = await communicateSMS({
