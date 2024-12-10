@@ -152,9 +152,9 @@ export const createMeataController = async (req:any, res:any) => {
  * @param req : Req
  * @param res : Res
  */
-export const getMeataController = async(req:any, res:any) => {
+export const getMetaController = async(req:any, res:any) => {
   try {
-    WrappidLogger.logFunctionStart("getMeataController");
+    WrappidLogger.logFunctionStart("getMetaController");
     const tableName:string = req.params.tableName;
     const parentID = Number(req.params.parentID);
     const {status, ...resData} = await getMetaDatas(tableName, parentID);
@@ -163,7 +163,7 @@ export const getMeataController = async(req:any, res:any) => {
     WrappidLogger.error(error);
     throw error;
   }finally{
-    WrappidLogger.logFunctionEnd("getMeataController");
+    WrappidLogger.logFunctionEnd("getMetaController");
   }
 };
 

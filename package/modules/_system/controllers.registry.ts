@@ -58,7 +58,7 @@ const AppBuilderControllersRegistry = {
 
   //meta
   createMeata: [dataController.createMeataController],
-  getMeata: [dataController.getMeataController],
+  getMeta: [dataController.getMetaController],
   updateMeata: [dataController.updateMeataController]
 };
 export default AppBuilderControllersRegistry;

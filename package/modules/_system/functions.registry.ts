@@ -2,7 +2,7 @@ import { getMetaDatas, getMetaDataJSON, updateMetaData } from "./functions/data.
 
 const FunctionsRegistry = {
   "updateMetaData": updateMetaData,
-  "getMeataData": getMetaDatas,
+  "getMetaData": getMetaDatas,
   "getMetaDataJSON": getMetaDataJSON
 };
 export default FunctionsRegistry;

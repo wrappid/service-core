@@ -128,7 +128,6 @@ export const putUpdateStatusFunc = async (req:any) => {
   }
 };
 
-
 export const patchDatabaseModelFunc = async (req:any) => {
   WrappidLogger.logFunctionStart("patchDatabaseModelFunc");
   const database:string = <string>req.query?.database || "application";
@@ -492,7 +491,6 @@ const createModelData = async (database: string, model: string, data: GenericObj
   }
 };
 
-
 /**
  * This function will sync model data to database
  * 
@@ -558,7 +556,6 @@ const checkEntityRefExist = async (database:string, model:string, entityRef:stri
     throw error;
   }
 };
-
 
 /**
  * This function will help us to get data from database
@@ -760,7 +757,6 @@ export const getMetaDatas = async(tableName:string, parentID:number)=> {
   }
 };
 
-
 /**
  * This function is used to process input data
  * @param input data
@@ -775,7 +771,6 @@ async function processInput(input:any, parentID:number, status:string) {
   }
   return result;
 }
-
 
 /**
  *
@@ -876,7 +871,6 @@ export const updateMetaData = async (tableName: string, parentID: number, bodyDa
     throw error;
   }
 };
-
 
 /**
  * This 

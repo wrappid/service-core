@@ -151,13 +151,13 @@ const _systemRoutesRegistry = {
 
     }
   },
-  getMeata:{
+  getMeta:{
     title: "Retrieve metadata for active records",
     url: "data/meta/:tableName/:parentID",
     authRequired: false,
-    entityRef: "getMeata",
+    entityRef: "getMeta",
     reqMethod: "get",
-    controllerRef: "getMeata",
+    controllerRef: "getMeta",
     system: true,
     swaggerJson: {
       "tags": ["service-core"],
