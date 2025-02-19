@@ -187,7 +187,7 @@ export function getMessageObject(
  * @param data Template Variable
  * @returns message body
  */
-function createWhatsappMessageBody(template: any, data: any): any {
+export function createWhatsappMessageBody(template: any, data: any): any {
   //   console.log("TEMPLATE", template);
   const keys = Object.keys(data);
   let newBody =
