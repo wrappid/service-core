@@ -103,9 +103,9 @@ const getEntityDataCount = async (
       _options
     );
 
-    const _count = Array.isArray(rows) ? rows.length : 0;
+    // const _count = Array.isArray(rows) ? rows.length : 0;
 
-    return _count;
+    return count;
   } catch (error: any) {
     WrappidLogger.error("-------------------------------------");
     WrappidLogger.error("getBusinessEntity.helper>getEntityData");
@@ -241,9 +241,9 @@ const getEntityDataName = async (entityName: string, query: GenericObject, user?
       _options
     );
 
-    const _count = Array.isArray(rows) ? rows.length : 0;
+    // const _count = Array.isArray(rows) ? rows.length : 0;
 
-    return { columns: columns, rows: rows, totalRecords: _count };
+    return { columns: columns, rows: rows, totalRecords: count };
   } catch (error: any) {
     WrappidLogger.error("-------------------------------------");
     WrappidLogger.error("getBusinessEntity.helper>getEntityData");
