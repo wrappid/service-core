@@ -187,6 +187,7 @@ export function getMessageObject(
  * @param data Template Variable
  * @returns message body
  */
+// eslint-disable-next-line no-unused-vars
 export function createWhatsappMessageBody(template: any, data: any): any {
   //   console.log("TEMPLATE", template);
   const keys = Object.keys(data);
